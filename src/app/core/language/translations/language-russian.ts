@@ -406,6 +406,40 @@ export class Russian implements Language {
   distribution_validated = 'Распределение утверждено';
   distribution_validated_title = 'Утвержденное распределение';
   distribution_want_add = 'что вы хотите добавить в ';
+  // Data columns mapping
+  data_mapping_title = 'data columns mapping';
+
+  // Data verification
+  data_verification_chip_actual = 'Домохозяйства, имеющие целевую направленность';
+  data_verification_chip_add = 'Добавить';
+  data_verification_chip_existing = 'Существующий';
+  data_verification_chip_remove = 'Удалить';
+  data_verification_description_duplicates =
+    'Страница проверки дубликатов отображает все возможные дубликаты записей бенефициаров в базе данных. Если существующий бенефициар не является главой домохозяйства, вы можете перезаписать его информацию, проигнорировать изменения или сохранить их как разных бенефициаров, если вы уверены, что они разные люди.';
+  data_verification_description_less =
+    'Мы нашли записи, которые по вашим указаниям вы хотите удалить из базы данных. Пожалуйста, выберите те, которые вы хотите удалить.';
+  data_verification_description_more =
+    'Мы нашли записи, которые, кажется, не существуют в базе данных. Пожалуйста, выберите те, которые вы хотите добавить в базу данных проекта.';
+  data_verification_description_typos =
+    'На этой панели будут отображаться любые подозрительные ошибки при вводе данных, найденные в импортированных данных получателя. Пожалуйста, выберите, следует ли сохранить существующую информацию, обновить ее импортированными данными или сохранить обе как отдельные записи бенефициаров.';
+  data_verification_description_end =
+    'Изменения НЕ будут добавлены в базу данных до конца процесса проверки';
+  data_verification_done = 'Ваши данные проверены';
+  data_verification_error = 'Ошибка обработки данных';
+  data_verification_last_updated = 'Последнее обновление';
+  data_verification_snackbar_duplicate_corrected = 'Дубликаты исправлены';
+  data_verification_snackbar_duplicate_no_corrected = 'Не все дубликаты исправлены';
+  data_verification_snackbar_less_corrected = 'Удаление бенефициаров прошло успешно';
+  data_verification_snackbar_more_corrected = 'Добавление бенефициаров прошло успешно';
+  data_verification_snackbar_typo_corrected = 'Опечатки исправлены';
+  data_verification_snackbar_typo_no_corrected =
+    'Не все проблемы с опечатками были исправлены';
+  data_verification_step_info = 'Информация о шаге';
+  data_verification_step_duplicates = 'Проверьте дубликаты';
+  data_verification_step_less = 'Удалить бенефециаров';
+  data_verification_step_more = 'Добавить бенефициаров';
+  data_verification_step_typos = 'Несоответствия при вводе данных';
+  data_verification_title = 'проверка и подтверждение данных';
 
   // Donor
   donor_fullname = 'Имя донора';
@@ -464,6 +498,26 @@ export class Russian implements Language {
   household_assets = this.missingTranslation;
   household_shelter_status = this.missingTranslation;
   household_status = this.missingTranslation;
+
+  // Header
+  'header_add-beneficiaries' = 'Добавить бенефициаров';
+  'header_add-distribution' = 'Добавить распределение';
+  'header_admin' = 'Административные настройки';
+  'header_data-mapping' = 'Data Mapping';
+  'header_data-validation' = 'Проверка достоверности данных';
+  'header_distributions' = 'Распределение';
+  'header_settings' = 'Конфигурация';
+  'header_update-beneficiary' = 'Обновление бенефициаров';
+  header_beneficiaries = 'бенефициары';
+  header_disconnect = 'выйти';
+  header_home = 'главная страница';
+  header_import = 'Импорт данных бенефициара';
+  header_imported = 'Импортированные данные бенефициаров';
+  header_language = this.language;
+  header_profile = this.profile;
+  header_projects = this.projects;
+  header_reports = this.reports;
+  header_vouchers = this.voucher;
 
   // Import
   import_added = 'Добавлено  существующими бенефициарами';

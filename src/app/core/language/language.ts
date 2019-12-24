@@ -392,6 +392,9 @@ export interface Language {
   distribution_validated: string;
   distribution_want_add: string;
 
+  // Data mapping
+  data_mapping_title: string;
+
   // Donor
   donor_fullname: string;
   donor_shortname: string;
@@ -449,6 +452,26 @@ export interface Language {
   household_assets: string;
   household_shelter_status: string;
   household_status: string;
+
+  // Header
+  'header_add-beneficiaries': string;
+  'header_add-distribution': string;
+  header_admin: string;
+  'header_data-mapping': string;
+  'header_data-validation': string;
+  header_distributions: string;
+  header_settings: string;
+  'header_update-beneficiary': string;
+  header_beneficiaries: string;
+  header_disconnect: string;
+  header_home: string;
+  header_import: string;
+  header_imported: string;
+  header_language: string;
+  header_profile: string;
+  header_projects: string;
+  header_reports: string;
+  header_vouchers: string;
 
   // Import
   import_added: string;

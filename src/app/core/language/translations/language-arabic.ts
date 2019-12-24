@@ -327,6 +327,9 @@ export class Arabic implements Language {
   dashboard_summary_5 = 'المستفيدين خدم';
   dashboard_summary_6 = 'توزيعات كاملة';
 
+  // Data columns mapping
+  data_mapping_title = 'data columns mapping';
+
   // Data verification
   data_verification_chip_actual = 'المنزل المستهدف';
   data_verification_chip_add = 'للإضافة';
@@ -408,6 +411,7 @@ export class Arabic implements Language {
   'header_add-beneficiaries' = 'إضافة المستفيد';
   'header_add-distribution' = 'إضافة توزيع';
   'header_admin' = 'الإعدادات الإدارية';
+  'header_data-mapping' = 'Data Mapping';
   'header_data-validation' = 'التأكد من صحة البيانات';
   'header_distributions' = 'التوزيع';
   'header_settings' = 'ترتيب';
@@ -418,11 +422,11 @@ export class Arabic implements Language {
   header_import = 'تحميل بيانات المستفيد';
   header_imported = 'إستيراد بيانات المستفيدين';
   header_language = this.language;
-  header_logs = this.logs;
   header_profile = this.profile;
   header_projects = this.projects;
   header_reports = this.reports;
   header_vouchers = this.voucher;
+  header_logs = this.logs;
 
   // Household
   household_coping_strategies_index = 'مؤشر استراتيجيات المواجهة';

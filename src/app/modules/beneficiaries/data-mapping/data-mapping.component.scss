@@ -1,0 +1,42 @@
+@import '../../../../assets/css/variable.scss';
+@import '../../../../assets/css/animations.scss';
+
+.container-table {
+   overflow: hidden;
+}
+
+.content-table {
+    overflow-x: auto;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    min-height: 300px;
+    padding: 0 !important;
+}
+
+.header-cell {
+    width: 200px;
+    overflow: visible;
+    display: block;
+    flex: none;
+    padding-top: 15px;
+
+    .header {
+        font-weight: bold;
+        height: 15px;
+    }
+}
+
+.single-select {
+    width: 95%;
+    font-size: 15px;
+}
+
+.step-info {
+    background-color: rgba($bms_green, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    margin: 10px 0;
+    overflow: hidden;
+    max-height: 300px;
+}

@@ -8,6 +8,7 @@ import { ImportedDataComponent } from './beneficiaries-import/imported-data/impo
 import { DataValidationComponent } from './data-validation/data-validation.component';
 import { DeactivateGuard } from '../../core/guards/deactivate.guard';
 import { UpdateBeneficiaryComponent } from './update-beneficiary/update-beneficiary.component';
+import { DataMappingComponent } from 'src/app/modules/beneficiaries/data-mapping/data-mapping.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'imported',
     component: ImportedDataComponent,
+  },
+  {
+    path: 'import/data-mapping',
+    component: DataMappingComponent,
+    canDeactivate: [DeactivateGuard],
   },
   {
     path: 'import/data-validation',

@@ -387,7 +387,7 @@ export class BeneficiariesImportComponent implements OnInit, OnDestroy {
               this.importService.setResponse(response);
             }
             this.load = false;
-            this.router.navigate(['/beneficiaries/import/data-validation']);
+            this.router.navigate(['/beneficiaries/import/data-mapping']);
           },
           (error: any) => {
             this.load = false;

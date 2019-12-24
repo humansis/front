@@ -417,6 +417,42 @@ export class French implements Language {
   distribution_validated_title = 'Distribution validée';
   distribution_want_add = 'que vous souhaitez ajouter à la ';
 
+  // Data columns mapping
+  data_mapping_title = 'data columns mapping';
+
+  // Data verification
+  data_verification_chip_actual = 'Ménage ciblé';
+  data_verification_chip_add = 'A ajouter';
+  data_verification_chip_existing = 'Actuel';
+  data_verification_chip_remove = 'A supprimer';
+  data_verification_description_duplicates =
+    "Ici sont affichés les bénéficiaires de votre fichier qui existent déjà dans la base de données comme membres d'un foyer. Si le bénéficiaire n'est pas un chef de famille, vous pouvez choisir de supprimer l'un ou l'autre, ou de conserver les deux dans le cas où vous êtes sûr qu'il s'agit de deux personnes différentes.";
+  data_verification_description_end =
+    "Les modifications ne seront ajoutées à la base de donnée qu'à la fin du processus de validation .";
+  data_verification_description_less =
+    'Ci-dessous sont listés les foyers déjà existants dans la base de données mais avec plus de bénéficiaires que dans le fichier importé. Vous pouvez vérifier les informations et supprimer ceux que vous désirez au foyer présent dans la base de données.';
+  data_verification_description_more =
+    'Ci-dessous sont listés les foyers déjà existants dans la base de données mais avec moins de bénéficiaires que dans le fichier importé. Vous pouvez vérifier les informations et ajouter ceux que vous désirez au foyer présent dans la base de données.';
+  data_verification_description_typos =
+    "Ci-dessous seront affichées les typos suspectes des bénéficiaires listés dans le fichier : S'il s'avère qu'un bénéficiaire est presque identique à un autre dans la base de données, il sera affiché ici. Vous pouvez choisir entre remplacer les valeurs par le bénéficiaire qui est importé, conserver celui déjà présent, ou les sauvegarder comme deux bénéficiaires distincts";
+  data_verification_done = 'Toutes les données ont été vérifiées';
+  data_verification_error = 'Erreur lors du parcours des données';
+  data_verification_last_updated = 'Dernière mise à jour';
+  data_verification_snackbar_duplicate_corrected = 'Problèmes de doublons corrigées';
+  data_verification_snackbar_duplicate_no_corrected =
+    'Toutes les erreurs de doublons ne sont pas corrigées';
+  data_verification_snackbar_less_corrected = 'Bénéficiaires supprimer avec succès';
+  data_verification_snackbar_more_corrected = 'Bénéficiaires ajouter avec succès';
+  data_verification_snackbar_typo_corrected = "Erreurs d'orthographe corrigées";
+  data_verification_snackbar_typo_no_corrected =
+    "Toutes les erreurs d'orthographe ne sont pas corrigées";
+  data_verification_step_duplicates = 'Doublons';
+  data_verification_step_info = "Info de l'étape";
+  data_verification_step_less = 'Suppression';
+  data_verification_step_more = 'Ajout';
+  data_verification_step_typos = "Erreurs d'orthographe";
+  data_verification_title = 'vérification et validation des données';
+
   // Donor
   donor_fullname = 'Nom du donneur';
   donor_shortname = 'Surnom';
@@ -475,6 +511,26 @@ export class French implements Language {
   household_assets = this.missingTranslation;
   household_shelter_status = this.missingTranslation;
   household_status = this.missingTranslation;
+
+  // Header
+  'header_add-beneficiaries' = 'Ajouter un ménage';
+  'header_add-distribution' = 'Ajouter une distribution';
+  'header_admin' = 'Paramètres administratifs';
+  'header_data-mapping' = 'Data Mapping';
+  'header_data-validation' = 'Validation de données';
+  'header_distributions' = 'Distribution';
+  'header_settings' = 'Configuration';
+  'header_update-beneficiary' = 'Modifier';
+  header_beneficiaries = 'Bénéficiaires';
+  header_disconnect = 'déconnexion';
+  header_home = 'Accueil';
+  header_import = 'Import de bénéficiaires';
+  header_imported = 'Données des bénéficiaires importés';
+  header_language = this.language;
+  header_profile = this.profile;
+  header_projects = this.projects;
+  header_reports = this.reports;
+  header_vouchers = this.voucher;
 
   // Import
   import_added = 'Ajout';

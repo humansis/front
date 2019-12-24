@@ -78,7 +78,8 @@ import { MobilePressDirective } from '../core/directives/mobile-press.directive'
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { BeneficiariesImportComponent } from '../modules/beneficiaries/beneficiaries-import/beneficiaries-import.component';
 import { ImportedDataComponent } from '../modules/beneficiaries/beneficiaries-import/imported-data/imported-data.component';
-import { BeneficiariesComponent } from '../modules/beneficiaries/beneficiaries/beneficiaries.component';
+import { BeneficiariesComponent } from '../modules/beneficiaries/beneficiaries.component';
+import { DataMappingComponent } from '../modules/beneficiaries/data-mapping/data-mapping.component';
 import { DataValidationComponent } from '../modules/beneficiaries/data-validation/data-validation.component';
 import { BeneficiaryFormComponent } from '../modules/beneficiaries/update-beneficiary/beneficiary-form/beneficiary-form.component';
 import { LocationFormComponent } from '../modules/beneficiaries/update-beneficiary/location-form/location-form.component';
@@ -148,9 +149,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     NgSelectModule,
     RecaptchaModule,
     ZXingScannerModule,
-    ReactiveFormsModule.withConfig({
-      warnOnNgModelWithFormControl: 'never',
-    }),
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
   ],
   declarations: [
     // Shared Components
@@ -182,13 +181,12 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     ModalAssignComponent,
     ModalDetailsComponent,
     ModalLanguageComponent,
-    ModalConfirmationComponent,
-    ModalRequestsComponent,
     BoxSettingComponent,
     BoxPropertiesComponent,
     DisplayFieldComponent,
     HintErrorComponent,
     AdmFormComponent,
+    DataMappingComponent,
     DataValidationComponent,
     DistributionsComponent,
     MobileMoneyComponent,
@@ -215,8 +213,6 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     ScannerComponent,
     SettingsComponent,
     AdministrationComponent,
-    SsoComponent,
-    JsonFormComponent,
   ],
   entryComponents: [
     ModalDeleteComponent,
@@ -284,6 +280,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     MatCardModule,
     MatNativeDateModule,
     MatSelectModule,
+    DataMappingComponent,
     DataValidationComponent,
     MatDividerModule,
     MatRadioModule,
@@ -307,9 +304,6 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     PlaceholderStepperComponent,
     SettingsComponent,
     AdministrationComponent,
-    JsonFormComponent,
-    UppercaseFirstPipe,
-    SsoComponent,
   ],
   providers: [
     { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check' },
