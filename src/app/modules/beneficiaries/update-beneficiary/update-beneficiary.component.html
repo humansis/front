@@ -188,6 +188,9 @@
                                     <div class="content-button-footer">
                                         <div class="action-buttons">
                                             <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+                                            <button mat-button class="button-text-primary" (click)="leave()">
+                                                {{language.cancel | uppercaseFirst }}
+                                            </button>
                                             <button mat-flat-button class="button-background-primary"
                                                 (click)="nextValidation(1)">
                                                 {{language.next | uppercaseFirst }}
