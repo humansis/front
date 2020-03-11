@@ -16,9 +16,9 @@ enum Step {
     Typos = 2,
     More = 3,
     Less = 4,
-    /* Duplicates = 5, */
-    Update = 5,
-    Completed = 6,
+    Duplicates = 5,
+    Update = 6,
+    Completed = 7,
 
 }
 
@@ -96,6 +96,10 @@ export class DataValidationComponent implements OnInit {
     // Send step data to the server
     public validateStep() {
         this.loadingStep = true;
+        // TEMPORAL CHANGE TO SKIP THE DUPLICATION STEP 
+        if (this.currentStep === 4) {
+            this.currentStep++;
+        }
         this.importService.sendStepUserData(this.generateResponse())
             .subscribe((response: any) => {
                 if (response) {
@@ -143,11 +147,9 @@ export class DataValidationComponent implements OnInit {
             this.generateMoreControls();
         } else if (this.currentStep === Step.Less ) {
             this.generateLessControls();
-        }
-        /* else if (this.currentStep === Step.Duplicates ) {
+        } else if (this.currentStep === Step.Duplicates ) {
             this.generateDuplicatesControls();
         }
-        */
         else {
             this.form = null;
         }
@@ -170,7 +172,6 @@ export class DataValidationComponent implements OnInit {
         this.form = new FormArray(formArray);
     }
 
-    /*
     private generateDuplicatesControls() {
         const formArray = [];
 
@@ -197,7 +198,6 @@ export class DataValidationComponent implements OnInit {
         });
         this.form = new FormArray(formArray);
     }
-    */
 
     private validateCheckboxPair(control: AbstractControl): object {
         if (control.get('old').value || control.get('new').value) {
@@ -319,11 +319,9 @@ export class DataValidationComponent implements OnInit {
             return this.generateMoreResponse();
         } else if (this.currentStep === Step.Less) {
             return this.generateLessResponse();
-        }
-        /* else if (this.currentStep === Step.Duplicates) {
+        } else if (this.currentStep === Step.Duplicates) {
             return this.generateTyposOrDuplicatesResponse();
         }
-        */
     }
 
     // Send back the housholds new / old pair, adding a 'state' entry describing which HH to keep.
