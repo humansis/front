@@ -96,10 +96,7 @@ export class DataValidationComponent implements OnInit {
     // Send step data to the server
     public validateStep() {
         this.loadingStep = true;
-        // TEMPORAL CHANGE TO SKIP THE DUPLICATION STEP 
-        if (this.currentStep === 4) {
-            this.currentStep++;
-        }
+        // TEMPORAL CHANGE TO SKIP THE DUPLICATION STEP
         this.importService.sendStepUserData(this.generateResponse())
             .subscribe((response: any) => {
                 if (response) {
