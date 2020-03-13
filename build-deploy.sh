@@ -11,6 +11,8 @@ if [[ $1 == "front" ]]; then
     npm run build -- --prod --progress
 elif [[ $1 == "testing" ]]; then
     npm run build -- --prod -c testing --progress
+elif [[ $1 == "stage" ]]; then
+    npm run build -- --prod -c stage --progress
 elif [[ $1 == "demo" ]]; then
     npm run build -- --prod -c demo --progress
 else
@@ -41,13 +43,17 @@ aws configure set aws_secret_access_key ${aws_secret_access_key}
 aws configure set default.region eu-central-1
 
 if [[ $1 == "front" ]]; then
-    aws s3 rm s3://front.bmstaging.info --recursive
-    aws s3 cp ./dist/bms-front_gzip s3://front.bmstaging.info --recursive --acl public-read --content-encoding gzip
+    aws s3 rm s3://pin.humansis.org --recursive
+    aws s3 cp ./dist/bms-front_gzip s3://pin.humansis.org --recursive --acl public-read --content-encoding gzip
     aws cloudfront create-invalidation --distribution-id E2CS9FD9XA4VY8 --paths '/*'
 elif [[ $1 == "testing" ]]; then
-    aws s3 rm s3://testing.bmstaging.info --recursive
-    aws s3 cp ./dist/bms-front_gzip s3://testing.bmstaging.info --recursive --acl public-read --content-encoding gzip
-    aws cloudfront create-invalidation --distribution-id E1FDBGHL3DD0Y8 --paths '/*'
+    aws s3 rm s3://test.humansis.org --recursive
+    aws s3 cp ./dist/bms-front_gzip s3://test.humansis.org --recursive --acl public-read --content-encoding gzip
+    aws cloudfront create-invalidation --distribution-id ELILCCWXYP760 --paths '/*'
+elif [[ $1 == "stage" ]]; then
+    aws s3 rm s3://stage.humansis.org --recursive
+    aws s3 cp ./dist/bms-front_gzip s3://stage.humansis.org --recursive --acl public-read --content-encoding gzip
+    aws cloudfront create-invalidation --distribution-id E32V5GMMFAUJ37 --paths '/*'
 elif [[ $1 == "demo" ]]; then
     aws s3 rm s3://demo.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://demo.humansis.org --recursive --acl public-read --content-encoding gzip

@@ -18,11 +18,17 @@ jobs:
           script: npm run lint && npm run build -- --prod --stats-json
           fast_finish: true
         - stage: deploy
-          if: branch = dev AND NOT type = "pull_request"
+          if: branch = develop AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
           script: ./build-deploy.sh testing
+        - stage: deploy
+          if: branch = stage AND NOT type = "pull_request"
+          before_install:
+              - sudo apt-get install python3-pip python3-setuptools
+              - pip3 install awscli --upgrade
+          script: ./build-deploy.sh stage
         - stage: deploy
           if: branch = 2.0 AND NOT type = "pull_request"
           before_install:
