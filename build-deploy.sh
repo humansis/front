@@ -11,6 +11,8 @@ if [[ $1 == "front" ]]; then
     npm run build -- --prod --progress
 elif [[ $1 == "testing" ]]; then
     npm run build -- --prod -c testing --progress
+elif [[ $1 == "develop" ]]; then
+    npm run build -- --prod -c develop --progress
 elif [[ $1 == "stage" ]]; then
     npm run build -- --prod -c stage --progress
 elif [[ $1 == "demo" ]]; then
@@ -50,6 +52,10 @@ elif [[ $1 == "testing" ]]; then
     aws s3 rm s3://test.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://test.humansis.org --recursive --acl public-read --content-encoding gzip
     aws cloudfront create-invalidation --distribution-id ELILCCWXYP760 --paths '/*'
+elif [[ $1 == "develop" ]]; then
+    aws s3 rm s3://dev.humansis.org --recursive
+    aws s3 cp ./dist/bms-front_gzip s3://dev.humansis.org --recursive --acl public-read --content-encoding gzip
+    aws cloudfront create-invalidation --distribution-id E1FDBGHL3DD0Y8 --paths '/*'
 elif [[ $1 == "stage" ]]; then
     aws s3 rm s3://stage.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://stage.humansis.org --recursive --acl public-read --content-encoding gzip
