@@ -24,13 +24,19 @@ jobs:
               - pip3 install awscli --upgrade
           script: ./build-deploy.sh testing
         - stage: deploy
-          if: branch = 2.0 AND NOT type = "pull_request"
+          if: branch =~ /^release\/.*$/ AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh testing
+          script: ./build-deploy.sh stage
         - stage: deploy
-          if: branch = master AND NOT type = "pull_request"
+          if: (NOT branch = master) AND tag IS present
+          before_install:
+              - sudo apt-get install python3-pip python3-setuptools
+              - pip3 install awscli --upgrade
+          script: ./build-deploy.sh develop
+        - stage: deploy
+          if: branch = master AND NOT type = "pull_request" AND tag IS present AND tag =~ /^v.*$/
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
