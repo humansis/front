@@ -6,7 +6,7 @@ export const environment = {
     production: false
 };
 
-export const URL_BMS_API = 'https://apitest.humansis.org/api/wsse';
+export const URL_BMS_API = 'https://apidev.humansis.org/api/wsse';
 
 /*
  * In development mode, to ignore zone related error stack frames such as
