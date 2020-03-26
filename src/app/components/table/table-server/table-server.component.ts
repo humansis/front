@@ -36,7 +36,7 @@ export class TableServerComponent extends TableComponent implements OnInit, Afte
     }
 
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-    @ViewChild(MatSort, {static: false}) sort: MatSort;
+    @ViewChild(MatSort) sort: MatSort;
 
     public filters: CustomModel;
     public filterFields: Array<string>;

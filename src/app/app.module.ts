@@ -30,9 +30,7 @@ import { LogsModule } from './modules/logs/logs.module';
         ProfileComponent,
         HeaderMobileComponent,
         HeaderComponent,
-        ModalConfirmationComponent,
         RequestDisplayComponent,
-        ModalRequestsComponent,
     ],
     imports: [
         // Modules

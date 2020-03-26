@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { saveAs } from 'file-saver/FileSaver';
+import * as FileSaver from 'file-saver';
 import * as html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
 import { forkJoin, from, of, Subscription } from 'rxjs';
@@ -478,7 +478,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
                     this.generateFilters(),
                     exportFileType
                 ).subscribe((file: File) => {
-                        saveAs(file, `reporting.${exportFileType}`);
+                        FileSaver.saveAs(file, `reporting.${exportFileType}`);
                         this.isDownloading = false;
 
                     });

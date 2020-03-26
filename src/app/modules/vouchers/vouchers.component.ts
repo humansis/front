@@ -56,7 +56,7 @@ export class VouchersComponent implements OnInit, OnDestroy {
     // Language
     public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english;
 
-    @ViewChild(TableServerComponent, { static: false }) table: TableServerComponent;
+    @ViewChild(TableServerComponent) table: TableServerComponent;
 
     constructor(
         public bookletService: BookletService,

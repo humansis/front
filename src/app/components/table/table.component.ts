@@ -35,13 +35,13 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     public paginator: MatPaginator;
     public sort;
 
-    @ViewChild(MatPaginator, { static: false })
+    @ViewChild(MatPaginator)
     set matPaginator(mp: MatPaginator) {
         this.paginator = mp;
         this.initPaginator();
     }
 
-    @ViewChild(MatSort, { static: false })
+    @ViewChild(MatSort)
     set content(content: ElementRef<MatSort>) {
         this.sort = content;
         if (this.sort && this.tableData) {

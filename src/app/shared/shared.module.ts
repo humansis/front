@@ -181,6 +181,8 @@ imports: [
         ModalAssignComponent,
         ModalDetailsComponent,
         ModalLanguageComponent,
+        ModalConfirmationComponent,
+        ModalRequestsComponent,
         BoxSettingComponent,
         BoxPropertiesComponent,
         DisplayFieldComponent,

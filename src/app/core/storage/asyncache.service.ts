@@ -152,7 +152,7 @@ export class AsyncacheService {
     removeItem(key: string) {
         return this.getFormattedKey(key).pipe(
             tap((formattedKey: string) => {
-                this.storage.removeItemSubscribe(formattedKey);
+                this.storage.removeItem(formattedKey);
             }),
         );
     }

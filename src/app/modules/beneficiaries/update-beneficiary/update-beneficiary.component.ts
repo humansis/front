@@ -99,7 +99,7 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
         resident: null
     };
 
-    @ViewChild(MatStepper, { static: false }) stepper: MatStepper;
+    @ViewChild(MatStepper) stepper: MatStepper;
 
     constructor(
         public route: ActivatedRoute,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { saveAs } from 'file-saver/FileSaver';
+import * as FileSaver from 'file-saver';
 import { tap } from 'rxjs/operators';
 import { AppInjector } from 'src/app/app-injector';
 import { LanguageService } from 'src/app/core/language/language.service';
@@ -153,7 +153,7 @@ export class HouseholdsService extends CustomModelService {
             '&adm3=' + location.adm3 + '&adm4=' + location.adm4;
         return this.http.post(url, file, options).pipe(
             tap((response: any) => {
-                saveAs(response, 'templateSyria.xls');
+                FileSaver.saveAs(response, 'templateSyria.xls');
             })
         );
     }

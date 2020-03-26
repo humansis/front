@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public loadingTwoFA = false;
     public twoFactorStep = false;
 
-    @ViewChild('captchaRef', { static: false }) recaptcha: RecaptchaComponent;
+    @ViewChild('captchaRef') recaptcha: RecaptchaComponent;
 
     // Language
     public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english;
