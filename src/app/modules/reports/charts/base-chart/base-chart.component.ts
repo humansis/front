@@ -20,7 +20,6 @@ export class BaseChartComponent {
         public languageService: LanguageService,
         protected colorsService: ColorsService,
         private titlecasePipe: TitleCasePipe,
-        private languageService: LanguageService
     ) {}
 
     @Input() graphInfo: Graph;
