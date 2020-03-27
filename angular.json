@@ -51,6 +51,24 @@
               "buildOptimizer": true,
               "serviceWorker": true
             },
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            },
             "docker": {
               "fileReplacements": [
                 {
@@ -73,6 +91,24 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.testing.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            },
+            "develop": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.develop.ts"
                 }
               ],
               "optimization": true,
@@ -115,11 +151,17 @@
             "production": {
               "browserTarget": "bms-front:build:production"
             },
+            "stage": {
+              "browserTarget": "bms-front:build:stage"
+            },
             "docker": {
               "browserTarget": "bms-front:build:docker"
             },
             "testing": {
               "browserTarget": "bms-front:build:testing"
+            },
+            "develop": {
+              "browserTarget": "bms-front:build:develop"
             },
           }
         },

@@ -3,4 +3,4 @@ export const environment = {
     name: 'testing'
 };
 
-export const URL_BMS_API = 'https://apitest.bmstaging.info/api/wsse';
+export const URL_BMS_API = 'https://apitest.humansis.org/api/wsse';
