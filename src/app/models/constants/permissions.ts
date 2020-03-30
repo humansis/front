@@ -54,6 +54,7 @@ export const rightsHierarchy = {
         'ROLE_REPORTING_PROJECT',
         'ROLE_USER_MANAGEMENT',
         'ROLE_VIEW_ADMIN_SETTINGS',
+        'ROLE_DONOR_MANAGEMENT'
     ],
     [Role.regionalManager]: [
         'ROLE_BENEFICIARY_MANAGEMENT_READ',
@@ -61,6 +62,7 @@ export const rightsHierarchy = {
         'ROLE_REPORTING_COUNTRY',
         'ROLE_REPORTING_PROJECT',
         'ROLE_REPORTING_READ',
+        'ROLE_DONOR_MANAGEMENT',
     ],
     [Role.admin]: [
         // Not used, admin can do everything on the app

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, mapTo } from 'rxjs/operators';
 import { URL_BMS_API } from '../../../environments/environment';
 import { SaltInterface } from '../../models/salt';
 import { User } from '../../models/user';
@@ -9,6 +9,7 @@ import { CountriesService } from '../countries/countries.service';
 import { HttpService } from '../network/http.service';
 import { AsyncacheService } from '../storage/asyncache.service';
 import { WsseService } from './wsse.service';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -54,6 +55,12 @@ export class AuthenticationService {
                 const user = new User().set('email', username).set('password', saltedPassword);
                 return this.logUser(user.modelToApi());
             })
+        );
+    }
+
+    sendSMS(body: any, options: any) {
+        return this.http.post('https://api.sms.test.humanitarian.tech/api/order/sms', body, options).pipe(
+            mapTo(null)
         );
     }
 
@@ -112,5 +119,20 @@ export class AuthenticationService {
         body.password = saltedPassword;
         body.salt = salt.salt;
         return body;
+    }
+
+    public loginHumanitarianID(code: string) {
+        const body = {
+            code: code,
+            environment: environment.name
+        };
+        return this.http.post(URL_BMS_API + '/login-humanitarian', body);
+    }
+
+    public loginGoogle(token: string) {
+        const body = {
+            token: token
+        };
+        return this.http.post(URL_BMS_API + '/login-google', body);
     }
 }

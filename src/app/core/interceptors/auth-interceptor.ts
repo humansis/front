@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         // Do not add headers on salt request
-        if (req.url.match(URL_BMS_API) && !/salt/.test(req.url)) {
+        if (req.url.match(URL_BMS_API) && !/salt/.test(req.url) && !req.headers.get('x-wsse')) {
             let user;
             // On login pass the user credentials to the wsse service
             if (/login/.test(req.url)) {
@@ -35,7 +35,6 @@ export class AuthInterceptor implements HttpInterceptor {
                 )
             );
         }
-
         return next.handle(req);
     }
 }

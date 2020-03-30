@@ -155,6 +155,8 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
             });
         } else if (field.kindOfField === 'SingleSelect') {
             value = field.value ? field.value.get(field.bindField) : '';
+        } else if (field.kindOfField === 'Boolean') {
+            value = field.value ? field.language['true'] : field.language['false'];
         } else {
             value = field.value;
         }
@@ -183,7 +185,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
             return value.toLowerCase();
         }
     }
-
 
 
     setDataTableProperties() {

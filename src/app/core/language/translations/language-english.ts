@@ -16,6 +16,7 @@ export class English implements Language {
     email = 'Email'
     export = 'Export'
     export_selected = 'Export Selected Items'
+    false = 'False'
     general_settings = 'Configuration'
     home = 'Home'
     import = 'Import'
@@ -33,6 +34,7 @@ export class English implements Language {
     summary = 'Summary'
     the = 'the'
     this = 'this'
+    true = 'True'
     selected = 'selected'
 
 
@@ -54,6 +56,7 @@ export class English implements Language {
     households = 'Household'
     language = 'Language'
     location = 'Location'
+    logs = 'Logs'
     national_id = 'National ID'
     phone = 'Phone'
     products = 'Products'
@@ -395,6 +398,7 @@ export class English implements Language {
     header_import = 'Import beneficiary data'
     header_imported = 'Imported beneficiaries data'
     header_language = this.language
+    header_logs = this.logs
     header_profile = this.profile
     header_projects = this.projects
     header_reports = this.reports
@@ -467,13 +471,102 @@ export class English implements Language {
     livelihood_security = 'Security Industry'
     livelihood_service = 'Service Industry and Other Professionals'
 
+    //Log audit
+
+    // Actions
+    log_archive = 'Archived'
+    log_assign = 'Assigned'
+    log_add_beneficiary = 'Added Beneficiaries'
+    log_add_households = 'Added Households'
+    log_complete = 'Completed'
+    log_create = 'Created'
+    log_deactivate = 'Deactivated'
+    log_deactivate_booklets = 'Deactivated'
+    log_delete = 'Deleted'
+    log_delete_batch = 'Batch Deleted'
+    log_edit_general_relief_notes = 'General Relief Item Notes Added'
+    log_import = 'Imported'
+    log_import_beneficiaries_from_api = 'Imported From Api'
+    log_import_beneficiaries_from_syria_file = 'Imported From Syria File'
+    log_import_beneficiary = 'Imported Beneficiaries'
+    log_post_password = 'Changed Password'
+    log_scan = 'Scanned'
+    log_remove_many = 'Deleted'
+    log_remove_one_beneficiary = 'Removed One Beneficiary'
+    log_send_transaction = 'Mobile Money Sent'
+    log_send_verification_email = 'Code Sent'
+    log_set_general_relief_items_as_distributed = 'General Relief Item Distributed'
+    log_update = 'Updated'
+    log_update_f_p = '3rd party connection edited'
+    log_post_language = 'Changed Default Language'
+    log_update_password = 'Updated Password'
+    log_upload_image = 'Uploaded An Image'
+    log_upload_logo = 'Uploaded A Logo'
+    log_validate = 'Validated'
+
+    // Objects
+    log_beneficiary = 'Beneficiary'
+    log_booklet = 'Booklet'
+    log_country = 'Country Specifics'
+    log_distribution = 'Distribution'
+    log_donor = 'Donor'
+    log_household = 'Household'
+    log_organization = 'Organization'
+    log_product = 'Product'
+    log_project = 'Project'
+    log_transaction = 'Transaction'
+    log_user = 'User'
+    log_vendor = 'Vendor'
+    log_voucher = 'Voucher'
+
+    //Fields
+    log_field_action = 'Action'
+    log_field_country = 'Country'
+    log_field_date = 'Date'
+    log_field_details = 'Details'
+    log_field_id = 'Id'
+    log_field_object = 'Object'
+    log_field_status = 'Status'
+    log_field_user = 'User'
+
+    //Reports
+    log_active_users_title = 'Most active users'
+    log_code = 'Code'
+    log_family_name = 'family name'
+    log_field = 'Field'
+    log_old_id = 'Previous id'
+    log_name = 'Name'
+    log_not_exists = 'Not exists anymore'
+    log_no_details = 'No details to display'
+    log_number_booklets = 'Number of booklets'
+    log_number_vouchers = 'Number of vouchers'
+    log_requests = 'Requests'
+    log_requests_country_title = 'Requests per country'
+    log_requests_day_title = 'Requests per day'
+    log_status_rate_title = 'Status rate'
+    log_time = 'Time'
+    log_users = 'Users'
+    log_username = 'Username'
+    log_value = 'Value'
+
+    //Status
+    log_status_200 = 'Success'
+    log_status_300 = 'Redirected'
+    log_status_400 = 'Error'
+    log_status_401 = 'Unauthenticated'
+    log_status_403 = 'Forbidden'
+    log_status_404 = 'Not Found'
+
     // Login
     login_bms = 'Beneficiary management system'
     login_captcha_invalid = 'The captcha is invalid'
-    login_forgot_password = 'Forgot password?'
     login_password = '*********'
     login_prompt = 'Please log in'
     login_title = 'Login'
+    login_title_hid= 'Login with HID'
+    login_title_google = 'Login with Google'
+    login_two_fa_invalid_code = 'Invalid code, please try again'
+    login_two_fa_message = 'This is your Humansis authentication code'
 
     // Map legend
     map_legend_completed = 'completed'
@@ -569,12 +662,24 @@ export class English implements Language {
 
     // Profile
     profile_change_password = 'You need to change your password'
+    profile_change_phone = 'Change phone number'
     profile_password_changed = 'Password changed'
     profile_password_would_not_be_changed = 'The two passwords are identical, ignoring update.'
+    profile_phone_changed = 'Phone number successfully changed'
+    profile_phone_not_valid = 'The phone number introduced is not valid'
+    profile_two_fa_enable = 'Enable'
+    profile_two_fa_enabled = 'Two factor authentication successfully enabled'
+    profile_two_fa_disable = 'Disable'
+    profile_two_fa_disabled = 'Two factor authentication disabled'
+    profile_two_fa_information = 'Two-factor authentication adds an additional layer of security to your account by requiring more than a password to log in'
+    profile_two_fa_title = '2 Factor Authentication'
+    profile_two_fa_warning = 'You need a registered telephone number to enable two-phase authentication'
     profile_user_change_password = 'Change password'
     profile_user_hint_new_password = 'New password'
     profile_user_hint_new_password_again = 'Re-enter new password'
     profile_user_hint_old_password = 'Old password'
+    profile_user_hint_new_phone_number = 'Phone number'
+    profile_user_hint_new_phone_prefix = 'Prefix'
     profile_user_information = 'User information'
 
     // Project
@@ -804,6 +909,8 @@ export class English implements Language {
     // User
     user_only_one_country = 'You can select only one country'
     user_password_question = 'Update password on next login'
+    user_phone_number = this.profile_user_hint_new_phone_number
+    user_phone_prefix = this.profile_user_hint_new_phone_prefix
 
     // Criteria (must be the last thing declared because uses the previous variables)
     criteria_operator = 'Condition'

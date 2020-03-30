@@ -17,12 +17,14 @@ export class BaseChartComponent {
     public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english ;
 
     constructor(
+        public languageService: LanguageService,
         protected colorsService: ColorsService,
         private titlecasePipe: TitleCasePipe,
-        private languageService: LanguageService
     ) {}
 
     @Input() graphInfo: Graph;
+    @Input() xLabel = this.language.log_time;
+    @Input() yLabel;
 
     protected generateLabels() {
         this.options = {
@@ -38,7 +40,7 @@ export class BaseChartComponent {
                     {
                         scaleLabel: {
                             display: true,
-                            labelString: this.titlecasePipe.transform(Object.values(this.graphInfo.values)[0][0].unit),
+                            labelString: this.titlecasePipe.transform(this.yLabel),
                         },
                         ticks: {
                             beginAtZero: true,

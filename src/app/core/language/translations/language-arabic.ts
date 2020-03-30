@@ -15,6 +15,7 @@ export class Arabic implements Language {
     email = 'البريد الالكتروني'
     export = 'تحميل'
     export_selected = 'تصدير العناصر المحددة'
+    false = 'خاطئة'
     general_settings = 'ترتيب'
     home = 'الصفحة الرئيسية'
     import = 'تحميل'
@@ -32,6 +33,7 @@ export class Arabic implements Language {
     summary = 'ملخص'
     the = 'ال'
     this = 'هذه'
+    true = 'صحيح'
     selected = 'المحدد'
 
     // Models
@@ -52,6 +54,7 @@ export class Arabic implements Language {
     households = 'الأسرة'
     language = 'اللغة'
     location = 'الموقع'
+    logs = 'سجلات'
     national_id = 'الهوية الوطنية'
     phone = 'الهاتف'
     products = 'منتجات'
@@ -393,6 +396,7 @@ export class Arabic implements Language {
     header_import = 'تحميل بيانات المستفيد'
     header_imported = 'إستيراد بيانات المستفيدين'
     header_language = this.language
+    header_logs = this.logs
     header_profile = this.profile
     header_projects = this.projects
     header_reports = this.reports
@@ -465,13 +469,104 @@ export class Arabic implements Language {
     livelihood_security = 'صناعة الأمن'
     livelihood_service = 'صناعة الخدمات وغيرهم من المهنيين'
 
+    //Log audit
+
+    // Actions
+    log_archive = 'أرشفة'
+    log_assign = 'تعيين'
+    log_add_beneficiary = 'وأضاف المستفيدون'
+    log_add_households = 'الأسر المضافة'
+    log_complete = 'منجز'
+    log_create = 'خلقت'
+    log_deactivate = 'إبطال مفعولها'
+    log_deactivate_booklets = this.log_deactivate
+    log_delete = 'تم الحذف'
+    log_delete_batch = 'دفعة محذوفة'
+    log_edit_general_relief_notes = 'تمت إضافة ملاحظات بند الإغاثة العامة'
+    log_import = 'مستورد'
+    log_import_beneficiaries_from_api = 'مستورد من Api'
+    log_import_beneficiaries_from_syria_file = 'مستورد من ملف سوريا'
+    log_import_beneficiary = 'المستفيدون المستوردون'
+    log_post_password = 'تغيير كلمة المرور'
+    log_scan = 'الممسوحة ضوئيا'
+    log_remove_many = 'تم الحذف'
+    log_remove_one_beneficiary = 'إزالة مستفيد واحد'
+    log_send_verification_email = 'تم إرسال رمز المعاملة'
+    log_send_transaction = 'المال المحمول المرسلة'
+    log_set_general_relief_items_as_distributed = 'توزيع مواد الإغاثة العامة'
+    log_update = 'محدث'
+    log_update_f_p = 'تم تعديل اتصال الطرف الثالث'
+    log_post_language = 'تغيير اللغة الافتراضية'
+    log_update_password = 'تحديث كلمة المرور'
+    log_upload_image = 'تم الرفع صورة'
+    log_upload_logo = 'تم الرفع شعار'
+    log_validate = 'التحقق من صحة'
+
+    // Objects
+    log_beneficiary = 'المستفيد'
+    log_booklet = 'كتيب'
+    log_country = 'تفاصيل البلد'
+    log_distribution = 'توزيع'
+    log_donor = 'الجهات المانحة'
+    log_household = 'منزلي'
+    log_organization = 'منظمة'
+    log_product = 'المنتج'
+    log_project = 'مشروع'
+    log_transaction = 'عملية تجارية'
+    log_user = 'المستعمل'
+    log_vendor = 'بائع'
+    log_voucher = 'إيصال'
+
+    //Fields
+    log_field_action = 'عمل'
+    log_field_country = 'بلد'
+    log_field_date = 'تاريخ'
+    log_field_details = 'تفاصيل'
+    log_field_id = 'Id'
+    log_field_object = 'موضوع'
+    log_field_status = 'وضع'
+    log_field_user = 'المستخدم'
+
+    //Reports
+    log_active_users_title = 'معظم المستخدمين النشطين'
+    log_code = 'رموز'
+    log_family_name = 'اسم العائلة'
+    log_field = 'حقل'
+    log_old_id = 'المعرف السابق'
+    log_name = 'اسم'
+    log_not_exists = 'غير موجود بعد الآن'
+    log_no_details = 'لا توجد تفاصيل لعرضها'
+    log_number_booklets = 'عدد الكتيبات'
+    log_number_vouchers = 'عدد القسائم'
+    log_requests  = 'طلبات'
+    log_requests_country_title = 'طلبات لكل بلد'
+    log_requests_day_title = 'طلبات في اليوم الواحد'
+    log_status_rate_title = 'معدل الوضع'
+    log_time = 'زمن'
+    log_users = 'المستخدم'
+    log_username = 'اسم المستخدم'
+    log_value = 'القيمة'
+
+    //Status
+    log_status_200 = 'نجاح'
+    log_status_300 = 'إعادة توجيه'
+    log_status_400 = 'خطأ'
+    log_status_401 = 'غير مصادقة'
+    log_status_403 = 'ممنوع'
+    log_status_404 = 'غير معثور عليه'
+
+
+
     // Login
     login_bms = 'نظام إدارة المستفيدين'
     login_captcha_invalid = 'The captcha is invalid'
-    login_forgot_password = 'هل نسيت كلمة المرور'
     login_password = 'كلمة المرور'
     login_prompt = 'Please log in'
     login_title = ' تسجيل الدخول الى الحساب'
+    login_title_hid = 'Humanitarian ID تسجيل الدخول مع'
+    login_title_google = 'Google تسجيل الدخول مع'
+    login_two_fa_invalid_code = 'رمز غير صالح. يرجى المحاولة مرة أخرى'
+    login_two_fa_message = 'هذا هو رمز المصادقة Humansis الخاص بك'
 
     // Map legend
     map_legend_completed = 'منجز'
@@ -567,13 +662,25 @@ export class Arabic implements Language {
 
     // Profile
     profile_change_password = 'تحتاج إلى تغيير كلمة المرور الخاصة بك'
+    profile_change_phone = 'غير رقم الهاتف'
     profile_password_changed = 'تم تغيير كلمة السر'
+    profile_phone_changed = 'تم تغيير رقم الهاتف بنجاح'
+    profile_phone_not_valid = 'رقم الهاتف المقدم غير صالح'
+    profile_two_fa_enable = 'ممكن'
+    profile_two_fa_enabled = 'تم تمكين المصادقة الثنائية بنجاح'
+    profile_two_fa_disable = 'تعطيل'
+    profile_two_fa_disabled = 'اثنين عامل المصادقة المعوقين'
+    profile_two_fa_information = 'تضيف المصادقة ثنائية العوامل طبقة إضافية من الأمان إلى حسابك عن طريق طلب أكثر من كلمة مرور لتسجيل الدخول'
+    profile_two_fa_title = '2 عامل المصادقة'
+    profile_two_fa_warning = 'تحتاج إلى رقم هاتف مسجل لتمكين المصادقة ثنائية الطور'
     profile_user_change_password = 'تغيير كلمة المرور'
     profile_user_hint_new_password = 'كلمة المرور الجديدة'
     profile_user_hint_new_password_again = 'أعد إدخال كلمة المرور الجديدة'
+    profile_user_hint_new_phone_number = 'رقم الهاتف'
+    profile_user_hint_new_phone_prefix = 'اختصار'
     profile_user_hint_old_password = 'كلمة المرور القديمة'
     profile_user_information = 'معلومات المستخدم'
-    profile_password_would_not_be_changed = 'The two passwords are identical, ignoring update.'
+    profile_password_would_not_be_changed = 'كلمتا المرور متطابقتان ، مع تجاهل التحديث'
 
     // Project
     project_add = 'الرجاء إضافة مشروع جديد للبدء!'
@@ -802,6 +909,8 @@ export class Arabic implements Language {
     // User
     user_only_one_country = 'يمكنك اختيار دولة واحدة فقط'
     user_password_question = 'تحديث كلمة المرور عند تسجيل الدخول المقبل'
+    user_phone_number = this.profile_user_hint_new_phone_number
+    user_phone_prefix = this.profile_user_hint_new_phone_prefix
 
     // Criteria (must be the last thing declared because uses the previous variables)
     criteria_operator = 'الشروط'

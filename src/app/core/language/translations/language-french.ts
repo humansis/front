@@ -14,6 +14,7 @@ export class French implements Language {
     done = 'Fin'
     email = 'Email'
     export = 'Export'
+    false = 'Faux'
     export_selected = 'Exporter les items sélectionnés'
     general_settings = 'Configuration'
     home = 'Accueil'
@@ -32,6 +33,7 @@ export class French implements Language {
     summary = 'Sommaire'
     the = 'le'
     this = 'Ce'
+    true = 'Vrai'
     selected = 'selectionné'
 
     // Models
@@ -52,6 +54,7 @@ export class French implements Language {
     households = 'Ménage'
     language = 'langue'
     location = 'Lieu'
+    logs = 'Journaux'
     national_id = 'Document d\'identité'
     phone = 'Téléphone'
     products = 'Produits'
@@ -394,6 +397,7 @@ export class French implements Language {
     header_import = 'Import de bénéficiaires'
     header_imported = 'Données des bénéficiaires importés'
     header_language = this.language
+    header_logs = this.logs
     header_profile = this.profile
     header_projects = this.projects
     header_reports = this.reports
@@ -466,13 +470,102 @@ export class French implements Language {
     livelihood_security = 'Sécurité'
     livelihood_service = 'Service et autres professionnels'
 
+    //Log audit
+
+    // Actions
+    log_archive = 'Archivé'
+    log_assign = 'Attribué'
+    log_add_beneficiary = 'Bénéficiaires ajoutés'
+    log_add_households = 'Ménages ajoutés'
+    log_complete = 'Terminé'
+    log_create = 'Établi'
+    log_deactivate = 'Désactivé'
+    log_deactivate_booklets = this.log_deactivate
+    log_delete = 'Supprimé'
+    log_delete_batch = 'Lot supprimé'
+    log_edit_general_relief_notes = 'Notes de soulagement général ajoutées'
+    log_import = 'Importé'
+    log_import_beneficiaries_from_api = 'Importé d\'Api'
+    log_import_beneficiaries_from_syria_file = 'Fichier importé de Syrie'
+    log_import_beneficiary = 'Bénéficiaires importés'
+    log_post_password = 'Mot de passe modifié'
+    log_scan = 'Scanné'
+    log_remove_many = 'Supprimé'
+    log_remove_one_beneficiary = 'Retiré un bénéficiaire'
+    log_send_transaction = 'Envoi d\'argent mobile'
+    log_send_verification_email = 'Code de transaction envoyé'
+    log_set_general_relief_items_as_distributed = 'Élément de secours général distribué'
+    log_update = 'Mis à jour'
+    log_update_f_p = 'Connexion tierce modifiée'
+    log_post_language = 'Changement de langue par défaut'
+    log_update_password = 'Mot de passe mis à jour'
+    log_upload_image = 'Téléchargé une image'
+    log_upload_logo = 'Téléchargé un logo'
+    log_validate = 'Validé'
+
+    // Objects
+    log_beneficiary = 'Bénéficiaire'
+    log_booklet = 'Brochure'
+    log_country = 'Spécificités du pays'
+    log_distribution = 'Distribution'
+    log_donor = 'Donneur'
+    log_household = 'Ménage'
+    log_organization = 'Organisation'
+    log_product = 'Produit'
+    log_project = 'Projet'
+    log_transaction = 'Transaction'
+    log_user = 'Utilisateur'
+    log_vendor = 'Vendeur'
+    log_voucher = 'Bon'
+
+    //Fields
+    log_field_action = 'action'
+    log_field_country = 'Pays'
+    log_field_date = 'Date'
+    log_field_details = 'Les détails'
+    log_field_id = 'Id'
+    log_field_object = 'Objet'
+    log_field_status = 'Statut'
+    log_field_user = 'Utilisateur'
+
+    //Reports
+    log_active_users_title = 'Utilisateurs les plus actifs'
+    log_code = 'Code'
+    log_family_name = 'nom de famille'
+    log_field = 'champ'
+    log_old_id = 'Identifiant précédent'
+    log_name = 'Prénom'
+    log_not_exists = 'N\'existe plus'
+    log_no_details = 'Aucun détail à afficher'
+    log_number_booklets = 'Nombre de livrets'
+    log_number_vouchers = 'Nombre de bons'
+    log_requests = 'Demandes'
+    log_requests_country_title = 'Demandes par pays'
+    log_requests_day_title = 'Demandes par jour'
+    log_status_rate_title = 'Taux de statut'
+    log_time = 'Temps'
+    log_users = 'Utilisateur'
+    log_username = 'Nom d\'utilisateur'
+    log_value = 'Valeur'
+
+    //Status
+    log_status_200 = 'succès'
+    log_status_300 = 'redirigé'
+    log_status_400 = 'erreur'
+    log_status_401 = 'non authentifié'
+    log_status_403 = 'interdit'
+    log_status_404 = 'pas trouvé'
+
     // Login
     login_bms = 'Beneficiary management system'
-    login_forgot_password = 'Mot de passe oublié ?'
     login_captcha_invalid = 'Le captcha est invalide'
     login_password = '*********'
     login_prompt = 'Veuillez vous connecter'
     login_title = 'Connexion'
+    login_title_hid = 'Se connecter avec Humanitarian ID'
+    login_title_google = 'Se connecter avec Google'
+    login_two_fa_invalid_code = 'Code invalide. S\'il vous plaît essayer à nouveau'
+    login_two_fa_message = 'Ceci est votre code d\'authentification Humansis'
 
     // Map legend
     map_legend_completed = 'completée'
@@ -568,11 +661,23 @@ export class French implements Language {
 
     // Profile
     profile_change_password = 'Vous devez changer de mot de passe'
+    profile_change_phone = 'Changer le numéro de téléphone'
     profile_password_would_not_be_changed = 'Les deux mots de passe sont identiques, les changements seront ignorés.'
     profile_password_changed = 'Mot de passe changé'
+    profile_phone_changed = 'Numéro de téléphone changé avec succès'
+    profile_phone_not_valid = 'Le numéro de téléphone introduit n\'est pas valide'
+    profile_two_fa_enable = 'Activer'
+    profile_two_fa_enabled = 'Authentification à deux facteurs activée avec succès'
+    profile_two_fa_disable = 'Désactiver'
+    profile_two_fa_disabled = 'Authentification à deux facteurs désactivée'
+    profile_two_fa_information = 'L\'authentification à deux facteurs ajoute une couche de sécurité supplémentaire à votre compte en nécessitant plus d\'un mot de passe pour vous connecter.'
+    profile_two_fa_title = 'Authentification à 2 facteurs'
+    profile_two_fa_warning = 'Vous avez besoin d\'un numéro de téléphone enregistré pour activer l\'authentification en deux phases'
     profile_user_change_password = 'Changer de mot de passe'
     profile_user_hint_new_password = 'Nouveau mot de passe'
     profile_user_hint_new_password_again = 'Ré-entrez votre nouveau mot de passe'
+    profile_user_hint_new_phone_number = 'Numéro de téléphone'
+    profile_user_hint_new_phone_prefix = 'Préfixe'
     profile_user_hint_old_password = 'Mot de passe actuel'
     profile_user_information = 'Informations utilisateur'
 
@@ -803,6 +908,8 @@ export class French implements Language {
     // User
     user_only_one_country = 'Vous ne pouvez sélectionner qu\'un pays'
     user_password_question = 'Modifier le mot de passe à la prochaine connexion'
+    user_phone_number = this.profile_user_hint_new_phone_number
+    user_phone_prefix = this.profile_user_hint_new_phone_prefix
 
     // Criteria (must be the last thing declared because uses the previous variables)
     criteria_operator = 'Condition'

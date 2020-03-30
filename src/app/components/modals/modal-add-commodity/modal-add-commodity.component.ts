@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CommodityService } from 'src/app/core/api/commodity.service';
-import { CountriesService } from 'src/app/core/countries/countries.service';
+import { OrganizationServicesService } from 'src/app/core/api/organization-services.service';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { AsyncacheService } from 'src/app/core/storage/asyncache.service';
 import { FormService } from 'src/app/core/utils/form.service';
-import { Commodity, ModalityType, Modality } from 'src/app/models/commodity';
+import { Commodity, Modality, ModalityType } from 'src/app/models/commodity';
 import { CURRENCIES } from 'src/app/models/constants/currencies';
 
 @Component({
@@ -23,6 +23,7 @@ export class ModalAddCommodityComponent implements OnInit {
     public isCurrency = false;
     public currencies = CURRENCIES;
     public localCurrency = 'USD';
+    public cashTransferService = false;
 
     // Language
     public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english;
@@ -32,11 +33,14 @@ export class ModalAddCommodityComponent implements OnInit {
         public modalReference: MatDialogRef<any>,
         public languageService: LanguageService,
         public asyncacheService: AsyncacheService,
-        private countryService: CountriesService,
         public formService: FormService,
+        private organizationServicesService: OrganizationServicesService
     ) { }
 
     ngOnInit() {
+        this.organizationServicesService.getServiceStatus('wing').subscribe((enabled: boolean) => {
+            this.cashTransferService = enabled;
+        });
         this.commodity = new Commodity();
         this.fields = Object.keys(this.commodity.fields);
         this.makeForm();
@@ -67,7 +71,7 @@ export class ModalAddCommodityComponent implements OnInit {
 
     loadTypes(modalityId) {
         if (modalityId) {
-            this.commodityService.fillTypeOptions(this.commodity, modalityId);
+            this.commodityService.fillTypeOptions(this.commodity, modalityId, this.cashTransferService);
         }
 
         const name = this.commodity.getOptions('modality')
