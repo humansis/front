@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { LogsService } from 'src/app/core/api/logs.service';
 import { finalize } from 'rxjs/operators';
 import { Log } from 'src/app/models/log';
-import { MatTableDataSource } from '@angular/material';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
 import { Subscription } from 'rxjs';
 import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service';
@@ -12,6 +11,7 @@ import { LanguageService } from 'src/app/core/language/language.service';
 import { Graph } from '../reports/models/graph.model';
 import { DatePipe } from '@angular/common';
 import { ModalService } from 'src/app/core/utils/modal.service';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
     selector: 'app-logs',
