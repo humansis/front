@@ -47,6 +47,7 @@
     "angular2-counto": "^1.2.5",
     "blob": "0.1.0",
     "chart.js": "^2.9.3",
+    "classlist.js": "^1.1.20150312",
     "color": "^3.1.2",
     "core-js": "^3.6.4",
     "country-iso-3-to-2": "^1.1.0",
