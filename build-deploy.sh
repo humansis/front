@@ -8,15 +8,15 @@ set -e
 # build the project (contents will be in directory dist/bms-front)
 echo "Build starting"
 if [[ $1 == "front" ]]; then
-    npm run build -- --prod --progress
+    yarn run build -- --prod --progress
 elif [[ $1 == "testing" ]]; then
-    npm run build -- --prod -c testing --progress
+    yarn run build -- --prod -c testing --progress
 elif [[ $1 == "develop" ]]; then
-    npm run build -- --prod -c develop --progress
+    yarn run build -- --prod -c develop --progress
 elif [[ $1 == "stage" ]]; then
-    npm run build -- --prod -c stage --progress
+    yarn run build -- --prod -c stage --progress
 elif [[ $1 == "demo" ]]; then
-    npm run build -- --prod -c demo --progress
+    yarn run build -- --prod -c demo --progress
 else
     echo "Unknown environment"
     exit
