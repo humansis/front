@@ -11,6 +11,7 @@ env:
 install:
   - yarn global add @angular/cli
   - yarn install
+  - ./get-info.sh
 
 jobs:
     include:
