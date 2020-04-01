@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import {gitInfo} from 'src/app/version';
 
 @Component({
     selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public formTwoFA: FormGroup;
     public loadingTwoFA = false;
     public twoFactorStep = false;
+    public gitInfo = gitInfo;
 
     @ViewChild('captchaRef') recaptcha: RecaptchaComponent;
 

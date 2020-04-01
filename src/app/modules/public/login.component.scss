@@ -58,12 +58,12 @@ mat-icon {
             .login-title {
                 flex-grow: 1;
                 display: flex;
+                flex-direction: column;
                 text-align: center;
                 justify-content: center;
                 margin: 5px;
 
                 .title-text {
-                    display: flex;
                     font-family: $bms_font_header;
                     color: $bms_grey;
                     font-weight: bold;
@@ -103,7 +103,7 @@ mat-icon {
                 align-items: center;
                 flex-wrap: wrap;
                 margin: 5px;
-                
+
                 .button-background-primary {
                     justify-content: center;
                 }
