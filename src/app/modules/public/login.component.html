@@ -27,6 +27,7 @@
                     </ng-template>
                     <br>
                     <mat-spinner [diameter]="35" *ngIf="loader"></mat-spinner>
+                    <!--
                     <button (click)="googleAuthRedirect()" mat-flat-button class="button-sso"
                         *ngIf="!loader">
                         <mat-icon class="icon-sso" svgIcon="google"></mat-icon>
@@ -36,6 +37,7 @@
                         <mat-icon class="icon-sso" svgIcon="hid"></mat-icon>
                         <span class="sso-button-text">{{language.login_title_hid | uppercaseFirst}}</span>
                     </button>
+                    -->
                 </div>
             </form>
         </div>
