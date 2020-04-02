@@ -41,7 +41,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     noNetworkData = false;
 
     selectedTitle = '';
-    selectedProject = null;
+    selectedProject: Project = null;
     selectedProjectId = null;
     extensionType: string;
     extensionOfficialType: string;

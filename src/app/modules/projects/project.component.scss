@@ -68,6 +68,19 @@ app-placeholder-panel {
   margin-bottom: 20px;
 }
 
+.container-content {
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+        margin-bottom: 0;
+    }
+
+    h5 {
+        margin-top: 5px;
+    }
+}
+
 .mat-menu-item {
   background-color: white;
   color: black;

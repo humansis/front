@@ -121,22 +121,22 @@ export class Location extends CustomModel {
 
 
     getLocationName(): string {
-        let name = this.get('adm1') && this.get('adm1').get('name') ? this.get('adm1').get<string>('name') : '';
-        name += this.get('adm2') && this.get('adm2').get('name') ? ' ' + this.get('adm2').get<string>('name') : '';
-        name += this.get('adm3') && this.get('adm3').get('name') ? ' ' + this.get('adm3').get<string>('name') : '';
-        name += this.get('adm4') && this.get('adm4').get('name') ? ' ' + this.get('adm4').get<string>('name') : '';
+        let name = this.get('adm1') && this.get('adm1').get('name') ? this.get<CustomModel>('adm1').get<string>('name') : '';
+        name += this.get('adm2') && this.get('adm2').get('name') ? ' ' + this.get<CustomModel>('adm2').get<string>('name') : '';
+        name += this.get('adm3') && this.get('adm3').get('name') ? ' ' + this.get<CustomModel>('adm3').get<string>('name') : '';
+        name += this.get('adm4') && this.get('adm4').get('name') ? ' ' + this.get<CustomModel>('adm4').get<string>('name') : '';
         return name;
     }
 
     getPreciseLocationName() {
         if (this.get('adm4') && this.get('adm4').get('name')) {
-            return this.get('adm4').get<string>('name');
-        } else if (this.get('adm3') && this.get('adm3').get('name')) {
-            return this.get('adm3').get<string>('name');
-        } else if (this.get('adm2') && this.get('adm2').get('name')) {
-            return this.get('adm2').get<string>('name');
-        } else if (this.get('adm1') && this.get('adm1').get('name')) {
-            return this.get('adm1').get<string>('name');
+            return this.get<CustomModel>('adm4').get<string>('name');
+        } else if (this.get<CustomModel>('adm3') && this.get('adm3').get('name')) {
+            return this.get<CustomModel>('adm3').get<string>('name');
+        } else if (this.get<CustomModel>('adm2') && this.get('adm2').get('name')) {
+            return this.get<CustomModel>('adm2').get<string>('name');
+        } else if (this.get<CustomModel>('adm1') && this.get('adm1').get('name')) {
+            return this.get<CustomModel>('adm1').get<string>('name');
         }
     }
 

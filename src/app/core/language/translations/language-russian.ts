@@ -586,6 +586,7 @@ export class Russian implements Language {
     project_end_date = 'Дата окончания'
     project_go_import_beneficiaries = 'Импорт бенефициаров'
     project_name = 'Название проекта'
+    project_internal_id = 'Внутренний ID'
     project_no_distribution = 'Этот Проект не содержит распределений. Создайте свое первое!'
     project_no_household = 'Этот проект не содержит домохозяйств.'
     project_no_projects = 'В этой стране в настоящее время нет активных проектов.'
@@ -927,4 +928,5 @@ export class Russian implements Language {
     true = '-- MISSING TRANSLATION --'
     user_phone_number = '-- MISSING TRANSLATION --'
     user_phone_prefix = '-- MISSING TRANSLATION --'
+
 };

@@ -213,6 +213,6 @@ export class Commodity extends CustomModel {
     }
 
     public getIdentifyingName() {
-        return this.get('modality').get<string>('name');
+        return this.get<CustomModel>('modality').get<string>('name');
     }
 }

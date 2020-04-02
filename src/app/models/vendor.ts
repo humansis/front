@@ -165,7 +165,7 @@ export class Vendor extends CustomModel {
     }
 
     public getIdentifyingName() {
-        return this.get('user').get<string>('username');
+        return this.get<CustomModel>('user').get<string>('username');
     }
 
 }

@@ -234,7 +234,7 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
                 this.countrySpecificList.forEach((countrySpecific: CountrySpecific) => {
                     this.mainFields.push(countrySpecific.get<string>('field'));
                     const answer = this.household.get<CountrySpecificAnswer[]>('countrySpecificAnswers').filter(countrySpecificAnswer => {
-                        return countrySpecificAnswer.get('countrySpecific').get<string>('field') === countrySpecific.get<string>('field');
+                        return countrySpecificAnswer.get<CustomModel>('countrySpecific').get<string>('field') === countrySpecific.get<string>('field');
                     })[0];
                     this.mainForm.addControl(
                         countrySpecific.get<string>('field'), new FormControl(answer ? answer.get<string>('answer') : null));
@@ -257,7 +257,7 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
         const locations = new FormLocation();
         householdLocations.forEach((householdLocation: HouseholdLocation) => {
             const prefix = householdLocation.get('locationGroup') &&
-                householdLocation.get('locationGroup').get<string>('id') === 'resident' ? 'resident' : 'current';
+                householdLocation.get<CustomModel>('locationGroup').get<string>('id') === 'resident' ? 'resident' : 'current';
             this.mainForm.controls[prefix + 'Type'].setValue(
                 householdLocation.get('type') ? householdLocation.get('type').get('id') : null);
 
@@ -277,16 +277,16 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
 
         });
         this.initialAdms['current'] = {
-            currentAdm1: locations.current.get('adm1') ? locations.current.get('adm1').get<number>('id') : null,
-            currentAdm2: locations.current.get('adm2') ? locations.current.get('adm2').get<number>('id') : null,
-            currentAdm3: locations.current.get('adm3') ? locations.current.get('adm3').get<number>('id') : null,
-            currentAdm4: locations.current.get('adm4') ? locations.current.get('adm4').get<number>('id') : null,
+            currentAdm1: locations.current.get('adm1') ? locations.current.get<CustomModel>('adm1').get<number>('id') : null,
+            currentAdm2: locations.current.get('adm2') ? locations.current.get<CustomModel>('adm2').get<number>('id') : null,
+            currentAdm3: locations.current.get('adm3') ? locations.current.get<CustomModel>('adm3').get<number>('id') : null,
+            currentAdm4: locations.current.get('adm4') ? locations.current.get<CustomModel>('adm4').get<number>('id') : null,
         };
         this.initialAdms['resident'] = {
-            residentAdm1: locations.resident.get('adm1') ? locations.resident.get('adm1').get<number>('id') : null,
-            residentAdm2: locations.resident.get('adm2') ? locations.resident.get('adm2').get<number>('id') : null,
-            residentAdm3: locations.resident.get('adm3') ? locations.resident.get('adm3').get<number>('id') : null,
-            residentAdm4: locations.resident.get('adm4') ? locations.resident.get('adm4').get<number>('id') : null,
+            residentAdm1: locations.resident.get('adm1') ? locations.resident.get<CustomModel>('adm1').get<number>('id') : null,
+            residentAdm2: locations.resident.get('adm2') ? locations.resident.get<CustomModel>('adm2').get<number>('id') : null,
+            residentAdm3: locations.resident.get('adm3') ? locations.resident.get<CustomModel>('adm3').get<number>('id') : null,
+            residentAdm4: locations.resident.get('adm4') ? locations.resident.get<CustomModel>('adm4').get<number>('id') : null,
         };
     }
 

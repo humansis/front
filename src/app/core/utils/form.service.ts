@@ -154,21 +154,21 @@ export class FormService {
                 object.set('location', filledLocationAdm1);
                 return;
             }
-            const adm1Id = object.get('location').get('adm1').get<number>('id');
+            const adm1Id = object.get<CustomModel>('location').get<CustomModel>('adm1').get<number>('id');
             this.form.controls['adm1'].setValue(adm1Id);
             this.locationService.fillAdm2Options(filledLocationAdm1, adm1Id).subscribe((filledLocationAdm2: Location) => {
                 if (!object.get('location').get('adm2') || !object.get('location').get('adm2').get('id')) {
                     object.set('location', filledLocationAdm2);
                     return;
                 }
-                const adm2Id = object.get('location').get('adm2').get<number>('id');
+                const adm2Id = object.get<CustomModel>('location').get<CustomModel>('adm2').get<number>('id');
                 this.form.controls['adm2'].setValue(adm2Id);
                 this.locationService.fillAdm3Options(filledLocationAdm2, adm2Id).subscribe((filledLocationAdm3: Location) => {
                     if (!object.get('location').get('adm3') || !object.get('location').get('adm3').get('id')) {
                         object.set('location', filledLocationAdm3);
                         return;
                     }
-                    const adm3Id = object.get('location').get('adm3').get<number>('id');
+                    const adm3Id = object.get<CustomModel>('location').get<CustomModel>('adm3').get<number>('id');
                     this.form.controls['adm3'].setValue(adm3Id);
                     this.locationService.fillAdm4Options(filledLocationAdm3, adm3Id).subscribe((filledLocationAdm4: Location) => {
                         object.set('location', filledLocationAdm4);

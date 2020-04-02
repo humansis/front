@@ -1,7 +1,8 @@
-import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
-import { ADMINLEVELS } from '../adm-constants';
-import { Language } from '../language';
+import {REFERRALTYPES} from 'src/app/models/constants/referral-types';
+import {INCOMELEVELS} from '../../../models/constants/income-levels';
+import {ADMINLEVELS} from '../adm-constants';
+import {Language} from '../language';
+
 /* tslint:disable */
 export class English implements Language {
     // GENERAL VARIABLES
@@ -691,6 +692,7 @@ export class English implements Language {
     project_end_date = 'End Date'
     project_go_import_beneficiaries = 'Import Beneficiaries'
     project_name = 'Project name'
+    project_internal_id = 'Internal ID'
     project_no_distribution = 'This project does not contain any distributions. Create your first one !'
     project_no_household = 'This project does not contain any households.'
     project_no_projects = 'This country currently does not contain any active projects.'

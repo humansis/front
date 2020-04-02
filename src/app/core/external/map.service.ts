@@ -8,6 +8,7 @@ import { CountriesService } from '../countries/countries.service';
 import { DistributionMarker } from './distribution-marker';
 import { DistributionMarkerService } from './distribution-marker.service';
 import { Legend } from './legend';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 
 @Injectable({
@@ -95,7 +96,7 @@ export class MapService {
                         layer.feature.properties.ADM3_PCODE,
                     ];
                     // Group all the matching adm4 layers
-                    if (this.compareAdmToMapDistribution(kmlAdm, distribution.get('location').get<string>('codeForMap'))) {
+                    if (this.compareAdmToMapDistribution(kmlAdm, distribution.get<CustomModel>('location').get<string>('codeForMap'))) {
                         admGroup.addLayer(layer);
                     }
                 });

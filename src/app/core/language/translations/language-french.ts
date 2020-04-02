@@ -690,6 +690,7 @@ export class French implements Language {
     project_end_date = 'Date de fin de projet'
     project_go_import_beneficiaries = 'Importer des bénéficiaires'
     project_name = 'Nom  du projet'
+    project_internal_id = '-- MISSING TRANSLATION --'
     project_no_distribution = 'Le projet ne contient aucune distribution. Créer votre première !'
     project_no_household = 'Le projet ne contient aucun ménage.'
     project_no_projects = 'Le pays ne contient aucun projet actif pour le moment.'

@@ -168,7 +168,7 @@ export class User extends CustomModel {
             newUser.getOptions('rights').filter((role: Role) => role.get('id') === userFromApi.roles[0])[0] :
             null
         );
-        const rights = newUser.get('rights') ? newUser.get('rights').get<string>('id') : null;
+        const rights = newUser.get('rights') ? newUser.get<CustomModel>('rights').get<string>('id') : null;
 
         if (rights === 'ROLE_REGIONAL_MANAGER' || rights === 'ROLE_COUNTRY_MANAGER') {
             newUser.fields.countries.isEditable = true;
@@ -241,7 +241,7 @@ export class User extends CustomModel {
             return userForApi;
         }
 
-        const rights = this.get('rights') ? this.get('rights').get<string>('id') : null;
+        const rights = this.get('rights') ? this.get<CustomModel>('rights').get<string>('id') : null;
 
         if (rights === 'ROLE_REGIONAL_MANAGER' || rights === 'ROLE_COUNTRY_MANAGER') {
             userForApi['countries'] = this.fields.countries.value ?

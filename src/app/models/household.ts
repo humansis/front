@@ -250,7 +250,7 @@ export class Household extends CustomModel {
 
         newHousehold.set('beneficiaries', householdFromApi.beneficiaries.map(beneficiary => Beneficiary.apiToModel(beneficiary)));
         newHousehold.get<Beneficiary[]>('beneficiaries').forEach((beneficiary: Beneficiary) => {
-            if (beneficiary.get('beneficiaryStatus').get<string>('id') === '1') {
+            if (beneficiary.get<CustomModel>('beneficiaryStatus').get<string>('id') === '1') {
                 newHousehold.set('localFamilyName', beneficiary.get<string>('localFamilyName'));
                 newHousehold.set('localFirstName', beneficiary.get<string>('localGivenName'));
                 newHousehold.fields.localFamilyName.displayValue = beneficiary.fields.localFamilyName.displayValue;
@@ -276,9 +276,9 @@ export class Household extends CustomModel {
             : null;
 
         const currentHouseholdLocation = householdLocations.filter((householdLocation: HouseholdLocation) =>
-            householdLocation.get('locationGroup').get<string>('id') === 'current');
+            householdLocation.get<CustomModel>('locationGroup').get<string>('id') === 'current');
         const residentHouseholdLocation = householdLocations.filter((householdLocation: HouseholdLocation) =>
-            householdLocation.get('locationGroup').get<string>('id') === 'resident');
+            householdLocation.get<CustomModel>('locationGroup').get<string>('id') === 'resident');
 
         newHousehold.set('currentHouseholdLocation', currentHouseholdLocation.length > 0 ? currentHouseholdLocation[0] : null);
         newHousehold.set('residentHouseholdLocation', residentHouseholdLocation.length > 0 ? residentHouseholdLocation[0] : null);

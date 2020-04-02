@@ -26,6 +26,7 @@ import { APP_DATE_FORMATS, CustomDateAdapter } from 'src/app/shared/adapters/dat
 import { CriteriaService } from '../../../core/api/criteria.service';
 import { DistributionService } from '../../../core/api/distribution.service';
 import { LocationService } from '../../../core/api/location.service';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 @Component({
     selector: 'app-add-distribution',
@@ -303,8 +304,8 @@ export class AddDistributionComponent implements OnInit, DesactivationGuarded, O
                 }
                 if (this.commodityData.data.length > 1) {
                     const commodityAlone = this.commodityData.data.filter((commodity: Commodity) => {
-                        return commodity.get('modalityType').get<string>('name') === 'Mobile Money' ||
-                            commodity.get('modalityType').get<string>('name') === 'QR Code Voucher';
+                        return commodity.get<CustomModel>('modalityType').get<string>('name') === 'Mobile Money' ||
+                            commodity.get<CustomModel>('modalityType').get<string>('name') === 'QR Code Voucher';
                     });
                     if (commodityAlone.length > 0) {
                         this.snackbar.error(this.language.add_distribution_multiple_modalities);

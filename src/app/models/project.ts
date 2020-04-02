@@ -30,6 +30,16 @@ export class Project extends CustomModel {
                 isLongText: false,
             }
         ),
+        internalId : new NumberModelField(
+            {
+                title: this.language.project_internal_id,
+                isDisplayedInModal: true,
+                isDisplayedInTable: true,
+                isRequired: false,
+                isSettable: true,
+                isLongText: false,
+            }
+        ),
         sectors : new MultipleSelectModelField (
             {
                 isDisplayedInModal: true,
@@ -139,6 +149,7 @@ export class Project extends CustomModel {
         // Assign default fields
         newProject.set('id', projectFromApi.id);
         newProject.set('name', projectFromApi.name);
+        newProject.set('internalId', projectFromApi.internal_id);
         newProject.set('startDate', DateModelField.formatFromApi(projectFromApi.start_date));
         newProject.set('endDate', DateModelField.formatFromApi(projectFromApi.end_date));
         newProject.set('numberOfHouseholds', projectFromApi.number_of_households);
@@ -177,6 +188,7 @@ export class Project extends CustomModel {
             name: this.fields.name.formatForApi(),
             start_date: this.fields.startDate.formatForApi(),
             end_date: this.fields.endDate.formatForApi(),
+            internal_id: this.fields.internalId.formatForApi(),
             number_of_households: this.fields.numberOfHouseholds.formatForApi(),
             iso3: this.fields.iso3.formatForApi(),
             target: this.fields.target.formatForApi(),

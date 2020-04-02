@@ -699,6 +699,7 @@ export interface Language {
     project_end_date: string
     project_go_import_beneficiaries: string
     project_name: string
+    project_internal_id: string
     project_no_distribution: string
     project_no_household: string
     project_no_projects: string

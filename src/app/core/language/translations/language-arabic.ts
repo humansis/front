@@ -691,6 +691,7 @@ export class Arabic implements Language {
     project_end_date = 'تاريخ الانتهاء'
     project_go_import_beneficiaries = 'استيراد المستفيدين'
     project_name = 'اسم المشروع'
+    project_internal_id = 'الرقم الهوية الداخلية'
     project_no_distribution = 'هذا المشروع لا يحتوي على أي توزيع. اصنع اول واحد!'
     project_no_household = 'هذا المشروع لا يحتوي على أي منزل.'
     project_no_projects = 'لا يحتوي هذا البلد حاليًا على أي مشاريع نشطة.'

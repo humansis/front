@@ -162,6 +162,6 @@ export class Criteria extends CustomModel {
     }
 
     public getIdentifyingName() {
-        return this.get('field').get<string>('name');
+        return this.get<CustomModel>('field').get<string>('name');
     }
 }

@@ -6,6 +6,7 @@ import { Booklet, BookletStatus } from 'src/app/models/booklet';
 import { TransactionQRVoucher } from 'src/app/models/transaction-qr-voucher';
 import { ValidatedDistributionComponent } from '../validated-distribution.component';
 import { Subscription } from 'rxjs';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 @Component({
   selector: 'app-qr-voucher',
@@ -56,7 +57,7 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
                 if (!distributionBeneficiary.get('booklet')) {
                   amount++;
                 } else {
-                  const stateId = distributionBeneficiary.get('booklet').get<BookletStatus>('status').get<string>('id');
+                  const stateId = distributionBeneficiary.get<CustomModel>('booklet').get<BookletStatus>('status').get<string>('id');
                   if (stateId !== '3' && stateId !== '2') {
                       amount++;
                   }
@@ -82,7 +83,7 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
   // Total amount used/spent by a beneficiary
   getCommodityReceivedAmountFromBeneficiary(commodity: any, transaction: TransactionQRVoucher): number {
       const booklet: Booklet = transaction.get('booklet');
-      if (booklet && (booklet.get('status').get<string>('id') === '2' || booklet.get('status').get<string>('id') === '3')) {
+      if (booklet && (booklet.get<CustomModel>('status').get<string>('id') === '2' || booklet.get<CustomModel>('status').get<string>('id') === '3')) {
           return booklet.get('value');
       } else {
           return 0;

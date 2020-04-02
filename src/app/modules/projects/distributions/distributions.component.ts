@@ -10,6 +10,7 @@ import { LanguageService } from 'src/app/core/language/language.service';
 import { SnackbarService } from 'src/app/core/logging/snackbar.service';
 import { AsyncacheService } from 'src/app/core/storage/asyncache.service';
 import { Distribution } from 'src/app/models/distribution';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 
 @Component({
@@ -99,7 +100,7 @@ export class DistributionsComponent implements OnInit {
         this.actualDistribution = distribution;
 
         const project = this.actualDistribution.get('project');
-        const target = this.actualDistribution.get('type').get<string>('name');
+        const target = this.actualDistribution.get<CustomModel>('type').get<string>('name');
 
         this.beneficiariesService.getAllFromProject(this.actualDistribution.get('project').get('id'), target)
             .subscribe(

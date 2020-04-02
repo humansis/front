@@ -15,6 +15,7 @@ import { HttpService } from '../network/http.service';
 import { AsyncacheService } from '../storage/asyncache.service';
 import { CustomModelService } from '../utils/custom-model.service';
 import { ProjectService } from './project.service';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 
 @Injectable({
@@ -145,10 +146,10 @@ export class UserService extends CustomModelService {
             return false;
         }
         // Admins have every rights
-        if (this.currentUser.get('rights').get<string>('id') === Role.admin) {
+        if (this.currentUser.get<CustomModel>('rights').get<string>('id') === Role.admin) {
             return true;
         }
-        const userRights = rightsHierarchy[this.currentUser.get('rights').get<string>('id')];
+        const userRights = rightsHierarchy[this.currentUser.get<CustomModel>('rights').get<string>('id')];
         const hasRight = userRights.includes(action);
         return condition ? hasRight : !hasRight;
     }

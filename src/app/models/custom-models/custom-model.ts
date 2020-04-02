@@ -44,7 +44,7 @@ export abstract class CustomModel {
         return `${this.language.this} ${this.title}`;
     }
 
-    public get<T = CustomModel>(fields: string| Array<string>): T {
+    public get<T = any>(fields: string| Array<string>): T {
         // If fields is a string then simply get the corresponding field
         if (!Array.isArray(fields)) {
             return this.fields[fields] ? this.fields[fields].value : null;

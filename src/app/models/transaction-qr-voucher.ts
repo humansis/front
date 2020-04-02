@@ -5,6 +5,7 @@ import { NestedFieldModelField } from './custom-models/nested-field';
 import { ObjectModelField } from './custom-models/object-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { Product } from './product';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 export class TransactionQRVoucher extends DistributionBeneficiary {
 
@@ -181,7 +182,7 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
     }
 
     public isAssignable(): boolean {
-        if (this.get('booklet') && this.get('booklet').get('status').get<string>('id') !== '3') {
+        if (this.get('booklet') && this.get<CustomModel>('booklet').get<CustomModel>('status').get<string>('id') !== '3') {
             return false;
           }
           return true;

@@ -262,7 +262,7 @@ export class Booklet extends CustomModel {
     }
 
     isCheckable() {
-        return parseInt(this.get('status').get<string>('id'), 10) < 2;
+        return parseInt(this.get<CustomModel>('status').get<string>('id'), 10) < 2;
     }
 
     public getTotalValue(): number {
@@ -278,7 +278,7 @@ export class Booklet extends CustomModel {
         let text = null;
         let numberUsed = 0;
         let total = 0;
-        if (this.get('status').get<string>('id') === '2' || this.get('status').get<string>('id') === '3') {
+        if (this.get<CustomModel>('status').get<string>('id') === '2' || this.get<CustomModel>('status').get<string>('id') === '3') {
             this.get<Voucher[]>('vouchers').forEach((voucher: Voucher) => {
                 if (date === null || date < voucher.get('usedAt')) {
                     date = voucher.get('usedAt');

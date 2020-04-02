@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { ValidatedDistributionComponent } from '../validated-distribution.component';
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/core/language/language.service';
+import {CustomModel} from 'src/app/models/custom-models/custom-model';
 
 @Component({
     selector: 'app-mobile-money',
@@ -103,7 +104,7 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent impleme
                 }
                 this.transactionData.data.forEach(
                     (transaction: TransactionMobileMoney, index) => {
-                        if (transaction.get('state').get<string>('id') === '0') {
+                        if (transaction.get<CustomModel>('state').get<string>('id') === '0') {
                             return;
                         }
                         result.forEach(distributionBeneficiary => {
