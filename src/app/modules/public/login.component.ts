@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public loadingTwoFA = false;
     public twoFactorStep = false;
     public gitInfo = gitInfo;
+    public environmentName = environment.name;
 
     @ViewChild('captchaRef') recaptcha: RecaptchaComponent;
 

@@ -10,6 +10,7 @@ import { Language } from './core/language/language';
 import { LanguageService } from './core/language/language.service';
 import { ScreenSizeService } from './core/screen-size/screen-size.service';
 import { UpdateService } from './core/service-worker/update.service';
+import { gitInfo } from 'src/app/version';
 
 @Component({
     selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Screen size
     public currentDisplayType: DisplayType;
     public viewReady = false;
+    public appVersion = gitInfo.appVersion;
 
     // Subscriptions
     subscriptions: Array<Subscription>;
