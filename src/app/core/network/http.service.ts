@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // Services
 import { concat, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {map, withLatestFrom} from 'rxjs/operators';
 import { SnackbarService } from 'src/app/core/logging/snackbar.service';
 import { StoredRequest } from 'src/app/models/interfaces/stored-request';
 import { URL_BMS_API } from '../../../environments/environment';
@@ -101,25 +101,15 @@ export class HttpService {
 
         const itemKey = this.resolveItemKey(url);
         const connected = this.networkService.getStatus();
-        let cacheData: any;
         const regex = new RegExp(/\/location\/adm/);
 
 
         // If this item is cachable & user is connected
         if (itemKey && connected) {
-            return concat(
-                this.cacheService.get(itemKey).pipe(
+            return this.http.get(url, options).pipe(
+                    withLatestFrom(this.cacheService.get(itemKey)),
                     map(
-                        (result: any) => {
-
-                            cacheData = result;
-                            return result;
-                        }
-                    )
-                ),
-                this.http.get(url, options).pipe(
-                    map(
-                        (result: any) => {
+                        ([result, cacheData]) => {
                             if (result !== undefined) {
                                 if (Array.isArray(result) && Array.isArray(cacheData)) {
                                     if (JSON.stringify(result) !== JSON.stringify(cacheData) && this.save) {
@@ -135,11 +125,11 @@ export class HttpService {
                             if ((Array.isArray(result) && Array.isArray(cacheData) && JSON.stringify(result) !== JSON.stringify(cacheData))
                                 || !url.match(regex) || (!(Array.isArray(result) && Array.isArray(cacheData)) && result !== cacheData)) {
                                 return result;
+                            } else {
+                                return cacheData;
                             }
-                        }
-                    )
-                )
-            );
+                        }));
+
         } else if (connected) {
             return this.http.get(url, options);
         } else if (itemKey) {

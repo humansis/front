@@ -120,15 +120,11 @@ export class ReportsComponent implements OnInit, OnDestroy {
         this.generateFrequencies();
         this.generateEnabledReports();
         this.getProjects().pipe(
-            mergeMap(() => {
-                if (!this.projects) {
-                    return of(undefined);
-                }
-                return this.setFormsValues();
+            tap(() => {
+                this.setFormsValues();
             })
         ).subscribe((_: any) => {
             this.generateFormsEvents();
-            this.selectDefault();
 
             this.screenSizeService.displayTypeSource.subscribe((_displayType: DisplayType) => {
                 this.canvasAreReloading = true;
@@ -136,6 +132,9 @@ export class ReportsComponent implements OnInit, OnDestroy {
                 setTimeout(() => {this.canvasAreReloading = false; }, 0);
             });
             this.initializing = false;
+
+
+            this.selectDefault();
         });
 
 
@@ -151,7 +150,6 @@ export class ReportsComponent implements OnInit, OnDestroy {
     private getProjects() {
         return this.projectService.get().pipe(
             map((apiProjects: Array<any>) => {
-
                 if (apiProjects) {
                     this.projects = apiProjects.map((apiProject: any) => {
                         return Project.apiToModel(apiProject);
