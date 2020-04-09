@@ -78,6 +78,7 @@ app-placeholder-panel {
 
     h5 {
         margin-top: 5px;
+        margin-bottom: 0;
     }
 }
 
@@ -130,6 +131,11 @@ app-placeholder-panel {
     }
   }
 }
+
+.properties-displayed {
+    margin-top: 20px;
+}
+
 //for mobile screen
 @media only screen and (max-width: 750px) {
   .content-button {

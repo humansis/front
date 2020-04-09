@@ -27,8 +27,10 @@
   </div>
   <div class="container-data">
       <div class="container-content" *ngIf="selectedProject">
-          <h3 class="container-subtitle">{{ selectedProject.get('name') | uppercaseFirst}}</h3>
-          <h5>({{selectedProject.get('internalId')}})</h5>
+          <h3 class="container-subtitle">
+              {{ selectedProject.get('name') | uppercaseFirst}}
+          </h3>
+          <h5 *ngIf="selectedProject.get('internalId')">({{selectedProject.get('internalId')}})</h5>
           <app-box-properties class="properties-displayed" [displayedInstance]="selectedProject"></app-box-properties>
       </div>
     </div>
