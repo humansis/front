@@ -288,14 +288,6 @@ export class AddDistributionComponent implements OnInit, DesactivationGuarded, O
           this.form.controls.threshold.value > 0 && this.form.controls.adm1.value && this.criteriaNbBeneficiaries > 0) {
               const now = new Date();
               now.setHours(0, 0, 0, 0);
-            if (this.form.controls.date.value < this.projectInfo.startDate || this.form.controls.date.value > this.projectInfo.endDate) {
-                this.snackbar.error(this.language.add_distribution_date_inside_project);
-                return;
-            } else if (this.form.controls.date.value < now || this.form.controls.date.value === now) {
-                this.snackbar.error(this.language.add_distribution_date_before_today);
-                return;
-            }
-            else {
                 for (const commodity of this.commodityData.data) {
                     if (commodity.get<number>('value') <= 0) {
                         this.snackbar.error(this.language.add_distribution_zero);
@@ -363,7 +355,7 @@ export class AddDistributionComponent implements OnInit, DesactivationGuarded, O
                     this.snackbar.error(this.language.add_distribution_error_creating);
                     this.loadingCreation = false;
                 });
-            }
+            
         } else if (this.criteriaData.data.length === 0) {
             this.snackbar.error(this.language.add_distribution_missing_selection_criteria);
 
