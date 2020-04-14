@@ -35,6 +35,7 @@ import { Profile } from 'src/app/models/profile';
 import { Project } from 'src/app/models/project';
 import { VulnerabilityCriteria } from 'src/app/models/vulnerability-criteria';
 import { APP_DATE_FORMATS, CustomDateAdapter } from 'src/app/shared/adapters/date.adapter';
+import {IdNameModel} from 'src/app/models/id-name-model';
 
 
 @Component({
@@ -141,7 +142,7 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
 
     fillFormFields() {
         this.mainFields = ['locationDifferent', 'incomeLevel', 'livelihood', 'notes', 'projects',
-            'foodConsumptionScore', 'copingStrategiesIndex'];
+            'foodConsumptionScore', 'copingStrategiesIndex', 'debtLevel', 'supportReceivedOtherOrg', 'supportReceived', 'shelterStatus', 'assets'];
 
         const locationFields = [];
         const locationFieldSuffixes = ['AddressNumber', 'AddressPostcode', 'AddressStreet',
@@ -220,6 +221,8 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
                 this.mainForm.addControl(fieldName, new FormControl(selectedOptions));
             } else if (field && field.kindOfField === 'SingleSelect') {
                 this.mainForm.addControl(fieldName, new FormControl(field.value ? field.value.get(field.apiLabel) : null));
+            } else if (field && field.kindOfField === 'Date') {
+                this.mainForm.addControl(fieldName, new FormControl(this.household.get(fieldName) ? new Date(this.household.get(fieldName)) : null));
             } else {
                 this.mainForm.addControl(fieldName, new FormControl(this.household.get(fieldName) ? this.household.get(fieldName) : null));
             }
@@ -417,6 +420,18 @@ export class UpdateBeneficiaryComponent implements OnInit, DesactivationGuarded,
                 null);
             this.household.set('foodConsumptionScore', controls.foodConsumptionScore.value);
             this.household.set('copingStrategiesIndex', controls.copingStrategiesIndex.value);
+            this.household.set('debtLevel', controls.debtLevel.value);
+            this.household.set('supportReceivedOtherOrg',
+                this.household.getOptions('supportReceivedOtherOrg').filter((supportOrg: IdNameModel) => controls.supportReceivedOtherOrg.value.includes(supportOrg.get('id')))
+            );
+            this.household.set('supportReceived', controls.supportReceived.value);
+            this.household.set('assets',
+                this.household.getOptions('assets').filter((asset: IdNameModel) => controls.assets.value.includes(asset.get('id')))
+                );
+            this.household.set('shelterStatus', controls.shelterStatus.value ?
+                this.household.getOptions('shelterStatus')
+                    .filter((shelterStatus: IdNameModel) => controls.shelterStatus.value === shelterStatus.get('id'))[0] :
+                null);
 
             this.household.set('projects',
                 this.household.getOptions('projects').filter((project: Project) => controls.projects.value.includes(project.get('id')))

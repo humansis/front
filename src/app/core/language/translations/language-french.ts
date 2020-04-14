@@ -6,6 +6,7 @@ import { Language } from '../language';
 export class French implements Language {
     // GENERAL VARIABLES
     LANGUAGE_ISO = 'french'
+    missingTranslation = '-- MISSING TRANSLATION --'
     direction = 'ltr'
     // Utils
     administrative_settings = 'Paramètres administratifs'
@@ -143,6 +144,7 @@ export class French implements Language {
     add_beneficiary_title = 'Ajout d\'un bénéficiaire'
     add_beneficiary_code = 'Ext'
     add_beneficiary_occupation = 'Occupation'
+    add_beneficiary_external_support = this.missingTranslation
     add_beneficiary_project = 'Veuillez ajouter ce foyer a un ou plusieurs projets'
 
     // Add distribution
@@ -430,6 +432,12 @@ export class French implements Language {
     household_no_data_offline = 'Ces données ne sont accessibles offline'
     household_sentence = 'Le ménage de '
     household_summary_members = 'Membres du foyer'
+    household_debt_level = this.missingTranslation
+    household_support_received_other_org = this.missingTranslation
+    household_support_date_received = this.missingTranslation
+    household_assets = this.missingTranslation
+    household_shelter_status = this.missingTranslation
+    household_status = this.missingTranslation
 
     // Import
     import_added = 'Ajout'

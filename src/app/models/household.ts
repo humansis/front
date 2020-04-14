@@ -16,6 +16,9 @@ import { Location } from './location';
 import { Project } from './project';
 import { VulnerabilityCriteria } from './vulnerability-criteria';
 import { NationalId } from './national-id';
+import {DateModelField} from 'src/app/models/custom-models/date-model-field';
+import {BooleanModelField} from 'src/app/models/custom-models/boolan-model-field';
+import {IdNameModel} from 'src/app/models/id-name-model';
 
 export class Livelihood extends CustomModel {
 
@@ -193,6 +196,84 @@ export class Household extends CustomModel {
                 isDisplayedInModal: true,
             }
         ),
+        debtLevel: new NumberModelField(
+            {
+                title: this.language.household_debt_level,
+                isDisplayedInModal: true,
+            }
+        ),
+        supportReceivedOtherOrg: new MultipleSelectModelField (
+            {
+                title: this.language.household_support_received_other_org,
+                isDisplayedInModal: true,
+                isRequired: false,
+                apiLabel: 'id',
+                bindField: 'name',
+                options: [
+                    new IdNameModel('0', 'MPCA'),
+                    new IdNameModel('1', 'Cash for Work'),
+                    new IdNameModel('2', 'Food Kit'),
+                    new IdNameModel('3', 'Food Voucher'),
+                    new IdNameModel('4', 'Hygiene Kit'),
+                    new IdNameModel('5', 'Shelter Kit'),
+                    new IdNameModel('6', 'Shelter Reconstruction Support'),
+                    new IdNameModel('7', 'Non Food Items'),
+                    new IdNameModel('8', 'Livelihoods Support'),
+                    new IdNameModel('9', 'Vocational Training'),
+                    new IdNameModel('10', 'None'),
+                    new IdNameModel('11', 'Other'),
+                ],
+                value: [],
+            }
+        ),
+        supportReceived: new DateModelField(
+            {
+                title: this.language.household_support_date_received,
+                isDisplayedInModal: true,
+            }
+        ),
+        assets: new MultipleSelectModelField (
+            {
+                title: this.language.household_assets,
+                isDisplayedInModal: true,
+                isRequired: false,
+                apiLabel: 'id',
+                bindField: 'name',
+                options: [
+                    new IdNameModel('0', 'A/C'),
+                    new IdNameModel('1', 'Agricultural Land'),
+                    new IdNameModel('2', 'Car'),
+                    new IdNameModel('3', 'Flatscreen TV'),
+                    new IdNameModel('4', 'Livestock'),
+                    new IdNameModel('5', 'Motorbike'),
+                    new IdNameModel('6', 'Washing Machine'),
+                ],
+                value: [],
+            }
+        ),
+        shelterStatus: new SingleSelectModelField(
+            {
+                title: this.language.household_shelter_status,
+                isDisplayedInModal: true,
+                isRequired: false,
+                apiLabel: 'id',
+                bindField: 'name',
+                isMatSelect: true,
+                options: [
+                    new IdNameModel('0', 'Values'),
+                    new IdNameModel('1', 'Tent'),
+                    new IdNameModel('2', 'Makeshift Shelter'),
+                    new IdNameModel('3', 'Transitional Shelter'),
+                    new IdNameModel('4', 'House/Apartment - Severely Damaged'),
+                    new IdNameModel('5', 'House/Apartment - Moderately Damaged'),
+                    new IdNameModel('6', 'House/Apartment - Good Condition'),
+                    new IdNameModel('7', 'Room or Space in Public Building'),
+                    new IdNameModel('8', 'Room or Space in Unfinished Building'),
+                    new IdNameModel('9', 'Other'),
+                ],
+
+            }
+        ),
 
         // For now they are never used, set, displayed, or equal to anything other than zero
         longitude: new TextModelField({
@@ -227,14 +308,21 @@ export class Household extends CustomModel {
         newHousehold.set('id', householdFromApi.id);
         newHousehold.set('notes', householdFromApi.notes);
         newHousehold.set('incomeLevel', householdFromApi.income_level ? newHousehold.getOptions('incomeLevel')
-            .filter((incomeLevel: IncomeLevel) => incomeLevel.get('id') === householdFromApi.income_level.toString())[0] :
+            .find((incomeLevel: IncomeLevel) => incomeLevel.get('id') === householdFromApi.income_level.toString()) :
             null);
         newHousehold.set('foodConsumptionScore', householdFromApi.food_consumption_score);
         newHousehold.set('copingStrategiesIndex', householdFromApi.coping_strategies_index);
+        newHousehold.set('assets', householdFromApi.assets ? householdFromApi.assets.map( id => new IdNameModel(id, undefined)) : undefined);
+        newHousehold.set('debtLevel', householdFromApi.debt_level);
+        newHousehold.set('supportReceived', householdFromApi.support_date_received);
+        newHousehold.set('supportReceivedOtherOrg', householdFromApi.assets ? householdFromApi.support_received_types.map( id => new IdNameModel(id, undefined)) : undefined);
+        newHousehold.set('shelterStatus', householdFromApi.shelter_status ? newHousehold.getOptions('shelterStatus')
+                .find((incomeLevel: IdNameModel) => incomeLevel.get('id') === householdFromApi.shelter_status.toString()) :
+            null) ;
         newHousehold.set('livelihood',
             householdFromApi.livelihood !== null && householdFromApi.livelihood !== undefined ?
             newHousehold.getOptions('livelihood')
-                .filter((livelihood: Livelihood) => livelihood.get('id') === householdFromApi.livelihood.toString())[0] :
+                .find((livelihood: Livelihood) => livelihood.get('id') === householdFromApi.livelihood.toString()) :
             null);
 
         newHousehold.set('dependents', householdFromApi.beneficiaries.length);
@@ -305,7 +393,6 @@ export class Household extends CustomModel {
         if (this.get<HouseholdLocation>('residentHouseholdLocation')) {
             householdLocations.push(this.get<HouseholdLocation>('residentHouseholdLocation'));
         }
-
         return {
             livelihood: this.fields.livelihood.formatForApi(),
             longitude: this.fields.longitude.formatForApi(),
@@ -317,6 +404,11 @@ export class Household extends CustomModel {
             household_locations: householdLocations.map((householdLocation: HouseholdLocation) => householdLocation.modelToApi()),
             food_consumption_score: this.fields.foodConsumptionScore.formatForApi(),
             coping_strategies_index: this.fields.copingStrategiesIndex.formatForApi(),
+            debt_level: this.fields.debtLevel.formatForApi(),
+            support_received_types: this.fields.supportReceivedOtherOrg.formatForApi(),
+            support_date_received: this.fields.supportReceived.formatForApi(),
+            shelter_status: this.fields.shelterStatus.formatForApi(),
+            assets: this.fields.assets.formatForApi(),
         };
     }
 

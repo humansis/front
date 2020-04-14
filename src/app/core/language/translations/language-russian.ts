@@ -6,6 +6,7 @@ import { Language } from '../language';
 export class Russian implements Language {
     // GENERAL VARIABLES
     LANGUAGE_ISO = 'russian'
+    missingTranslation = '-- MISSING TRANSLATION --'
     direction = 'ltr'
 
     // Utils
@@ -142,6 +143,7 @@ export class Russian implements Language {
     add_beneficiary_title = 'добавить бенефициара'
     add_beneficiary_code = 'Расширение'
     add_beneficiary_occupation = 'Профессия'
+    add_beneficiary_external_support = this.missingTranslation
     add_beneficiary_project = 'Пожалуйста, добавьте это домашнее хозяйство в один или несколько проектов'
 
     // Add distribution
@@ -427,6 +429,12 @@ export class Russian implements Language {
     household_no_data_offline = 'Эти данные не могут быть доступны в автономном режиме'
     household_sentence = 'Домохозяйство '
     household_summary_members = 'Члены домохозяйства'
+    household_debt_level = this.missingTranslation
+    household_support_received_other_org = this.missingTranslation
+    household_support_date_received = this.missingTranslation
+    household_assets = this.missingTranslation
+    household_shelter_status = this.missingTranslation
+    household_status = this.missingTranslation
 
     // Import
     import_added = 'Добавлено  существующими бенефициарами'

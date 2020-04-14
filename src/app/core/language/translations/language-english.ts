@@ -7,6 +7,7 @@ import {Language} from '../language';
 export class English implements Language {
     // GENERAL VARIABLES
     LANGUAGE_ISO = 'english'
+    missingTranslation = '-- MISSING TRANSLATION --'
     direction = 'ltr'
 
     // Utils
@@ -146,6 +147,7 @@ export class English implements Language {
     add_beneficiary_title = 'add beneficiary'
     add_beneficiary_code = 'Ext'
     add_beneficiary_occupation = 'Occupation'
+    add_beneficiary_external_support = 'External support'
     add_beneficiary_project = 'Please add this household to one or more project'
 
     // Add distribution
@@ -432,6 +434,12 @@ export class English implements Language {
     household_no_data_offline = 'This data can\'t be accessed offline'
     household_sentence = 'The household of '
     household_summary_members = 'Household members'
+    household_debt_level = 'Debt Level'
+    household_support_received_other_org = 'External support organization'
+    household_support_date_received = 'Support date received'
+    household_assets = 'Assets'
+    household_shelter_status = 'Shelter type'
+    household_status = 'Household status'
 
     // Import
     import_added = 'Added from existing beneficiaries'

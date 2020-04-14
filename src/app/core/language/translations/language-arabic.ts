@@ -6,6 +6,7 @@ import { Language } from '../language';
 export class Arabic implements Language {
     // GENERAL VARIABLES
     LANGUAGE_ISO = 'arabic'
+    missingTranslation = '-- MISSING TRANSLATION --'
     direction = 'rtl'
     // Utils
     administrative_settings = 'الإعدادات الإدارية'
@@ -143,6 +144,7 @@ export class Arabic implements Language {
     add_beneficiary_title = 'إضافة مستفيد'
     add_beneficiary_code = 'تحويلة'
     add_beneficiary_occupation = 'الاحتلال'
+    add_beneficiary_external_support = this.missingTranslation
     add_beneficiary_project = 'يرجى إضافة هذه الأسرة إلى مشروع واحد أو أكثر'
 
     // Add distribution
@@ -429,6 +431,12 @@ export class Arabic implements Language {
     household_no_data_offline = 'لا يمكن الوصول إلى هذه البيانات في وضع عدم الاتصال'
     household_sentence = 'الأسرة من'
     household_summary_members = 'أفراد الأسرة'
+    household_debt_level = this.missingTranslation
+    household_support_received_other_org = this.missingTranslation
+    household_support_date_received = this.missingTranslation
+    household_assets = this.missingTranslation
+    household_shelter_status = this.missingTranslation
+    household_status = this.missingTranslation
 
     // Import
     import_added = 'تم إضافتها'

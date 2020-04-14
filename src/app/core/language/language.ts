@@ -2,6 +2,7 @@
 export interface Language {
     // GENERAL VARIABLES
     readonly LANGUAGE_ISO: string;
+    missingTranslation: string;
     direction: string // rtl or ltr
     // Utils
     administrative_settings: string
@@ -126,6 +127,7 @@ export interface Language {
     add_beneficiary_title: string
     add_beneficiary_code: string
     add_beneficiary_occupation: string
+    add_beneficiary_external_support: string
     add_beneficiary_project: string
 
     // Add distribution
@@ -441,6 +443,12 @@ export interface Language {
     household_no_data_offline: string
     household_sentence: string
     household_summary_members: string
+    household_debt_level: string
+    household_support_received_other_org: string
+    household_support_date_received: string
+    household_assets: string
+    household_shelter_status: string
+    household_status: string
 
     // Import
     import_added: string
