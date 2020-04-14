@@ -6,6 +6,7 @@
     "start": "node --max-old-space-size=8192 ./node_modules/.bin/ng serve --poll 2000",
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/ng build",
     "test": "ng test",
+    "serve": "ng serve",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "precommit": "lint-staged"
