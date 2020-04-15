@@ -2,7 +2,7 @@
 
 COMMIT=`git rev-parse --short HEAD`
 TAG=`git describe --tags`
-BRANCH=`git rev-parse --abbrev-ref HEAD`
+BRANCH=`git symbolic-ref HEAD | cut -d/ -f3-`
 
 if [[ $BRANCH == "master" ]]; then
     APPVERSION=$TAG
