@@ -355,7 +355,7 @@ export class AddDistributionComponent implements OnInit, DesactivationGuarded, O
                     this.snackbar.error(this.language.add_distribution_error_creating);
                     this.loadingCreation = false;
                 });
-            
+
         } else if (this.criteriaData.data.length === 0) {
             this.snackbar.error(this.language.add_distribution_missing_selection_criteria);
 

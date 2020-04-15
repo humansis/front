@@ -66,6 +66,29 @@ export class ExportService {
         );
     }
 
+    public exportDistributionPdf(distributionId: number) {
+        const url = this.api + "/export/distribution";
+        const params = {};
+        params["type"] = 'pdf';
+        params["id"] = distributionId;
+        params["locale"] = this.language.LANGUAGE_ISO;
+        const options = {
+            responseType: "blob",
+            params: params,
+        };
+
+        return this.http.get(url, options).pipe(
+            tap((response) => {
+                if (!response) {
+                    this.snackbar.warning(
+                        this.language.snackbar_no_data_export
+                    );
+                }
+                FileSaver.saveAs(response, "distribution.pdf");
+            })
+        );
+    }
+
     public printVoucher(id: number, code: string) {
         return this.http
             .get(this.api + "/booklets/print/" + id, { responseType: "blob" })

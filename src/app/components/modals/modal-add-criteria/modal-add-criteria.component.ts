@@ -60,8 +60,8 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
         this.fillOptions();
         this.criteria = new Criteria();
         this.fields = Object.keys(this.criteria.fields);
-        this.incomeLevels = Object.keys(INCOMELEVELS[this.language.LANGUAGE_ISO]).map((key: string) => {
-            return new IncomeLevel(key, INCOMELEVELS[this.language.LANGUAGE_ISO][key][this.criteria.country]);
+        this.incomeLevels = Object.keys(INCOMELEVELS[this.language.LANGUAGE]).map((key: string) => {
+            return new IncomeLevel(key, INCOMELEVELS[this.language.LANGUAGE][key][this.criteria.country]);
         });
         this.makeForm();
         this.loadFields();

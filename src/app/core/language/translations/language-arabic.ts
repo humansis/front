@@ -5,7 +5,8 @@ import { Language } from '../language';
 /* tslint:disable */
 export class Arabic implements Language {
     // GENERAL VARIABLES
-    LANGUAGE_ISO = 'arabic'
+    LANGUAGE = 'arabic'
+    LANGUAGE_ISO = 'ar'
     missingTranslation = '-- MISSING TRANSLATION --'
     direction = 'rtl'
     // Utils

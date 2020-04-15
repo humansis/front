@@ -76,7 +76,11 @@ export class DistributionService extends CustomModelService {
         } else if (option === 'distribution') {
             return this.exportService.export('beneficiariesInDistribution', id, extensionType);
         } else {
-            return this.exportService.export(option, id, extensionType);
+            if (option === 'generalreliefDistribution' && extensionType === 'pdf') {
+                return this.exportService.exportDistributionPdf(id);
+            } else {
+                return this.exportService.export(option, id, extensionType);
+            }
         }
     }
     public refreshPickup(id: number) {

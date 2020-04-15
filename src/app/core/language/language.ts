@@ -1,6 +1,7 @@
 /* tslint:disable */
 export interface Language {
     // GENERAL VARIABLES
+    readonly LANGUAGE: string;
     readonly LANGUAGE_ISO: string;
     missingTranslation: string;
     direction: string // rtl or ltr

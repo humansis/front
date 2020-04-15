@@ -61,7 +61,7 @@ export class ModalLanguageComponent implements OnInit {
             this.userService.currentUser.get<string>('language')
             );
         // TODO: language should be stored as a Language object and not a string in user
-        return defaultLanguage.LANGUAGE_ISO ===  language.LANGUAGE_ISO;
+        return defaultLanguage.LANGUAGE ===  language.LANGUAGE;
     }
 
     save() {

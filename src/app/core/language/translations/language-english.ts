@@ -6,7 +6,8 @@ import {Language} from '../language';
 /* tslint:disable */
 export class English implements Language {
     // GENERAL VARIABLES
-    LANGUAGE_ISO = 'english'
+    LANGUAGE = 'english'
+    LANGUAGE_ISO = 'en'
     missingTranslation = '-- MISSING TRANSLATION --'
     direction = 'ltr'
 
