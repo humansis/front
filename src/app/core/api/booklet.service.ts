@@ -11,6 +11,8 @@ import { AppInjector } from 'src/app/app-injector';
 import { CURRENCIES } from 'src/app/models/constants/currencies';
 import { DistributionService } from './distribution.service';
 import { Distribution } from 'src/app/models/distribution';
+import { Project } from 'src/app/models/project';
+import { ProjectService } from 'src/app/core/api/project.service';
 
 @Injectable({
     providedIn: 'root'
@@ -67,6 +69,11 @@ export class BookletService extends CustomModelService {
     }
 
     public fillWithOptions(booklet: Booklet) {
+        AppInjector.get(ProjectService).get().subscribe(response => {
+            if (response) {
+                booklet.setOptions('project', response.map(project => Project.apiToModel(project)));
+            }
+        });
     }
 
     /**

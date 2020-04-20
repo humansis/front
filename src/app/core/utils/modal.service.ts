@@ -274,4 +274,5 @@ export class ModalService {
             this.isCompleted.next(false);
         });
     }
+
 }

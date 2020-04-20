@@ -3,7 +3,6 @@ import * as CryptoJS from 'crypto-js';
 import { Beneficiary } from './beneficiary';
 import { CURRENCIES } from './constants/currencies';
 import { CustomModel } from './custom-models/custom-model';
-import { DateModelField } from './custom-models/date-model-field';
 import { MultipleObjectsModelField } from './custom-models/multiple-object-model-field';
 import { NumberModelField } from './custom-models/number-model-field';
 import { ObjectModelField } from './custom-models/object-model-field';
@@ -15,6 +14,7 @@ import { BooleanModelField } from './custom-models/boolan-model-field';
 import { AppInjector } from '../app-injector';
 import { FormService } from '../core/utils/form.service';
 import { DatePipe } from '@angular/common';
+import { Project } from 'src/app/models/project';
 
 export class BookletStatus extends CustomModel {
 
@@ -56,6 +56,15 @@ export class Booklet extends CustomModel {
               // Never displayed
             },
         ),
+        project: new SingleSelectModelField({
+            title: this.language.project,
+            isDisplayedInTable: true,
+            isDisplayedInModal: true,
+            isRequired: true,
+            isSettable: true,
+            bindField: 'name',
+            apiLabel: 'id',
+        }),
         code: new TextModelField({
             title: this.language.booklet_code,
             isDisplayedInTable: true,
@@ -165,6 +174,7 @@ export class Booklet extends CustomModel {
 
         newBooklet.set('id', bookletFromApi.id);
         newBooklet.set('code', bookletFromApi.code);
+        newBooklet.set('project', bookletFromApi.project ? Project.apiToModel(bookletFromApi.project) : undefined);
         newBooklet.set('numberOfVouchers', bookletFromApi.number_vouchers);
         newBooklet.set('currency',
             bookletFromApi.currency ?
@@ -248,6 +258,7 @@ export class Booklet extends CustomModel {
             password: password,
             individual_values: values,
             currency: this.fields.currency.formatForApi(),
+            project_id: this.fields.project.formatForApi(),
             // inidividual_to_all: this.get('individualToAll'),
             number_booklets: this.fields.numberOfBooklets.formatForApi(),
             number_vouchers: this.fields.numberOfVouchers.formatForApi(),
