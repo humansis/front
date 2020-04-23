@@ -2,7 +2,7 @@
 
 COMMIT=`git rev-parse --short HEAD`
 TAG=`git describe --tags`
-BRANCH=`git symbolic-ref HEAD | cut -d/ -f3-`
+BRANCH=$TRAVIS_BRANCH
 
 if [[ $BRANCH == "master" ]]; then
     APPVERSION=$TAG
@@ -18,3 +18,5 @@ sed -i -e "s|__COMMIT_HASH__|$COMMIT|g" src/app/version.ts
 sed -i -e "s|__APP_VERSION__|$APPVERSION|g" src/app/version.ts
 sed -i -e "s|__TAG__|$TAG|g" src/app/version.ts
 sed -i -e "s|__BRANCH__|$BRANCH|g" src/app/version.ts
+
+cat src/app/version.ts
