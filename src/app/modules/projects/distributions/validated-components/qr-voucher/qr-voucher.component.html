@@ -38,7 +38,7 @@
                 </button>
                 <mat-spinner [diameter]='25' *ngIf="loadingAssign"></mat-spinner>
                 <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
-                    <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'voucherDistribution')" *ngIf="!loadingExport">
+                    <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'transactionDistribution')" *ngIf="!loadingExport">
                         <mat-icon>get_app</mat-icon>
                         <span>{{language.export | uppercaseFirst}}</span>
                     </button>

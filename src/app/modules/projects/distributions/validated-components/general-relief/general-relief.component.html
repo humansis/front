@@ -29,7 +29,7 @@
         <div class="content-button">
             <div class="action-buttons">
                 <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
-                    <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'generalreliefDistribution')" *ngIf="!loadingExport">
+                    <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'transactionDistribution')" *ngIf="!loadingExport">
                         <mat-icon>get_app</mat-icon>
                         <span>{{language.export | uppercaseFirst}}</span>
                     </button>

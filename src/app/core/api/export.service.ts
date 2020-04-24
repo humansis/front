@@ -84,7 +84,7 @@ export class ExportService {
                         this.language.snackbar_no_data_export
                     );
                 }
-                FileSaver.saveAs(response, "distribution.pdf");
+                FileSaver.saveAs(response, "Distribution Sheet.pdf");
             })
         );
     }
