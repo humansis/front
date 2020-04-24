@@ -814,6 +814,7 @@ export class English implements Language {
     snackbar_verification_code = 'Verification code has been sent at'
     snackbar_verification_code_error = 'Could not send code:'
     snackbar_verification_code_wait_error = 'The last code was sent less than 10 seconds ago, you should wait.'
+    snackbar_pdf_export_failed = 'Cannot export PDF file because there are no graphs on web page.'
 
     // Table
     table_actions = 'Actions'

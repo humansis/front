@@ -812,6 +812,7 @@ export class French implements Language {
     snackbar_verification_code = 'Le code de vérification a été envoyé à'
     snackbar_verification_code_error = 'Impossible d\'envoyer le code:'
     snackbar_verification_code_wait_error = 'Le dernier code a été envoyé il y a moins de 10 secondes, vous devriez attendre.'
+    snackbar_pdf_export_failed = this.missingTranslation;
 
     // Table
     table_actions = 'Actions'

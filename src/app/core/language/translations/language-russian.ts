@@ -708,6 +708,7 @@ export class Russian implements Language {
     snackbar_verification_code = 'Код подтверждения отправлен на'
     snackbar_verification_code_error = 'Не удалось отправить код:'
     snackbar_verification_code_wait_error = 'Последний код был отправлен менее 10 секунд назад, вы должны подождать'
+    snackbar_pdf_export_failed = this.missingTranslation;
 
     // Table
     table_actions = 'Действия'

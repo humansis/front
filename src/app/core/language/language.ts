@@ -822,6 +822,7 @@ export interface Language {
     snackbar_verification_code_error: string
     snackbar_verification_code_wait_error: string
     snackbar_verification_code: string
+    snackbar_pdf_export_failed: string
 
     // Table
     table_actions: string

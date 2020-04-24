@@ -813,6 +813,7 @@ export class Arabic implements Language {
     snackbar_verification_code = 'تم إرسال رمز التحقق في'
     snackbar_verification_code_error = 'لا يمكن إرسال الرمز:'
     snackbar_verification_code_wait_error = 'تم إرسال الرمز الأخير قبل أقل من 10 ثوانٍ ، يجب عليك الانتظار.'
+    snackbar_pdf_export_failed = this.missingTranslation;
 
     // Table
     table_actions = 'اجراءات'

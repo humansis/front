@@ -23,6 +23,7 @@ import { Graph } from './models/graph.model';
 import { IndicatorService } from './services/indicator.service';
 import { CURRENCIES } from 'src/app/models/constants/currencies';
 import { GraphValue } from './graph-value.model';
+import {SnackbarService} from 'src/app/core/logging/snackbar.service';
 
 const PDFConfig = {
     paperWidthMm : 210,
@@ -114,6 +115,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
         private datePipe: DatePipe,
         private countriesService: CountriesService,
         private screenSizeService: ScreenSizeService,
+        private snackbar: SnackbarService,
     ) {}
 
     ngOnInit(): void {
@@ -490,40 +492,46 @@ export class ReportsComponent implements OnInit, OnDestroy {
     private generatePdf() {
         const htmlGraphs = document.getElementsByClassName('graph');
 
-        const graphWidthMm = (PDFConfig.paperWidthMm - (PDFConfig.graphPerLine + 1) * PDFConfig.singleMarginMm) / PDFConfig.graphPerLine;
-        const graphHeightMm = graphWidthMm * PDFConfig.graphRatioHW;
+        if (htmlGraphs.length > 0) {
+            const graphWidthMm = (PDFConfig.paperWidthMm - (PDFConfig.graphPerLine + 1) * PDFConfig.singleMarginMm) / PDFConfig.graphPerLine;
+            const graphHeightMm = graphWidthMm * PDFConfig.graphRatioHW;
 
-        const options: Html2Canvas.Html2CanvasOptions = {
-            width: 400,
-            height: 500,
-        };
-        const pdf = new jsPDF('p', 'mm', 'A4');
-        let x = 0, y = 0;
-        // Gather observables used for converting html elements to canvas
-        forkJoin(
-            Array.from(htmlGraphs).map((htmlGraph: HTMLElement, index: number) => {
-                return from(html2canvas(htmlGraph, options)).pipe(
-                    tap((canvas: HTMLCanvasElement) => {
-                        const img = canvas.toDataURL('image/jpeg', 1.0);
-                        pdf.addImage(img, 'JPEG', x + PDFConfig.singleMarginMm, y + PDFConfig.singleMarginMm, graphWidthMm, graphHeightMm);
+            const options: Html2Canvas.Html2CanvasOptions = {
+                width: 400,
+                height: 500,
+            };
+            const pdf = new jsPDF('p', 'mm', 'A4');
+            let x = 0, y = 0;
+            // Gather observables used for converting html elements to canvas
+            forkJoin(
+                Array.from(htmlGraphs).map((htmlGraph: HTMLElement, index: number) => {
+                    return from(html2canvas(htmlGraph, options)).pipe(
+                        tap((canvas: HTMLCanvasElement) => {
+                            const img = canvas.toDataURL('image/jpeg', 1.0);
+                            pdf.addImage(img, 'JPEG', x + PDFConfig.singleMarginMm, y + PDFConfig.singleMarginMm, graphWidthMm, graphHeightMm);
 
-                        // Calculate next graph's coordinates
-                        x += PDFConfig.singleMarginMm + graphWidthMm;
-                        if (PDFConfig.paperWidthMm - x < graphWidthMm) {
-                            x = 0;
-                            y += PDFConfig.singleMarginMm + graphHeightMm;
-                            if (PDFConfig.paperHeightMm - y < graphHeightMm) {
-                                y = 0;
-                                pdf.addPage();
+                            // Calculate next graph's coordinates
+                            x += PDFConfig.singleMarginMm + graphWidthMm;
+                            if (PDFConfig.paperWidthMm - x < graphWidthMm) {
+                                x = 0;
+                                y += PDFConfig.singleMarginMm + graphHeightMm;
+                                if (PDFConfig.paperHeightMm - y < graphHeightMm) {
+                                    y = 0;
+                                    pdf.addPage();
+                                }
                             }
-                        }
-                    })
-                );
-            })
-        ).subscribe(() => {
-            pdf.save('Reports');
+                        })
+                    );
+                })
+            ).subscribe(() => {
+                pdf.save('Reports');
+                this.isDownloading = false;
+            });
+        } else {
             this.isDownloading = false;
-        });
+            this.snackbar.error(this.language.snackbar_pdf_export_failed);
+        }
+
     }
 
 //
