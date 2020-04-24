@@ -30,7 +30,7 @@ export class Project extends CustomModel {
                 isLongText: false,
             }
         ),
-        internalId : new NumberModelField(
+        internalId : new TextModelField(
             {
                 title: this.language.project_internal_id,
                 isDisplayedInModal: true,
