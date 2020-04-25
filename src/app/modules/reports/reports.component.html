@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div id="graphs" *ngIf="!canvasAreReloading">
-                <div *ngFor="let graph of graphs" class="graph" style="page-break-after: always;">
+                <div *ngFor="let graph of graphs" class="graph">
                     <h2 class="graph-title">{{graph.name | titlecase}}</h2>
                     <ng-container *ngIf="!graphValuesAreEmpty(graph); else noData">
                         <app-line-chart [graphInfo]="graph" *ngIf="graph.type === 'line'" [yLabel] = "getYLabel(graph)"></app-line-chart>
