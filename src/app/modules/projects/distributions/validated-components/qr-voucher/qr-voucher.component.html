@@ -32,10 +32,6 @@
 
         <div class="content-button">
             <div class="action-buttons">
-                <button [disabled]="actualDistribution.get('finished')" mat-flat-button *ngIf="!loadingAssign && userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')"
-                    class="button-background-primary" (click)="openAssignDialog()">
-                    <span>{{language.voucher_assign | uppercaseFirst }}</span>
-                </button>
                 <mat-spinner [diameter]='25' *ngIf="loadingAssign"></mat-spinner>
                 <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
                     <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'transactionDistribution')" *ngIf="!loadingExport">
