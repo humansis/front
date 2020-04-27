@@ -8,9 +8,8 @@ describe('TableMobileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableMobileComponent ]
-    })
-    .compileComponents();
+      declarations: [TableMobileComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

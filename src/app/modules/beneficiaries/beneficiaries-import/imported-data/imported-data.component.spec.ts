@@ -8,9 +8,8 @@ describe('ImportedDataComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImportedDataComponent ]
-    })
-    .compileComponents();
+      declarations: [ImportedDataComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

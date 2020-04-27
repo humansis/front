@@ -8,9 +8,8 @@ describe('HouseholdsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataValidationComponent ]
-    })
-    .compileComponents();
+      declarations: [DataValidationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

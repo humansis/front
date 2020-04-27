@@ -5,19 +5,19 @@ import { CustomDateAdapter } from '../../../shared/adapters/date.adapter';
 import { CustomModelField } from '../../../models/custom-models/custom-model-field';
 import { ModalFieldsComponent } from '../modal-fields/modal-fields.component';
 @Component({
-    selector: 'app-modal-edit',
-    templateUrl: '../modal-fields/modal-fields.component.html',
-    styleUrls: ['../modal.component.scss', '../modal-fields/modal-fields.component.scss'],
-    providers: [
-        { provide: DateAdapter, useClass: CustomDateAdapter },
-        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-    ]
+  selector: 'app-modal-edit',
+  templateUrl: '../modal-fields/modal-fields.component.html',
+  styleUrls: ['../modal.component.scss', '../modal-fields/modal-fields.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: CustomDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
+  ],
 })
 export class ModalEditComponent extends ModalFieldsComponent implements OnInit {
-    modalType = 'Edit';
-    modalTitle = this.language.modal_edit_title;
+  modalType = 'Edit';
+  modalTitle = this.language.modal_edit_title;
 
-    isDisabled(field: CustomModelField<any>) {
-        return !field.isEditable;
-    }
+  isDisabled(field: CustomModelField<any>) {
+    return !field.isEditable;
+  }
 }

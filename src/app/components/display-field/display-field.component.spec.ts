@@ -8,9 +8,8 @@ describe('DisplayFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DisplayFieldComponent ]
-    })
-    .compileComponents();
+      declarations: [DisplayFieldComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

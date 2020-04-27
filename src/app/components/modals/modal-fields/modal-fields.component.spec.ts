@@ -8,9 +8,8 @@ describe('ModalWriteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalFieldsComponent ]
-    })
-    .compileComponents();
+      declarations: [ModalFieldsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

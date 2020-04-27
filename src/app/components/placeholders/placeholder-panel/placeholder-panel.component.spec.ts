@@ -8,9 +8,8 @@ describe('PlaceholderPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaceholderPanelComponent ]
-    })
-    .compileComponents();
+      declarations: [PlaceholderPanelComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

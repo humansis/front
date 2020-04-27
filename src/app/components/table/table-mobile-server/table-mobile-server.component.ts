@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { TableServerComponent } from '../table-server/table-server.component';
 
 @Component({
-    selector: 'app-table-mobile-server',
-    templateUrl: './table-mobile-server.component.html',
-    styleUrls: ['../table-mobile/table-mobile.component.scss', './table-mobile-server.component.scss'],
-    providers: [{provide: TableServerComponent, useExisting: TableMobileServerComponent}]
+  selector: 'app-table-mobile-server',
+  templateUrl: './table-mobile-server.component.html',
+  styleUrls: [
+    '../table-mobile/table-mobile.component.scss',
+    './table-mobile-server.component.scss',
+  ],
+  providers: [{ provide: TableServerComponent, useExisting: TableMobileServerComponent }],
 })
-export class TableMobileServerComponent extends TableServerComponent {
-
-}
+export class TableMobileServerComponent extends TableServerComponent {}

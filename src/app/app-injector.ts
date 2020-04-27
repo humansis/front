@@ -1,4 +1,4 @@
-import {Injector} from '@angular/core';
+import { Injector } from '@angular/core';
 
 /**
  * Allows for retrieving singletons using `AppInjector.get(MyService)` (whereas
@@ -14,11 +14,10 @@ export let AppInjector: Injector;
  * "TS2539: Cannot assign to 'AppInjector' because it is not a variable".
  */
 export function setAppInjector(injector: Injector) {
-    if (AppInjector) {
-        // Should not happen
-        console.error('Programming error: AppInjector was already set');
-    }
-    else {
-        AppInjector = injector;
-    }
+  if (AppInjector) {
+    // Should not happen
+    console.error('Programming error: AppInjector was already set');
+  } else {
+    AppInjector = injector;
+  }
 }

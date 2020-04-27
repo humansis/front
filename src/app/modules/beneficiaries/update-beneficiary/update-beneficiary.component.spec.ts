@@ -8,9 +8,8 @@ describe('UpdateBeneficiaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateBeneficiaryComponent ]
-    })
-    .compileComponents();
+      declarations: [UpdateBeneficiaryComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -9,23 +9,18 @@ import { LineChartComponent } from '../reports/charts/line-chart/line-chart.comp
 import { PieChartComponent } from '../reports/charts/pie-chart/pie-chart.component';
 import { LogsComponent } from './logs.component';
 import { ReportsModule } from '../reports/reports.module';
-import {LogsRoutingModule} from './logs-routing.module';
-
-
+import { LogsRoutingModule } from './logs-routing.module';
 
 @NgModule({
-
-    imports: [
-        // Angular Modules
-        SharedModule,
-        CommonModule,
-        ReactiveFormsModule,
-        NgSelectModule,
-        ReportsModule,
-        LogsRoutingModule
-    ],
-    declarations: [
-        LogsComponent,
-    ]
+  imports: [
+    // Angular Modules
+    SharedModule,
+    CommonModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    ReportsModule,
+    LogsRoutingModule,
+  ],
+  declarations: [LogsComponent],
 })
-export class LogsModule { }
+export class LogsModule {}

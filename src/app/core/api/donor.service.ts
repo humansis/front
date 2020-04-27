@@ -4,19 +4,13 @@ import { Donor } from '../../models/donor';
 import { CustomModelService } from '../utils/custom-model.service';
 import { HttpService } from '../network/http.service';
 
-
-
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DonorService extends CustomModelService {
+  customModelPath = 'donors';
 
-    customModelPath = 'donors';
-
-    constructor(
-        protected http: HttpService,
-        protected languageService: LanguageService,
-    ) {
-        super(http, languageService);
-    }
+  constructor(protected http: HttpService, protected languageService: LanguageService) {
+    super(http, languageService);
+  }
 }

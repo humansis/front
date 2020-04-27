@@ -1,11 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'thousands'
+  name: 'thousands',
 })
 export class ThousandsPipe implements PipeTransform {
-
-
   transform(value: number): string {
     const parsedString = String(value);
     const reverted = this.revertString(parsedString);
@@ -26,5 +24,4 @@ export class ThousandsPipe implements PipeTransform {
   assembleString(toAssemble): string {
     return toAssemble.join(',');
   }
-
 }

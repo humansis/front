@@ -7,175 +7,189 @@ import { AsyncacheService } from 'src/app/core/storage/asyncache.service';
 import { FailedRequest, StoredRequest } from 'src/app/models/interfaces/stored-request';
 
 @Component({
-    selector: 'app-modal-requests',
-    templateUrl: './modal-requests.component.html',
-    styleUrls: ['./modal-requests.component.scss'],
-    animations: [
-        trigger('detailExpand', [
-            state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
-            state('expanded', style({ height: '*' })),
-            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-        ]),
-    ],
+  selector: 'app-modal-requests',
+  templateUrl: './modal-requests.component.html',
+  styleUrls: ['./modal-requests.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class ModalRequestsComponent implements OnInit {
-    // TODO: Translations
+  // TODO: Translations
 
-    // Table constants.
-    public columnsToDisplay = ['icon', 'method', 'target', 'date', 'actions'];
-    public expandedElement: any | null;
+  // Table constants.
+  public columnsToDisplay = ['icon', 'method', 'target', 'date', 'actions'];
+  public expandedElement: any | null;
 
-    // Data.
-    public requests: StoredRequest[];
-    public loading = false;
+  // Data.
+  public requests: StoredRequest[];
+  public loading = false;
 
-    // When sending all.
-    public inProgress = false;
-    public progressCountSuccess = 0;
-    public progressCountFail = 0;
-    public errors: Array<FailedRequest>;
+  // When sending all.
+  public inProgress = false;
+  public progressCountSuccess = 0;
+  public progressCountFail = 0;
+  public errors: Array<FailedRequest>;
 
-    // Language
-    public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english;
+  // Language
+  public language = this.languageService.selectedLanguage
+    ? this.languageService.selectedLanguage
+    : this.languageService.english;
 
-    constructor(
-        private dialogRef: MatDialogRef<ModalRequestsComponent>,
-        private cacheService: AsyncacheService,
-        private snackbar: SnackbarService,
-        public languageService: LanguageService,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
+  constructor(
+    private dialogRef: MatDialogRef<ModalRequestsComponent>,
+    private cacheService: AsyncacheService,
+    private snackbar: SnackbarService,
+    public languageService: LanguageService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
-    ngOnInit() {
-        this.requests = this.data.requests;
-    }
+  ngOnInit() {
+    this.requests = this.data.requests;
+  }
 
-    closeDialog(): void {
-        this.dialogRef.close(true);
-    }
+  closeDialog(): void {
+    this.dialogRef.close(true);
+  }
 
-    formatDate(date: Date): string {
-        let formated: string;
-        formated = '' + date.toLocaleString('en-us', { month: 'short' }) + ' ';
-        formated += date.toLocaleString('en-us', { day: '2-digit' }) + ', ' + date.getFullYear();
-        formated += ' at ' + date.getHours() + ':' + date.toLocaleString('en-us', { minute: '2-digit' });
+  formatDate(date: Date): string {
+    let formated: string;
+    formated = '' + date.toLocaleString('en-us', { month: 'short' }) + ' ';
+    formated +=
+      date.toLocaleString('en-us', { day: '2-digit' }) + ', ' + date.getFullYear();
+    formated +=
+      ' at ' +
+      date.getHours() +
+      ':' +
+      date.toLocaleString('en-us', { minute: '2-digit' });
 
-        return formated;
-    }
+    return formated;
+  }
 
-    sendRequest(request: StoredRequest) {
-        const method = this.cacheService.useMethod(request);
-        if (method) {
-            this.loading = true;
-            method.subscribe(
-                (requestResult) => {
-                    if (requestResult instanceof FailedRequest) {
-                        this.snackbar.error(this.language.modal_request_error + requestResult.error);
-                        this.loading = false;
-                    } else {
-                        this.snackbar.success(request.method + ' ' + request.url
-                             .split('wsse/')[1] + ' ' + this.language.modal_request_success);
-                        this.requests.splice(this.requests.indexOf(request), 1);
-                        this.cacheService.set(AsyncacheService.PENDING_REQUESTS, this.requests).subscribe(
-                            () => this.loading = false
-                        );
-                    }
-                }
-            );
+  sendRequest(request: StoredRequest) {
+    const method = this.cacheService.useMethod(request);
+    if (method) {
+      this.loading = true;
+      method.subscribe((requestResult) => {
+        if (requestResult instanceof FailedRequest) {
+          this.snackbar.error(this.language.modal_request_error + requestResult.error);
+          this.loading = false;
+        } else {
+          this.snackbar.success(
+            request.method +
+              ' ' +
+              request.url.split('wsse/')[1] +
+              ' ' +
+              this.language.modal_request_success
+          );
+          this.requests.splice(this.requests.indexOf(request), 1);
+          this.cacheService
+            .set(AsyncacheService.PENDING_REQUESTS, this.requests)
+            .subscribe(() => (this.loading = false));
         }
+      });
     }
+  }
 
-    sendAllRequests() {
-        this.errors = [];
-        this.progressCountFail = 0;
-        this.progressCountSuccess = 0;
-        this.inProgress = true;
+  sendAllRequests() {
+    this.errors = [];
+    this.progressCountFail = 0;
+    this.progressCountSuccess = 0;
+    this.inProgress = true;
 
-        // Clone array
-        const stillToBeSent = this.requests.slice(0);
+    // Clone array
+    const stillToBeSent = this.requests.slice(0);
 
-        this.requests.forEach((request) => {
-            const method = this.cacheService.useMethod(request);
-            if (method) {
-                method.subscribe(requestResult => {
-                    if (requestResult instanceof FailedRequest) {
-                        this.errors.push(requestResult);
-                        this.progressCountFail++;
-                    } else {
-                        this.progressCountSuccess++;
-                        this.snackbar.success(request.method + ' ' + request.url
-                            .split('wsse/')[1] + ' ' + this.language.modal_request_success);
-                        stillToBeSent.splice(stillToBeSent.indexOf(request), 1);
-                    }
+    this.requests.forEach((request) => {
+      const method = this.cacheService.useMethod(request);
+      if (method) {
+        method.subscribe((requestResult) => {
+          if (requestResult instanceof FailedRequest) {
+            this.errors.push(requestResult);
+            this.progressCountFail++;
+          } else {
+            this.progressCountSuccess++;
+            this.snackbar.success(
+              request.method +
+                ' ' +
+                request.url.split('wsse/')[1] +
+                ' ' +
+                this.language.modal_request_success
+            );
+            stillToBeSent.splice(stillToBeSent.indexOf(request), 1);
+          }
 
-                    if (this.getProgressValue() === 100) {
-                        this.requests = stillToBeSent;
-                        this.cacheService.set(AsyncacheService.PENDING_REQUESTS, stillToBeSent).subscribe(
-                            () => {
-                                setTimeout(() => this.inProgress = false, 3000);
-                                if (!this.requests || this.requests === []) {
-                                    this.closeDialog();
-                                }
-                            }
-                        );
-                    }
-
-                });
-            }
+          if (this.getProgressValue() === 100) {
+            this.requests = stillToBeSent;
+            this.cacheService
+              .set(AsyncacheService.PENDING_REQUESTS, stillToBeSent)
+              .subscribe(() => {
+                setTimeout(() => (this.inProgress = false), 3000);
+                if (!this.requests || this.requests === []) {
+                  this.closeDialog();
+                }
+              });
+          }
         });
-    }
+      }
+    });
+  }
 
-    getProgressValue() {
-        return (this.progressCountSuccess + this.progressCountFail) / this.requests.length * 100;
-    }
+  getProgressValue() {
+    return (
+      ((this.progressCountSuccess + this.progressCountFail) / this.requests.length) * 100
+    );
+  }
 
-    removeRequest(element: StoredRequest) {
-        this.requests.splice(this.requests.indexOf(element), 1);
-        this.loading = true;
-        this.cacheService.set(AsyncacheService.PENDING_REQUESTS, this.requests).subscribe(
-            _ => this.loading = false
-        );
-    }
+  removeRequest(element: StoredRequest) {
+    this.requests.splice(this.requests.indexOf(element), 1);
+    this.loading = true;
+    this.cacheService
+      .set(AsyncacheService.PENDING_REQUESTS, this.requests)
+      .subscribe((_) => (this.loading = false));
+  }
 
-    expandBody(body: Object): Array<string> {
-        const details = [];
+  expandBody(body: Object): Array<string> {
+    const details = [];
 
-        if (body) {
-            Object.keys(body).forEach(
-                (key) => {
-                    let property = '';
+    if (body) {
+      Object.keys(body).forEach((key) => {
+        let property = '';
 
-                    if (typeof (body[key]) !== 'object') {
-                        property = key + ' = ' + body[key];
-                    } else {
-                        property = key + ' = ';
-                        if (body[key] && Object.keys(body[key]).length > 0) {
-                            property += '(';
-                            Object.keys(body[key]).forEach(
-                                (subKey, i) => {
-                                    if (typeof (body[key][subKey]) !== 'object') {
-                                        property += body[key][subKey];
-                                    } else {
-                                        property += '{...}';
-                                    }
+        if (typeof body[key] !== 'object') {
+          property = key + ' = ' + body[key];
+        } else {
+          property = key + ' = ';
+          if (body[key] && Object.keys(body[key]).length > 0) {
+            property += '(';
+            Object.keys(body[key]).forEach((subKey, i) => {
+              if (typeof body[key][subKey] !== 'object') {
+                property += body[key][subKey];
+              } else {
+                property += '{...}';
+              }
 
-                                    if (i < Object.keys(body[key]).length - 1) {
-                                        property += ', ';
-                                    }
-                                }
-                            );
-                            property += ')';
-                        } else {
-                            property += ' ∅ ';
-                        }
-
-                    }
-
-                    details.push(property);
-                }
-            );
+              if (i < Object.keys(body[key]).length - 1) {
+                property += ', ';
+              }
+            });
+            property += ')';
+          } else {
+            property += ' ∅ ';
+          }
         }
 
-        return details;
+        details.push(property);
+      });
     }
+
+    return details;
+  }
 }

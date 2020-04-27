@@ -13,94 +13,101 @@ import { UpdateService } from './core/service-worker/update.service';
 import { gitInfo } from 'src/app/version';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  public extendedSideNav = false;
 
-    public extendedSideNav = false;
+  // Screen size
+  public currentDisplayType: DisplayType;
+  public viewReady = false;
+  public appVersion = gitInfo.appVersion;
 
-    // Screen size
-    public currentDisplayType: DisplayType;
-    public viewReady = false;
-    public appVersion = gitInfo.appVersion;
+  // Subscriptions
+  subscriptions: Array<Subscription>;
 
-    // Subscriptions
-    subscriptions: Array<Subscription>;
+  constructor(
+    public router: Router,
+    public dialog: MatDialog,
+    public userService: UserService,
+    public languageService: LanguageService,
+    private screenSizeService: ScreenSizeService,
+    private updateService: UpdateService,
+    private countriesService: CountriesService
+  ) {}
 
+  @HostListener('window:resize')
+  onResize() {
+    this.screenSizeService.onScreenSizeChange();
+  }
 
-    constructor(
-        public router: Router,
-        public dialog: MatDialog,
-        public userService: UserService,
-        public languageService: LanguageService,
-        private screenSizeService: ScreenSizeService,
-        private updateService: UpdateService,
-        private countriesService: CountriesService,
-    ) { }
-
-    @HostListener('window:resize')
-    onResize() {
-        this.screenSizeService.onScreenSizeChange();
-    }
-
-    ngOnInit() {
-        this.subscriptions = [
-            this.screenSizeService.displayTypeSource.subscribe((displayType: DisplayType) => {
-                this.currentDisplayType = displayType;
-                this.handleChat();
-            }),
-            this.router.events.subscribe((event: Event) => {
-                if (event instanceof NavigationEnd) {
-                    this.handleChat();
-                    this.viewReady = true;
-                }
-            }),
-            this.updateService.checkForUpdates().subscribe()
-        ];
-    }
-
-    ngOnDestroy() {
-        this.subscriptions.forEach((subscription: Subscription) => {
-            subscription.unsubscribe();
-        });
-    }
-
-    closeSideNav() {
-        if (this.extendedSideNav) {
-            this.extendedSideNav = false;
+  ngOnInit() {
+    this.subscriptions = [
+      this.screenSizeService.displayTypeSource.subscribe((displayType: DisplayType) => {
+        this.currentDisplayType = displayType;
+        this.handleChat();
+      }),
+      this.router.events.subscribe((event: Event) => {
+        if (event instanceof NavigationEnd) {
+          this.handleChat();
+          this.viewReady = true;
         }
-    }
+      }),
+      this.updateService.checkForUpdates().subscribe(),
+    ];
+  }
 
-    matchUrl(): string {
-        const match = this.router.url.split('/');
-        match.shift();
-        return match[0];
-    }
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => {
+      subscription.unsubscribe();
+    });
+  }
 
-    public headerIsReady() {
-        const {selectableCountries, selectedCountry } = this.countriesService;
-        return selectableCountries.length && selectedCountry && this.userService.currentUser && this.getLanguage();
+  closeSideNav() {
+    if (this.extendedSideNav) {
+      this.extendedSideNav = false;
     }
+  }
 
-    // Chat should only be shown in prod, on the dashboard page and in desktop mode
-    public chatShouldBeDisplayed(): boolean {
-        return environment.production && this.router.url === '/' && this.currentDisplayType.type !== 'mobile';
-    }
+  matchUrl(): string {
+    const match = this.router.url.split('/');
+    match.shift();
+    return match[0];
+  }
 
-    private handleChat(): void {
-        const chat = document.getElementById('chat-widget-container');
-        if (chat) {
-            if (!this.chatShouldBeDisplayed()) {
-                chat.style.display = 'none';
-                return;
-            }
-            chat.style.display = 'block';
-        }
-    }
+  public headerIsReady() {
+    const { selectableCountries, selectedCountry } = this.countriesService;
+    return (
+      selectableCountries.length &&
+      selectedCountry &&
+      this.userService.currentUser &&
+      this.getLanguage()
+    );
+  }
 
-    public getLanguage(): Language {
-        return (this.languageService.selectedLanguage);
+  // Chat should only be shown in prod, on the dashboard page and in desktop mode
+  public chatShouldBeDisplayed(): boolean {
+    return (
+      environment.production &&
+      this.router.url === '/' &&
+      this.currentDisplayType.type !== 'mobile'
+    );
+  }
+
+  private handleChat(): void {
+    const chat = document.getElementById('chat-widget-container');
+    if (chat) {
+      if (!this.chatShouldBeDisplayed()) {
+        chat.style.display = 'none';
+        return;
+      }
+      chat.style.display = 'block';
     }
+  }
+
+  public getLanguage(): Language {
+    return this.languageService.selectedLanguage;
+  }
 }

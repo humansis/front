@@ -9,75 +9,74 @@ import { WsseService } from '../authentication/wsse.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrganizationServicesService extends CustomModelService {
+  customModelPath = 'organization_services';
 
-    customModelPath = 'organization_services';
+  constructor(
+    protected http: HttpService,
+    protected languageService: LanguageService,
+    public exportService: ExportService,
+    protected wsseService: WsseService
+  ) {
+    super(http, languageService);
+  }
 
-    constructor(
-        protected http: HttpService,
-        protected languageService: LanguageService,
-        public exportService: ExportService,
-        protected wsseService: WsseService
-    ) {
-        super(http, languageService);
-    }
+  public getServiceStatus(serviceId: string): Observable<boolean> {
+    return this.get().pipe(
+      switchMap((organizationServices: any) => {
+        if (organizationServices) {
+          for (const orgService of organizationServices) {
+            if (orgService.service.parameters.$id === serviceId) {
+              return of(orgService.enabled);
+            }
+          }
+          return of(false);
+        } else {
+          return of(false);
+        }
+      })
+    );
+  }
 
-    public getServiceStatus(serviceId: string): Observable<boolean> {
-        return this.get().pipe(
-            switchMap((organizationServices: any) => {
-                if (organizationServices) {
-                    for (const orgService of organizationServices) {
-                        if (orgService.service.parameters.$id === serviceId) {
-                            return of(orgService.enabled);
-                        }
-                    }
-                    return of(false);
-                } else {
-                    return of(false);
+  public get2FAToken(userFromApi) {
+    const url = this.apiBase + '/organization/1/service';
+
+    return this.wsseService.getHeaderValue(userFromApi).pipe(
+      switchMap((headerValue: string) => {
+        const options = {
+          headers: new HttpHeaders({
+            'x-wsse': headerValue,
+            country: 'KHM',
+          }),
+        };
+
+        return this.http.get(url, options).pipe(
+          switchMap((organizationServices: any) => {
+            if (organizationServices) {
+              for (const orgService of organizationServices) {
+                if (orgService.service.parameters.$id === '2fa' && orgService.enabled) {
+                  return of(orgService.parameters_value.token);
                 }
-            })
+              }
+              return of(null);
+            } else {
+              return of(null);
+            }
+          })
         );
-    }
+      })
+    );
+  }
 
-    public get2FAToken(userFromApi) {
-        const url = this.apiBase + '/organization/1/service';
+  public get() {
+    const url = this.apiBase + '/organization/1/service';
+    return this.http.get(url);
+  }
 
-        return this.wsseService.getHeaderValue(userFromApi).pipe(
-            switchMap((headerValue: string) => {
-                const options = {
-                    headers: new HttpHeaders({
-                        'x-wsse': headerValue,
-                        'country': 'KHM'
-                    })
-                };
-
-                return this.http.get(url, options).pipe(
-                    switchMap((organizationServices: any) => {
-                        if (organizationServices) {
-                            for (const orgService of organizationServices) {
-                                if (orgService.service.parameters.$id === '2fa' && orgService.enabled) {
-                                    return of(orgService.parameters_value.token);
-                                }
-                            }
-                            return of(null);
-                        } else {
-                            return of(null);
-                        }
-                    })
-                );
-            })
-        );
-    }
-
-    public get() {
-        const url = this.apiBase + '/organization/1/service';
-        return this.http.get(url);
-    }
-
-    public update(organizationServiceId: number, body: any) {
-        const url = this.apiBase + '/organization/service/' + organizationServiceId;
-        return this.http.post(url, body);
-    }
+  public update(organizationServiceId: number, body: any) {
+    const url = this.apiBase + '/organization/service/' + organizationServiceId;
+    return this.http.post(url, body);
+  }
 }

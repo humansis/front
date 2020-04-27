@@ -4,15 +4,15 @@ import { URL_BMS_API } from '../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class UploadService {
-    readonly api = URL_BMS_API;
+  readonly api = URL_BMS_API;
 
-    constructor(private http: HttpService) {}
+  constructor(private http: HttpService) {}
 
-    uploadImage(file, path: string) {
-        const url = this.api + path;
-        return this.http.post(url, file);
-    }
+  uploadImage(file, path: string) {
+    const url = this.api + path;
+    return this.http.post(url, file);
+  }
 }

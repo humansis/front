@@ -12,363 +12,383 @@ import { User } from 'src/app/models/user';
 import { CountriesService } from '../countries/countries.service';
 import { Language } from '../language/language';
 import { LanguageService } from '../language/language.service';
-import { CachedCountryReturnValue, CachedCountryValue } from './cached-country-value.interface';
+import {
+  CachedCountryReturnValue,
+  CachedCountryValue,
+} from './cached-country-value.interface';
 import { CachedItemInterface } from './cached-item.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AsyncacheService {
-    //  Country
+  //  Country
 
-    // Request storing
-    static pendingRequests = false;
+  // Request storing
+  static pendingRequests = false;
 
-    // Keys
-    static readonly USER = 'user';
-    static readonly USERS = 'users';
-    static readonly DISTRIBUTIONS = 'distributions';
-    static readonly UPCOMING = 'upcoming';
-    static readonly DONORS = 'donors';
-    static readonly PROJECTS = 'projects';
-    static readonly DISTRIBUTION_PROJECT = 'distributions_project';
-    static readonly SECTORS = 'sectors';
-    static readonly HOUSEHOLDS = 'households';
-    static readonly CRITERIAS = 'criterias';
-    static readonly COMMODITY = 'commodity';
-    static readonly ADM1 = 'adm1';
-    static readonly ADM2 = 'adm2';
-    static readonly ADM3 = 'adm3';
-    static readonly ADM4 = 'adm4';
-    static readonly MAPSDATA = 'mapsData';
-    static readonly SPECIFICS = 'specifics';
-    static readonly MODALITIES = 'modalities';
-    static readonly VULNERABILITIES = 'vulnerabilities';
-    static readonly SUMMARY = 'summary';
-    static readonly COUNTRY = 'country';
-    static readonly PENDING_REQUESTS = 'pending_requests';
-    static readonly LANGUAGE = 'language';
+  // Keys
+  static readonly USER = 'user';
+  static readonly USERS = 'users';
+  static readonly DISTRIBUTIONS = 'distributions';
+  static readonly UPCOMING = 'upcoming';
+  static readonly DONORS = 'donors';
+  static readonly PROJECTS = 'projects';
+  static readonly DISTRIBUTION_PROJECT = 'distributions_project';
+  static readonly SECTORS = 'sectors';
+  static readonly HOUSEHOLDS = 'households';
+  static readonly CRITERIAS = 'criterias';
+  static readonly COMMODITY = 'commodity';
+  static readonly ADM1 = 'adm1';
+  static readonly ADM2 = 'adm2';
+  static readonly ADM3 = 'adm3';
+  static readonly ADM4 = 'adm4';
+  static readonly MAPSDATA = 'mapsData';
+  static readonly SPECIFICS = 'specifics';
+  static readonly MODALITIES = 'modalities';
+  static readonly VULNERABILITIES = 'vulnerabilities';
+  static readonly SUMMARY = 'summary';
+  static readonly COUNTRY = 'country';
+  static readonly PENDING_REQUESTS = 'pending_requests';
+  static readonly LANGUAGE = 'language';
 
+  // Constants
+  readonly PREFIX = 'bms';
+  readonly SECTIMEOUT = 2592000; // 30 day in seconds
+  readonly MSTIMEOUT = this.SECTIMEOUT * 1000;
 
-    // Constants
-    readonly PREFIX = 'bms';
-    readonly SECTIMEOUT = 2592000; // 30 day in seconds
-    readonly MSTIMEOUT = this.SECTIMEOUT * 1000;
+  constructor(
+    public languageService: LanguageService,
+    private countriesService: CountriesService,
+    protected storage: LocalStorage,
+    protected http: HttpClient
+  ) {}
 
-    constructor(
-        public languageService: LanguageService,
-        private countriesService: CountriesService,
-        protected storage: LocalStorage,
-        protected http: HttpClient,
+  //
+  // ─── KEY FORMATTING ──────────────────────────────────────────────────────────────────────
+  //
+
+  private getFormattedKey(key: string): Observable<string> {
+    // Non country-specific data
+    if (
+      key === AsyncacheService.COUNTRY ||
+      key === AsyncacheService.USER ||
+      key === AsyncacheService.USERS ||
+      key === AsyncacheService.PENDING_REQUESTS ||
+      key === AsyncacheService.LANGUAGE
     ) {
+      return of(this.PREFIX + '_' + key);
+    } else if (this.countriesService.selectedCountry) {
+      return of(this.formatKeyCountry(key, this.countriesService.selectedCountry));
+    } else {
+      return this.getCountry().pipe(
+        map((cachedCountryReturnValue: CachedCountryReturnValue) => {
+          return this.formatKeyCountry(key, cachedCountryReturnValue.country);
+        })
+      );
     }
+  }
 
-    //
-    // ─── KEY FORMATTING ──────────────────────────────────────────────────────────────────────
-    //
+  private formatKeyCountry(key: string, country: Country) {
+    return this.PREFIX + '_' + country.get<string>('id') + '_' + key;
+  }
 
-    private getFormattedKey(key: string): Observable<string> {
-        // Non country-specific data
-        if (key === AsyncacheService.COUNTRY || key === AsyncacheService.USER || key === AsyncacheService.USERS
-            || key === AsyncacheService.PENDING_REQUESTS || key === AsyncacheService.LANGUAGE) {
-            return of(this.PREFIX + '_' + key);
-        } else if (this.countriesService.selectedCountry) {
-            return of(this.formatKeyCountry(key, this.countriesService.selectedCountry));
-        } else {
-            return this.getCountry().pipe(
-                map((cachedCountryReturnValue: CachedCountryReturnValue) => {
-                    return this.formatKeyCountry(key, cachedCountryReturnValue.country);
-                })
-            );
-        }
-    }
+  //
+  // ─── GET, SET, DELETE, CLEAR ──────────────────────────────────────────────────────────────────────
+  //
 
-    private formatKeyCountry(key: string, country: Country) {
-        return this.PREFIX + '_' + country.get<string>('id') + '_' + key;
-    }
-
-    //
-    // ─── GET, SET, DELETE, CLEAR ──────────────────────────────────────────────────────────────────────
-    //
-
-    /**
-     * Get an item from the cache asynchronously.
-     * @param key
-     */
-    get(key: string) {
-        return (
-            this.getFormattedKey(key).pipe(
-                switchMap((formattedKey: string) => {
-                    return this.storage.getItem(formattedKey).pipe(
-                        map(
-                            (result: CachedItemInterface) => {
-                                if (result && result.storageTime + result.limit < (new Date).getTime()) {
-                                    if (result.canBeDeleted) {
-                                        this.removeItem(formattedKey);
-                                    }
-                                    return null;
-                                } else if (result) {
-                                    return result.value;
-                                } else {
-                                    return null;
-                                }
-                            }
-                        )
-                    );
-                })
-            )
-        );
-    }
-
-    /**
-     * Observable version of set
-     * @param key
-     * @param value
-     * @param options
-     */
-    set(key: string, value: any, options: any = {}): Observable<boolean> {
-        return this.getFormattedKey(key).pipe(
-            switchMap((formattedKey: string) => {
-                // this.localStorage.setItemSubscribe(formattedKey, value);
-                if (options.canBeDeleted == null) {
-                    options.canBeDeleted = true;
-                }
-
-                if (options.timeout == null) {
-                    options.timeout = this.MSTIMEOUT;
-                }
-
-                const object: CachedItemInterface = {
-                    storageTime: (new Date()).getTime(), // in milliseconds
-                    value: value,
-                    limit: options.timeout, // in milliseconds
-                    canBeDeleted: options.canBeDeleted
-                };
-                return this.storage.setItem(formattedKey, object);
-            }),
-        );
-    }
-
-    removeItem(key: string) {
-        return this.getFormattedKey(key).pipe(
-            tap((formattedKey: string) => {
-                this.storage.removeItem(formattedKey);
-            }),
-        );
-    }
-
-    /**
-     * Clear all the cache.
-     * @param force - `true` to clear all the cache, `false` to exclude some fields
-     * @param excludedFields - fields to keep after the clear
-     */
-    clear(force: boolean = true, excludedFields?: string[]) {
-        // If force is true, clear all the storage
-        if (force || !excludedFields) {
-            return this.storage.clear();
-        } else {
-            /** Object that will contain the fields that should remain in the storage and their value */
-            const keptFields = {};
-            /** Array of `storage.getItem` observables that will be subscribed to get the values of the fields we want to keep */
-            const observables = [];
-            // Push all the observables in the array
-            for (const field of excludedFields) {
-                this.countriesService.enabledCountries.forEach((country: Country) => {
-                    observables.push(this.storage.getItem(this.formatKeyCountry(field, country)));
-                });
+  /**
+   * Get an item from the cache asynchronously.
+   * @param key
+   */
+  get(key: string) {
+    return this.getFormattedKey(key).pipe(
+      switchMap((formattedKey: string) => {
+        return this.storage.getItem(formattedKey).pipe(
+          map((result: CachedItemInterface) => {
+            if (result && result.storageTime + result.limit < new Date().getTime()) {
+              if (result.canBeDeleted) {
+                this.removeItem(formattedKey);
+              }
+              return null;
+            } else if (result) {
+              return result.value;
+            } else {
+              return null;
             }
+          })
+        );
+      })
+    );
+  }
 
-            /**
-             * Subscribe in parallel to all the observables of the `observables` array
-             * and store the results in the `keptFields` object
-             */
-            return forkJoin(...observables)
-                .pipe(
-                    map(results => {
-                        for (let i = 0; i < results.length; i++) {
-                            this.countriesService.enabledCountries.forEach((country: Country) => {
-                                keptFields[this.formatKeyCountry(excludedFields[i], country)] = results[i];
-                            });
-                        }
-                    }),
-                    /**
-                     * Then delete all the cache and make a `setItem` for all the fields we wanted to save
-                     */
-                    switchMap(_ => {
-                        return this.storage.clear()
-                            .pipe(
-                                map(v => {
-                                    const keys = Object.keys(keptFields);
-                                    for (const key of keys) {
-                                        this.storage.setItem(key, keptFields[key]).subscribe();
-                                    }
-                                })
-                            );
-                    })
-                );
+  /**
+   * Observable version of set
+   * @param key
+   * @param value
+   * @param options
+   */
+  set(key: string, value: any, options: any = {}): Observable<boolean> {
+    return this.getFormattedKey(key).pipe(
+      switchMap((formattedKey: string) => {
+        // this.localStorage.setItemSubscribe(formattedKey, value);
+        if (options.canBeDeleted == null) {
+          options.canBeDeleted = true;
         }
-    }
 
-    //
-    // ─── LANGUAGE UTILS ──────────────────────────────────────────────────────────────────────
-    //
+        if (options.timeout == null) {
+          options.timeout = this.MSTIMEOUT;
+        }
 
-    setLanguage(language: Language): Observable<any> {
-        return this.set(AsyncacheService.LANGUAGE, this.languageService.languageToString(language));
-    }
+        const object: CachedItemInterface = {
+          storageTime: new Date().getTime(), // in milliseconds
+          value: value,
+          limit: options.timeout, // in milliseconds
+          canBeDeleted: options.canBeDeleted,
+        };
+        return this.storage.setItem(formattedKey, object);
+      })
+    );
+  }
 
-    getLanguage(): Observable<Language> {
-        return this.get(AsyncacheService.LANGUAGE).pipe(
-            map((languageString: string) => {
-                if (!languageString) {
-                    return undefined;
-                }
-                return this.languageService.stringToLanguage(languageString);
+  removeItem(key: string) {
+    return this.getFormattedKey(key).pipe(
+      tap((formattedKey: string) => {
+        this.storage.removeItem(formattedKey);
+      })
+    );
+  }
+
+  /**
+   * Clear all the cache.
+   * @param force - `true` to clear all the cache, `false` to exclude some fields
+   * @param excludedFields - fields to keep after the clear
+   */
+  clear(force: boolean = true, excludedFields?: string[]) {
+    // If force is true, clear all the storage
+    if (force || !excludedFields) {
+      return this.storage.clear();
+    } else {
+      /** Object that will contain the fields that should remain in the storage and their value */
+      const keptFields = {};
+      /** Array of `storage.getItem` observables that will be subscribed to get the values of the fields we want to keep */
+      const observables = [];
+      // Push all the observables in the array
+      for (const field of excludedFields) {
+        this.countriesService.enabledCountries.forEach((country: Country) => {
+          observables.push(this.storage.getItem(this.formatKeyCountry(field, country)));
+        });
+      }
+
+      /**
+       * Subscribe in parallel to all the observables of the `observables` array
+       * and store the results in the `keptFields` object
+       */
+      return forkJoin(...observables).pipe(
+        map((results) => {
+          for (let i = 0; i < results.length; i++) {
+            this.countriesService.enabledCountries.forEach((country: Country) => {
+              keptFields[this.formatKeyCountry(excludedFields[i], country)] = results[i];
+            });
+          }
+        }),
+        /**
+         * Then delete all the cache and make a `setItem` for all the fields we wanted to save
+         */
+        switchMap((_) => {
+          return this.storage.clear().pipe(
+            map((v) => {
+              const keys = Object.keys(keptFields);
+              for (const key of keys) {
+                this.storage.setItem(key, keptFields[key]).subscribe();
+              }
             })
-        );
+          );
+        })
+      );
     }
+  }
 
-    //
-    // ─── COUNTRY UTILS ──────────────────────────────────────────────────────────────────────
-    //
+  //
+  // ─── LANGUAGE UTILS ──────────────────────────────────────────────────────────────────────
+  //
 
-    setCountry(country: Country, updatedInLastSession: boolean = true): Observable<boolean> {
-        return this.set(AsyncacheService.COUNTRY,
-            {
-                countryId: country.get<string>('id'),
-                // To make the app go back to '/' on the next login
-                updatedInLastSession: updatedInLastSession,
-            }
-        );
-    }
+  setLanguage(language: Language): Observable<any> {
+    return this.set(
+      AsyncacheService.LANGUAGE,
+      this.languageService.languageToString(language)
+    );
+  }
 
-    getCountry(): Observable<CachedCountryReturnValue> {
-        const countries: Array<Country> = this.countriesService.enabledCountries;
-        if (this.countriesService.selectedCountry) {
-            return of({country: this.countriesService.selectedCountry, updatedInLastSession: false});
+  getLanguage(): Observable<Language> {
+    return this.get(AsyncacheService.LANGUAGE).pipe(
+      map((languageString: string) => {
+        if (!languageString) {
+          return undefined;
         }
-        return this.get(AsyncacheService.COUNTRY).pipe(
-            switchMap((countryCacheObject: CachedCountryValue) => {
-                if (countryCacheObject) {
-                    // Reset updatedInLastSession
-                    for (const country of countries) {
-                        if (country.get<string>('id') === countryCacheObject.countryId) {
-                            // Reset it and reset the updatedInLastSession to false
-                            return this.setCountry(country, false).pipe(
-                                map((_: any) => ({country, updatedInLastSession: countryCacheObject.updatedInLastSession}))
-                            );
-                        }
-                    }
-                }
-                return of(undefined);
-            }),
-        );
-    }
+        return this.languageService.stringToLanguage(languageString);
+      })
+    );
+  }
 
-    removeCountry() {
-        return this.removeItem(AsyncacheService.COUNTRY).subscribe();
-    }
-    removeLanguage() {
-        return this.removeItem(AsyncacheService.LANGUAGE).subscribe();
-    }
+  //
+  // ─── COUNTRY UTILS ──────────────────────────────────────────────────────────────────────
+  //
 
-    //
-    // ─── USER UTILS ──────────────────────────────────────────────────────────────────────
-    //
+  setCountry(
+    country: Country,
+    updatedInLastSession: boolean = true
+  ): Observable<boolean> {
+    return this.set(AsyncacheService.COUNTRY, {
+      countryId: country.get<string>('id'),
+      // To make the app go back to '/' on the next login
+      updatedInLastSession: updatedInLastSession,
+    });
+  }
 
-    setUser(user: any): Observable<boolean> {
-        return this.set(AsyncacheService.USER, user);
+  getCountry(): Observable<CachedCountryReturnValue> {
+    const countries: Array<Country> = this.countriesService.enabledCountries;
+    if (this.countriesService.selectedCountry) {
+      return of({
+        country: this.countriesService.selectedCountry,
+        updatedInLastSession: false,
+      });
     }
-
-    /**
-     * Waits for asynchronous user value to return it synchronously.
-    */
-    getUser(): Observable<User> {
-        return this.get(AsyncacheService.USER).pipe(
-            map((cachedUser: object) => {
-                if (!cachedUser) {
-                    return undefined;
-                } else {
-                    return User.apiToModel(cachedUser);
-                }
+    return this.get(AsyncacheService.COUNTRY).pipe(
+      switchMap((countryCacheObject: CachedCountryValue) => {
+        if (countryCacheObject) {
+          // Reset updatedInLastSession
+          for (const country of countries) {
+            if (country.get<string>('id') === countryCacheObject.countryId) {
+              // Reset it and reset the updatedInLastSession to false
+              return this.setCountry(country, false).pipe(
+                map((_: any) => ({
+                  country,
+                  updatedInLastSession: countryCacheObject.updatedInLastSession,
+                }))
+              );
             }
-            ),
-        );
-    }
+          }
+        }
+        return of(undefined);
+      })
+    );
+  }
 
-    //
-    // ─── CACHED REQUESTS ──────────────────────────────────────────────────────────────────────
-    //
+  removeCountry() {
+    return this.removeItem(AsyncacheService.COUNTRY).subscribe();
+  }
+  removeLanguage() {
+    return this.removeItem(AsyncacheService.LANGUAGE).subscribe();
+  }
 
-    /**
-     * When requesting offline, this method will permit to store a special request object to save wanted PUTs/POSTs/DELETEs.
-     * @param type
-     * @param request
-     */
-    storeRequest(request: StoredRequest) {
-        let storedRequests: Array<StoredRequest> = [];
+  //
+  // ─── USER UTILS ──────────────────────────────────────────────────────────────────────
+  //
 
-        this.get(AsyncacheService.PENDING_REQUESTS).subscribe(
-            result => {
-                if (!result) {
-                    storedRequests = [];
-                } else {
-                    storedRequests = result;
-                }
-                storedRequests.push(request);
-                this.set(AsyncacheService.PENDING_REQUESTS, storedRequests).subscribe();
-            }
-        );
-    }
+  setUser(user: any): Observable<boolean> {
+    return this.set(AsyncacheService.USER, user);
+  }
 
-    useMethod(request: StoredRequest): Observable<any> {
-        let httpMethod;
-
-        if (request.method === 'PUT') {
-            httpMethod = this.http.put(request.url, request.body, request.options);
-        } else if (request.method === 'POST') {
-            httpMethod = this.http.post(request.url, request.body, request.options);
-        } else if (request.method === 'DELETE') {
-            httpMethod = this.http.delete(request.url, request.options);
+  /**
+   * Waits for asynchronous user value to return it synchronously.
+   */
+  getUser(): Observable<User> {
+    return this.get(AsyncacheService.USER).pipe(
+      map((cachedUser: object) => {
+        if (!cachedUser) {
+          return undefined;
         } else {
-            httpMethod = null;
+          return User.apiToModel(cachedUser);
         }
+      })
+    );
+  }
 
-        return httpMethod.pipe(
-            catchError(
-                error => {
-                    const failedRequest = new FailedRequest(request, error);
-                    return of(failedRequest);
-                }
-            )
-        );
+  //
+  // ─── CACHED REQUESTS ──────────────────────────────────────────────────────────────────────
+  //
+
+  /**
+   * When requesting offline, this method will permit to store a special request object to save wanted PUTs/POSTs/DELETEs.
+   * @param type
+   * @param request
+   */
+  storeRequest(request: StoredRequest) {
+    let storedRequests: Array<StoredRequest> = [];
+
+    this.get(AsyncacheService.PENDING_REQUESTS).subscribe((result) => {
+      if (!result) {
+        storedRequests = [];
+      } else {
+        storedRequests = result;
+      }
+      storedRequests.push(request);
+      this.set(AsyncacheService.PENDING_REQUESTS, storedRequests).subscribe();
+    });
+  }
+
+  useMethod(request: StoredRequest): Observable<any> {
+    let httpMethod;
+
+    if (request.method === 'PUT') {
+      httpMethod = this.http.put(request.url, request.body, request.options);
+    } else if (request.method === 'POST') {
+      httpMethod = this.http.post(request.url, request.body, request.options);
+    } else if (request.method === 'DELETE') {
+      httpMethod = this.http.delete(request.url, request.options);
+    } else {
+      httpMethod = null;
     }
 
-    //
-    // ─── DISTRIBUTION BENEFICIARIES ──────────────────────────────────────────────────────────────────────
-    //
+    return httpMethod.pipe(
+      catchError((error) => {
+        const failedRequest = new FailedRequest(request, error);
+        return of(failedRequest);
+      })
+    );
+  }
 
-    /**
-     * Store beneficiaries in the caChe
-     */
-    storeBeneficiaries(project: Project, distribution: Distribution, beneficiaries: Array<any>): Observable<any> {
-        const distributionBeneficiaries = distribution.get<Array<DistributionBeneficiary>>('distributionBeneficiaries')
-            .map((distributionBeneficiary: DistributionBeneficiary) => distributionBeneficiary.modelToApi());
-        return forkJoin(
-            this.set(AsyncacheService.DISTRIBUTIONS + '_' + distribution.get('id') + '_beneficiaries', distributionBeneficiaries),
-            this.set(AsyncacheService.PROJECTS + '_' + project.get('id') + '_beneficiaries', beneficiaries)
-        ).pipe(
-            map(_result => {
-                return true;
-            })
-        );
-    }
+  //
+  // ─── DISTRIBUTION BENEFICIARIES ──────────────────────────────────────────────────────────────────────
+  //
 
-    checkForBeneficiaries(distribution: Distribution): Observable<boolean> {
-        return this.get(AsyncacheService.DISTRIBUTIONS + '_' + distribution.get('id') + '_beneficiaries').pipe(
-            map(result => {
-                return result ? true : false;
-            })
-        );
-    }
+  /**
+   * Store beneficiaries in the caChe
+   */
+  storeBeneficiaries(
+    project: Project,
+    distribution: Distribution,
+    beneficiaries: Array<any>
+  ): Observable<any> {
+    const distributionBeneficiaries = distribution
+      .get<Array<DistributionBeneficiary>>('distributionBeneficiaries')
+      .map((distributionBeneficiary: DistributionBeneficiary) =>
+        distributionBeneficiary.modelToApi()
+      );
+    return forkJoin(
+      this.set(
+        AsyncacheService.DISTRIBUTIONS + '_' + distribution.get('id') + '_beneficiaries',
+        distributionBeneficiaries
+      ),
+      this.set(
+        AsyncacheService.PROJECTS + '_' + project.get('id') + '_beneficiaries',
+        beneficiaries
+      )
+    ).pipe(
+      map((_result) => {
+        return true;
+      })
+    );
+  }
+
+  checkForBeneficiaries(distribution: Distribution): Observable<boolean> {
+    return this.get(
+      AsyncacheService.DISTRIBUTIONS + '_' + distribution.get('id') + '_beneficiaries'
+    ).pipe(
+      map((result) => {
+        return result ? true : false;
+      })
+    );
+  }
 }

@@ -8,9 +8,8 @@ describe('JsonFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JsonFormComponent ]
-    })
-    .compileComponents();
+      declarations: [JsonFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,19 +5,19 @@ import { CountriesService } from '../countries/countries.service';
 
 @Injectable()
 export class CountryInterceptor implements HttpInterceptor {
+  constructor(private countriesService: CountriesService) {}
 
-    constructor(
-        private countriesService: CountriesService,
-    ) {}
-
-    intercept(req: HttpRequest<any>, next: HttpHandler) {
-        if (req.url.match(URL_BMS_API) && this.countriesService.selectedCountry) {
-            return next.handle(
-                req.clone({
-                    headers: req.headers.append('country', this.countriesService.selectedCountry.get<string>('id')),
-                })
-            );
-        }
-        return next.handle(req);
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    if (req.url.match(URL_BMS_API) && this.countriesService.selectedCountry) {
+      return next.handle(
+        req.clone({
+          headers: req.headers.append(
+            'country',
+            this.countriesService.selectedCountry.get<string>('id')
+          ),
+        })
+      );
     }
+    return next.handle(req);
+  }
 }

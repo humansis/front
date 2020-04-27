@@ -17,192 +17,213 @@ import { Location } from '../location';
 import { CustomDataSource } from './custom-data-source.interface';
 
 export class HouseholdFilters extends CustomModel {
+  protected countryService = AppInjector.get(CountriesService);
 
-    protected countryService = AppInjector.get(CountriesService);
+  // TO DO: stop duplicating that (in location.ts and vendor.ts too) once the location structure is stable
+  // (cannot put it in customModel because of circular dependency with country.ts)
+  // Maybe create an intermediary customModel->customModelWithLocation->householdFilters
+  protected country = this.countryService.selectedCountry.get<string>('id')
+    ? this.countryService.selectedCountry.get<string>('id')
+    : this.countryService.khm.get<string>('id');
 
-    // TO DO: stop duplicating that (in location.ts and vendor.ts too) once the location structure is stable
-    // (cannot put it in customModel because of circular dependency with country.ts)
-    // Maybe create an intermediary customModel->customModelWithLocation->householdFilters
-    protected country = this.countryService.selectedCountry.get<string>('id') ?
-    this.countryService.selectedCountry.get<string>('id') :
-    this.countryService.khm.get<string>('id');
-
-    public fields = {
-        projects: new MultipleSelectModelField({
-            title: this.language.project,
-            filterName: 'projects',
-            bindField: 'name',
-            apiLabel: 'id',
-            isDisplayedInTable: true,
-        }),
-        vulnerabilities: new MultipleSelectModelField({
-            title: this.language.beneficiary_vulnerabilities,
-            filterName: 'vulnerabilities',
-            bindField: 'name',
-            apiLabel: 'id',
-            isDisplayedInTable: true,
-        }),
-        gender: new SingleSelectModelField({
-            title: this.language.gender,
-            filterName: 'gender',
-            bindField: 'name',
-            apiLabel: 'id',
-            isDisplayedInTable: true,
-        }),
-        residency: new MultipleSelectModelField({
-            title: this.language.beneficiary_residency_status,
-            filterName: 'residency',
-            isDisplayedInTable: true,
-            bindField: 'name',
-            apiLabel: 'id',
-        }),
-        livelihood: new MultipleSelectModelField({
-            title: this.language.household_livelihood,
-            filterName: 'livelihood',
-            isDisplayedInTable: true,
-            bindField: 'name',
-            apiLabel: 'id',
-        }),
-        location: new ObjectModelField<Location>({
-            title: this.language.location,
-            filterName: 'locations'
-        }),
-        adm1: new NestedFieldModelField({
-            title: this.language.adm1[this.country],
-            filterName: 'locations',
-            childrenObject: 'location',
-            childrenFieldName: 'adm1',
-            apiLabel: 'id',
-            isTrigger: true,
-            triggerFunction: (householdFilters: HouseholdFilters, value: string, form: FormGroup) => {
-                const appInjector = AppInjector;
-                householdFilters.set('adm2', null);
-                householdFilters.set('adm3', null);
-                householdFilters.set('adm4', null);
-                form.controls.adm2.setValue(null);
-                form.controls.adm3.setValue(null);
-                form.controls.adm4.setValue(null);
-                const location = householdFilters.get<Location>('location');
-                appInjector.get(LocationService).fillAdm2Options(location, parseInt(value, 10)).subscribe((filledLocation: Location) => {
-                    householdFilters.set('location', location);
-                });
-                return householdFilters;
-            },
-            isDisplayedInTable: true,
-        }),
-        adm2: new NestedFieldModelField({
-            title: this.language.adm2[this.country],
-            filterName: 'locations',
-            childrenObject: 'location',
-            childrenFieldName: 'adm2',
-            apiLabel: 'id',
-            isTrigger: true,
-            triggerFunction: (householdFilters: HouseholdFilters, value: string, form: FormGroup) => {
-                const appInjector = AppInjector;
-                form.controls.adm3.setValue(null);
-                form.controls.adm4.setValue(null);
-                householdFilters.set('adm3', null);
-                householdFilters.set('adm4', null);
-                const location = householdFilters.get<Location>('location');
-                appInjector.get(LocationService).fillAdm3Options(location, parseInt(value, 10)).subscribe((filledLocation: Location) => {
-                    householdFilters.set('location', location);
-                });
-                return householdFilters;
-            },
-            isDisplayedInTable: true,
-        }),
-        adm3: new NestedFieldModelField({
-            title: this.language.adm3[this.country],
-            filterName: 'locations',
-            childrenObject: 'location',
-            childrenFieldName: 'adm3',
-            apiLabel: 'id',
-            isTrigger: true,
-            triggerFunction: (householdFilters: HouseholdFilters, value: string, form: FormGroup) => {
-                const appInjector = AppInjector;
-                form.controls.adm4.setValue(null);
-                householdFilters.set('adm4', null);
-                const location = householdFilters.get<Location>('location');
-                appInjector.get(LocationService).fillAdm4Options(location, parseInt(value, 10)).subscribe((filledLocation: Location) => {
-                    householdFilters.set('location', location);
-                });
-                return householdFilters;
-            },
-            isDisplayedInTable: true,
-        }),
-        adm4: new NestedFieldModelField({
-            title: this.language.adm4[this.country],
-            filterName: 'locations',
-            childrenObject: 'location',
-            childrenFieldName: 'adm4',
-            apiLabel: 'id',
-            isDisplayedInTable: true,
-        }),
-        referralType: new MultipleSelectModelField({
-            title: this.language.beneficiary_referral_type,
-            filterName: 'referral',
-            isDisplayedInTable: true,
-            bindField: 'name',
-            apiLabel: 'id',
-            options: [
-                new BeneficiaryReferralType('1', this.language.beneficiary_referral_types['1']),
-                new BeneficiaryReferralType('2', this.language.beneficiary_referral_types['2']),
-                new BeneficiaryReferralType('3', this.language.beneficiary_referral_types['3']),
-                new BeneficiaryReferralType('4', this.language.beneficiary_referral_types['4']),
-                new BeneficiaryReferralType('5', this.language.beneficiary_referral_types['5']),
-            ],
-        })
-    };
+  public fields = {
+    projects: new MultipleSelectModelField({
+      title: this.language.project,
+      filterName: 'projects',
+      bindField: 'name',
+      apiLabel: 'id',
+      isDisplayedInTable: true,
+    }),
+    vulnerabilities: new MultipleSelectModelField({
+      title: this.language.beneficiary_vulnerabilities,
+      filterName: 'vulnerabilities',
+      bindField: 'name',
+      apiLabel: 'id',
+      isDisplayedInTable: true,
+    }),
+    gender: new SingleSelectModelField({
+      title: this.language.gender,
+      filterName: 'gender',
+      bindField: 'name',
+      apiLabel: 'id',
+      isDisplayedInTable: true,
+    }),
+    residency: new MultipleSelectModelField({
+      title: this.language.beneficiary_residency_status,
+      filterName: 'residency',
+      isDisplayedInTable: true,
+      bindField: 'name',
+      apiLabel: 'id',
+    }),
+    livelihood: new MultipleSelectModelField({
+      title: this.language.household_livelihood,
+      filterName: 'livelihood',
+      isDisplayedInTable: true,
+      bindField: 'name',
+      apiLabel: 'id',
+    }),
+    location: new ObjectModelField<Location>({
+      title: this.language.location,
+      filterName: 'locations',
+    }),
+    adm1: new NestedFieldModelField({
+      title: this.language.adm1[this.country],
+      filterName: 'locations',
+      childrenObject: 'location',
+      childrenFieldName: 'adm1',
+      apiLabel: 'id',
+      isTrigger: true,
+      triggerFunction: (
+        householdFilters: HouseholdFilters,
+        value: string,
+        form: FormGroup
+      ) => {
+        const appInjector = AppInjector;
+        householdFilters.set('adm2', null);
+        householdFilters.set('adm3', null);
+        householdFilters.set('adm4', null);
+        form.controls.adm2.setValue(null);
+        form.controls.adm3.setValue(null);
+        form.controls.adm4.setValue(null);
+        const location = householdFilters.get<Location>('location');
+        appInjector
+          .get(LocationService)
+          .fillAdm2Options(location, parseInt(value, 10))
+          .subscribe((filledLocation: Location) => {
+            householdFilters.set('location', location);
+          });
+        return householdFilters;
+      },
+      isDisplayedInTable: true,
+    }),
+    adm2: new NestedFieldModelField({
+      title: this.language.adm2[this.country],
+      filterName: 'locations',
+      childrenObject: 'location',
+      childrenFieldName: 'adm2',
+      apiLabel: 'id',
+      isTrigger: true,
+      triggerFunction: (
+        householdFilters: HouseholdFilters,
+        value: string,
+        form: FormGroup
+      ) => {
+        const appInjector = AppInjector;
+        form.controls.adm3.setValue(null);
+        form.controls.adm4.setValue(null);
+        householdFilters.set('adm3', null);
+        householdFilters.set('adm4', null);
+        const location = householdFilters.get<Location>('location');
+        appInjector
+          .get(LocationService)
+          .fillAdm3Options(location, parseInt(value, 10))
+          .subscribe((filledLocation: Location) => {
+            householdFilters.set('location', location);
+          });
+        return householdFilters;
+      },
+      isDisplayedInTable: true,
+    }),
+    adm3: new NestedFieldModelField({
+      title: this.language.adm3[this.country],
+      filterName: 'locations',
+      childrenObject: 'location',
+      childrenFieldName: 'adm3',
+      apiLabel: 'id',
+      isTrigger: true,
+      triggerFunction: (
+        householdFilters: HouseholdFilters,
+        value: string,
+        form: FormGroup
+      ) => {
+        const appInjector = AppInjector;
+        form.controls.adm4.setValue(null);
+        householdFilters.set('adm4', null);
+        const location = householdFilters.get<Location>('location');
+        appInjector
+          .get(LocationService)
+          .fillAdm4Options(location, parseInt(value, 10))
+          .subscribe((filledLocation: Location) => {
+            householdFilters.set('location', location);
+          });
+        return householdFilters;
+      },
+      isDisplayedInTable: true,
+    }),
+    adm4: new NestedFieldModelField({
+      title: this.language.adm4[this.country],
+      filterName: 'locations',
+      childrenObject: 'location',
+      childrenFieldName: 'adm4',
+      apiLabel: 'id',
+      isDisplayedInTable: true,
+    }),
+    referralType: new MultipleSelectModelField({
+      title: this.language.beneficiary_referral_type,
+      filterName: 'referral',
+      isDisplayedInTable: true,
+      bindField: 'name',
+      apiLabel: 'id',
+      options: [
+        new BeneficiaryReferralType('1', this.language.beneficiary_referral_types['1']),
+        new BeneficiaryReferralType('2', this.language.beneficiary_referral_types['2']),
+        new BeneficiaryReferralType('3', this.language.beneficiary_referral_types['3']),
+        new BeneficiaryReferralType('4', this.language.beneficiary_referral_types['4']),
+        new BeneficiaryReferralType('5', this.language.beneficiary_referral_types['5']),
+      ],
+    }),
+  };
 }
 export class HouseholdsDataSource implements CustomDataSource<Household> {
+  dataSubject = new BehaviorSubject<Household[]>([]);
+  public data$ = this.dataSubject.asObservable();
 
-    dataSubject = new BehaviorSubject<Household[]>([]);
-    public data$ = this.dataSubject.asObservable();
+  loadingSubject = new BehaviorSubject<boolean>(false);
+  public loading$ = this.loadingSubject.asObservable();
 
-    loadingSubject = new BehaviorSubject<boolean>(false);
-    public loading$ = this.loadingSubject.asObservable();
+  lengthSubject = new BehaviorSubject<number>(0);
+  public length$ = this.lengthSubject.asObservable();
 
-    lengthSubject = new BehaviorSubject<number>(0);
-    public length$ = this.lengthSubject.asObservable();
+  constructor(private householdsService: HouseholdsService) {}
 
-    constructor(private householdsService: HouseholdsService) {
-    }
+  connect(_collectionViewer: CollectionViewer): Observable<Household[]> {
+    return this.dataSubject.asObservable();
+  }
 
-    connect(_collectionViewer: CollectionViewer): Observable<Household[]> {
-        return this.dataSubject.asObservable();
-    }
+  disconnect(_collectionViewer: CollectionViewer): void {
+    this.dataSubject.complete();
+    this.loadingSubject.complete();
+  }
 
-    disconnect(_collectionViewer: CollectionViewer): void {
-        this.dataSubject.complete();
-        this.loadingSubject.complete();
-    }
+  loadData(
+    filter = [],
+    sort = { sort: null, direction: null },
+    pageIndex = 0,
+    pageSize = 10
+  ) {
+    this.loadingSubject.next(true);
 
-    loadData(
-        filter = [],
-        sort = { sort: null, direction: null },
-        pageIndex = 0,
-        pageSize = 10
-    ) {
-        this.loadingSubject.next(true);
+    this.householdsService
+      .get(filter, sort, pageIndex, pageSize)
+      .pipe(
+        catchError(() => of([])),
+        finalize(() => {
+          this.loadingSubject.next(false);
+        })
+      )
+      .subscribe((response) => {
+        let households: Array<Household> = [];
+        if (response) {
+          households = response[1].map((household) => {
+            return Household.apiToModel(household);
+          });
+          this.dataSubject.next(households);
+          this.lengthSubject.next(response[0]);
+        }
+      });
+  }
 
-        this.householdsService.get(filter, sort, pageIndex, pageSize).pipe(
-            catchError(() => of([])),
-            finalize(() => {
-                this.loadingSubject.next(false);
-            })
-        ).subscribe(response => {
-            let households: Array<Household> = [];
-            if (response) {
-                households = response[1].map(household => {
-                    return Household.apiToModel(household);
-                });
-                this.dataSubject.next(households);
-                this.lengthSubject.next(response[0]);
-            }
-        });
-    }
-
-    getFilterFields(): HouseholdFilters {
-        return new HouseholdFilters();
-    }
+  getFilterFields(): HouseholdFilters {
+    return new HouseholdFilters();
+  }
 }

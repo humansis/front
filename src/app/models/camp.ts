@@ -5,40 +5,28 @@ import { ObjectModelField } from './custom-models/object-model-field';
 import { Location } from './location';
 
 export class Camp extends CustomModel {
+  public fields = {
+    id: new NumberModelField({
+      // Not displayed anywhere
+    }),
+    name: new TextModelField({}),
+    location: new ObjectModelField<Location>({}),
+  };
 
-    public fields = {
-        id: new NumberModelField(
-            {
-                // Not displayed anywhere
-            }
-        ),
-        name: new TextModelField(
-            {
+  public static apiToModel(camp): Camp {
+    const newCamp = new Camp();
+    newCamp.set('id', camp.id);
+    newCamp.set('name', camp.name);
+    newCamp.set('location', camp.location ? Location.apiToModel(camp.location) : null);
 
-            }
-        ),
-        location: new ObjectModelField<Location> (
-            {
+    return newCamp;
+  }
 
-            }
-        ),
+  public modelToApi(): Object {
+    return {
+      id: this.fields.id.formatForApi(),
+      name: this.fields.name.formatForApi(),
+      location: this.fields.location.formatForApi(),
     };
-
-    public static apiToModel(camp): Camp {
-        const newCamp = new Camp();
-        newCamp.set('id', camp.id);
-        newCamp.set('name', camp.name);
-        newCamp.set('location', camp.location ? Location.apiToModel(camp.location) : null);
-
-        return newCamp;
-    }
-
-    public modelToApi(): Object {
-        return {
-            id: this.fields.id.formatForApi(),
-            name: this.fields.name.formatForApi(),
-            location: this.fields.location.formatForApi(),
-
-        };
-    }
+  }
 }

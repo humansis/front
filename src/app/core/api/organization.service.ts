@@ -5,25 +5,21 @@ import { HttpService } from '../network/http.service';
 import { CustomModelService } from '../utils/custom-model.service';
 import { ExportService } from './export.service';
 
-
-
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrganizationService extends CustomModelService {
+  customModelPath = 'organization';
 
-    customModelPath = 'organization';
+  constructor(
+    protected http: HttpService,
+    protected languageService: LanguageService,
+    public exportService: ExportService
+  ) {
+    super(http, languageService);
+  }
 
-    constructor(
-        protected http: HttpService,
-        protected languageService: LanguageService,
-        public exportService: ExportService,
-    ) {
-        super(http, languageService);
-    }
-
-    print(event: Organization) {
-        return this.exportService.printOrganizationTemplate().subscribe();
-    }
-
+  print(event: Organization) {
+    return this.exportService.printOrganizationTemplate().subscribe();
+  }
 }

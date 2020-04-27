@@ -1,30 +1,30 @@
 import { CustomModelField } from './custom-model-field';
 
 export class FileModelField extends CustomModelField<string> {
-    kindOfField = 'File';
+  kindOfField = 'File';
 
-     /**
-     * The path to upload the file
-     * @type {string}
-     */
-    uploadPath: string;
+  /**
+   * The path to upload the file
+   * @type {string}
+   */
+  uploadPath: string;
 
-    /**
-     * The field containing the url of the uploaded file
-     * @type {string}
-     */
-    fileUrlField: string;
+  /**
+   * The field containing the url of the uploaded file
+   * @type {string}
+   */
+  fileUrlField: string;
 
-    /**
-     * Accepted types
-     * @type string[]
-     */
-    acceptedTypes: string[];
+  /**
+   * Accepted types
+   * @type string[]
+   */
+  acceptedTypes: string[];
 
-    constructor(properties: any) {
-        super(properties);
-        this.uploadPath              = properties['uploadPath'];
-        this.fileUrlField              = properties['fileUrlField'];
-        this.acceptedTypes              = properties['acceptedTypes'];
-    }
+  constructor(properties: any) {
+    super(properties);
+    this.uploadPath = properties['uploadPath'];
+    this.fileUrlField = properties['fileUrlField'];
+    this.acceptedTypes = properties['acceptedTypes'];
+  }
 }

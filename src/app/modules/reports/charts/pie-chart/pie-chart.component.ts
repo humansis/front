@@ -6,46 +6,46 @@ import { BaseChartComponent } from '../base-chart/base-chart.component';
 import { PieChartDataSet } from './pie-chart-dataset';
 
 @Component({
-    selector: 'app-pie-chart',
-    templateUrl: './pie-chart.component.html',
-    styleUrls: [ './pie-chart.component.scss' ]
+  selector: 'app-pie-chart',
+  templateUrl: './pie-chart.component.html',
+  styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent extends BaseChartComponent implements OnInit {
+  pieChartDataSets: Array<PieChartDataSet>;
 
-    pieChartDataSets: Array<PieChartDataSet>;
+  colors: Array<ChartColor>;
 
-    colors: Array<ChartColor>;
+  periods: Array<string>;
 
-    periods: Array<string>;
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
 
-    public pieChartOptions: ChartOptions = {
-        responsive: true,
-      };
+  ngOnInit() {
+    this.formatPieChartDataSet();
+    this.generateColors();
+  }
 
-    ngOnInit() {
-        this.formatPieChartDataSet();
-        this.generateColors();
-    }
+  private formatPieChartDataSet() {
+    this.periods = [];
+    this.pieChartDataSets = [];
+    this.pieChartDataSets = Object.keys(this.graphInfo.values).map((period: string) => {
+      this.periods.push(period);
+      const labels: Array<Label> = [],
+        values: Array<number> = [];
+      this.graphInfo.values[period].forEach((graphValue: GraphValue) => {
+        labels.push(graphValue.unit);
+        values.push(graphValue.value);
+      });
+      return new PieChartDataSet(labels, values);
+    });
+  }
 
-    private formatPieChartDataSet() {
-        this.periods = [];
-        this.pieChartDataSets = [];
-        this.pieChartDataSets = Object.keys(this.graphInfo.values).map((period: string) => {
-            this.periods.push(period);
-            const labels: Array<Label> = [], values: Array<number> = [];
-            this.graphInfo.values[period].forEach((graphValue: GraphValue) => {
-                labels.push(graphValue.unit);
-                values.push(graphValue.value);
-            });
-            return new PieChartDataSet(labels, values);
-        });
-    }
-
-    generateColors() {
-        let maxDataSetLength = 0;
-        this.pieChartDataSets.forEach((dataSet: PieChartDataSet) => {
-            maxDataSetLength = Math.max(maxDataSetLength, dataSet.labels.length);
-        });
-        this.colors = [this.colorsService.generateColorsSet(maxDataSetLength)];
-    }
+  generateColors() {
+    let maxDataSetLength = 0;
+    this.pieChartDataSets.forEach((dataSet: PieChartDataSet) => {
+      maxDataSetLength = Math.max(maxDataSetLength, dataSet.labels.length);
+    });
+    this.colors = [this.colorsService.generateColorsSet(maxDataSetLength)];
+  }
 }

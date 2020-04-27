@@ -8,9 +8,8 @@ describe('ModalAddCommodityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalAddCommodityComponent ]
-    })
-    .compileComponents();
+      declarations: [ModalAddCommodityComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
