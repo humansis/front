@@ -9,8 +9,8 @@ import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service'
 import { ModalService } from 'src/app/core/utils/modal.service';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
 import { Distribution } from 'src/app/models/distribution';
-import { DistributionService } from '../../core/api/distribution.service';
-import { GeneralService } from '../../core/api/general.service';
+import { DistributionService } from '../../../core/api/distribution.service';
+import { GeneralService } from '../../../core/api/general.service';
 
 @Component({
     selector: 'app-dashboard',

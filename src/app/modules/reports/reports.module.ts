@@ -9,6 +9,7 @@ import { BaseChartComponent } from './charts/base-chart/base-chart.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { ReportsComponent } from './reports.component';
+import {ReportsRoutingModule} from './reports-routing.module';
 
 
 
@@ -22,6 +23,7 @@ import { ReportsComponent } from './reports.component';
         ReactiveFormsModule,
         NgSelectModule,
         ChartsModule,
+        ReportsRoutingModule,
     ],
     declarations: [
         ReportsComponent,

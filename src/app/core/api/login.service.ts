@@ -44,7 +44,7 @@ export class LoginService {
     public login(username: string, password: string) {
         this.clearSessionCacheEntries();
         // Set default redirectUrl
-        this.redirectUrl = '/';
+        this.redirectUrl = '/dashboard';
 
         return this.authService.login(username, password).pipe(
             switchMap((userFromApi: any) => {

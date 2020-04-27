@@ -1,8 +1,8 @@
-@import '../../../assets/css/variable.scss';
+@import '../../../../assets/css/variable';
 
 
 .box-image {
-    background-image: url('../../../assets/images/login_page.jpg');
+    background-image: url('../../../../assets/images/login_page.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
@@ -83,7 +83,7 @@
             justify-content: center;
             flex-wrap: wrap;
             margin: 5px;
-    
+
             .button-background-primary {
                 margin: 5px;
                 width: 55%;

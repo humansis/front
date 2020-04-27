@@ -1,4 +1,4 @@
-@import '../../../assets/css/variable.scss';
+@import '../../../../assets/css/variable';
 
 form {
     display: flex;
@@ -21,7 +21,7 @@ mat-icon {
     width: 100%;
 
     .box-image {
-        background-image: url('../../../assets/images/login_page.jpg');
+        background-image: url('../../../../assets/images/login_page.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         overflow: hidden;

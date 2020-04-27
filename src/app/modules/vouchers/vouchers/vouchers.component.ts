@@ -16,7 +16,7 @@ import { Booklet } from 'src/app/models/booklet';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
 import { BookletsDataSource } from 'src/app/models/data-sources/booklets-data-source';
 import { Project } from 'src/app/models/project';
-import { ExportService } from '../../core/api/export.service';
+import { ExportService } from '../../../core/api/export.service';
 
 @Component({
     selector: 'app-vouchers',

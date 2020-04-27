@@ -12,10 +12,10 @@ import { NetworkService } from 'src/app/core/network/network.service';
 import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service';
 import { ModalService } from 'src/app/core/utils/modal.service';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
-import { DistributionService } from '../../core/api/distribution.service';
-import { ProjectService } from '../../core/api/project.service';
-import { Distribution } from '../../models/distribution';
-import { Project } from '../../models/project';
+import { DistributionService } from '../../../core/api/distribution.service';
+import { ProjectService } from '../../../core/api/project.service';
+import { Distribution } from '../../../models/distribution';
+import { Project } from '../../../models/project';
 
 
 @Component({

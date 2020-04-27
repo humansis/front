@@ -9,6 +9,7 @@ import { LineChartComponent } from '../reports/charts/line-chart/line-chart.comp
 import { PieChartComponent } from '../reports/charts/pie-chart/pie-chart.component';
 import { LogsComponent } from './logs.component';
 import { ReportsModule } from '../reports/reports.module';
+import {LogsRoutingModule} from './logs-routing.module';
 
 
 
@@ -20,7 +21,8 @@ import { ReportsModule } from '../reports/reports.module';
         CommonModule,
         ReactiveFormsModule,
         NgSelectModule,
-        ReportsModule
+        ReportsModule,
+        LogsRoutingModule
     ],
     declarations: [
         LogsComponent,

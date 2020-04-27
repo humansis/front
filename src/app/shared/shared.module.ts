@@ -75,16 +75,16 @@ import { TableMobileComponent } from '../components/table/table-mobile/table-mob
 import { TableServerComponent } from '../components/table/table-server/table-server.component';
 import { TableComponent } from '../components/table/table.component';
 import { MobilePressDirective } from '../core/directives/mobile-press.directive';
-import { AdministrationComponent } from '../modules/administration/administration.component';
+import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { BeneficiariesImportComponent } from '../modules/beneficiaries/beneficiaries-import/beneficiaries-import.component';
 import { ImportedDataComponent } from '../modules/beneficiaries/beneficiaries-import/imported-data/imported-data.component';
-import { BeneficiariesComponent } from '../modules/beneficiaries/beneficiaries.component';
+import { BeneficiariesComponent } from '../modules/beneficiaries/beneficiaries/beneficiaries.component';
 import { DataValidationComponent } from '../modules/beneficiaries/data-validation/data-validation.component';
 import { BeneficiaryFormComponent } from '../modules/beneficiaries/update-beneficiary/beneficiary-form/beneficiary-form.component';
 import { LocationFormComponent } from '../modules/beneficiaries/update-beneficiary/location-form/location-form.component';
 import { UpdateBeneficiaryComponent } from '../modules/beneficiaries/update-beneficiary/update-beneficiary.component';
-import { DashboardComponent } from '../modules/dashboard/dashboard.component';
-import { GeneralSettingsComponent } from '../modules/general-settings/general-settings.component';
+import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
+import { GeneralSettingsComponent } from '../modules/general-settings/general-settings/general-settings.component';
 import { AddDistributionComponent } from '../modules/projects/add-distribution/add-distribution.component';
 import { DistributionsComponent } from '../modules/projects/distributions/distributions.component';
 import { ImportDistributionComponent } from '../modules/projects/distributions/import-distribution/import-distribution.component';
@@ -94,12 +94,12 @@ import { GeneralReliefComponent } from '../modules/projects/distributions/valida
 import { MobileMoneyComponent } from '../modules/projects/distributions/validated-components/mobile-money/mobile-money.component';
 import { QrVoucherComponent } from '../modules/projects/distributions/validated-components/qr-voucher/qr-voucher.component';
 import { ValidatedDistributionComponent } from '../modules/projects/distributions/validated-components/validated-distribution.component';
-import { ProjectComponent } from '../modules/projects/project.component';
-import { LoginComponent } from '../modules/public/login.component';
+import { ProjectComponent } from '../modules/projects/project/project.component';
+import { LoginComponent } from '../modules/public/login/login.component';
 import { ScannerComponent } from '../modules/vouchers/scanner/scanner.component';
-import { VouchersComponent } from '../modules/vouchers/vouchers.component';
+import { VouchersComponent } from '../modules/vouchers/vouchers/vouchers.component';
 import { LogsComponent } from '../modules/logs/logs.component';
-import { SsoComponent } from '../modules/sso/sso.component';
+import { SsoComponent } from '../modules/public/sso/sso.component';
 import { JsonFormComponent } from '../components/json-form/json-form.component';
 
 

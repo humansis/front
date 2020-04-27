@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { VouchersComponent } from '../vouchers.component';
+import { VouchersComponent } from '../vouchers/vouchers.component';
 import {ZXingScannerComponent} from '@zxing/ngx-scanner';
 
 @Component({

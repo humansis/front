@@ -1,4 +1,4 @@
-@import "../../../assets/css/variable.scss";
+@import "../../../../assets/css/variable";
 
 .container-profile {
     width: 40%;
@@ -21,11 +21,11 @@
             justify-content: space-between;
             align-items: center;
             display: flex;
-      
+
             mat-form-field.phone-number {
               width: 60%;
             }
-      
+
             .single-select.country-code {
               width: 30%;
               padding-bottom: 1.6em;
@@ -39,7 +39,7 @@
             margin-right: 20px;
         }
     }
-    
+
 }
 span {
     color: $bms_dark_grey;

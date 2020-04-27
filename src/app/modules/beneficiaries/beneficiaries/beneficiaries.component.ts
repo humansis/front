@@ -14,9 +14,9 @@ import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service'
 import { ModalService } from 'src/app/core/utils/modal.service';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
 import { Household } from 'src/app/models/household';
-import { HouseholdsService } from '../../core/api/households.service';
-import { ProjectService } from '../../core/api/project.service';
-import { HouseholdsDataSource } from '../../models/data-sources/households-data-source';
+import { HouseholdsService } from '../../../core/api/households.service';
+import { ProjectService } from '../../../core/api/project.service';
+import { HouseholdsDataSource } from '../../../models/data-sources/households-data-source';
 
 
 @Component({
