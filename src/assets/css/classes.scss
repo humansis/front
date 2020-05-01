@@ -698,3 +698,18 @@ app-icon-svg {
         border-width: 2px;
     }
 }
+
+/**
+ * Fix Firefox dotted border
+ */
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"],
+input[type="file"] > input[type="button"] {
+    &::-moz-focus-inner {
+        border: none
+    }
+}
+
+
