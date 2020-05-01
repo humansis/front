@@ -56,6 +56,7 @@
         .container-content {
             display: flex;
             flex-wrap: wrap;
+            padding: 0 20px;
             justify-content: center;
             width: 100%;
             border-radius: 3px;
@@ -91,6 +92,7 @@
         .container-content {
             display: flex;
             flex-wrap: wrap;
+            padding: 0 20px;
             justify-content: center;
             width: 100%;
             background-color: $bms_white;
@@ -101,7 +103,7 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                padding: 20px;
+                padding: 20px 0;
             }
         }
     }
@@ -123,9 +125,7 @@
     display: flex;
     width: 100%;
     padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     align-items: center;
     justify-content: space-between;
     position: relative;
@@ -296,7 +296,6 @@ button.mat-icon-button .mat-button-wrapper .mat-icon {
     }
 
     .button-with-extension {
-        margin: 0 10px;
         display: flex;
 
         button {
