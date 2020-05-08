@@ -302,10 +302,6 @@ export class BeneficiariesImportComponent implements OnInit, OnDestroy {
   }
   @HostListener('drop', ['$event']) onDrop(event) {
     this.dragAreaClass = 'dragarea';
-
-    // setting the data is required by firefox
-    event.dataTransfer.setData('text', 'firefox');
-
     event.preventDefault();
     event.stopPropagation();
 
