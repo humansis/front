@@ -30,6 +30,7 @@ export class Project extends CustomModel {
       isRequired: false,
       isSettable: true,
       isLongText: false,
+      isEditable: true,
     }),
     sectors: new MultipleSelectModelField({
       isDisplayedInModal: true,
