@@ -154,12 +154,14 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
       });
     } else if (booklet) {
       booklet.vouchers.forEach((voucher: any) => {
-        voucher.products.forEach((product: any) => {
-          if (!productIds.includes(product.id)) {
-            productIds.push(product.id);
-            products.push(Product.apiToModel(product));
-          }
-        });
+        if (voucher.products) {
+          voucher.products.forEach((product: any) => {
+            if (!productIds.includes(product.id)) {
+              productIds.push(product.id);
+              products.push(Product.apiToModel(product));
+            }
+          });
+        }
       });
     }
     newQRVoucher.set('products', products);
