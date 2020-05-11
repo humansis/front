@@ -464,7 +464,7 @@ export class English implements Language {
   household_sentence = 'The household of ';
   household_summary_members = 'Household members';
   household_debt_level = 'Debt Level';
-  household_support_received_other_org = 'External support organization';
+  household_support_received_other_org = 'External Support Received Type';
   household_support_date_received = 'Support date received';
   household_assets = 'Assets';
   household_shelter_status = 'Shelter type';
