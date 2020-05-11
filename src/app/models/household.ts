@@ -219,7 +219,6 @@ export class Household extends CustomModel {
       bindField: 'name',
       isMatSelect: true,
       options: [
-        new IdNameModel('0', 'Values'),
         new IdNameModel('1', 'Tent'),
         new IdNameModel('2', 'Makeshift Shelter'),
         new IdNameModel('3', 'Transitional Shelter'),
