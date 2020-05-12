@@ -106,14 +106,6 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
         childrenFieldName: 'referralComment',
         isEditable: true,
       }),
-      products: new MultipleObjectsModelField<Product>({
-        title: this.language.voucher_purchased,
-        isDisplayedInModal: true,
-        isDisplayedInTable: true,
-        displayTableFunction: null,
-        displayModalFunction: null,
-        value: [],
-      }),
     },
     ...this.fields,
   };
@@ -142,35 +134,6 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
     }
     newQRVoucher.set('booklet', booklet ? Booklet.apiToModel(booklet) : null);
     this.addCommonFields(newQRVoucher, distributionBeneficiaryFromApi, distributionId);
-
-    let products: Product[] = [];
-    const productIds: number[] = [];
-    if (distributionBeneficiaryFromApi.products) {
-      products = distributionBeneficiaryFromApi.products.map((product: any) => {
-        if (!productIds.includes(product.id)) {
-          productIds.push(product.id);
-          return Product.apiToModel(product);
-        }
-      });
-    } else if (booklet) {
-      booklet.vouchers.forEach((voucher: any) => {
-        if (voucher.products) {
-          voucher.products.forEach((product: any) => {
-            if (!productIds.includes(product.id)) {
-              productIds.push(product.id);
-              products.push(Product.apiToModel(product));
-            }
-          });
-        }
-      });
-    }
-    newQRVoucher.set('products', products);
-
-    const pipe = new UppercaseFirstPipe();
-    newQRVoucher.fields.products.displayTableFunction = (value) =>
-      value.map((product: Product) => pipe.transform(product.get('name'))).join(', ');
-    newQRVoucher.fields.products.displayModalFunction = (value) =>
-      value.map((product: Product) => pipe.transform(product.get('name'))).join(', ');
     return newQRVoucher;
   }
 
@@ -180,7 +143,6 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
       beneficiary: this.fields.beneficiary.formatForApi(),
       booklet: this.fields.booklet.formatForApi(),
       status: this.fields.status.formatForApi(),
-      products: this.fields.products.formatForApi(),
       booklets: this.get('booklet') ? [this.get('booklet').modelToApi()] : [],
       // local_given_name: this.get('beneficiary').get('localGivenName'),
       // local_family_name: this.get('beneficiary').get('localFamilyName'),
