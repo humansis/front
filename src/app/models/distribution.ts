@@ -64,8 +64,17 @@ export class Distribution extends CustomModel {
       title: this.language.beneficiaries,
       isDisplayedInTable: true,
       displayTableFunction: null,
-      isDisplayedInSummary: true,
+      isDisplayedInSummary: false,
       value: [],
+    }),
+    beneficiariesCount: new NumberModelField({
+      title: this.language.beneficiaries,
+      isDisplayedInTable: true,
+      displayTableFunction: null,
+      isDisplayedInSummary: true,
+      isRequired: false,
+      isSettable: false,
+      isEditable: false,
     }),
     date: new DateModelField({
       title: this.language.distribution_date,
@@ -154,6 +163,7 @@ export class Distribution extends CustomModel {
 
     // Assign default fields
     newDistribution.set('id', distributionFromApi.id);
+    newDistribution.set('beneficiariesCount', distributionFromApi.beneficiaries_count);
     newDistribution.set(
       'date',
       DateModelField.formatFromApi(distributionFromApi.date_distribution)
