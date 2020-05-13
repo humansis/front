@@ -1,0 +1,60 @@
+<form [formGroup]="form">
+    <ng-select
+        [multiple]="false"
+        [closeOnSelect]="true"
+        [searchable]="true"
+        [loading]="area1loading$ | async"
+        [readonly]="area1loading$ | async"
+        class="single-select"
+        formControlName="adm1"
+        [placeholder]="getLabel('adm1')"
+        (change)="loadAdministrativeArea2LocationsWithReset($event)">
+        <ng-option *ngFor="let areaLocation of administrativeArea1Locations['adm1']" [value]="areaLocation.id">
+            {{areaLocation.name}}
+        </ng-option>
+    </ng-select>
+    <ng-select
+        [multiple]="false"
+        [closeOnSelect]="true"
+        [searchable]="true"
+        [loading]="area2loading$ | async"
+        [readonly]="area2loading$ | async"
+        class="single-select"
+        formControlName="adm2"
+        [placeholder]="getLabel('adm2')"
+        (change)="loadAdministrativeArea3LocationsWithReset($event)">
+        <ng-option *ngFor="let areaLocation of administrativeArea1Locations['adm2']" [value]="areaLocation.id">
+            {{areaLocation.name}}
+        </ng-option>
+    </ng-select>
+    <ng-select
+        [multiple]="false"
+        [closeOnSelect]="true"
+        [searchable]="true"
+        [loading]="area3loading$ | async"
+        [readonly]="area3loading$ | async"
+        class="single-select"
+        formControlName="adm3"
+        [placeholder]="getLabel('adm3')"
+        (change)="loadAdministrativeArea4LocationsWithReset($event)">
+        <ng-option *ngFor="let areaLocation of administrativeArea1Locations['adm3']" [value]="areaLocation.id">
+            {{areaLocation.name}}
+        </ng-option>
+    </ng-select>
+    <ng-select
+        [multiple]="false"
+        [closeOnSelect]="true"
+        [searchable]="true"
+        [loading]="area4loading$ | async"
+        [readonly]="area4loading$ | async"
+        class="single-select"
+        formControlName="adm4"
+        [placeholder]="getLabel('adm4')">
+        <ng-option *ngFor="let areaLocation of administrativeArea1Locations['adm4']" [value]="areaLocation.id">
+            {{areaLocation.name}}
+        </ng-option>
+    </ng-select>
+</form>
+
+
+

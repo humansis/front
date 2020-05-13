@@ -33,7 +33,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -84,7 +83,6 @@ import { BeneficiaryFormComponent } from '../modules/beneficiaries/update-benefi
 import { LocationFormComponent } from '../modules/beneficiaries/update-beneficiary/location-form/location-form.component';
 import { UpdateBeneficiaryComponent } from '../modules/beneficiaries/update-beneficiary/update-beneficiary.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
-import { GeneralSettingsComponent } from '../modules/general-settings/general-settings/general-settings.component';
 import { AddDistributionComponent } from '../modules/projects/add-distribution/add-distribution.component';
 import { DistributionsComponent } from '../modules/projects/distributions/distributions.component';
 import { ImportDistributionComponent } from '../modules/projects/distributions/import-distribution/import-distribution.component';
@@ -101,6 +99,8 @@ import { VouchersComponent } from '../modules/vouchers/vouchers/vouchers.compone
 import { LogsComponent } from '../modules/logs/logs.component';
 import { SsoComponent } from '../modules/public/sso/sso.component';
 import { JsonFormComponent } from '../components/json-form/json-form.component';
+import { AdministrativeAreaInputComponent } from 'src/app/components/administrative-area/administrative-area-input.component';
+import { CleanTableComponent } from 'src/app/components/clean-table/clean-table.component';
 import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiaries/beneficiaries.component';
 
 @NgModule({
@@ -128,7 +128,6 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     MatBadgeModule,
     MatRippleModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     MatDividerModule,
     MatRadioModule,
     MatChipsModule,
@@ -153,6 +152,8 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
   ],
   declarations: [
     // Shared Components
+    AdministrativeAreaInputComponent,
+    CleanTableComponent,
     MobilePressDirective,
     LoginComponent,
     DashboardComponent,
@@ -163,7 +164,6 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     YearPickerComponent,
     ProjectComponent,
     AddDistributionComponent,
-    GeneralSettingsComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     TableComponent,
@@ -234,13 +234,14 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
   ],
   exports: [
     // Shared Components
+    AdministrativeAreaInputComponent,
+    CleanTableComponent,
     LoginComponent,
     DashboardComponent,
     BeneficiariesComponent,
     BeneficiariesImportComponent,
     ProjectComponent,
     AddDistributionComponent,
-    GeneralSettingsComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     BoxPropertiesComponent,

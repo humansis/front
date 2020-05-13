@@ -25,7 +25,7 @@ export class LanguageService {
   // This default value's reference is not contained in enabledLanguages.
   private _selectedLanguage: Language = undefined;
   get selectedLanguage() {
-    return this._selectedLanguage;
+    return this._selectedLanguage || this.english;
   }
   set selectedLanguage(language: Language) {
     this._selectedLanguage = language;

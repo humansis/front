@@ -72,6 +72,7 @@ export class English implements Language {
   vendor = 'Vendor';
   vendors = 'vendors';
   voucher = 'Vouchers';
+  institutions = 'Institutions';
 
   // Actions
   add = 'Add';
@@ -664,6 +665,8 @@ export class English implements Language {
   national_id_passport = 'Passport';
   national_id_birth_certificate = 'Birth Certificate';
   national_id_type = 'ID Type';
+  national_id_camp = 'Camp ID';
+  national_id_social_service = 'Social Service Card';
 
   //Network
   network_access_offline = "This data can't be accessed offline:";
@@ -1015,4 +1018,16 @@ export class English implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+
+  // Insituttion
+  institution_name = this.log_name;
+  institution_contact_name = 'Contact name';
+  institution_contact_family_name = 'Contact family name';
+
+  institution_type_school = 'School';
+  institution_type_health = 'Hospital/Health Centre';
+  institution_type_community_center = 'Community Centre';
+  institution_type_government = 'Other Government Building or Structure';
+  institution_type_production = 'Warehouse/Factory';
+  institution_type_commerce = 'Other Commercial Building';
 }

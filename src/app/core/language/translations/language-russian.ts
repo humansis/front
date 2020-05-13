@@ -68,6 +68,7 @@ export class Russian implements Language {
   vendor = 'Продавец';
   vendors = 'продавцы';
   voucher = 'Ваучеры';
+  institutions = this.missingTranslation;
 
   // Actions
   add = 'Добавить';
@@ -563,12 +564,14 @@ export class Russian implements Language {
 
   // National ID
   national_id_card = 'Национальный идентификационный номер';
-  national_id_family_registry = 'Family Registry';
-  national_id_license = "Driver's License";
+  national_id_family_registry = this.missingTranslation;
+  national_id_license = this.missingTranslation;
   national_id_number = 'Идентификационный номер';
-  national_id_passport = 'Passport';
-  national_id_birth_certificate = 'Birth Certificate';
+  national_id_passport = this.missingTranslation;
+  national_id_birth_certificate = this.missingTranslation;
   national_id_type = 'Тип национального идентификационного номера';
+  national_id_camp = this.missingTranslation;
+  national_id_social_service = this.missingTranslation;
 
   //Network
   network_access_offline = 'Эти данные не могут быть доступны в автономном режиме:';
@@ -1001,4 +1004,16 @@ export class Russian implements Language {
   true = '-- MISSING TRANSLATION --';
   user_phone_number = '-- MISSING TRANSLATION --';
   user_phone_prefix = '-- MISSING TRANSLATION --';
+
+  // Insituttion
+  institution_name = this.log_name;
+  institution_contact_name = this.missingTranslation;
+  institution_contact_family_name = this.missingTranslation;
+
+  institution_type_school = this.missingTranslation;
+  institution_type_health = this.missingTranslation;
+  institution_type_community_center = this.missingTranslation;
+  institution_type_government = this.missingTranslation;
+  institution_type_production = this.missingTranslation;
+  institution_type_commerce = this.missingTranslation;
 }

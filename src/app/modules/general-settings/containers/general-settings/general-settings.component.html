@@ -1,0 +1,13 @@
+<div class="page-container">
+  <div class="container-title">
+    <h2>{{language.general_settings | titlecase}}</h2>
+  </div>
+  <div class="container-boxes">
+    <app-box-setting [isSelected]="selectedTitle === 'projects'" [routerLink]="['projects']" [info]='{icon: "settings/projects", color: "red", title:language.projects, ref:"projects"}'></app-box-setting>
+    <app-box-setting [isSelected]="selectedTitle === 'country specific options'" [routerLink]="['country specific options']" [info]='{icon: "settings/country_specific", color: "red", title:language.settings_country_specific_options, ref:"country specific options"}'></app-box-setting>
+    <app-box-setting [isSelected]="selectedTitle === 'product'" [routerLink]="['product']" [info]='{icon: "settings/product", color: "green", title:language.products, ref:"product"}'></app-box-setting>
+    <app-box-setting [isSelected]="selectedTitle === 'vendors'" [routerLink]="['vendors']" [info]='{icon: "settings/vendor", color: "green", title:language.vendors, ref:"vendors"}'></app-box-setting>
+    <app-box-setting [isSelected]="selectedTitle === 'institutions'" [routerLink]="['institutions']"  [info]='{icon: "settings/institutions", color: "green", title:language.institutions, ref:"vendors"}'></app-box-setting>
+  </div>
+    <router-outlet></router-outlet>
+</div>

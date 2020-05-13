@@ -70,6 +70,7 @@ export class Arabic implements Language {
   vendor = 'بائع';
   vendors = 'الباعة';
   voucher = 'قسائم';
+  institutions = this.missingTranslation;
 
   // Actions
   add = 'أضف';
@@ -653,6 +654,8 @@ export class Arabic implements Language {
   national_id_passport = 'جواز سفر';
   national_id_birth_certificate = 'شهادة الميلاد';
   national_id_type = 'نوع الهوية الوطنية';
+  national_id_camp = this.missingTranslation;
+  national_id_social_service = this.missingTranslation;
 
   // Null values
   null_none = 'لا شيء';
@@ -995,4 +998,16 @@ export class Arabic implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+
+  // Insituttion
+  institution_name = this.log_name;
+  institution_contact_name = this.missingTranslation;
+  institution_contact_family_name = this.missingTranslation;
+
+  institution_type_school = this.missingTranslation;
+  institution_type_health = this.missingTranslation;
+  institution_type_community_center = this.missingTranslation;
+  institution_type_government = this.missingTranslation;
+  institution_type_production = this.missingTranslation;
+  institution_type_commerce = this.missingTranslation;
 }

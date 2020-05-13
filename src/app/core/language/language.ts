@@ -66,6 +66,7 @@ export interface Language {
   vendor: string;
   vendors: string;
   voucher: string;
+  institutions: string;
 
   // Actions
   add: string;
@@ -637,6 +638,8 @@ export interface Language {
   national_id_passport: string;
   national_id_birth_certificate: string;
   national_id_type: string;
+  national_id_camp: string;
+  national_id_social_service: string;
 
   //Network
   network_access_offline: string;
@@ -930,4 +933,15 @@ export interface Language {
   user_password_question: string;
   user_phone_number: string;
   user_phone_prefix: string;
+
+  // Insituttion
+  institution_name: string;
+  institution_contact_name: string;
+  institution_contact_family_name: string;
+  institution_type_school: string;
+  institution_type_health: string;
+  institution_type_community_center: string;
+  institution_type_government: string;
+  institution_type_production: string;
+  institution_type_commerce: string;
 }
