@@ -1,0 +1,21 @@
+<div class="button-with-extension"
+     [ngClass]="{'rtl':language.direction === 'rtl'}">
+    <button mat-flat-button class="button-background-primary" (click)="export()" *ngIf="!loadingExport">
+        <mat-icon>get_app</mat-icon>
+        <span>{{language.export | titlecase}}</span>
+    </button>
+    <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
+    <div class="extension">
+        <button mat-flat-button class="dropdown button-background-primary" *ngIf="!loadingExport" [matMenuTriggerFor]="exportType">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #exportType>
+            <button mat-menu-item (click)="extensionType = 'xls'"> .xls <mat-icon *ngIf="extensionType=='xls'">done</mat-icon>
+            </button>
+            <button mat-menu-item (click)="extensionType = 'csv'"> .csv <mat-icon *ngIf="extensionType=='csv'">done</mat-icon>
+            </button>
+            <button mat-menu-item (click)="extensionType = 'ods'"> .ods <mat-icon *ngIf="extensionType=='ods'">done</mat-icon>
+            </button>
+        </mat-menu>
+    </div>
+</div>

@@ -101,6 +101,7 @@ import { SsoComponent } from '../modules/public/sso/sso.component';
 import { JsonFormComponent } from '../components/json-form/json-form.component';
 import { AdministrativeAreaInputComponent } from 'src/app/components/administrative-area/administrative-area-input.component';
 import { CleanTableComponent } from 'src/app/components/clean-table/clean-table.component';
+import { ExportButtonComponent } from 'src/app/components/export-button/export-button.component';
 import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiaries/beneficiaries.component';
 
 @NgModule({
@@ -217,6 +218,7 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     AdministrationComponent,
     SsoComponent,
     JsonFormComponent,
+    ExportButtonComponent,
   ],
   entryComponents: [
     ModalDeleteComponent,
@@ -312,6 +314,7 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     JsonFormComponent,
     UppercaseFirstPipe,
     SsoComponent,
+    ExportButtonComponent,
   ],
   providers: [
     { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check' },

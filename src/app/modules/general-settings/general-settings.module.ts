@@ -9,7 +9,6 @@ import { InstitutionsComponent } from './containers/institutions/institutions.co
 import { InstitutionTableComponent } from './components/institution-table/institution-table.component';
 import { InstitutionFormComponent } from './components/institution-form/institution-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppModule } from 'src/app/app.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { InstitutionModalComponent } from './containers/institution-modal/institution-modal.component';
 
