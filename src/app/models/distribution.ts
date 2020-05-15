@@ -62,7 +62,7 @@ export class Distribution extends CustomModel {
     }),
     distributionBeneficiaries: new MultipleObjectsModelField<DistributionBeneficiary>({
       title: this.language.beneficiaries,
-      isDisplayedInTable: true,
+      isDisplayedInTable: false,
       displayTableFunction: null,
       isDisplayedInSummary: false,
       value: [],

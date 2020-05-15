@@ -227,6 +227,7 @@ export class GeneralReliefComponent extends ValidatedDistributionComponent
         (response: boolean) => {
           if (response) {
             this.getDistributionBeneficiaries();
+            this.dataChanged.emit();
           } else {
             this.loadingTransaction = false;
           }
@@ -239,6 +240,7 @@ export class GeneralReliefComponent extends ValidatedDistributionComponent
           if (this.networkService.getStatus()) {
             if (response) {
               this.getDistributionBeneficiaries();
+              this.dataChanged.emit();
             } else {
               this.loadingTransaction = false;
             }

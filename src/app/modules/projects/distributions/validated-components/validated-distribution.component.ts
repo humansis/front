@@ -60,6 +60,7 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
   @Output() storeEmitter: EventEmitter<Distribution> = new EventEmitter();
   @Output() finishedEmitter: EventEmitter<any> = new EventEmitter();
   @Output() hideSnackEmitter = new EventEmitter<Distribution>();
+  @Output() dataChanged = new EventEmitter<undefined>();
 
   // Screen size
   public currentDisplayType: DisplayType;

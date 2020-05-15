@@ -125,6 +125,7 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
         (response: boolean) => {
           if (response) {
             this.getDistributionBeneficiaries();
+            this.dataChanged.emit();
           } else {
             this.loadingTransaction = false;
           }
@@ -137,6 +138,7 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
           if (this.networkService.getStatus()) {
             if (response) {
               this.getDistributionBeneficiaries();
+              this.dataChanged.emit();
             } else {
               this.loadingTransaction = false;
             }
