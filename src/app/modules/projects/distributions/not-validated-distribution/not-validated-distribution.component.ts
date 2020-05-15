@@ -194,6 +194,18 @@ export class NotValidatedDistributionComponent implements OnInit, OnDestroy {
    * @param template
    */
   openDialog(template) {
+    const distributionDate = new Date(this.actualDistribution.get('date'));
+    const currentDate = new Date();
+    if (
+      currentDate.getFullYear() > distributionDate.getFullYear() ||
+      (currentDate.getFullYear() === distributionDate.getFullYear() &&
+        currentDate.getMonth() > distributionDate.getMonth()) ||
+      (currentDate.getFullYear() === distributionDate.getFullYear() &&
+        currentDate.getMonth() === distributionDate.getMonth() &&
+        currentDate.getDate() > distributionDate.getDate())
+    ) {
+      this.snackbar.warning(this.language.snackbar_invalid_transaction_date);
+    }
     this.dialog.open(template);
   }
 
