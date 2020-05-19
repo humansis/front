@@ -44,8 +44,8 @@ export class NotValidatedDistributionComponent implements OnInit, OnDestroy {
   loadingFirstStep = false;
   loadingThirdStep = false;
   loadingFinalStep = false;
-  extensionTypeStep1 = 'xls';
-  extensionTypeStep3 = 'xls';
+  extensionTypeStep1 = 'xlsx';
+  extensionTypeStep3 = 'xlsx';
 
   public sampleSizeControl = new FormControl(10, [
     Validators.max(100),

@@ -111,7 +111,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.extensionType = 'xls';
+    this.extensionType = 'xlsx';
   }
 
   ngOnDestroy() {

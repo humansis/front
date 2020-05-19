@@ -38,7 +38,7 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
   modalSubscriptions: Array<Subscription> = [];
   transacting = false;
   selection: SelectionModel<any>;
-  extensionType = 'xls';
+  extensionType = 'xlsx';
   progression = 0;
   interval: NodeJS.Timer;
   loadingComplete = false;

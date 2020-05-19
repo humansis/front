@@ -486,7 +486,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
   public export(exportFileType: string) {
     this.isDownloading = true;
     switch (exportFileType) {
-      case 'xls':
+      case 'xlsx':
       case 'csv':
       case 'ods':
         this.indicatorService

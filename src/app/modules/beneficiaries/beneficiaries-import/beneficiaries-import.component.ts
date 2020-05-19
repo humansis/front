@@ -129,7 +129,7 @@ export class BeneficiariesImportComponent implements OnInit, OnDestroy {
     } else {
       this.getProjects();
       this.getAPINames();
-      this.extensionType = 'xls';
+      this.extensionType = 'xlsx';
     }
 
     this.cacheService.getUser().subscribe((user: User) => {

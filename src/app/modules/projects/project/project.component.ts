@@ -79,8 +79,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
       this.importService.project = null;
     }
     this.getProjects();
-    this.extensionType = 'xls';
-    this.extensionOfficialType = 'xls';
+    this.extensionType = 'xlsx';
+    this.extensionOfficialType = 'xlsx';
   }
 
   ngOnDestroy() {

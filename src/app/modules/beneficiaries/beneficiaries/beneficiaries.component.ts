@@ -85,7 +85,7 @@ export class BeneficiariesComponent implements OnInit, OnDestroy {
       }),
     ];
 
-    this.extensionType = 'xls';
+    this.extensionType = 'xlsx';
     this.getProjects('updateSelection');
   }
 

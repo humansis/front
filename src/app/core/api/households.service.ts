@@ -154,7 +154,7 @@ export class HouseholdsService extends CustomModelService {
 
   public testFileTemplate(file: any, location: any) {
     const params = {};
-    params['type'] = 'xls';
+    params['type'] = 'xlsx';
     params['templateSyria'] = true;
 
     const options = {
@@ -174,7 +174,7 @@ export class HouseholdsService extends CustomModelService {
       location.adm4;
     return this.http.post(url, file, options).pipe(
       tap((response: any) => {
-        FileSaver.saveAs(response, 'templateSyria.xls');
+        FileSaver.saveAs(response, 'templateSyria.xlsx');
       })
     );
   }

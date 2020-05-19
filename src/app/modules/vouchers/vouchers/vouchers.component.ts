@@ -81,8 +81,8 @@ export class VouchersComponent implements OnInit, OnDestroy {
         this.numberToExport = length;
       }),
     ];
-    this.extensionType = 'xls';
-    this.extensionTypeCode = 'xls';
+    this.extensionType = 'xlsx';
+    this.extensionTypeCode = 'xlsx';
   }
 
   ngOnDestroy() {
