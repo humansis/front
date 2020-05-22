@@ -42,13 +42,14 @@ export class OrganizationServicesService extends CustomModelService {
 
   public get2FAToken(userFromApi) {
     const url = this.apiBase + '/organization/1/service';
-
+    const userCountry =
+      userFromApi.countries.length > 0 ? userFromApi.countries[0].iso3 : 'KHM';
     return this.wsseService.getHeaderValue(userFromApi).pipe(
       switchMap((headerValue: string) => {
         const options = {
           headers: new HttpHeaders({
             'x-wsse': headerValue,
-            country: 'KHM',
+            country: userCountry,
           }),
         };
 
