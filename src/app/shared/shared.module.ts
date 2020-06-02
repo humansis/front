@@ -78,7 +78,6 @@ import { MobilePressDirective } from '../core/directives/mobile-press.directive'
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { BeneficiariesImportComponent } from '../modules/beneficiaries/beneficiaries-import/beneficiaries-import.component';
 import { ImportedDataComponent } from '../modules/beneficiaries/beneficiaries-import/imported-data/imported-data.component';
-import { BeneficiariesComponent } from '../modules/beneficiaries/beneficiaries.component';
 import { DataMappingComponent } from '../modules/beneficiaries/data-mapping/data-mapping.component';
 import { DataValidationComponent } from '../modules/beneficiaries/data-validation/data-validation.component';
 import { BeneficiaryFormComponent } from '../modules/beneficiaries/update-beneficiary/beneficiary-form/beneficiary-form.component';
@@ -102,6 +101,7 @@ import { VouchersComponent } from '../modules/vouchers/vouchers/vouchers.compone
 import { LogsComponent } from '../modules/logs/logs.component';
 import { SsoComponent } from '../modules/public/sso/sso.component';
 import { JsonFormComponent } from '../components/json-form/json-form.component';
+import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiaries/beneficiaries.component';
 
 @NgModule({
   imports: [

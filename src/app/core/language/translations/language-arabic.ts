@@ -411,7 +411,7 @@ export class Arabic implements Language {
   'header_add-beneficiaries' = 'إضافة المستفيد';
   'header_add-distribution' = 'إضافة توزيع';
   'header_admin' = 'الإعدادات الإدارية';
-  'header_data-mapping' = 'Data Mapping';
+  'header_data-mapping' = this.missingTranslation;
   'header_data-validation' = 'التأكد من صحة البيانات';
   'header_distributions' = 'التوزيع';
   'header_settings' = 'ترتيب';

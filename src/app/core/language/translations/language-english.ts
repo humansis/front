@@ -423,6 +423,7 @@ export class English implements Language {
   'header_add-beneficiaries' = 'Add Beneficiaries';
   'header_add-distribution' = 'Add Distribution';
   'header_admin' = 'Administrative Settings';
+  'header_data-mapping' = '';
   'header_data-validation' = 'Data Validation';
   'header_distributions' = 'Distribution';
   'header_settings' = 'Configuration';
@@ -472,26 +473,6 @@ export class English implements Language {
   household_assets = 'Assets';
   household_shelter_status = 'Shelter type';
   household_status = 'Household status';
-
-  // Header
-  'header_add-beneficiaries' = 'Add Beneficiaries';
-  'header_add-distribution' = 'Add Distribution';
-  'header_admin' = 'Administrative Settings';
-  'header_data-mapping' = 'Data Mapping';
-  'header_data-validation' = 'Data Validation';
-  'header_distributions' = 'Distribution';
-  'header_settings' = 'Configuration';
-  'header_update-beneficiary' = 'Update Beneficiaries';
-  header_beneficiaries = 'Beneficiaries';
-  header_disconnect = 'log out';
-  header_home = 'Home';
-  header_import = 'Import beneficiary data';
-  header_imported = 'Imported beneficiaries data';
-  header_language = this.language;
-  header_profile = this.profile;
-  header_projects = this.projects;
-  header_reports = this.reports;
-  header_vouchers = this.voucher;
 
   // Import
   import_added = 'Added from existing beneficiaries';
