@@ -181,6 +181,8 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     ModalAssignComponent,
     ModalDetailsComponent,
     ModalLanguageComponent,
+    ModalConfirmationComponent,
+    ModalRequestsComponent,
     BoxSettingComponent,
     BoxPropertiesComponent,
     DisplayFieldComponent,
@@ -213,6 +215,8 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     ScannerComponent,
     SettingsComponent,
     AdministrationComponent,
+    SsoComponent,
+    JsonFormComponent,
   ],
   entryComponents: [
     ModalDeleteComponent,
@@ -304,6 +308,9 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     PlaceholderStepperComponent,
     SettingsComponent,
     AdministrationComponent,
+    JsonFormComponent,
+    UppercaseFirstPipe,
+    SsoComponent,
   ],
   providers: [
     { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check' },
