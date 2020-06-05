@@ -37,6 +37,7 @@
     "@angular/router": "^9.1.0",
     "@angular/service-worker": "^9.1.0",
     "@mapbox/leaflet-omnivore": "^0.3.4",
+    "@material-extended/mde": "^3.0.0",
     "@ng-select/ng-select": "^3.7.3",
     "@ngx-pwa/local-storage": "^9.0.3",
     "@types/color": "^3.0.1",

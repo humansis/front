@@ -103,6 +103,8 @@ import { AdministrativeAreaInputComponent } from 'src/app/components/administrat
 import { CleanTableComponent } from 'src/app/components/clean-table/clean-table.component';
 import { ExportButtonComponent } from 'src/app/components/export-button/export-button.component';
 import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiaries/beneficiaries.component';
+import { MdePopoverModule } from '@material-extended/mde';
+import { HistoryTableComponent } from 'src/app/components/history-table/history-table.component';
 
 @NgModule({
   imports: [
@@ -150,6 +152,7 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     RecaptchaModule,
     ZXingScannerModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    MdePopoverModule,
   ],
   declarations: [
     // Shared Components
@@ -204,6 +207,7 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     BeneficiaryFormComponent,
     LocationFormComponent,
     ImportedDataComponent,
+    HistoryTableComponent,
     ThousandsPipe,
     FormatCamelCasePipe,
     UppercaseFirstPipe,
@@ -315,6 +319,7 @@ import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiar
     UppercaseFirstPipe,
     SsoComponent,
     ExportButtonComponent,
+    HistoryTableComponent,
   ],
   providers: [
     { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check' },

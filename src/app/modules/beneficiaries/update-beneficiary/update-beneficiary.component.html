@@ -69,6 +69,9 @@
                                                 <input matInput type="number" min="0" max="100"
                                                        [placeholder]="language.household_debt_level | uppercaseFirst"
                                                        formControlName="debtLevel">
+                                                <mat-hint class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory('debt_level')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="debtLevel"
                                                                 [field]="household.fields.debtLevel"
                                                                 [isMatField]="true"></app-hint-error>
@@ -91,6 +94,9 @@
                                                 <input matInput type="number"
                                                        [placeholder]="language.household_food_consumption_score | uppercaseFirst"
                                                        formControlName="foodConsumptionScore">
+                                                <mat-hint class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory('food_consumption_score')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="foodConsumptionScore"
                                                                 [field]="household.fields.foodConsumptionScore" [isMatField]="true">
                                                 </app-hint-error>
@@ -101,6 +107,9 @@
                                                 <input matInput type="number"
                                                        [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
                                                        formControlName="copingStrategiesIndex">
+                                                <mat-hint class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory('coping_strategies_index')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="copingStrategiesIndex"
                                                                 [field]="household.fields.copingStrategiesIndex"
                                                                 [isMatField]="true"></app-hint-error>
@@ -428,3 +437,10 @@
         </mat-step>
     </mat-horizontal-stepper>
 </div>
+
+<mde-popover #appPopover="mdePopover" mdePopoverPositionX="before" mdePopoverPositionY="below" [mdePopoverOverlapTrigger]="false">
+    <app-history-table *ngIf="household"
+                       [id]="household.get('id')"
+                       [attribute]="historyAttribute"
+    ></app-history-table>
+</mde-popover>

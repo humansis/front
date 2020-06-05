@@ -21,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LogsModule } from './modules/logs/logs.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HistoryTableComponent } from './components/history-table/history-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CustomDateAdapter,
   ],
   bootstrap: [AppComponent],
+  exports: [HistoryTableComponent],
 })
 export class AppModule {
   constructor(injector: Injector) {

@@ -20,6 +20,9 @@ import { CriteriaService } from './criteria.service';
 import { ExportService } from './export.service';
 import { LocationService } from './location.service';
 import { ProjectService } from './project.service';
+import { Observable, of } from 'rxjs';
+import { DataChange } from 'src/app/models/api/data-change';
+import { IHousehold } from 'src/app/models/api/household';
 
 @Injectable({
   providedIn: 'root',
@@ -264,5 +267,10 @@ export class HouseholdsService extends CustomModelService {
     } else {
       this.router.navigate(['/beneficiaries/update-beneficiary', householdId]);
     }
+  }
+
+  public getHouseholdHistory(householdId: number): Observable<DataChange<IHousehold>[]> {
+    const url = `${this.api}/households/${householdId}/changes`;
+    return this.http.get(url);
   }
 }

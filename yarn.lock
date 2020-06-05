@@ -1190,6 +1190,11 @@
     topojson "1.6.26"
     wellknown "0.4.2"
 
+"@material-extended/mde@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@material-extended/mde/-/mde-3.0.0.tgz#c17bca40319814e2db49174f4ffe8733a6ec839c"
+  integrity sha512-13uD9qIxXsNWOzHGcC4nCHOrnoVQfyMga8neC6aiwvRb/RA9sAsdaWAN1p+4vFeBZ9nFKQHNSRz3TeV+Ee1QVQ==
+
 "@ng-select/ng-select@^3.7.3":
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-3.7.3.tgz#317fbf94211fb2044f6ab233795cf1cbab4b44a3"
