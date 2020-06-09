@@ -4,6 +4,10 @@ mat-card {
 
 table {
     width: 100%;
+
+    th {
+        text-transform: capitalize;
+    }
 }
 
 .mat-column-date {
@@ -17,4 +21,9 @@ table {
 
 .highlight {
     font-weight: 700;
+}
+
+.table-container {
+    overflow-y: scroll;
+    max-height: 300px;
 }

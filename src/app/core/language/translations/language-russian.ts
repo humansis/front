@@ -36,6 +36,7 @@ export class Russian implements Language {
   the = '[артикль]';
   this = 'этот';
   selected = 'выбранный';
+  history = this.missingTranslation;
 
   // Models
   beneficiaries = 'бенефициары';

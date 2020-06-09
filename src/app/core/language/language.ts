@@ -33,6 +33,7 @@ export interface Language {
   this: string;
   true: string;
   selected: string;
+  history: string;
 
   // Models
   beneficiaries: string;

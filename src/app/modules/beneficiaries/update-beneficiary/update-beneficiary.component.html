@@ -69,7 +69,7 @@
                                                 <input matInput type="number" min="0" max="100"
                                                        [placeholder]="language.household_debt_level | uppercaseFirst"
                                                        formControlName="debtLevel">
-                                                <mat-hint class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory('debt_level')"
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_debt_level, 'debt_level')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
                                                 </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="debtLevel"
@@ -94,7 +94,7 @@
                                                 <input matInput type="number"
                                                        [placeholder]="language.household_food_consumption_score | uppercaseFirst"
                                                        formControlName="foodConsumptionScore">
-                                                <mat-hint class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory('food_consumption_score')"
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.foodConsumptionScore,'food_consumption_score')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
                                                 </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="foodConsumptionScore"
@@ -107,7 +107,7 @@
                                                 <input matInput type="number"
                                                        [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
                                                        formControlName="copingStrategiesIndex">
-                                                <mat-hint class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory('coping_strategies_index')"
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.copingStrategiesIndex,'coping_strategies_index')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
                                                 </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="copingStrategiesIndex"
@@ -134,6 +134,9 @@
                                                        formControlName="supportReceived">
                                                 <mat-datepicker-toggle matSuffix [for]="supportReceived"></mat-datepicker-toggle>
                                                 <mat-datepicker #supportReceived></mat-datepicker>
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_support_date_received, 'support_date_received')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
                                                 <app-hint-error [form]="mainForm" fieldName="supportReceived" [field]="household.fields.supportReceived" [isMatField]="true"></app-hint-error>
                                             </mat-form-field>
                                         </div>
@@ -441,6 +444,8 @@
 <mde-popover #appPopover="mdePopover" mdePopoverPositionX="before" mdePopoverPositionY="below" [mdePopoverOverlapTrigger]="false">
     <app-history-table *ngIf="household"
                        [id]="household.get('id')"
+                       [title]="historyTitle"
                        [attribute]="historyAttribute"
+
     ></app-history-table>
 </mde-popover>

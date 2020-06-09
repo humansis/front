@@ -128,6 +128,7 @@ export class UpdateBeneficiaryComponent
   };
 
   public historyAttribute: keyof IHousehold;
+  public historyTitle: string;
 
   @ViewChild(MatStepper) stepper: MatStepper;
   @ViewChild(MdePopoverTrigger) popoverTrigger: MdePopoverTrigger;
@@ -1185,8 +1186,9 @@ export class UpdateBeneficiaryComponent
     );
   }
 
-  showHistory(attribute: keyof IHousehold) {
+  showHistory(title: string, attribute: keyof IHousehold) {
     this.historyAttribute = attribute;
+    this.historyTitle = title;
   }
 
   //

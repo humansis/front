@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataChange } from 'src/app/models/api/data-change';
 import { HouseholdsService } from 'src/app/core/api/households.service';
+import { Language } from 'src/app/core/language/language';
+import { LanguageService } from 'src/app/core/language/language.service';
 
 @Component({
   selector: 'app-history-table',
@@ -22,7 +24,11 @@ export class HistoryTableComponent implements OnInit {
     this._attribute = attribute;
   }
 
+  @Input() title: string;
+
   displayedColumns: string[] = ['date', 'value'];
+
+  language: Language = this.languageService.selectedLanguage;
 
   dataSource: MatTableDataSource<{ date: string; value: any }> = new MatTableDataSource<{
     date: string;
@@ -32,7 +38,10 @@ export class HistoryTableComponent implements OnInit {
   private dataChanges: DataChange<any>[] = [];
   private _attribute: string;
 
-  constructor(private householdsService: HouseholdsService) {}
+  constructor(
+    private householdsService: HouseholdsService,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {}
 

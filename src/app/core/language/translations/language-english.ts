@@ -39,6 +39,7 @@ export class English implements Language {
   this = 'this';
   true = 'True';
   selected = 'selected';
+  history = 'history';
 
   // Models
   beneficiaries = 'Beneficiaries';

@@ -37,6 +37,7 @@ export class Arabic implements Language {
   this = 'هذه';
   true = 'صحيح';
   selected = 'المحدد';
+  history = this.missingTranslation;
 
   // Models
   beneficiaries = 'المستفيدون';

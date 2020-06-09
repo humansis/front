@@ -37,6 +37,7 @@ export class French implements Language {
   this = 'Ce';
   true = 'Vrai';
   selected = 'selectionné';
+  history = this.missingTranslation;
 
   // Models
   beneficiaries = 'Bénéficiaires';
