@@ -42,8 +42,17 @@ export class OrganizationServicesService extends CustomModelService {
 
   public get2FAToken(userFromApi) {
     const url = this.apiBase + '/organization/1/service';
-    const userCountry =
-      userFromApi.countries.length > 0 ? userFromApi.countries[0].iso3 : 'KHM';
+    let userCountry;
+    if (userFromApi.countries.length > 0) {
+      userCountry = userFromApi.countries[0].iso3;
+    } else if (userFromApi.projects.length > 0) {
+      userCountry = userFromApi.projects[0].project.iso3;
+    } else {
+      userCountry = 'KHM';
+      console.warn(
+        'Cannot find user countries nor projects. Setup KHM as default country'
+      );
+    }
     return this.wsseService.getHeaderValue(userFromApi).pipe(
       switchMap((headerValue: string) => {
         const options = {
