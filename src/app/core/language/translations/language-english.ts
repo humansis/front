@@ -659,8 +659,8 @@ export class English implements Language {
   modal_no_pending_requests = 'There are no pending requests';
 
   // National ID
-  national_id_card = 'ID Card';
-  national_id_family_registry = 'Family Registry';
+  national_id_card = 'National ID';
+  national_id_family_registry = 'Family Registration';
   national_id_license = "Driver's License";
   national_id_number = 'ID Number';
   national_id_passport = 'Passport';
