@@ -297,6 +297,7 @@ export class Arabic implements Language {
 
   // Commodities tooltips
   commodity_cash = 'السيولة النقدية';
+  commodity_smartcard = this.missingTranslation;
   commodity_in_kind = 'في النوع';
   commodity_modality_cash = 'المال المحمول';
   commodity_modality_qr_voucher = 'قسيمة كود qr';

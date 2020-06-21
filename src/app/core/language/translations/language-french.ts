@@ -307,6 +307,7 @@ export class French implements Language {
 
   // Commodities tooltips
   commodity_cash = 'cash';
+  commodity_smartcard = this.missingTranslation;
   commodity_in_kind = 'en nature';
   commodity_modality_cash = 'Cash';
   commodity_modality_qr_voucher = 'Coupon QR Code';

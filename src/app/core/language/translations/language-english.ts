@@ -305,6 +305,7 @@ export class English implements Language {
 
   // Commodities tooltips
   commodity_cash = 'cash';
+  commodity_smartcard = 'Smartcard';
   commodity_in_kind = 'in kind';
   commodity_modality_cash = 'Mobile Money';
   commodity_modality_qr_voucher = 'QR Code Voucher';

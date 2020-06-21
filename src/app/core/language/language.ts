@@ -270,6 +270,7 @@ export interface Language {
 
   // Commodities
   commodity_cash: string;
+  commodity_smartcard: string;
   commodity_in_kind: string;
   commodity_modality_cash: string;
   commodity_modality_qr_voucher: string;

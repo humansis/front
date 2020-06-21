@@ -121,6 +121,7 @@ export class ModalAddCommodityComponent implements OnInit {
         : null;
     switch (name) {
       case 'Mobile Money':
+      case 'Smartcard':
       case 'QR Code Voucher':
       case 'Paper Voucher':
       case 'Loan':
@@ -145,6 +146,7 @@ export class ModalAddCommodityComponent implements OnInit {
     this.isCurrency = false;
     switch (name) {
       case 'Mobile Money':
+      case 'Smartcard':
       case 'QR Code Voucher':
       case 'Paper Voucher':
       case 'Loan':

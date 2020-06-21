@@ -299,6 +299,7 @@ export class Russian implements Language {
 
   // Commodities tooltips
   commodity_cash = 'кэш';
+  commodity_smartcard = this.missingTranslation;
   commodity_in_kind = 'подобным образом';
   commodity_modality_cash = 'Мобильный банк';
   commodity_modality_qr_voucher = 'Ваучер QR кода';
