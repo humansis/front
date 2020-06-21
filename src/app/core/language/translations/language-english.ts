@@ -73,7 +73,10 @@ export class English implements Language {
   vendor = 'Vendor';
   vendors = 'vendors';
   voucher = 'Vouchers';
+  institution = 'Institution';
   institutions = 'Institutions';
+  community = 'Community';
+  communities = 'Communities';
 
   // Actions
   add = 'Add';

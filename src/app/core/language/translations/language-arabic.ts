@@ -71,7 +71,10 @@ export class Arabic implements Language {
   vendor = 'بائع';
   vendors = 'الباعة';
   voucher = 'قسائم';
+  institution = this.missingTranslation;
   institutions = this.missingTranslation;
+  community = this.missingTranslation;
+  communities = this.missingTranslation;
 
   // Actions
   add = 'أضف';

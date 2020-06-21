@@ -67,7 +67,10 @@ export interface Language {
   vendor: string;
   vendors: string;
   voucher: string;
+  institution: string;
   institutions: string;
+  community: string;
+  communities: string;
 
   // Actions
   add: string;

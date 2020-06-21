@@ -1,39 +1,36 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LanguageService } from 'src/app/core/language/language.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CARD_TYPES } from 'src/app/models/constants/card-type';
-import { INSTITUTION_TYPES } from 'src/app/models/constants/institution-type';
-import { Institution } from 'src/app/models/api/institution';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
+import { LanguageService } from 'src/app/core/language/language.service';
+import { Community } from 'src/app/models/api/community';
 
 @Component({
-  selector: 'app-institution-form',
-  templateUrl: './institution-form.component.html',
-  styleUrls: ['./institution-form.component.scss'],
+  selector: 'app-community-form',
+  templateUrl: './community-form.component.html',
+  styleUrls: ['./community-form.component.scss'],
 })
-export class InstitutionFormComponent implements OnInit {
+export class CommunityFormComponent implements OnInit {
   public language = this.languageService.selectedLanguage;
 
   public form: FormGroup;
 
   public readonly cardTypes = CARD_TYPES;
 
-  public readonly institutionTypes = INSTITUTION_TYPES;
-
   public readonly phoneCodes = PHONECODES;
 
-  private institutionId: number;
+  private communityId: number;
 
   @Input()
-  set data(institution: Institution) {
-    if (institution) {
-      this.institutionId = institution.id;
-      this.form.patchValue(institution, { emitEvent: false });
+  set data(community: Community) {
+    if (community) {
+      this.communityId = community.id;
+      this.form.patchValue(community, { emitEvent: false });
     }
   }
 
   @Output()
-  save: EventEmitter<Institution> = new EventEmitter<Institution>();
+  save: EventEmitter<Community> = new EventEmitter<Community>();
 
   constructor(private fb: FormBuilder, private languageService: LanguageService) {
     this.createForm();
@@ -43,14 +40,12 @@ export class InstitutionFormComponent implements OnInit {
 
   processForm() {
     if (this.form.valid) {
-      this.save.emit({ ...this.form.value, id: this.institutionId });
+      this.save.emit({ ...this.form.value, id: this.communityId });
     }
   }
 
   private createForm() {
     this.form = this.fb.group({
-      name: [undefined],
-      type: [],
       address: this.fb.group({
         number: [],
         street: [],

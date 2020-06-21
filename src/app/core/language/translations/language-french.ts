@@ -71,7 +71,10 @@ export class French implements Language {
   vendor = 'Vendeur';
   vendors = 'vendeurs';
   voucher = 'Vouchers';
+  institution = this.missingTranslation;
   institutions = this.missingTranslation;
+  community = this.missingTranslation;
+  communities = this.missingTranslation;
 
   // Actions
   add = 'Ajouter';

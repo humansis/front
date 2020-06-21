@@ -1,20 +1,20 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { LanguageService } from 'src/app/core/language/language.service';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
-import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service';
 import { Subscription } from 'rxjs';
-import { UserService } from 'src/app/core/api/user.service';
+import { LanguageService } from 'src/app/core/language/language.service';
+import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service';
 import { InstitutionService } from 'src/app/core/api/institution.service';
+import { UserService } from 'src/app/core/api/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { InstitutionTableComponent } from 'src/app/modules/general-settings/containers/institutions/institution-table/institution-table.component';
-import { InstitutionModalComponent } from 'src/app/modules/general-settings/containers/institutions/institution-modal/institution-modal.component';
+import { CommunityTableComponent } from 'src/app/modules/general-settings/containers/communities/community-table/community-table.component';
+import { CommunityModalComponent } from 'src/app/modules/general-settings/containers/communities/community-modal/community-modal.component';
 
 @Component({
-  selector: 'app-institutions',
-  templateUrl: './institutions.component.html',
-  styleUrls: ['./institutions.component.scss'],
+  selector: 'app-communities',
+  templateUrl: './communities.component.html',
+  styleUrls: ['./communities.component.scss'],
 })
-export class InstitutionsComponent implements OnInit, OnDestroy {
+export class CommunitiesComponent implements OnInit, OnDestroy {
   public language = this.languageService.selectedLanguage
     ? this.languageService.selectedLanguage
     : this.languageService.english;
@@ -22,7 +22,7 @@ export class InstitutionsComponent implements OnInit, OnDestroy {
   public currentDisplayType: DisplayType;
   private screenSizeSubscription: Subscription;
 
-  @ViewChild(InstitutionTableComponent) institutionTable: InstitutionTableComponent;
+  @ViewChild(CommunityTableComponent) communityTable: CommunityTableComponent;
 
   constructor(
     private languageService: LanguageService,
@@ -39,10 +39,10 @@ export class InstitutionsComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(InstitutionModalComponent);
+    const dialogRef = this.dialog.open(CommunityModalComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.institutionTable.loadInstitutions();
+        this.communityTable.loadCommunities();
       }
     });
   }

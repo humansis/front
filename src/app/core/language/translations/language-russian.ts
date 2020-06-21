@@ -69,7 +69,10 @@ export class Russian implements Language {
   vendor = 'Продавец';
   vendors = 'продавцы';
   voucher = 'Ваучеры';
+  institution = this.missingTranslation;
   institutions = this.missingTranslation;
+  community = this.missingTranslation;
+  communities = this.missingTranslation;
 
   // Actions
   add = 'Добавить';

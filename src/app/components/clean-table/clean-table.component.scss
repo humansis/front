@@ -59,6 +59,16 @@ table {
     color: $bms_dark_grey;
 }
 
+.mat-column-actions {
+    width: 150px;
+}
+
+.mat-header-cell {
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
 
 ::ng-deep {
 

@@ -33,7 +33,7 @@
                 [searchable]="true"
                 class="single-select"
                 formControlName="phone_prefix"
-                [placeholder]="language.national_id_type">
+                [placeholder]="language.phone_prefix">
                 <ng-option *ngFor="let code of phoneCodes" [value]="code">
                     {{code}}
                 </ng-option>
@@ -49,7 +49,7 @@
                     [closeOnSelect]="true"
                     [searchable]="true"
                     class="single-select"
-                    formControlName="id_type"
+                    formControlName="type"
                     [placeholder]="language.national_id_type">
                     <ng-option *ngFor="let type of cardTypes" [value]="type.id">
                         {{language[type.language_key]}}
@@ -58,7 +58,7 @@
                 <mat-form-field>
                     <input matInput
                            [placeholder]="language.national_id_number"
-                           formControlName="id_number">
+                           formControlName="number">
                 </mat-form-field>
             </div>
         </div>

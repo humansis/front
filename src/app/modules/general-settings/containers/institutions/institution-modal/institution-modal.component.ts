@@ -1,10 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { LanguageService } from '../../../../core/language/language.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Institution } from '../../../../models/api/institution';
-import { InstitutionService } from '../../../../core/api/institution.service';
-import { SnackBarHarnessFilters } from '@angular/material/snack-bar/testing';
 import { SnackbarService } from 'src/app/core/logging/snackbar.service';
+import { Institution } from 'src/app/models/api/institution';
+import { LanguageService } from 'src/app/core/language/language.service';
+import { InstitutionService } from 'src/app/core/api/institution.service';
 
 @Component({
   selector: 'app-institution-modal',

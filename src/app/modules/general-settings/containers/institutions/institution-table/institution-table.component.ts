@@ -1,20 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableHeader } from 'src/app/models/interfaces/table-header';
-import { MatTableDataSource } from '@angular/material/table';
 import { InstitutionService } from 'src/app/core/api/institution.service';
 import { Institution } from 'src/app/models/api/institution';
-import { VendorsService } from 'src/app/core/api/vendors.service';
 import { LanguageService } from 'src/app/core/language/language.service';
-import { InstitutionModalComponent } from '../../containers/institution-modal/institution-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalDeleteComponent } from '../../../../components/modals/modal-delete/modal-delete.component';
-import { ClientDataSource } from '../../../../core/datasource/client-data-source';
 import { INSTITUTION_TYPES_MAP } from 'src/app/models/constants/institution-type';
+import { ClientDataSource } from 'src/app/core/datasource/client-data-source';
+import { ModalDeleteComponent } from 'src/app/components/modals/modal-delete/modal-delete.component';
+import { InstitutionModalComponent } from 'src/app/modules/general-settings/containers/institutions/institution-modal/institution-modal.component';
 
 @Component({
   selector: 'app-institution-table',

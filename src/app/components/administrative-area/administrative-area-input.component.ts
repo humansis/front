@@ -146,8 +146,6 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
     });
   }
 
-  private getLocationId() {}
-
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -159,34 +157,35 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
   setDisabledState(isDisabled: boolean): void {}
 
   writeValue(location: any): void {
-    if (location.adm1) {
-      this.loadAdministrativeArea2Locations(location.adm1);
+    if (location) {
+      if (location.adm1) {
+        this.loadAdministrativeArea2Locations(location.adm1);
+      }
+      if (location.adm2) {
+        this.loadAdministrativeArea3Locations(location.adm2);
+      }
+      if (location.adm3) {
+        this.loadAdministrativeArea4Locations(location.adm3);
+      }
+      forkJoin([
+        this.area1loading$.pipe(
+          filter((value) => !value),
+          take(1)
+        ),
+        this.area2loading$.pipe(
+          filter((value) => !value),
+          take(1)
+        ),
+        this.area3loading$.pipe(
+          filter((value) => !value),
+          take(1)
+        ),
+        this.area4loading$.pipe(
+          filter((value) => !value),
+          take(1)
+        ),
+      ]).subscribe(() => (this.value = location));
     }
-    if (location.adm2) {
-      this.loadAdministrativeArea3Locations(location.adm2);
-    }
-    if (location.adm3) {
-      this.loadAdministrativeArea4Locations(location.adm3);
-    }
-
-    forkJoin([
-      this.area1loading$.pipe(
-        filter((value) => !value),
-        take(1)
-      ),
-      this.area2loading$.pipe(
-        filter((value) => !value),
-        take(1)
-      ),
-      this.area3loading$.pipe(
-        filter((value) => !value),
-        take(1)
-      ),
-      this.area4loading$.pipe(
-        filter((value) => !value),
-        take(1)
-      ),
-    ]).subscribe(() => (this.value = location));
   }
 
   set value(val) {
