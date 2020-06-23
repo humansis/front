@@ -4,23 +4,18 @@ import { HttpService } from '../network/http.service';
 import { ExportService } from './export.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService {
+  readonly api = URL_BMS_API;
 
-    readonly api = URL_BMS_API;
+  constructor(private http: HttpService, private exportService: ExportService) {}
 
-    constructor(
-        private http: HttpService,
-        private exportService: ExportService
-    ) {
+  public export(extensionType: string, category: string, country?: string) {
+    if (category === 'projects' && country) {
+      return this.exportService.export(category, country, extensionType);
+    } else {
+      return this.exportService.export(category, true, extensionType);
     }
-
-    public export(extensionType: string, category: string, country?: string) {
-        if (category === 'projects' && country) {
-            return this.exportService.export(category, country, extensionType);
-        } else {
-            return this.exportService.export(category, true, extensionType);
-        }
-    }
+  }
 }

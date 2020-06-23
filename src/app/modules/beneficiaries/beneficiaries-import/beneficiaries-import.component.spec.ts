@@ -8,9 +8,8 @@ describe('BeneficiariesImportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeneficiariesImportComponent ]
-    })
-    .compileComponents();
+      declarations: [BeneficiariesImportComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

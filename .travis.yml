@@ -2,20 +2,24 @@ language: node_js
 node_js:
   - "10"
 
-cache: npm
+cache: yarn
 
 # Define environment variables
 env:
-  - secure: "ogUMJHi7XO7EVfPtVCFylCzfE7Kase/9QVpxvMcDZ4is15GIXdB/L8N7H/1+Ve3ZUaL8IF72FZ+cmIQUOfx9lNIjxifGYzFnFMq3DvCJLQ1J8mOYPg3Hke08fjoGhd/UjuPCRxw0pkn1fBkTeWuPHi51/yUn8GRwceuNHLFXAMpYwpDSwpuRPWn8ROwHjC+adcWU+Ch0Gb2nYjCui2zsUu5k4F/FYKb6sHxhwrF+XwKzB/SWHrzenS9D54usRi8NOf3ml048f5YdruD3pLVky4GB+sp0691AnStv1FHWsD8aQe4tiVCSD08qWrDbQ+PN2ilH4cMP24eJxyhGzngBiLaswKnuh6FK2/rUCIUeVK6Ds6U6rELorL9W8vMweoP5GmRVsmr/ELG+B88FKOjumDuDAMynwmWvIucS9YqrZ0SNRXPia4WVR08nwwfXDoZZ8g5zh4hP/WFcOb5lfk4kQsSIx90Y5jbYxUDt10YPvaTBU2on5KgK9GKMmXElBo5j1B9SmQJQb6WdvtfM4MCVLRj7OIoCDqQz8EUsn4e2NBsJQ3xEJkYEU/mbl8PVWQ6XYfv4qM6l1Tuvf3owukff0TXJCkcGMdnd4NrSTZjuBkPTqFlMuO3cGAD3UUbriHV2g+f1mQvBplknG6X25WCYwmFV6E/oZr2EbWLrob480tk="
+  - secure: "GOdoNQ+r7dn1A1UXznym68WkLH57GBWJ4zN4/gOdAcrUWMJaQJCGmDrqo9v9uk2nj3Mz05NV5GvwEsWz3lWzeA1kzmKY6k7vqS+wZOTMBch0iboa12nT2DBALb5TwGi10whfBIAk/NDCfpJeQ01q88Cl7yV3vBoynlzMUiAw/N8Z0meEjdcAQRuD10lKfos7fJd9WCr6LvRJb9rm0Zq0MAqNLw6ZBA2aVz8Jfz4QrBB6oZJwMu0T/URJoX96kQ6WFPDevPCLjT1V2ezCOWyyTYHdUf6C7Omod9TvWSthTGXs0Wr/epY6e51R+e4tMVr/+dA41jetwmvfFTf0HuefQ1+v5EuQj/UD6vsidxf3wohesnfxzJastuA0wcYm8zK99lQlXhqRB2YB9r+sZII339my3icRBImsX2oj7Vu+tzDMx0092ifQLktHwmX5VrVKdg8iACzq7CA11vKLDUp6ickXiDGxymVEbPRa6SIZWoX0pRQcAHrPNwDHpa0u005/zVinZHACAdLxq4hYMfhwJQ92Uq22+Yv2eAwgqieJJaMUyfJeb5AL3wKSyKufLYvMUuX8wbTg1hdzFMhtYfbM+m6qTosgWjm5aAr5Jqqk0dV9j+GjArUTDYnzGeTxespNyBebfE1+LvoMS6WmR0qt2FMM5B93X2t3+Rdn7nVenGo="
+
+git:
+  depth: false
 
 install:
-  - npm install -g @angular/cli
-  - npm install
+  - yarn global add @angular/cli
+  - yarn install
+  - ./get-info.sh
 
 jobs:
     include:
         - stage: test
-          script: npm run lint && npm run build -- --prod --stats-json
+          script: yarn run lint && yarn run build -- --prod --stats-json
           fast_finish: true
         - stage: deploy
           if: branch = dev AND NOT type = "pull_request"
@@ -24,13 +28,19 @@ jobs:
               - pip3 install awscli --upgrade
           script: ./build-deploy.sh testing
         - stage: deploy
-          if: branch = 2.0 AND NOT type = "pull_request"
+          if: branch =~ /^release\/.*$/ AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh testing
+          script: ./build-deploy.sh stage
         - stage: deploy
-          if: branch = master AND NOT type = "pull_request"
+          if: (NOT branch = master) AND tag IS present
+          before_install:
+              - sudo apt-get install python3-pip python3-setuptools
+              - pip3 install awscli --upgrade
+          script: ./build-deploy.sh develop
+        - stage: deploy
+          if: branch = master AND NOT type = "pull_request" AND tag IS present AND tag =~ /^v.*$/
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade

@@ -1,0 +1,56 @@
+@import "../../../../assets/css/variable";
+
+.container-profile {
+    width: 40%;
+    height: 70%;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+
+    h2 {
+        text-align: left;
+        font-weight: lighter;
+    }
+    .profile-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .items-line {
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            display: flex;
+
+            mat-form-field.phone-number {
+              width: 60%;
+            }
+
+            .single-select.country-code {
+              width: 30%;
+              padding-bottom: 1.6em;
+            }
+        }
+    }
+
+    .action-buttons {
+        margin-top: 20px;
+        mat-spinner {
+            margin-right: 20px;
+        }
+    }
+
+}
+span {
+    color: $bms_dark_grey;
+    text-align: none !important;
+}
+
+//for mobile screen
+@media only screen and (max-width: 750px) {
+    .container-profile {
+        width: unset;
+        height: unset;
+        margin: unset;
+    }
+}

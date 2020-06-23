@@ -8,9 +8,8 @@ describe('HintErrorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HintErrorComponent ]
-    })
-    .compileComponents();
+      declarations: [HintErrorComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

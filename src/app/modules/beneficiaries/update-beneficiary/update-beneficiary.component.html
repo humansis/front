@@ -13,11 +13,11 @@
             <mat-icon>done</mat-icon>
         </ng-template>
         <mat-step [completed]="validStep1">
-            <ng-template class="step" matStepLabel>{{language.information | uppercaseFirst}} </ng-template>
+            <ng-template class="step" matStepLabel>{{language.household | uppercaseFirst}} </ng-template>
             <div class="container-table">
                 <div class="stepInMobile">
                     <span class="dot">1</span>
-                    <span>{{language.information | uppercaseFirst}} </span>
+                    <span>{{language.household | uppercaseFirst}} </span>
                 </div>
                 <div class="container-content box-primary">
                     <div class="content-table content-table-step1">
@@ -38,28 +38,94 @@
                                 </app-location-form>
                                 <form [formGroup]="mainForm" class="not-location-form">
                                     <div class="column-container">
-                                        <div class="income">
-                                            <h4>{{ language.add_beneficiary_occupation | uppercaseFirst }}</h4>
+                                        <h4>{{language.household_livelihood | uppercaseFirst}}</h4>
+                                        <div>
                                             <ng-select [clearable]="false" class="single-select" [multiple]="false"
-                                                [searchable]="true" [closeOnSelect]="true"
-                                                placeholder="{{language.household_livelihood | uppercaseFirst}}"
-                                                formControlName="livelihood">
+                                                       [searchable]="true" [closeOnSelect]="true"
+                                                       placeholder="{{language.household_livelihood | uppercaseFirst}}"
+                                                       formControlName="livelihood">
                                                 <ng-option *ngFor="let livelihood of household.getOptions('livelihood')"
-                                                    [value]="livelihood.get('id')">
+                                                           [value]="livelihood.get('id')">
                                                     {{livelihood.get('name') | uppercaseFirst}}
                                                 </ng-option>
                                             </ng-select>
                                             <app-hint-error [form]="mainForm" fieldName="livelihood"
-                                                [field]="household.fields.livelihood" [isMatField]="false">
+                                                            [field]="household.fields.livelihood" [isMatField]="false">
                                             </app-hint-error>
+                                        </div>
+                                        <div>
                                             <mat-form-field>
                                                 <mat-select class="single-select" [multiple]="false"
-                                                    placeholder="{{language.household_income | uppercaseFirst}}"
-                                                    formControlName="incomeLevel">
+                                                            placeholder="{{language.household_income | uppercaseFirst}}"
+                                                            formControlName="incomeLevel">
                                                     <mat-option *ngFor="let option of household.getOptions('incomeLevel')" [value]="option.get('id')">
                                                         {{ option.get('name')  | uppercaseFirst }}
                                                     </mat-option>
                                                 </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number" min="0" max="100"
+                                                       [placeholder]="language.household_debt_level | uppercaseFirst"
+                                                       formControlName="debtLevel">
+                                                <app-hint-error [form]="mainForm" fieldName="debtLevel"
+                                                                [field]="household.fields.debtLevel"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <ng-select class="multiple-select" formControlName="assets"
+                                                       placeholder="{{language.household_assets | uppercaseFirst}} *" [multiple]="true"
+                                                       [closeOnSelect]="false" [searchable]="true">
+                                                <ng-option *ngFor="let asset of household.getOptions('assets')"
+                                                           [value]="asset.get('id')">
+                                                    {{asset.get('name') | uppercaseFirst}}
+                                                </ng-option>
+                                            </ng-select>
+                                            <app-hint-error [form]="mainForm" fieldName="assets" [field]="household.fields.assets"
+                                                            [isMatField]="false"></app-hint-error>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_food_consumption_score | uppercaseFirst"
+                                                       formControlName="foodConsumptionScore">
+                                                <app-hint-error [form]="mainForm" fieldName="foodConsumptionScore"
+                                                                [field]="household.fields.foodConsumptionScore" [isMatField]="true">
+                                                </app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
+                                                       formControlName="copingStrategiesIndex">
+                                                <app-hint-error [form]="mainForm" fieldName="copingStrategiesIndex"
+                                                                [field]="household.fields.copingStrategiesIndex"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="column-container">
+                                        <h4>{{ language.add_beneficiary_external_support | uppercaseFirst }}</h4>
+                                        <div>
+                                            <ng-select class="multiple-select" formControlName="supportReceivedOtherOrg"
+                                                       placeholder="{{language.household_support_received_other_org | uppercaseFirst}} *" [multiple]="true"
+                                                       [closeOnSelect]="false" [searchable]="true">
+                                                <ng-option *ngFor="let support of household.getOptions('supportReceivedOtherOrg')"
+                                                           [value]="support.get('id')">
+                                                    {{support.get('name') | uppercaseFirst}}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div>
+                                            <mat-form-field class="support-received">
+                                                <input matInput [matDatepicker]="supportReceived" placeholder="{{language.household_support_date_received | uppercaseFirst }}"
+                                                       formControlName="supportReceived">
+                                                <mat-datepicker-toggle matSuffix [for]="supportReceived"></mat-datepicker-toggle>
+                                                <mat-datepicker #supportReceived></mat-datepicker>
+                                                <app-hint-error [form]="mainForm" fieldName="supportReceived" [field]="household.fields.supportReceived" [isMatField]="true"></app-hint-error>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -88,29 +154,22 @@
                                         </div>
                                     </div>
                                     <div class="column-container">
-                                        <div class="food-score">
-                                            <h4>{{ language.household_food_consumption_score | uppercaseFirst }}</h4>
-                                            <mat-form-field>
-                                                <input matInput [type]="number"
-                                                    [placeholder]="language.household_food_consumption_score | uppercaseFirst"
-                                                    formControlName="foodConsumptionScore">
-                                                <app-hint-error [form]="mainForm" fieldName="foodConsumptionScore"
-                                                    [field]="household.fields.foodConsumptionScore" [isMatField]="true">
-                                                </app-hint-error>
-                                            </mat-form-field>
-                                        </div>
-                                    </div>
-                                    <div class="column-container">
-                                        <div class="coping-index">
-                                            <h4>{{ language.household_coping_strategies_index | uppercaseFirst }}</h4>
-                                            <mat-form-field>
-                                                <input matInput [type]="number"
-                                                    [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
-                                                    formControlName="copingStrategiesIndex">
-                                                <app-hint-error [form]="mainForm" fieldName="copingStrategiesIndex"
-                                                    [field]="household.fields.copingStrategiesIndex"
-                                                    [isMatField]="true"></app-hint-error>
-                                            </mat-form-field>
+
+                                        <div class="shelter-status">
+                                            <h4>{{ language.household_status | uppercaseFirst }}</h4>
+                                            <div>
+                                                <ng-select formControlName="shelterStatus"
+                                                           placeholder="{{language.household_shelter_status | uppercaseFirst}} *" [multiple]="false"
+                                                           [closeOnSelect]="false" [searchable]="false">
+                                                    <ng-option *ngFor="let shelterStatus of household.getOptions('shelterStatus')"
+                                                               [value]="shelterStatus.get('id')">
+                                                        {{shelterStatus.get('name') | uppercaseFirst}}
+                                                    </ng-option>
+                                                </ng-select>
+
+                                                <app-hint-error [form]="mainForm" fieldName="shelterStatus" [field]="household.fields.shelterStatus"
+                                                                [isMatField]="false"></app-hint-error>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -299,11 +358,11 @@
                                 <ng-container matColumnDef="localGivenName">
                                   <th mat-header-cell *matHeaderCellDef> {{ language.beneficiary_local_given_name | uppercaseFirst }} </th>
                                   <td mat-cell *matCellDef="let element">
-                                    {{ element.controls.localGivenName.value }} 
+                                    {{ element.controls.localGivenName.value }}
                                     <span *ngIf="element.controls.enGivenName.value">({{ element.controls.enGivenName.value }})</span>
                                   </td>
                                 </ng-container>
-              
+
                                 <ng-container matColumnDef=localFamilyName>
                                   <th mat-header-cell *matHeaderCellDef> {{ language.beneficiary_local_family_name | uppercaseFirst }} </th>
                                   <td mat-cell *matCellDef="let element">

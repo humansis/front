@@ -8,9 +8,8 @@ describe('PlaceholderBoxlineComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaceholderBoxlineComponent ]
-    })
-    .compileComponents();
+      declarations: [PlaceholderBoxlineComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

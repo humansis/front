@@ -1,5 +1,1 @@
-export const FONTS = [
-    'Arial',
-    'Helvetica',
-    'Courier',
-];
+export const FONTS = ['Arial', 'Helvetica', 'Courier'];

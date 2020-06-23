@@ -3,17 +3,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { CustomModel } from '../custom-models/custom-model';
 
 export interface CustomDataSource<T> extends DataSource<T> {
+  dataSubject: BehaviorSubject<T[]>;
+  data$: Observable<T[]>;
 
-    dataSubject: BehaviorSubject<T[]>;
-    data$: Observable<T[]>;
+  loadingSubject: BehaviorSubject<boolean>;
+  loading$: Observable<boolean>;
 
-    loadingSubject: BehaviorSubject<boolean>;
-    loading$: Observable<boolean>;
+  lengthSubject: BehaviorSubject<number>;
+  length$: Observable<number>;
 
-    lengthSubject: BehaviorSubject<number>;
-    length$: Observable<number>;
+  loadData(filter?: Object, sort?: Object, pageIndex?: number, pageSize?: number);
 
-    loadData(filter?: Object, sort?: Object, pageIndex?: number, pageSize?: number);
-
-    getFilterFields(): CustomModel;
+  getFilterFields(): CustomModel;
 }

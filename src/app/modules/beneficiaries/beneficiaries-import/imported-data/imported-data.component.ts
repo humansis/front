@@ -10,48 +10,51 @@ import { Household } from 'src/app/models/household';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
 
 @Component({
-    selector: 'app-imported-data',
-    templateUrl: './imported-data.component.html',
-    styleUrls: ['./imported-data.component.scss']
+  selector: 'app-imported-data',
+  templateUrl: './imported-data.component.html',
+  styleUrls: ['./imported-data.component.scss'],
 })
 export class ImportedDataComponent implements OnInit, OnDestroy {
+  public data: MatTableDataSource<Household>;
+  public referedClassToken = Household;
+  public referedClassService = this._householdsService;
 
-    public data: MatTableDataSource<Household>;
-    public referedClassToken = Household;
-    public referedClassService = this._householdsService;
+  // Screen size
+  public currentDisplayType: DisplayType;
+  private screenSizeSubscription: Subscription;
 
-    // Screen size
-    public currentDisplayType: DisplayType;
-    private screenSizeSubscription: Subscription;
+  // Language
+  public language = this.languageService.selectedLanguage
+    ? this.languageService.selectedLanguage
+    : this.languageService.english;
 
-    // Language
-    public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english ;
+  constructor(
+    private _householdsService: HouseholdsService,
+    private importService: ImportService,
+    private router: Router,
+    public languageService: LanguageService,
+    private screenSizeService: ScreenSizeService
+  ) {}
 
-    constructor(
-        private _householdsService: HouseholdsService,
-        private importService: ImportService,
-        private router: Router,
-        public languageService: LanguageService,
-        private screenSizeService: ScreenSizeService,
-    ) { }
+  ngOnInit() {
+    this.screenSizeSubscription = this.screenSizeService.displayTypeSource.subscribe(
+      (displayType: DisplayType) => {
+        this.currentDisplayType = displayType;
+      }
+    );
+    const newHouseholds = this.importService.importedHouseholds;
+    this.data = new MatTableDataSource(newHouseholds);
+  }
 
-    ngOnInit() {
-        this.screenSizeSubscription = this.screenSizeService.displayTypeSource.subscribe((displayType: DisplayType) => {
-            this.currentDisplayType = displayType;
-        });
-        const newHouseholds = this.importService.importedHouseholds;
-        this.data = new MatTableDataSource(newHouseholds);
-    }
+  ngOnDestroy() {
+    this.screenSizeSubscription.unsubscribe();
+  }
 
-    ngOnDestroy() {
-        this.screenSizeSubscription.unsubscribe();
-    }
+  goBeneficiaries() {
+    this.router.navigate(['/beneficiaries']);
+  }
 
-    goBeneficiaries()  {
-        this.router.navigate(['/beneficiaries']);
-    }
-
-    goProject() {
-        this.router.navigate(['/projects']);
-    }
+  goProject() {
+    this.router.navigate(['/projects']);
+  }
 }

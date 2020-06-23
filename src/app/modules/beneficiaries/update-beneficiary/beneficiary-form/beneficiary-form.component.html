@@ -72,7 +72,7 @@
   <div class="column-container">
     <h4 class="location">{{ language.beneficiary_referral | uppercaseFirst }}</h4>
     <div class="referral-question" *ngIf="!form.controls.referralType.value && !form.controls.referralComment.value && !form.controls.addReferral.value">
-      <mat-checkbox formControlName="addReferral" type="checkbox" color="primary" [checked]="default">
+      <mat-checkbox formControlName="addReferral" type="checkbox" color="primary">
       </mat-checkbox>
       <span>{{ language.beneficiary_referral_question | uppercaseFirst }}</span>
     </div>

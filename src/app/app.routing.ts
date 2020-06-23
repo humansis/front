@@ -4,130 +4,85 @@ import { NotFoundComponent } from './components/error-pages/not-found/not-found.
 // Services
 import { AuthGuard } from './core/guards/auth.guard';
 import { DeactivateGuard } from './core/guards/deactivate.guard';
-import { LogoutGuard } from './core/guards/logout.guard';
 import { PermissionsGuard } from './core/guards/permissions.guard';
-import { AdministrationComponent } from './modules/administration/administration.component';
-import { BeneficiariesImportComponent } from './modules/beneficiaries/beneficiaries-import/beneficiaries-import.component';
-import { ImportedDataComponent } from './modules/beneficiaries/beneficiaries-import/imported-data/imported-data.component';
-import { BeneficiariesComponent } from './modules/beneficiaries/beneficiaries.component';
-import { DataValidationComponent } from './modules/beneficiaries/data-validation/data-validation.component';
-import { UpdateBeneficiaryComponent } from './modules/beneficiaries/update-beneficiary/update-beneficiary.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { GeneralSettingsComponent } from './modules/general-settings/general-settings.component';
-import { ProfileComponent } from './modules/profile/profile.component';
-import { AddDistributionComponent } from './modules/projects/add-distribution/add-distribution.component';
-import { DistributionsComponent } from './modules/projects/distributions/distributions.component';
-import { ProjectComponent } from './modules/projects/project.component';
 // Components
-import { LoginComponent } from './modules/public/login.component';
-import { ReportsComponent } from './modules/reports/reports.component';
-import { VouchersComponent } from './modules/vouchers/vouchers.component';
 
 // Do not change the order of the routes, it matters
 export const routes: Routes = [
-    {
-        path: 'login',
-        component: LoginComponent,
-        canActivate: [LogoutGuard],
-    },
-    {
-        path: 'projects',
-        component: ProjectComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'projects/add-distribution',
-        component: AddDistributionComponent,
-        canDeactivate: [DeactivateGuard],
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'projects/distributions/:id',
-        component: DistributionsComponent,
-        canDeactivate: [DeactivateGuard],
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'beneficiaries',
-        component: BeneficiariesComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'reports',
-        component: ReportsComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'settings',
-        component: GeneralSettingsComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'beneficiaries/import',
-        component: BeneficiariesImportComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'beneficiaries/imported',
-        component: ImportedDataComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'beneficiaries/import/data-validation',
-        component: DataValidationComponent,
-        canDeactivate: [DeactivateGuard],
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'beneficiaries/add-beneficiaries',
-        component: UpdateBeneficiaryComponent,
-        canDeactivate: [DeactivateGuard],
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'beneficiaries/update-beneficiary/:id',
-        component: UpdateBeneficiaryComponent,
-        canDeactivate: [DeactivateGuard],
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-
-    {
-        path: 'vouchers',
-        component: VouchersComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-    {
-        path: 'admin',
-        component: AdministrationComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-
-    // home route protected by auth guard
-    {
-        path: '', component: DashboardComponent,
-        canActivate: [AuthGuard, PermissionsGuard],
-    },
-
-    // otherwise redirect to home
-    {
-        path: '**',
-        component: NotFoundComponent,
-        canActivate: [AuthGuard],
-    },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/public/public.module').then((m) => m.PublicModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'projects',
+    loadChildren: () =>
+      import('./modules/projects/projects.module').then((m) => m.ProjectsModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'beneficiaries',
+    loadChildren: () =>
+      import('./modules/beneficiaries/beneficiaries.module').then(
+        (m) => m.BeneficiariesModule
+      ),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'reports',
+    loadChildren: () =>
+      import('./modules/reports/reports.module').then((m) => m.ReportsModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./modules/general-settings/general-settings.module').then(
+        (m) => m.GeneralSettingsModule
+      ),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'vouchers',
+    loadChildren: () =>
+      import('./modules/vouchers/vouchers.module').then((m) => m.VouchersModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/administration/administration.module').then(
+        (m) => m.AdministrationModule
+      ),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'logs',
+    loadChildren: () => import('./modules/logs/logs.module').then((m) => m.LogsModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
-    providers: [
-        DeactivateGuard,
-    ],
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
+  providers: [DeactivateGuard],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-
-
-export class AppRouting { }
+export class AppRouting {}

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ReliefApplications/bms_front.svg?branch=dev)](https://travis-ci.org/ReliefApplications/bms_front)
+[![Build Status](https://travis-ci.com/humansis/front.svg?branch=dev)](https://travis-ci.com/humansis/front)
 [![GitHub version](https://badge.fury.io/gh/ReliefApplications%2Fbms_front.svg)](https://badge.fury.io/gh/ReliefApplications%2Fbms_front)
 
 Humansis - Beneficiary Management System
@@ -8,21 +8,21 @@ A platform that allows humanitarian organisations to manage relief items (Food, 
 
 # About
 
-Humansis is the first fully open-source relief platform for humanitarian actors to efficiently manage relief operations after a disaster, during a war or in response to long term crises. 
+Humansis is the first fully open-source relief platform for humanitarian actors to efficiently manage relief operations after a disaster, during a war or in response to long term crises.
 
 ## What's here
 
-This repo is the "master" repo for all Humansis-related projects. It hosts 
+This repo is the "master" repo for all Humansis-related projects. It hosts
 the documentation, the frontend and other misc. Code for other
-projects, like the [API](https://github.com/humansis/bms_api) is hosted in other repositories. 
+projects, like the [API](https://github.com/humansis/bms_api) is hosted in other repositories.
 
 ## Contributing
 
 We welcome contributions from anyone who acts in good faith and in a respectful manner and adds value to the project.
 
 **We are looking for collaboration from the Open Source community!**
-There's so much we want to do, including but not limited to: enhancing existing 
-applications with new features, optimizing the technical tools and algorithms 
+There's so much we want to do, including but not limited to: enhancing existing
+applications with new features, optimizing the technical tools and algorithms
 involved to accommodate humanitarian challenges, and bringing our work closer to
 the public to leverage their inputs via blog posts and tutorials.
 
@@ -92,7 +92,7 @@ To start coding in a safe environment, please launch the docker container with t
 sudo docker-compose up devapp
 ```
 
-If it's the first time, please run 
+If it's the first time, please run
 ```bash
 sudo ./docker-build.sh bms/front
 ```

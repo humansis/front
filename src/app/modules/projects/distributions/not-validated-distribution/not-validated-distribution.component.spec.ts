@@ -8,9 +8,8 @@ describe('NotValidatedDistributionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotValidatedDistributionComponent ]
-    })
-    .compileComponents();
+      declarations: [NotValidatedDistributionComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

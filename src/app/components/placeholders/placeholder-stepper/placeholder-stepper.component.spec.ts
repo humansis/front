@@ -8,9 +8,8 @@ describe('PlaceholderStepperComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaceholderStepperComponent ]
-    })
-    .compileComponents();
+      declarations: [PlaceholderStepperComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

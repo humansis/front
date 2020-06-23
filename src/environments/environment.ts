@@ -3,10 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false
+  production: false,
+  name: 'testing',
 };
 
-export const URL_BMS_API = 'https://apitest.bmstaging.info/api/wsse';
+export const URL_BMS_API = 'https://apidev.humansis.org/api/wsse';
 
 /*
  * In development mode, to ignore zone related error stack frames such as

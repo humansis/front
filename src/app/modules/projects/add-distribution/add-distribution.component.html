@@ -8,7 +8,7 @@
           <form [formGroup]="form">
             <mat-form-field class="accordion-field">
               <input matInput [matDatepicker]="dateDistribution" [placeholder]="objectInstance.fields.date.title | uppercaseFirst"
-                formControlName="date" [min]="getMinDate()" [max]="projectInfo.endDate" required>
+                formControlName="date" [max]="projectInfo.endDate" required>
               <mat-datepicker-toggle matSuffix [for]="dateDistribution"></mat-datepicker-toggle>
               <mat-datepicker #dateDistribution></mat-datepicker>
               <app-hint-error [form]="form" fieldName="date" [field]="objectInstance.fields.date" [isMatField]="true"></app-hint-error>

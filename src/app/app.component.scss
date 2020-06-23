@@ -1,7 +1,7 @@
 @import '../assets/css/variable.scss';
 
 .bms-logo {
-    background: white;
+    background: $bms_white;
 }
 
 .app-component {
@@ -20,7 +20,35 @@
         &.mobile-side-nav {
             margin-top: 56px;
         }
+
+        &.show {
+            .bottom {
+                .short {
+                    display: none;
+                }
+                .long {
+                    display: block;
+                }
+            }
+        }
+
+        .bottom {
+            position: absolute;
+            bottom: 0px;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+
+            .short {
+                display: block;
+            }
+            .long {
+                display: none;
+            }
+        }
     }
+
 
     .page-content-wrapper {
         width: 100%;

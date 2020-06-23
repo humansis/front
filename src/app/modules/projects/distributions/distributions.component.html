@@ -22,14 +22,14 @@
                     </div>
                 </div>
                 <h4 class="last-modification">
-                    {{ language.distribution_last_modification | uppercaseFirst}} 
+                    {{ language.distribution_last_modification | uppercaseFirst}}
                     <ng-container *ngIf="updated; else notUpdated">
                         {{ language.time_just_now }}
                     </ng-container>
                     <ng-template #notUpdated>
                         {{actualDistribution.get('updatedOn') | date: 'dd-MM-yyyy HH:mm' }}
                     </ng-template>
-                    
+
                 </h4>
             </div>
             <app-box-properties *ngIf="actualDistribution" class="properties-displayed" [displayedInstance]="actualDistribution"></app-box-properties>
@@ -38,24 +38,27 @@
 
     <app-placeholder-stepper *ngIf="loadingDatas"></app-placeholder-stepper>
 
-    <app-not-validated-distribution *ngIf="!loadingDistribution && actualDistribution && !actualDistribution.get('validated')" 
-        [actualDistribution]="actualDistribution"  (emitStore)="storeBeneficiaries($event)" (isUpdated)="updated = true" (hideSnackEmitter)="hideSnack = true">
+    <app-not-validated-distribution *ngIf="!loadingDistribution && actualDistribution && !actualDistribution.get('validated')"
+                                    [actualDistribution]="actualDistribution"  (emitStore)="storeBeneficiaries($event)" (isUpdated)="updated = true" (hideSnackEmitter)="hideSnack = true">
     </app-not-validated-distribution>
 
     <ng-container *ngIf="actualDistribution && actualDistribution.get('validated')">
         <app-mobile-money *ngIf="getDistributionType() === 'mobile-money' && !loadingDatas" [actualDistribution]="actualDistribution"
-            [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)" (finishedEmitter)="finishDistribution()"
-            [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
+                          [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)" (finishedEmitter)="finishDistribution()"
+                          (dataChanged)="getSelectedDistribution()"
+                          [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
         </app-mobile-money>
 
         <app-general-relief *ngIf="getDistributionType() === 'general-relief' && !loadingDatas" [actualDistribution]="actualDistribution"
-            [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)" (finishedEmitter)="finishDistribution()"
-            [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
+                            [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)" (finishedEmitter)="finishDistribution()"
+                            (dataChanged)="getSelectedDistribution()"
+                            [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
         </app-general-relief>
 
         <app-qr-voucher (reloadTable)="getSelectedDistribution()" *ngIf="getDistributionType() === 'qr-voucher' && !loadingDatas"
-            [actualDistribution]="actualDistribution" [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)"
-            [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
+                        [actualDistribution]="actualDistribution" [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)"
+                        (dataChanged)="getSelectedDistribution()"
+                        [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
         </app-qr-voucher>
     </ng-container>
 </div>

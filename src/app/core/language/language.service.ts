@@ -6,89 +6,93 @@ import { English } from './translations/language-english';
 import { Russian } from './translations/language-russian';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
-//
-// ─── VARIABLES ──────────────────────────────────────────────────────────────────
-//
-    public english = new English();
-    public arabic = new Arabic();
-    public russian = new Russian();
+  //
+  // ─── VARIABLES ──────────────────────────────────────────────────────────────────
+  //
+  public english = new English();
+  public arabic = new Arabic();
+  public russian = new Russian();
 
-    public readonly enabledLanguages: Array<Language> = [this.english, this.arabic, this.russian];
+  public readonly enabledLanguages: Array<Language> = [
+    this.english,
+    this.arabic,
+    this.russian,
+  ];
 
-    // This default value's reference is not contained in enabledLanguages.
-    private _selectedLanguage: Language = undefined;
-    get selectedLanguage() {
-        return this._selectedLanguage;
-    }
-    set selectedLanguage(language: Language) {
-        this._selectedLanguage = language;
-        this.setMargins();
-    }
-//
-// ─── HELPER FUNCTIONS ───────────────────────────────────────────────────────────
-//
-    public clearLanguage(): Language {
-        this.selectedLanguage = undefined;
-        return this.selectedLanguage;
-    }
+  // This default value's reference is not contained in enabledLanguages.
+  private _selectedLanguage: Language = undefined;
+  get selectedLanguage() {
+    return this._selectedLanguage;
+  }
+  set selectedLanguage(language: Language) {
+    this._selectedLanguage = language;
+    this.setMargins();
+  }
+  //
+  // ─── HELPER FUNCTIONS ───────────────────────────────────────────────────────────
+  //
+  public clearLanguage(): Language {
+    this.selectedLanguage = undefined;
+    return this.selectedLanguage;
+  }
 
-//
-// ─── TYPE CONVERSION ────────────────────────────────────────────────────────────
-//
-    // TODO: do not use language as string anymore
-    public stringToLanguage(language: string): Language {
-        switch (language) {
-            case 'ar':
-                return this.arabic;
-            case 'en':
-                return this.english;
-            case 'ru':
-                return this.russian;
-            case 'fr':
-                return null;
-        }
+  //
+  // ─── TYPE CONVERSION ────────────────────────────────────────────────────────────
+  //
+  // TODO: do not use language as string anymore
+  public stringToLanguage(language: string): Language {
+    switch (language) {
+      case 'ar':
+        return this.arabic;
+      case 'en':
+        return this.english;
+      case 'ru':
+        return this.russian;
+      case 'fr':
+        return null;
     }
+  }
 
-    public languageToString(language: Language): string {
-        switch (language) {
-            case this.arabic:
-                return 'ar';
-            case this.english:
-                return 'en';
-            case this.russian:
-                return 'ru';
-            case null:
-                return 'fr';
-        }
+  public languageToString(language: Language): string {
+    switch (language) {
+      case this.arabic:
+        return 'ar';
+      case this.english:
+        return 'en';
+      case this.russian:
+        return 'ru';
+      case null:
+        return 'fr';
     }
-//
-// ─── MISC ───────────────────────────────────────────────────────────────────────
-//
-    public countryToDefaultLanguage(country: Country): Language {
-        switch (country.get<string>('id')) {
-            case 'SYR':
-                return this.arabic;
-            case 'UKR':
-                return this.russian;
-            case 'KHM':
-            default:
-                return this.english;
-        }
+  }
+  //
+  // ─── MISC ───────────────────────────────────────────────────────────────────────
+  //
+  public countryToDefaultLanguage(country: Country): Language {
+    switch (country.get<string>('id')) {
+      case 'SYR':
+        return this.arabic;
+      case 'UKR':
+        return this.russian;
+      case 'KHM':
+      default:
+        return this.english;
     }
+  }
 
-    public setMargins() {
-        const element = document.getElementsByTagName('mat-sidenav-content') as HTMLCollectionOf<HTMLElement>;
-        if (this.selectedLanguage === this.arabic) {
-            document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
-            element[0].style.margin = '0px 64px 0px 0px';
-        } else {
-            document.getElementsByTagName('html')[0].setAttribute('dir', '');
-            element[0].style.margin = '0px 0px 0px 64px';
-        }
+  public setMargins() {
+    const element = document.getElementsByTagName(
+      'mat-sidenav-content'
+    ) as HTMLCollectionOf<HTMLElement>;
+    if (this.selectedLanguage === this.arabic) {
+      document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
+      element[0].style.margin = '0px 64px 0px 0px';
+    } else {
+      document.getElementsByTagName('html')[0].setAttribute('dir', '');
+      element[0].style.margin = '0px 0px 0px 64px';
     }
-
-
+  }
 }

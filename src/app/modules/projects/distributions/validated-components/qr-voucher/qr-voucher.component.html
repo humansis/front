@@ -32,10 +32,6 @@
 
         <div class="content-button">
             <div class="action-buttons">
-                <button [disabled]="actualDistribution.get('finished')" mat-flat-button *ngIf="!loadingAssign && userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')"
-                    class="button-background-primary" (click)="openAssignDialog()">
-                    <span>{{language.voucher_assign | uppercaseFirst }}</span>
-                </button>
                 <mat-spinner [diameter]='25' *ngIf="loadingAssign"></mat-spinner>
                 <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
                     <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'voucherDistribution')" *ngIf="!loadingExport">
@@ -48,7 +44,7 @@
                             <mat-icon>keyboard_arrow_down</mat-icon>
                         </button>
                         <mat-menu #exportTypeTransaction class="extMenu">
-                            <button mat-menu-item (click)="extensionType = 'xls'"> .xls <mat-icon *ngIf="extensionType=='xls'">done</mat-icon>
+                            <button mat-menu-item (click)="extensionType = 'xlsx'"> .xlsx <mat-icon *ngIf="extensionType=='xlsx'">done</mat-icon>
                             </button>
                             <button mat-menu-item (click)="extensionType = 'csv'"> .csv <mat-icon *ngIf="extensionType=='csv'">done</mat-icon>
                             </button>

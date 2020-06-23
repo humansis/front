@@ -5,19 +5,16 @@ import { LanguageService } from 'src/app/core/language/language.service';
 @Component({
   selector: 'app-box-dashboard',
   templateUrl: './box-dashboard.component.html',
-  styleUrls: ['./box-dashboard.component.scss']
+  styleUrls: ['./box-dashboard.component.scss'],
 })
 export class BoxDashboardComponent {
   @Input() info: any;
 
-  public language = this.languageService.selectedLanguage ? this.languageService.selectedLanguage : this.languageService.english ;
+  public language = this.languageService.selectedLanguage
+    ? this.languageService.selectedLanguage
+    : this.languageService.english;
 
-
-  constructor(
-    private router: Router,
-    public languageService: LanguageService,
-
-  ) { }
+  constructor(private router: Router, public languageService: LanguageService) {}
 
   changeRoute(route): void {
     this.router.navigate([route]);

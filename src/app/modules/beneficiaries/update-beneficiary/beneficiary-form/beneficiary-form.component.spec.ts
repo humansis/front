@@ -8,9 +8,8 @@ describe('BeneficiaryFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeneficiaryFormComponent ]
-    })
-    .compileComponents();
+      declarations: [BeneficiaryFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

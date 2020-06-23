@@ -8,9 +8,8 @@ describe('PlaceholderSummaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaceholderSummaryComponent ]
-    })
-    .compileComponents();
+      declarations: [PlaceholderSummaryComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
