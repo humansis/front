@@ -185,24 +185,23 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
   }
 
   // To know if the value input/select is gonna be displayed
-  needsValue(field) {
+  isBooleanValue(field) {
     return [
-      'gender',
-      'dateOfBirth',
-      'equityCardNo',
-      'IDPoor',
-      'headOfHouseholdDateOfBirth',
-      'headOfHouseholdGender',
-      'livelihood',
-      'foodConsumptionScore',
-      'copingStrategiesIndex',
-      'householdSize',
-      'incomeLevel',
-      'residencyStatus',
-      'hasNotBeenInDistributionsSince',
-      'locationType',
-      'campName',
+      'disabled',
+      'soloParent',
+      'lactating ',
+      'pregnant ',
+      'nutritionalIssues',
     ].includes(field);
+  }
+
+  getType(field) {
+    if (this.criteriaSubList) {
+      const criteria = this.criteriaSubList.find((item) => item.get('field') === field);
+      if (criteria) {
+        return criteria.get('type');
+      }
+    }
   }
 
   /**
@@ -368,13 +367,7 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
 
     this.criteria.set('weight', controls.weight.value);
 
-    if (
-      (controls.field.value === 'gender' ||
-        controls.field.value === 'dateOfBirth' ||
-        controls.field.value === 'IDPoor' ||
-        controls.field.value === 'equityCardNo') &&
-      !controls.value.value
-    ) {
+    if (!this.isBooleanValue(controls.field.value) && !controls.value.value) {
       this.snackbar.error(this.language.modal_add_no_value);
     } else {
       this.modalReference.close(this.criteria);
