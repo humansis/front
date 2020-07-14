@@ -2,5 +2,17 @@
     width: 100%;
 }
 
+.phone-number {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    .prefix {
+        width: 30%;
+    }
 
+    .number {
+        width: 60%;
+    }
+
+}

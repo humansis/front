@@ -11,22 +11,28 @@
                    [placeholder]="language.institution_contact_family_name"
                    formControlName="contact_family_name">
         </mat-form-field>
-        <ng-select
-            [multiple]="false"
-            [closeOnSelect]="true"
-            [searchable]="true"
-            class="single-select"
-            formControlName="phone_prefix"
-            [placeholder]="language.phone_prefix">
-            <ng-option *ngFor="let code of phoneCodes" [value]="code">
-                {{code}}
-            </ng-option>
-        </ng-select>
-        <mat-form-field>
-            <input matInput
-                   [placeholder]="language.phone_no"
-                   formControlName="phone_number">
-        </mat-form-field>
+        <div>
+            <strong>{{language.user_phone_number}}</strong>
+            <div class="phone-number">
+                <ng-select
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [searchable]="true"
+                    class="single-select prefix"
+                    formControlName="phone_prefix"
+                    [placeholder]="language.phone_prefix">
+                    <ng-option *ngFor="let code of phoneCodes" [value]="code">
+                        {{code}}
+                    </ng-option>
+                </ng-select>
+                <mat-form-field class="number">
+                    <input matInput
+
+                           [placeholder]="language.phone_no"
+                           formControlName="phone_number">
+                </mat-form-field>
+            </div>
+        </div>
         <div formGroupName="national_id">
             <ng-select
                 [multiple]="false"
