@@ -79,7 +79,7 @@
                                         </div>
                                         <div>
                                             <ng-select class="multiple-select" formControlName="assets"
-                                                       placeholder="{{language.household_assets | uppercaseFirst}} *" [multiple]="true"
+                                                       placeholder="{{language.household_assets | uppercaseFirst}}" [multiple]="true"
                                                        [closeOnSelect]="false" [searchable]="true">
                                                 <ng-option *ngFor="let asset of household.getOptions('assets')"
                                                            [value]="asset.get('id')">
@@ -120,7 +120,7 @@
                                         <h4>{{ language.add_beneficiary_external_support | uppercaseFirst }}</h4>
                                         <div>
                                             <ng-select class="multiple-select" formControlName="supportReceivedOtherOrg"
-                                                       placeholder="{{language.household_support_received_other_org | uppercaseFirst}} *" [multiple]="true"
+                                                       placeholder="{{language.household_support_received_other_org | uppercaseFirst}}" [multiple]="true"
                                                        [closeOnSelect]="false" [searchable]="true">
                                                 <ng-option *ngFor="let support of household.getOptions('supportReceivedOtherOrg')"
                                                            [value]="support.get('id')">
