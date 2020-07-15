@@ -518,6 +518,7 @@ export interface Language {
   log_import_beneficiaries_from_syria_file: string;
   log_import_beneficiary: string;
   log_post_language: string;
+  log_update_password: string;
   log_post_password: string;
   log_scan: string;
   log_remove_many: string;

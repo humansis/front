@@ -101,7 +101,7 @@ export class Arabic implements Language {
   id = 'دخول';
   justification = 'مبرر';
   male = 'الرجل';
-  notes = 'الملاحظات';
+  notes = 'ملاحظات';
   other = 'آخر';
   password = 'كلمة المرور';
   status = 'الرتبة في الأسرة';
@@ -115,7 +115,7 @@ export class Arabic implements Language {
   error_interceptor_msg = '(وقع خطأ: لا يمكن الاستجابة (محتوى فارغ';
   forbidden = 'الصفحة ممنوعة';
   forbidden_message = 'عذرا , ليس لديك إذن للدخول إلى هذه الصفحة';
-  not_connected_error = 'Please log in';
+  not_connected_error = 'الرجاء تسجيل الدخول';
   not_enough_rights = 'لا توجد حقوق كافية لطلب السجلات';
   not_found = 'الصفحة غير موجودة';
   not_found_message = 'عذرا , لا يمكن العثور على هذه الصفحة';
@@ -461,11 +461,11 @@ export class Arabic implements Language {
   household_no_data_offline = 'لا يمكن الوصول إلى هذه البيانات في وضع عدم الاتصال';
   household_sentence = 'الأسرة من';
   household_summary_members = 'أفراد الأسرة';
-  household_debt_level = this.missingTranslation;
-  household_support_received_other_org = this.missingTranslation;
-  household_support_date_received = this.missingTranslation;
-  household_assets = this.missingTranslation;
-  household_shelter_status = this.missingTranslation;
+  household_debt_level = 'مستوى الدين';
+  household_support_received_other_org = 'نوع الدعم الخارجي المستلم';
+  household_support_date_received = 'تاريخ تلقي الدعم';
+  household_assets = 'ممتلكات';
+  household_shelter_status = 'حالة المأوى';
   household_status = this.missingTranslation;
 
   // Import
@@ -582,7 +582,7 @@ export class Arabic implements Language {
   log_requests_country_title = 'طلبات لكل بلد';
   log_requests_day_title = 'طلبات في اليوم الواحد';
   log_status_rate_title = 'معدل الوضع';
-  log_time = 'زمن';
+  log_time = 'الوقت';
   log_users = 'المستخدم';
   log_username = 'اسم المستخدم';
   log_value = 'القيمة';
@@ -597,9 +597,9 @@ export class Arabic implements Language {
 
   // Login
   login_bms = 'نظام إدارة المستفيدين';
-  login_captcha_invalid = 'The captcha is invalid';
+  login_captcha_invalid = 'كلمة التحقق غير صالحة';
   login_password = 'كلمة المرور';
-  login_prompt = 'Please log in';
+  login_prompt = 'الرجاء تسجيل الدخول';
   login_title = ' تسجيل الدخول الى الحساب';
   login_title_hid = 'Humanitarian ID تسجيل الدخول مع';
   login_title_google = 'Google تسجيل الدخول مع';
@@ -659,8 +659,8 @@ export class Arabic implements Language {
   national_id_passport = 'جواز سفر';
   national_id_birth_certificate = 'شهادة الميلاد';
   national_id_type = 'نوع الهوية الوطنية';
-  national_id_camp = this.missingTranslation;
-  national_id_social_service = this.missingTranslation;
+  national_id_camp = 'معرف المخيم';
+  national_id_social_service = 'بطاقة الخدمة الاجتماعية';
 
   // Null values
   null_none = 'لا شيء';
@@ -772,7 +772,7 @@ export class Arabic implements Language {
   report_project = 'المشروع';
   report_project_report = 'الرسوم البيانية حسب المشروع';
   report_select_frequency = 'اختر التكرار';
-  report_time = 'زمن';
+  report_time = 'الوقت';
   report_to = 'إلى';
   report_total_households = 'مجموع الأسر';
   report_total_number_of_distributions = 'إجمالي عدد التوزيعات';

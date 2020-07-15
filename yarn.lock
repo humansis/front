@@ -9733,6 +9733,13 @@ ts-custom-error@^3.0.0:
   resolved "https://registry.yarnpkg.com/ts-custom-error/-/ts-custom-error-3.1.1.tgz#d30c7415461dac93dc2cc9e9eb2dae92e6423901"
   integrity sha512-f/syoy+pTE4z82qaiRuthEeZtCGNKzlfs0Zc8jpQFcz/CYMaFSwFSdfFt1sSFnPlDLOEm7RCROdIxZ44N8UlwA==
 
+ts-file-parser@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/ts-file-parser/-/ts-file-parser-0.0.16.tgz#ac203fe4eab0db06db5157f30fdc1598c07c9ec0"
+  integrity sha512-yWVsVsRxno/ilORXXAtm+p70WgADnBISJaWclFIqxDn8od5pj9z7Gl8Bmsb5+onbIFVLMNLn+4cq1QQaCW2qmg==
+  dependencies:
+    typescript "2.7.2"
+
 ts-node@~8.8.1:
   version "8.8.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.8.1.tgz#7c4d3e9ed33aa703b64b28d7f9d194768be5064d"
@@ -9835,6 +9842,11 @@ typedarray@^0.0.6, typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
+  integrity sha512-p5TCYZDAO0m4G344hD+wx/LATebLWZNkkh2asWUFqSsD2OrDNhbAHuSjobrmsUmdzjJjEeZVU9g1h3O6vpstnw==
 
 typescript@3.8.3, typescript@~3.8.3:
   version "3.8.3"

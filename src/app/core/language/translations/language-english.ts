@@ -201,7 +201,7 @@ export class English implements Language {
   beneficiary_add_project =
     'Please select the project(s) in which you would like to add the';
   beneficiary_add_project_title = 'Add beneficiaries to a project';
-  beneficiary_added = 'Beneficiairies added to the selected project';
+  beneficiary_added = 'Beneficiaries added to the selected project';
   beneficiary_advanced_research = 'Advanced search';
   beneficiary_clear_all_research = 'Clear all';
   beneficiary_count = 'Beneficiaries count';
@@ -694,6 +694,7 @@ export class English implements Language {
     2: 'nd',
     3: 'rd',
   };
+
   number_suffix_other = 'th';
 
   // Organization
