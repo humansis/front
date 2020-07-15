@@ -38,11 +38,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private countriesService: CountriesService
   ) {}
 
-  @HostListener('window:resize')
-  onResize() {
-    this.screenSizeService.onScreenSizeChange();
-  }
-
   ngOnInit() {
     this.subscriptions = [
       this.screenSizeService.displayTypeSource.subscribe((displayType: DisplayType) => {

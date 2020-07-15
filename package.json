@@ -65,6 +65,7 @@
     "leaflet.markercluster": "^1.4.1",
     "ng-recaptcha": "^5.0.0",
     "ng2-charts": "2.3.0",
+    "ngx-device-detector": "^1.4.5",
     "rxjs": "^6.5.4",
     "zone.js": "~0.10.3"
   },

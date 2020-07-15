@@ -6722,6 +6722,13 @@ ng2-charts@2.3.0:
     lodash "^4.17.11"
     tslib "^1.9.0"
 
+ngx-device-detector@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/ngx-device-detector/-/ngx-device-detector-1.4.5.tgz#3ede63eb92cab34fd464b6226a194954b80d531d"
+  integrity sha512-e3OlUKPrg+hoichpn/wx+C/YicUfdR6SIFo6848Nv5JbpLaMDvEgqsJsQjSGP2phKSnFIsOsDKHBb8iGfZfDLw==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

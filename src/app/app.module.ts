@@ -22,6 +22,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LogsModule } from './modules/logs/logs.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HistoryTableComponent } from './components/history-table/history-table.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { HistoryTableComponent } from './components/history-table/history-table.
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DeviceDetectorModule,
     SharedModule,
     NgSelectModule,
 
