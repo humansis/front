@@ -273,6 +273,7 @@ import { HistoryTableComponent } from 'src/app/components/history-table/history-
     BoxSettingComponent,
     MatCheckboxModule,
     MatTooltipModule,
+    MatTooltipModule,
     MatSelectModule,
     MatTableModule,
     MatOptionModule,

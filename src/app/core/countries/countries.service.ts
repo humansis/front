@@ -14,7 +14,8 @@ export class CountriesService {
 
   constructor() {}
 
-  private _selectedCountry: Country;
+  private _selectedCountry: Country = this.khm;
+
   get selectedCountry(): Country {
     return this._selectedCountry;
   }

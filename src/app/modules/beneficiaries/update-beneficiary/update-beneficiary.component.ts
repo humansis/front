@@ -576,7 +576,7 @@ export class UpdateBeneficiaryComponent
   }
 
   //
-  // ─── SUMBIT FUNCTIONS ───────────────────────────────────────────────────────────
+  // ─── SUBMIT FUNCTIONS ───────────────────────────────────────────────────────────
   //
 
   /**

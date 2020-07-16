@@ -89,7 +89,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
   projects: Array<Project>;
   distributions: Array<Distribution>;
 
-  subscriptions: Array<Subscription>;
+  subscriptions: Array<Subscription> = [];
   getAllSubscription: Subscription;
 
   // Graphs

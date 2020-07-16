@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { YearPickerComponent } from './year-picker.component';
+import { FormControl } from '@angular/forms';
 
 describe('YearPickerComponent', () => {
   let component: YearPickerComponent;
@@ -15,6 +16,7 @@ describe('YearPickerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(YearPickerComponent);
     component = fixture.componentInstance;
+    component.control = new FormControl('');
     fixture.detectChanges();
   });
 

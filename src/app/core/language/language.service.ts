@@ -53,6 +53,8 @@ export class LanguageService {
         return this.russian;
       case 'fr':
         return null;
+      default:
+        return this.english;
     }
   }
 
@@ -66,6 +68,8 @@ export class LanguageService {
         return 'ru';
       case null:
         return 'fr';
+      default:
+        return 'en';
     }
   }
   //
