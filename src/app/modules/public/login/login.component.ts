@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .then((result: any) => {
         if (result.credential) {
           this.router.navigateByUrl(
-            '/sso?origin=google&token=' + result.credential.idToken
+            '/login/sso?origin=google&token=' + result.credential.idToken
           );
         }
       })

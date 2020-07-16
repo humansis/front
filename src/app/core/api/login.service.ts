@@ -44,7 +44,7 @@ export class LoginService {
   public login(username: string, password: string) {
     this.clearSessionCacheEntries();
     // Set default redirectUrl
-    this.redirectUrl = '/dashboard';
+    this.redirectUrl = '/';
 
     return this.authService.login(username, password).pipe(
       switchMap((userFromApi: any) => {
@@ -64,7 +64,7 @@ export class LoginService {
     return this.organizationServicesService.get2FAToken(userFromApi).pipe(
       switchMap((token: any) => {
         if (token && User.apiToModel(userFromApi).get('twoFactorAuthentication')) {
-          this.redirectUrl = '/sso';
+          this.redirectUrl = '/login/sso';
           return this.sendCode(userFromApi, token);
         } else {
           return this.setUserCache(userFromApi);
