@@ -344,14 +344,14 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   isAllSelected() {
-    return this.selection.selected.length === this.tableData.data.length;
+    return this.selection.selected.length === this.tableData.filteredData.length;
   }
 
   masterToggle() {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.tableData.data.forEach((row) => {
+      this.tableData.filteredData.forEach((row) => {
         this.selection.select(row);
       });
     }
