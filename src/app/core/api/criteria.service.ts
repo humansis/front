@@ -45,15 +45,14 @@ export class CriteriaService extends CustomModelService {
     let conditionNames = [];
 
     const compared = ['dateOfBirth', 'headOfHouseholdDateOfBirth', 'householdSize'];
-    const nonEqual = [
-      'gender',
-      'equityCardNo',
-      'locationType',
-      'headOfHouseholdGender',
-      'residencyStatus',
+    const booleanFields = [
+      'disabled',
+      'soloParent',
+      'lactating ',
+      'pregnant ',
+      'nutritionalIssues',
     ];
     const equal = [
-      'IDPoor',
       'livelihood',
       'foodConsumptionScore',
       'campName',
@@ -65,12 +64,12 @@ export class CriteriaService extends CustomModelService {
 
     if (compared.includes(fieldName)) {
       conditionNames = ['>', '<', '>=', '<=', '=', '!='];
-    } else if (nonEqual.includes(fieldName)) {
-      conditionNames = ['=', '!='];
+    } else if (booleanFields.includes(fieldName)) {
+      conditionNames = ['true', 'false'];
     } else if (equal.includes(fieldName)) {
       conditionNames = ['='];
     } else {
-      conditionNames = ['true', 'false'];
+      conditionNames = ['=', '!='];
     }
 
     conditionNames.forEach((name, index) => {

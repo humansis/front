@@ -37,8 +37,7 @@
               </td>
           </tr>
 
-          <tr class="modal-row"
-              *ngIf="form.controls.field.value !== 'IDPoor' || form.controls.field.value !== 'equityCardNo'">
+          <tr class="modal-row">
               <th class="table-title">{{ criteria.fields.condition.title  | uppercaseFirst }}</th>
               <td class="form-item">
                   <mat-form-field class="full-width">
@@ -55,7 +54,7 @@
               </td>
           </tr>
 
-          <tr class="modal-row" *ngIf="needsValue(form.controls.field.value)">
+          <tr class="modal-row" *ngIf="!isBooleanValue(form.controls.field.value)">
             <th class="table-title">{{ criteria.fields.value.title  | uppercaseFirst }}</th>
             <td class="form-item">
               <ng-select appendTo="body" *ngIf="form.controls.field.value === 'gender' || form.controls.field.value === 'headOfHouseholdGender'; else livelihood" class="single-select" formControlName="value" [closeOnSelect]="true" [searchable]="true">
@@ -104,7 +103,7 @@
 
               <ng-template #text>
                 <mat-form-field class="full-width">
-                    <input formControlName="value" matInput type="text">
+                    <input formControlName="value" matInput [type]="getType(form.controls.field.value)">
                     <app-hint-error [form]="form" fieldName="value" [field]="criteria.fields.value" [isMatField]="true"></app-hint-error>
                 </mat-form-field>
               </ng-template>
