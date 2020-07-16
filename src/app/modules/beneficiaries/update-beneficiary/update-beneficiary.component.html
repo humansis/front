@@ -62,6 +62,9 @@
                                                         {{ option.get('name')  | uppercaseFirst }}
                                                     </mat-option>
                                                 </mat-select>
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.incomeLevel, 'income_level')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
                                             </mat-form-field>
                                         </div>
                                         <div>
@@ -446,6 +449,5 @@
                        [id]="household.get('id')"
                        [title]="historyTitle"
                        [attribute]="historyAttribute"
-
     ></app-history-table>
 </mde-popover>
