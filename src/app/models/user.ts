@@ -141,13 +141,15 @@ export class User extends CustomModel {
       title: this.language.user_phone_prefix,
       isDisplayedInTable: true,
       isDisplayedInModal: true,
-      isEditable: false,
+      isSettable: true,
+      isEditable: true,
     }),
     phoneNumber: new NumberModelField({
       title: this.language.user_phone_number,
       isDisplayedInTable: true,
       isDisplayedInModal: true,
-      isEditable: false,
+      isSettable: true,
+      isEditable: true,
     }),
     twoFactorAuthentication: new BooleanModelField({
       isDisplayedInTable: false,
