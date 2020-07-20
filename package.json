@@ -6,6 +6,7 @@
     "start": "node --max-old-space-size=8192 ./node_modules/.bin/ng serve --poll 2000",
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/ng build",
     "test": "ng test",
+    "test:dev": "ng test --karma-config src/karma-dev.conf.js",
     "extract-translations": "node scripts/extract-translations.js",
     "serve": "ng serve",
     "lint": "ng lint",

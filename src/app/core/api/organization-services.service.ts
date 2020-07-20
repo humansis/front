@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { WsseService } from '../authentication/wsse.service';
 import { HttpHeaders } from '@angular/common/http';
+import { CountriesService } from 'src/app/core/countries/countries.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class OrganizationServicesService extends CustomModelService {
     protected http: HttpService,
     protected languageService: LanguageService,
     public exportService: ExportService,
-    protected wsseService: WsseService
+    protected wsseService: WsseService,
+    private countriesService: CountriesService
   ) {
     super(http, languageService);
   }
@@ -55,6 +57,9 @@ export class OrganizationServicesService extends CustomModelService {
     }
     return this.wsseService.getHeaderValue(userFromApi).pipe(
       switchMap((headerValue: string) => {
+        this.countriesService.selectedCountry = this.countriesService.stringToCountry(
+          userCountry
+        );
         const options = {
           headers: new HttpHeaders({
             'x-wsse': headerValue,
