@@ -165,7 +165,7 @@ export class Russian implements Language {
   add_distribution_missing_date = 'Дата отсутствует';
   add_distribution_missing_location = 'Добавьте провинцию';
   add_distribution_missing_selection_criteria = 'Критерий отбора отсутствует';
-  add_distribution_missing_threshold = 'Значение минимальной оценки должно быть больше 0';
+  add_distribution_missing_threshold = this.missingTranslation;
   add_distribution_multiple_modalities =
     'Вы не можете добавлять товары, которые распределяются не одинаково';
   add_distribution_no_beneficiaries =

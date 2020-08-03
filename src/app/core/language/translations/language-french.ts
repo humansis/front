@@ -168,7 +168,7 @@ export class French implements Language {
   add_distribution_missing_date = 'La date est manquante';
   add_distribution_missing_location = 'Add a Province';
   add_distribution_missing_selection_criteria = 'Un critère de sélection est manquant';
-  add_distribution_missing_threshold = 'Le score minimum doit être plus grand que 0';
+  add_distribution_missing_threshold = this.missingTranslation;
   add_distribution_multiple_modalities =
     'Vous ne pouvez pas ajouter des commodités distribuées différemment';
   add_distribution_no_beneficiaries =

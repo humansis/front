@@ -399,7 +399,7 @@ export class AddDistributionComponent implements OnInit, DesactivationGuarded, O
       this.snackbar.error(this.language.add_distribution_missing_commodity);
     } else if (!this.form.controls.date.value) {
       this.snackbar.error(this.language.add_distribution_missing_date);
-    } else if (this.form.controls.threshold.value <= 0) {
+    } else if (this.form.controls.threshold.value < 0) {
       this.snackbar.error(this.language.add_distribution_missing_threshold);
     } else if (!this.form.controls.adm1.value) {
       this.snackbar.error(this.language.add_distribution_missing_location);

@@ -169,7 +169,7 @@ export class English implements Language {
   add_distribution_missing_location = 'Add a Province';
   add_distribution_missing_selection_criteria = 'A selection criterion is missing';
   add_distribution_missing_threshold =
-    "The minimum selection score's value should be greater than 0";
+    "The minimum selection score's value should be greater than or equal to 0";
   add_distribution_multiple_modalities =
     'You cannot add commodities which are not distributed the same way';
   add_distribution_no_beneficiaries =
