@@ -299,7 +299,7 @@ export class AddDistributionComponent implements OnInit, DesactivationGuarded, O
       this.commodityData.data &&
       this.commodityData.data.length !== 0 &&
       this.form.controls.date.value &&
-      this.form.controls.threshold.value > 0 &&
+      this.form.controls.threshold.value >= 0 &&
       this.form.controls.adm1.value &&
       this.criteriaNbBeneficiaries > 0
     ) {
