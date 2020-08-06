@@ -944,6 +944,8 @@ export interface Language {
   institution_name: string;
   institution_contact_name: string;
   institution_contact_family_name: string;
+  institution_contact_id_type: string;
+  institution_contact_id_number: string;
   institution_type_school: string;
   institution_type_health: string;
   institution_type_community_center: string;

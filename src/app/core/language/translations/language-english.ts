@@ -1029,6 +1029,8 @@ export class English implements Language {
   institution_name = this.log_name;
   institution_contact_name = 'Contact name';
   institution_contact_family_name = 'Contact family name';
+  institution_contact_id_type = 'Contact ID type';
+  institution_contact_id_number = 'Contact ID number';
 
   institution_type_school = 'School';
   institution_type_health = 'Hospital/Health Centre';

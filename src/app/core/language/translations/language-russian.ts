@@ -1018,6 +1018,8 @@ export class Russian implements Language {
   institution_name = 'Имя';
   institution_contact_name = 'Имя  контактного лица';
   institution_contact_family_name = 'Фамилия контактного лица';
+  institution_contact_id_type = this.missingTranslation;
+  institution_contact_id_number = this.missingTranslation;
 
   institution_type_school = 'Школа';
   institution_type_health = 'Больница/Медицинский центр';

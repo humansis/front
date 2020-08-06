@@ -13,6 +13,7 @@ import { AdministrativeAreaInputComponent } from '../../../../../components/admi
 import { CommunityService } from '../../../../../core/api/community.service';
 import { CommunityMockService } from '../../../../../core/api/mock/community-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
 
 describe('CommunityModalComponent', () => {
   let component: CommunityModalComponent;
@@ -27,6 +28,7 @@ describe('CommunityModalComponent', () => {
         CommunityModalComponent,
         CommunityFormComponent,
         AdministrativeAreaInputComponent,
+        UppercaseFirstPipe,
       ],
       imports: [
         MatDialogModule,

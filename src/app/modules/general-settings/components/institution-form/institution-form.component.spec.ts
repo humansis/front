@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InstitutionFormComponent } from './institution-form.component';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AdministrativeAreaInputComponent } from '../../../../components/administrative-area/administrative-area-input.component';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../../app-injector';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
 
 describe('InstitutionFormComponent', () => {
   let component: InstitutionFormComponent;
@@ -19,7 +19,11 @@ describe('InstitutionFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [InstitutionFormComponent, AdministrativeAreaInputComponent],
+      declarations: [
+        InstitutionFormComponent,
+        AdministrativeAreaInputComponent,
+        UppercaseFirstPipe,
+      ],
       imports: [
         ReactiveFormsModule,
         MatFormFieldModule,

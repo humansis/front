@@ -1008,6 +1008,8 @@ export class Arabic implements Language {
   institution_name = this.log_name;
   institution_contact_name = this.missingTranslation;
   institution_contact_family_name = this.missingTranslation;
+  institution_contact_id_type = this.missingTranslation;
+  institution_contact_id_number = this.missingTranslation;
 
   institution_type_school = this.missingTranslation;
   institution_type_health = this.missingTranslation;

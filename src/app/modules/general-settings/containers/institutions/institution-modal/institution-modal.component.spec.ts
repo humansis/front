@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InstitutionModalComponent } from './institution-modal.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -13,6 +12,7 @@ import { AdministrativeAreaInputComponent } from '../../../../../components/admi
 import { InstitutionService } from '../../../../../core/api/institution.service';
 import { InstitutionMockService } from '../../../../../core/api/mock/institution-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
 
 describe('InstitutionModalComponent', () => {
   let component: InstitutionModalComponent;
@@ -28,6 +28,7 @@ describe('InstitutionModalComponent', () => {
         InstitutionModalComponent,
         InstitutionFormComponent,
         AdministrativeAreaInputComponent,
+        UppercaseFirstPipe,
       ],
       imports: [
         MatDialogModule,
