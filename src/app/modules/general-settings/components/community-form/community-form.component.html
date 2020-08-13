@@ -12,7 +12,6 @@
                    formControlName="contact_family_name">
         </mat-form-field>
         <div>
-            <strong>{{language.user_phone_number}}</strong>
             <div class="phone-number">
                 <ng-select
                     [multiple]="false"
@@ -20,7 +19,7 @@
                     [searchable]="true"
                     class="single-select prefix"
                     formControlName="phone_prefix"
-                    [placeholder]="language.phone_prefix">
+                    placeholder="{{language.phone}} {{language.phone_prefix}}">
                     <ng-option *ngFor="let code of phoneCodes" [value]="code">
                         {{code}}
                     </ng-option>
