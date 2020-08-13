@@ -60,6 +60,7 @@
             justify-content: center;
             width: 100%;
             border-radius: 3px;
+            box-sizing: border-box;
 
             .container-subtitle {
                 display: flex;
@@ -97,6 +98,7 @@
             width: 100%;
             background-color: $bms_white;
             border-radius: 3px;
+            box-sizing: border-box;
 
             .content-table {
                 display: flex;
