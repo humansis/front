@@ -62,6 +62,85 @@
                                                         {{ option.get('name')  | uppercaseFirst }}
                                                     </mat-option>
                                                 </mat-select>
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.incomeLevel, 'income_level')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number" min="0" max="100"
+                                                       [placeholder]="language.household_debt_level | uppercaseFirst"
+                                                       formControlName="debtLevel">
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_debt_level, 'debt_level')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
+                                                <app-hint-error [form]="mainForm" fieldName="debtLevel"
+                                                                [field]="household.fields.debtLevel"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <ng-select class="multiple-select" formControlName="assets"
+                                                       placeholder="{{language.household_assets | uppercaseFirst}}" [multiple]="true"
+                                                       [closeOnSelect]="false" [searchable]="true">
+                                                <ng-option *ngFor="let asset of household.getOptions('assets')"
+                                                           [value]="asset.get('id')">
+                                                    {{asset.get('name') | uppercaseFirst}}
+                                                </ng-option>
+                                            </ng-select>
+                                            <app-hint-error [form]="mainForm" fieldName="assets" [field]="household.fields.assets"
+                                                            [isMatField]="false"></app-hint-error>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_food_consumption_score | uppercaseFirst"
+                                                       formControlName="foodConsumptionScore">
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.foodConsumptionScore,'food_consumption_score')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
+                                                <app-hint-error [form]="mainForm" fieldName="foodConsumptionScore"
+                                                                [field]="household.fields.foodConsumptionScore" [isMatField]="true">
+                                                </app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
+                                                       formControlName="copingStrategiesIndex">
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.copingStrategiesIndex,'coping_strategies_index')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
+                                                <app-hint-error [form]="mainForm" fieldName="copingStrategiesIndex"
+                                                                [field]="household.fields.copingStrategiesIndex"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="column-container">
+                                        <h4>{{ language.add_beneficiary_external_support | uppercaseFirst }}</h4>
+                                        <div>
+                                            <ng-select class="multiple-select" formControlName="supportReceivedOtherOrg"
+                                                       placeholder="{{language.household_support_received_other_org | uppercaseFirst}}" [multiple]="true"
+                                                       [closeOnSelect]="false" [searchable]="true">
+                                                <ng-option *ngFor="let support of household.getOptions('supportReceivedOtherOrg')"
+                                                           [value]="support.get('id')">
+                                                    {{support.get('name') | uppercaseFirst}}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div>
+                                            <mat-form-field class="support-received">
+                                                <input matInput [matDatepicker]="supportReceived" placeholder="{{language.household_support_date_received | uppercaseFirst }}"
+                                                       formControlName="supportReceived">
+                                                <mat-datepicker-toggle matSuffix [for]="supportReceived"></mat-datepicker-toggle>
+                                                <mat-datepicker #supportReceived></mat-datepicker>
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_support_date_received, 'support_date_received')"
+                                                          mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
+                                                </mat-hint>
+                                                <app-hint-error [form]="mainForm" fieldName="supportReceived" [field]="household.fields.supportReceived" [isMatField]="true"></app-hint-error>
                                             </mat-form-field>
                                         </div>
                                         <div>
@@ -188,6 +267,9 @@
                                     <div class="content-button-footer">
                                         <div class="action-buttons">
                                             <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+                                            <button mat-button class="button-text-primary" (click)="leave()">
+                                                {{language.cancel | uppercaseFirst }}
+                                            </button>
                                             <button mat-flat-button class="button-background-primary"
                                                 (click)="nextValidation(1)">
                                                 {{language.next | uppercaseFirst }}
@@ -425,3 +507,11 @@
         </mat-step>
     </mat-horizontal-stepper>
 </div>
+
+<mde-popover #appPopover="mdePopover" mdePopoverPositionX="before" mdePopoverPositionY="below" [mdePopoverOverlapTrigger]="false">
+    <app-history-table *ngIf="household"
+                       [id]="household.get('id')"
+                       [title]="historyTitle"
+                       [attribute]="historyAttribute"
+    ></app-history-table>
+</mde-popover>

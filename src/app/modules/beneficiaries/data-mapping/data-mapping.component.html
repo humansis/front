@@ -1,0 +1,45 @@
+<div class="page-container">
+    <div class="container-title">
+        <h2>{{language.data_mapping_title | uppercaseFirst}}</h2>
+    </div>
+
+    <div class="container-table">
+        <div *ngIf="data" class="container-content box-primary">
+            <div class="content-table">
+                <mat-table
+                    [dataSource]="data"
+                >
+                    <ng-container *ngFor="let property of objectKeys(header)" matColumnDef="{{property}}">
+                        <mat-header-cell class="header-cell" *matHeaderCellDef>
+                            <div class="header">{{header[property]}}</div>
+                            <ng-select class="single-select" [multiple]="false" [closeOnSelect]="true" ngModel="{{staticMappingColumns[property]}}" (change)="onMappingChange(property, $event)">
+                                <ng-option *ngFor="let column of objectKeys(staticMappingColumns)" [value]="staticMappingColumns[column]">
+                                    <span title="{{getMappingLabel(staticMappingColumns[column])}}">{{getMappingLabel(staticMappingColumns[column])}}</span>
+                                </ng-option>
+                            </ng-select>
+                        </mat-header-cell>
+                        <mat-cell class="content-cell" *matCellDef="let element">
+                            {{element[property]}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="objectKeys(header)"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: objectKeys(header);"></mat-row>
+                </mat-table>
+            </div>
+
+            <div class="content-button content-button-footer action-buttons">
+                <mat-spinner [diameter]="35" *ngIf="loading"></mat-spinner>
+                <button *ngIf="!loading" mat-flat-button class="button-background-primary"
+                        (click)="importMapping()">
+                    {{language.next | uppercaseFirst }}
+                </button>
+                <button mat-button class="button-text-primary" (click)="cancel()">{{language.cancel}}</button>
+            </div>
+        </div>
+
+        <div *ngIf="!data" class="step-info">
+            <p>{{language.data_verification_description_typos}}</p>
+        </div>
+    </div>
+</div>

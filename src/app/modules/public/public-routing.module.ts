@@ -7,10 +7,6 @@ import { SsoComponent } from './sso/sso.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-  },
-  {
-    path: 'login',
     component: LoginComponent,
     canActivate: [LogoutGuard],
   },

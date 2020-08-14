@@ -231,6 +231,14 @@ app-placeholder-panel {
     padding-bottom: 0px !important;
 }
 
+mat-hint.history {
+    width: 100%;
+    text-align: right;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 750px) {
     .datepicker-mobile {
         display: block;

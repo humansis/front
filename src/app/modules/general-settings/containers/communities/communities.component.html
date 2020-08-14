@@ -1,0 +1,19 @@
+<div>
+    <div class="container-table">
+        <div class="container-content box-primary">
+            <div class="content-button">
+                <button mat-flat-button *ngIf="currentDisplayType.type !== 'mobile' && checkRights()" (click)="openModal()" class="add-button-create">
+                    <mat-icon>add</mat-icon>
+                    {{language.add }}
+                </button>
+                <button mat-fab *ngIf="currentDisplayType.type === 'mobile' && checkRights()" (click)="openModal()" class="add-button" [ngClass]="{'add-button-rtl':language.direction === 'rtl'}">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <div class="content-table">
+                <app-community-table></app-community-table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,13 @@
+<app-clean-table [dataSource]="dataSource" [tableHeaders]="TABLE_HEADERS">
+    <ng-template #actions let-element="element">
+        <button mat-icon-button (click)="edit(element)"
+                [matTooltip]="language.view" class="light-blue">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button
+            mat-icon-button (click)="remove(element)"
+            [matTooltip]="language.delete" class="red">
+            <mat-icon>delete_outline</mat-icon>
+        </button>
+    </ng-template>
+</app-clean-table>

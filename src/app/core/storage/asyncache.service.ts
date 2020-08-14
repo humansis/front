@@ -248,12 +248,6 @@ export class AsyncacheService {
 
   getCountry(): Observable<CachedCountryReturnValue> {
     const countries: Array<Country> = this.countriesService.enabledCountries;
-    if (this.countriesService.selectedCountry) {
-      return of({
-        country: this.countriesService.selectedCountry,
-        updatedInLastSession: false,
-      });
-    }
     return this.get(AsyncacheService.COUNTRY).pipe(
       switchMap((countryCacheObject: CachedCountryValue) => {
         if (countryCacheObject) {

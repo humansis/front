@@ -1,0 +1,112 @@
+@import '../../../assets/css/variable.scss';
+@import '../../../assets/css/global.scss';
+
+:host {
+    width: 100%;
+}
+
+
+table {
+    width: 100%;
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+}
+
+.buttons-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .container-header {
+        width: 25%;
+    }
+
+    .items-info {
+        font-size: 14px;
+    }
+
+    .search {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .mat-icon {
+        vertical-align: middle;
+        color: rgba(0, 0, 0, 0.54);
+        margin-right: 5px;
+    }
+}
+
+.spinner-container {
+    min-height: 360px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-data {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: $bms_dark_grey;
+}
+
+.mat-column-actions {
+    width: 150px;
+}
+
+.mat-header-cell {
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+
+::ng-deep {
+
+    table {
+        button {
+            margin: 0.5vh;
+
+            mat-icon {
+                font-weight: 800 !important;
+                font-size: 25px;
+            }
+
+            &:hover {
+                background-color: $bms_white;
+            }
+        }
+
+
+        .light-blue {
+            color: $bms_light_blue;
+        }
+
+        .green {
+            color: $bms_green
+        }
+
+        .red {
+            color: $bms_red;
+        }
+
+        .dark-blue {
+            color: $bms_dark_blue;
+        }
+
+        .grey {
+            color: $bms_dark_grey;
+        }
+    }
+
+}
+

@@ -33,7 +33,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -78,13 +77,12 @@ import { MobilePressDirective } from '../core/directives/mobile-press.directive'
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { BeneficiariesImportComponent } from '../modules/beneficiaries/beneficiaries-import/beneficiaries-import.component';
 import { ImportedDataComponent } from '../modules/beneficiaries/beneficiaries-import/imported-data/imported-data.component';
-import { BeneficiariesComponent } from '../modules/beneficiaries/beneficiaries/beneficiaries.component';
+import { DataMappingComponent } from '../modules/beneficiaries/data-mapping/data-mapping.component';
 import { DataValidationComponent } from '../modules/beneficiaries/data-validation/data-validation.component';
 import { BeneficiaryFormComponent } from '../modules/beneficiaries/update-beneficiary/beneficiary-form/beneficiary-form.component';
 import { LocationFormComponent } from '../modules/beneficiaries/update-beneficiary/location-form/location-form.component';
 import { UpdateBeneficiaryComponent } from '../modules/beneficiaries/update-beneficiary/update-beneficiary.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
-import { GeneralSettingsComponent } from '../modules/general-settings/general-settings/general-settings.component';
 import { AddDistributionComponent } from '../modules/projects/add-distribution/add-distribution.component';
 import { DistributionsComponent } from '../modules/projects/distributions/distributions.component';
 import { ImportDistributionComponent } from '../modules/projects/distributions/import-distribution/import-distribution.component';
@@ -101,6 +99,12 @@ import { VouchersComponent } from '../modules/vouchers/vouchers/vouchers.compone
 import { LogsComponent } from '../modules/logs/logs.component';
 import { SsoComponent } from '../modules/public/sso/sso.component';
 import { JsonFormComponent } from '../components/json-form/json-form.component';
+import { AdministrativeAreaInputComponent } from 'src/app/components/administrative-area/administrative-area-input.component';
+import { CleanTableComponent } from 'src/app/components/clean-table/clean-table.component';
+import { ExportButtonComponent } from 'src/app/components/export-button/export-button.component';
+import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiaries/beneficiaries.component';
+import { MdePopoverModule } from '@material-extended/mde';
+import { HistoryTableComponent } from 'src/app/components/history-table/history-table.component';
 
 @NgModule({
   imports: [
@@ -127,7 +131,6 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     MatBadgeModule,
     MatRippleModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     MatDividerModule,
     MatRadioModule,
     MatChipsModule,
@@ -148,12 +151,13 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     NgSelectModule,
     RecaptchaModule,
     ZXingScannerModule,
-    ReactiveFormsModule.withConfig({
-      warnOnNgModelWithFormControl: 'never',
-    }),
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    MdePopoverModule,
   ],
   declarations: [
     // Shared Components
+    AdministrativeAreaInputComponent,
+    CleanTableComponent,
     MobilePressDirective,
     LoginComponent,
     DashboardComponent,
@@ -164,7 +168,6 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     YearPickerComponent,
     ProjectComponent,
     AddDistributionComponent,
-    GeneralSettingsComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     TableComponent,
@@ -189,6 +192,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     DisplayFieldComponent,
     HintErrorComponent,
     AdmFormComponent,
+    DataMappingComponent,
     DataValidationComponent,
     DistributionsComponent,
     MobileMoneyComponent,
@@ -203,6 +207,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     BeneficiaryFormComponent,
     LocationFormComponent,
     ImportedDataComponent,
+    HistoryTableComponent,
     ThousandsPipe,
     FormatCamelCasePipe,
     UppercaseFirstPipe,
@@ -217,6 +222,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     AdministrationComponent,
     SsoComponent,
     JsonFormComponent,
+    ExportButtonComponent,
   ],
   entryComponents: [
     ModalDeleteComponent,
@@ -234,13 +240,14 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
   ],
   exports: [
     // Shared Components
+    AdministrativeAreaInputComponent,
+    CleanTableComponent,
     LoginComponent,
     DashboardComponent,
     BeneficiariesComponent,
     BeneficiariesImportComponent,
     ProjectComponent,
     AddDistributionComponent,
-    GeneralSettingsComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     BoxPropertiesComponent,
@@ -266,6 +273,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     BoxSettingComponent,
     MatCheckboxModule,
     MatTooltipModule,
+    MatTooltipModule,
     MatSelectModule,
     MatTableModule,
     MatOptionModule,
@@ -284,6 +292,7 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     MatCardModule,
     MatNativeDateModule,
     MatSelectModule,
+    DataMappingComponent,
     DataValidationComponent,
     MatDividerModule,
     MatRadioModule,
@@ -310,6 +319,8 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
     JsonFormComponent,
     UppercaseFirstPipe,
     SsoComponent,
+    ExportButtonComponent,
+    HistoryTableComponent,
   ],
   providers: [
     { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check' },

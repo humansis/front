@@ -60,6 +60,7 @@
             justify-content: center;
             width: 100%;
             border-radius: 3px;
+            box-sizing: border-box;
 
             .container-subtitle {
                 display: flex;
@@ -79,7 +80,7 @@
     .container-table {
         display: flex;
         width: 100%;
-        padding: 20px;
+        margin: 20px;
 
         .box-primary {
             border-top: solid 12px $bms_dark_blue;
@@ -97,6 +98,7 @@
             width: 100%;
             background-color: $bms_white;
             border-radius: 3px;
+            box-sizing: border-box;
 
             .content-table {
                 display: flex;

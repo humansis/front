@@ -291,3 +291,23 @@ app-display-field.ng-star-inserted {
         height: 200px !important;
     }
 }
+
+form.standard {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+
+    > * {
+        width: 100%;
+        margin: 10px;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    .ng-select-container {
+        min-height: 45px;
+    }
+
+}

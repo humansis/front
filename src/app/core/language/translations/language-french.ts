@@ -37,6 +37,7 @@ export class French implements Language {
   this = 'Ce';
   true = 'Vrai';
   selected = 'selectionné';
+  history = this.missingTranslation;
 
   // Models
   beneficiaries = 'Bénéficiaires';
@@ -70,6 +71,10 @@ export class French implements Language {
   vendor = 'Vendeur';
   vendors = 'vendeurs';
   voucher = 'Vouchers';
+  institution = this.missingTranslation;
+  institutions = this.missingTranslation;
+  community = this.missingTranslation;
+  communities = this.missingTranslation;
 
   // Actions
   add = 'Ajouter';
@@ -302,6 +307,7 @@ export class French implements Language {
 
   // Commodities tooltips
   commodity_cash = 'cash';
+  commodity_smartcard = this.missingTranslation;
   commodity_in_kind = 'en nature';
   commodity_modality_cash = 'Cash';
   commodity_modality_qr_voucher = 'Coupon QR Code';
@@ -417,6 +423,9 @@ export class French implements Language {
   distribution_validated_title = 'Distribution validée';
   distribution_want_add = 'que vous souhaitez ajouter à la ';
 
+  // Data columns mapping
+  data_mapping_title = 'data columns mapping';
+
   // Donor
   donor_fullname = 'Nom du donneur';
   donor_shortname = 'Surnom';
@@ -425,6 +434,7 @@ export class French implements Language {
   'header_add-beneficiaries' = 'Ajouter un ménage';
   'header_add-distribution' = 'Ajouter une distribution';
   'header_admin' = 'Paramètres administratifs';
+  'header_data-mapping' = this.missingTranslation;
   'header_data-validation' = 'Validation de données';
   'header_distributions' = 'Distribution';
   'header_settings' = 'Configuration';
@@ -668,6 +678,8 @@ export class French implements Language {
   national_id_passport = 'Passeport';
   national_id_birth_certificate = 'Certificat de naissance';
   national_id_type = "Type d'identifiant national";
+  national_id_camp = this.missingTranslation;
+  national_id_social_service = this.missingTranslation;
 
   //Network
   network_access_offline = 'Ces données ne sont pas accessibles offline';
@@ -1023,4 +1035,18 @@ export class French implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+
+  // Insituttion
+  institution_name = this.log_name;
+  institution_contact_name = this.missingTranslation;
+  institution_contact_family_name = this.missingTranslation;
+  institution_contact_id_type = this.missingTranslation;
+  institution_contact_id_number = this.missingTranslation;
+
+  institution_type_school = this.missingTranslation;
+  institution_type_health = this.missingTranslation;
+  institution_type_community_center = this.missingTranslation;
+  institution_type_government = this.missingTranslation;
+  institution_type_production = this.missingTranslation;
+  institution_type_commerce = this.missingTranslation;
 }

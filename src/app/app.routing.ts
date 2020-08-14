@@ -10,17 +10,6 @@ import { PermissionsGuard } from './core/guards/permissions.guard';
 // Do not change the order of the routes, it matters
 export const routes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./modules/public/public.module').then((m) => m.PublicModule),
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [AuthGuard, PermissionsGuard],
-  },
-  {
     path: 'projects',
     loadChildren: () =>
       import('./modules/projects/projects.module').then((m) => m.ProjectsModule),
@@ -71,6 +60,17 @@ export const routes: Routes = [
   {
     path: 'logs',
     loadChildren: () => import('./modules/logs/logs.module').then((m) => m.LogsModule),
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/public/public.module').then((m) => m.PublicModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
     canActivate: [AuthGuard, PermissionsGuard],
   },
   {

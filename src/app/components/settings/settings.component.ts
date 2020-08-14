@@ -41,7 +41,12 @@ import { OrganizationServicesService } from 'src/app/core/api/organization-servi
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  @Input() selectedTitle: string;
+  @Input() set selectedTitle(selectedTitle: string) {
+    this._selectedTitle = selectedTitle;
+    if (selectedTitle) {
+      this.getData(selectedTitle);
+    }
+  }
 
   loadingExport = false;
   loadingData = true;
@@ -73,6 +78,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   // Screen size
   public currentDisplayType: DisplayType;
   private screenSizeSubscription: Subscription;
+  private _selectedTitle: string;
 
   // Language
   public language = this.languageService.selectedLanguage
@@ -130,7 +136,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     let country = null;
     this.loadingExport = true;
 
-    switch (this.selectedTitle) {
+    switch (this._selectedTitle) {
       case 'users':
         category = 'users';
         break;

@@ -39,6 +39,7 @@ export class English implements Language {
   this = 'this';
   true = 'True';
   selected = 'selected';
+  history = 'history';
 
   // Models
   beneficiaries = 'Beneficiaries';
@@ -72,6 +73,10 @@ export class English implements Language {
   vendor = 'Vendor';
   vendors = 'vendors';
   voucher = 'Vouchers';
+  institution = 'Institution';
+  institutions = 'Institutions';
+  community = 'Community';
+  communities = 'Communities';
 
   // Actions
   add = 'Add';
@@ -196,7 +201,7 @@ export class English implements Language {
   beneficiary_add_project =
     'Please select the project(s) in which you would like to add the';
   beneficiary_add_project_title = 'Add beneficiaries to a project';
-  beneficiary_added = 'Beneficiairies added to the selected project';
+  beneficiary_added = 'Beneficiaries added to the selected project';
   beneficiary_advanced_research = 'Advanced search';
   beneficiary_clear_all_research = 'Clear all';
   beneficiary_count = 'Beneficiaries count';
@@ -300,6 +305,7 @@ export class English implements Language {
 
   // Commodities tooltips
   commodity_cash = 'cash';
+  commodity_smartcard = 'Smartcard';
   commodity_in_kind = 'in kind';
   commodity_modality_cash = 'Mobile Money';
   commodity_modality_qr_voucher = 'QR Code Voucher';
@@ -368,6 +374,9 @@ export class English implements Language {
   data_verification_step_typos = 'Data Entry Inconsistencies';
   data_verification_title = 'data verification and validation';
 
+  // Data columns mapping
+  data_mapping_title = 'data columns mapping';
+
   // Distribution
   distribution_accept_changed = 'Accept Changes';
   distribution_add_beneficiaries = 'Add beneficiaries to this distribution';
@@ -420,6 +429,7 @@ export class English implements Language {
   'header_add-beneficiaries' = 'Add Beneficiaries';
   'header_add-distribution' = 'Add Distribution';
   'header_admin' = 'Administrative Settings';
+  'header_data-mapping' = '';
   'header_data-validation' = 'Data Validation';
   'header_distributions' = 'Distribution';
   'header_settings' = 'Configuration';
@@ -653,13 +663,15 @@ export class English implements Language {
   modal_no_pending_requests = 'There are no pending requests';
 
   // National ID
-  national_id_card = 'ID Card';
-  national_id_family_registry = 'Family Registry';
+  national_id_card = 'National ID';
+  national_id_family_registry = 'Family Registration';
   national_id_license = "Driver's License";
   national_id_number = 'ID Number';
   national_id_passport = 'Passport';
   national_id_birth_certificate = 'Birth Certificate';
   national_id_type = 'ID Type';
+  national_id_camp = 'Camp ID';
+  national_id_social_service = 'Social Service Card';
 
   //Network
   network_access_offline = "This data can't be accessed offline:";
@@ -682,6 +694,7 @@ export class English implements Language {
     2: 'nd',
     3: 'rd',
   };
+
   number_suffix_other = 'th';
 
   // Organization
@@ -1011,4 +1024,18 @@ export class English implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+
+  // Insituttion
+  institution_name = this.log_name;
+  institution_contact_name = 'Contact name';
+  institution_contact_family_name = 'Contact family name';
+  institution_contact_id_type = 'Contact ID type';
+  institution_contact_id_number = 'Contact ID number';
+
+  institution_type_school = 'School';
+  institution_type_health = 'Hospital/Health Centre';
+  institution_type_community_center = 'Community Centre';
+  institution_type_government = 'Other Government Building or Structure';
+  institution_type_production = 'Warehouse/Factory';
+  institution_type_commerce = 'Other Commercial Building';
 }

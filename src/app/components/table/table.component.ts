@@ -344,15 +344,20 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   isAllSelected() {
-    return this.selection.selected.length === this.tableData.data.length;
+    return (
+      this.selection.selected.length ===
+      this.tableData.filteredData.filter((item) => !item.get('removed')).length
+    );
   }
 
   masterToggle() {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.tableData.data.forEach((row) => {
-        this.selection.select(row);
+      this.tableData.filteredData.forEach((row) => {
+        if (!row.get('removed')) {
+          this.selection.select(row);
+        }
       });
     }
     this.manageActions();
@@ -360,23 +365,27 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   toggleCheck(element: any) {
-    if (this.selection.selected.includes(element)) {
-      this.selection.deselect(element);
+    if (!element.get('removed')) {
+      if (this.selection.selected.includes(element)) {
+        this.selection.deselect(element);
+        this.manageActions();
+        return;
+      }
       this.manageActions();
-      return;
+      this.selection.select(element);
     }
-    this.manageActions();
-    this.selection.select(element);
   }
 
   selectCheck(event, element) {
-    if (event.checked) {
-      this.selection.select(element);
-    } else {
-      this.selection.deselect(element);
+    if (!element.get('removed')) {
+      if (event.checked) {
+        this.selection.select(element);
+      } else {
+        this.selection.deselect(element);
+      }
+      this.manageActions();
+      this.selectChecked.emit(this.selection.selected);
     }
-    this.manageActions();
-    this.selectChecked.emit(this.selection.selected);
   }
 
   manageActions() {

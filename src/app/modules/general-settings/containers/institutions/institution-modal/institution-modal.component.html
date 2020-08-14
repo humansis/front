@@ -1,0 +1,15 @@
+
+<h1 mat-dialog-title class="modal-title underline-accent" [ngClass]="{'rtl':language.direction === 'rtl'}">{{language.modal_add_multiple_title | uppercaseFirst}} {{language.institution}}</h1>
+<div mat-dialog-content>
+    <app-institution-form [data]="data" #institutionForm (save)="onSave($event)"></app-institution-form>
+</div>
+<div mat-dialog-actions>
+    <div class="modal-button action-buttons" [ngClass]="{'rtl':language.direction === 'rtl'}">
+        <button mat-button class="button-text-primary" (click)="onCancel()">{{language.cancel}}</button>
+        <button mat-flat-button [disabled]="!institutionForm.form.valid"
+                class="button-background-primary" (click)="institutionForm.processForm()">
+            <ng-container *ngIf="!data">{{language.create}}</ng-container>
+            <ng-container *ngIf="data">{{language.save}}</ng-container>
+        </button>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BaseChartComponent } from './base-chart.component';
+import { TitleCasePipe } from '@angular/common';
 
 describe('BaseChartComponent', () => {
   let component: BaseChartComponent;
@@ -9,6 +10,7 @@ describe('BaseChartComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BaseChartComponent],
+      providers: [TitleCasePipe],
     }).compileComponents();
   }));
 

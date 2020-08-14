@@ -27,15 +27,16 @@ export class Russian implements Language {
   name = 'Имя';
   new = 'Новый';
   next = 'Следующий';
-  no_data = 'Не данных';
+  no_data = 'Нет данных';
   no_data_to_export = 'Нет данных для экспорта';
   or = 'или';
   rights = 'Права';
   settings = 'настройки';
-  summary = 'резюме';
+  summary = 'итог';
   the = '[артикль]';
   this = 'этот';
   selected = 'выбранный';
+  history = 'история';
 
   // Models
   beneficiaries = 'бенефициары';
@@ -45,13 +46,13 @@ export class Russian implements Language {
   commodity = 'Товар';
   country = 'страна';
   criteria = 'Критерии';
-  distribution = 'Распределение';
-  distributions = 'распределения';
+  distribution = 'Выдача';
+  distributions = 'Выдачи';
   donor = 'Донор';
   donors = 'Доноры';
   general_relief = 'Пункт';
-  head = 'Председатель';
-  household = 'Физическое лицо';
+  head = 'Глава';
+  household = 'Домохозяйство';
   households = 'Физическое лицо';
   language = 'язык';
   location = 'Местонахождение';
@@ -68,6 +69,10 @@ export class Russian implements Language {
   vendor = 'Продавец';
   vendors = 'продавцы';
   voucher = 'Ваучеры';
+  institution = 'учреждение';
+  institutions = 'учреждения';
+  community = 'сообщество';
+  communities = 'сообщества';
 
   // Actions
   add = 'Добавить';
@@ -134,22 +139,22 @@ export class Russian implements Language {
   adm2 = ADMINLEVELS.ru.adm2;
   adm3 = ADMINLEVELS.ru.adm3;
   adm4 = ADMINLEVELS.ru.adm4;
-  address_number = 'Адресный номер';
-  address_postcode = 'Почтовый индекс адреса';
-  address_street = 'Адрес улицы';
+  address_number = 'Номер дома';
+  address_postcode = 'Почтовый индекс';
+  address_street = 'Название улицы';
 
   // Add beneficiary
-  add_beneficiary_done = 'Сводка физических лиц для создания';
+  add_beneficiary_done = 'Итог по домохозяйству для создания';
   add_beneficiary_title = 'добавить бенефициара';
   add_beneficiary_code = 'Расширение';
   add_beneficiary_occupation = 'Профессия';
-  add_beneficiary_external_support = this.missingTranslation;
+  add_beneficiary_external_support = 'внешняя помощь';
   add_beneficiary_project =
     'Пожалуйста, добавьте это домашнее хозяйство в один или несколько проектов';
 
   // Add distribution
   add_distribution_advanced_option = 'Дополнительный параметр';
-  add_distribution_beneficiaries_reached = 'Полученные бенефициары';
+  add_distribution_beneficiaries_reached = 'Достигнуто бенефициаров';
   add_distribution_check_fields =
     'Заполните новую информацию о распределении ранее, включая товар и минимальное значение оценки отбора больше 0.';
   add_distribution_commodities_delivered = 'должно быть доставлено';
@@ -158,9 +163,9 @@ export class Russian implements Language {
     'Ошибка при создании нового распределения, ваша дата распределения должна входить в даты проекта';
   add_distribution_date_before_today =
     'Ошибка при создании нового распределения, ваша дата распределения должна быть позже сегодняшнего дня';
-  add_distribution_distributed_commodity = 'распределенный товар';
+  add_distribution_distributed_commodity = 'товар выдачи';
   add_distribution_error_creating = 'Ошибка при создании нового распределения';
-  add_distribution_households_reached = 'Полученные физические лица';
+  add_distribution_households_reached = 'Достигнуто домохозяйств';
   add_distribution_missing_commodity = 'Товар отсутствует';
   add_distribution_missing_date = 'Дата отсутствует';
   add_distribution_missing_location = 'Добавьте провинцию';
@@ -185,7 +190,7 @@ export class Russian implements Language {
 
   // Add project
   add_project_title = 'новый проект';
-  add_project_new_distribution = 'новое распределение';
+  add_project_new_distribution = 'новая выдача';
 
   // Beneficiaries
   beneficiary_add_list = 'Добавить к проекту';
@@ -223,11 +228,11 @@ export class Russian implements Language {
   beneficiary_residency_status = 'Статус резидента';
   beneficiary_residency_status_idp = 'Вынужденные переселенцы внутри своей страны';
   beneficiary_residency_status_refugee = 'Беженец';
-  beneficiary_residency_status_resident = 'Резидент';
+  beneficiary_residency_status_resident = 'Местный житель';
   beneficiary_select_api = 'Выбрать API';
   beneficiary_selected_project = 'выбранные бенефициары:';
-  beneficiary_update_title = 'Обновление бенефициара';
-  beneficiary_vulnerabilities = 'Факторы уязвимости';
+  beneficiary_update_title = 'Обновить информацию о бенефициаре';
+  beneficiary_vulnerabilities = 'Уязвимости';
 
   // Beneficiary form errors
   beneficiary_error_address_number = 'Вы должны ввести адресный номер';
@@ -274,10 +279,10 @@ export class Russian implements Language {
 
   // Booklets
   booklet_code = 'Код';
-  booklet_deactivated = 'дезактивированный';
+  booklet_deactivated = 'дезактивировано';
   booklet_define_password = 'Определить пароль';
   booklet_export_codes = 'Экспорт кодов буклета';
-  booklet_individual_value = 'Индивидуальная ценность';
+  booklet_individual_value = 'Индивидуальная стоимость';
   booklet_number_booklets = 'Количество буклетов';
   booklet_number_vouchers = 'Количество ваучеров';
   booklet_password_pattern = 'Пароль должен состоять из четырех цифр';
@@ -294,6 +299,7 @@ export class Russian implements Language {
 
   // Commodities tooltips
   commodity_cash = 'кэш';
+  commodity_smartcard = 'смарт-карта';
   commodity_in_kind = 'подобным образом';
   commodity_modality_cash = 'Мобильный банк';
   commodity_modality_qr_voucher = 'Ваучер QR кода';
@@ -304,7 +310,7 @@ export class Russian implements Language {
   commodity_modality_wash = 'Комплект для мытья';
   commodity_modality_agriculture = 'Сельскохозяйственный комплект';
   commodity_modality_rte = 'Готовый к употреблению в пищу набор';
-  commodity_modality_shelter = 'Набор инструментов для укрытия';
+  commodity_modality_shelter = 'Комплект для строительства/ремонта жилья';
   commodity_modality_hygiene = 'Гигиенический комплект';
   commodity_modality_dignity = 'Комплект достоинства';
   commodity_kgs = 'кг';
@@ -316,16 +322,16 @@ export class Russian implements Language {
   // Countries
   country_khm = 'Камбоджа';
   country_syr = 'Сирия';
-  country_specific = 'Специфика страны';
+  country_specific = 'Выбор страны';
   country_specific_field = 'Поле';
 
   // Dashboard
-  dashboard_distribution_map = 'карта распределения';
+  dashboard_distribution_map = 'карта выдачи';
   dashboard_recent_distributions = 'предстоящие рассылки';
   dashboard_summary_1 = 'Всего регистраций';
   dashboard_summary_2 = 'действующие проекты';
   dashboard_summary_3 = 'зарегистрированные бенефициары';
-  dashboard_summary_4 = 'общая стоимость сделок';
+  dashboard_summary_4 = 'общая сумма перевода';
   dashboard_summary_5 = 'обслуживаемые бенефициары';
   dashboard_summary_6 = 'завершенные распределения';
 
@@ -349,8 +355,8 @@ export class Russian implements Language {
   data_verification_last_updated = 'Последнее обновление';
   data_verification_snackbar_duplicate_corrected = 'Дубликаты исправлены';
   data_verification_snackbar_duplicate_no_corrected = 'Не все дубликаты исправлены';
-  data_verification_snackbar_less_corrected = 'Удаление бенефициаров прошло успешно';
-  data_verification_snackbar_more_corrected = 'Добавление бенефициаров прошло успешно';
+  data_verification_snackbar_less_corrected = 'Бенефициары удалены успешно';
+  data_verification_snackbar_more_corrected = 'Бенефициары добавлены успешно';
   data_verification_snackbar_typo_corrected = 'Опечатки исправлены';
   data_verification_snackbar_typo_no_corrected =
     'Не все проблемы с опечатками были исправлены';
@@ -374,12 +380,12 @@ export class Russian implements Language {
   distribution_beneficiary_added = 'Бенефициар добавлен';
   distribution_beneficiary_not_added = 'Бенефициар не может быть добавлен';
   distribution_cant_update = 'Вы не можете обновить это распределение.';
-  distribution_date = 'Дата распределения';
-  distribution_details_export = 'список распределения';
-  distribution_details_import = 'импорт и сравнение';
+  distribution_date = 'Дата выдачи';
+  distribution_details_export = 'список выдачи';
+  distribution_details_import = 'импортировать и сравнить';
   distribution_details_random = 'экспортировать случайную выборку';
   distribution_details_sample_size = 'Размер партии';
-  distribution_details_validate = 'проверить и заблокировать';
+  distribution_details_validate = 'подтвердить и зафиксировать';
   distribution_distribute = 'установить как распределенный';
   distribution_edit = 'Изменить распределение';
   distribution_error_validate =
@@ -406,6 +412,8 @@ export class Russian implements Language {
   distribution_validated = 'Распределение утверждено';
   distribution_validated_title = 'Утвержденное распределение';
   distribution_want_add = 'что вы хотите добавить в ';
+  // Data columns mapping
+  data_mapping_title = 'data columns mapping';
 
   // Donor
   donor_fullname = 'Имя донора';
@@ -413,12 +421,13 @@ export class Russian implements Language {
 
   // Header
   'header_add-beneficiaries' = 'Добавить бенефициаров';
-  'header_add-distribution' = 'Добавить распределение';
+  'header_add-distribution' = 'Добавить выдачу';
   'header_admin' = 'Административные настройки';
-  'header_data-validation' = 'Проверка достоверности данных';
-  'header_distributions' = 'Распределение';
+  'header_data-mapping' = this.missingTranslation;
+  'header_data-validation' = 'Подтверждение данных';
+  'header_distributions' = 'выдача';
   'header_settings' = 'Конфигурация';
-  'header_update-beneficiary' = 'Обновление бенефициаров';
+  'header_update-beneficiary' = 'Обновить информацию о бенефициаре';
   header_beneficiaries = 'бенефициары';
   header_disconnect = 'выйти';
   header_home = 'главная страница';
@@ -458,12 +467,12 @@ export class Russian implements Language {
   household_no_data_offline = 'Эти данные не могут быть доступны в автономном режиме';
   household_sentence = 'Домохозяйство ';
   household_summary_members = 'Члены домохозяйства';
-  household_debt_level = this.missingTranslation;
-  household_support_received_other_org = this.missingTranslation;
-  household_support_date_received = this.missingTranslation;
-  household_assets = this.missingTranslation;
-  household_shelter_status = this.missingTranslation;
-  household_status = this.missingTranslation;
+  household_debt_level = 'Уровень задолженности';
+  household_support_received_other_org = 'Помощь полученная другими организациями';
+  household_support_date_received = 'Дата получения помощи';
+  household_assets = 'Активы';
+  household_shelter_status = 'Статус жилья';
+  household_status = 'Положение домохозяйств';
 
   // Import
   import_added = 'Добавлено  существующими бенефициарами';
@@ -512,7 +521,7 @@ export class Russian implements Language {
   login_forgot_password = 'Забыли пароль?';
   login_password = '*********';
   login_prompt = 'Авторизуйтесь, пожалуйста';
-  login_title = 'вход в систему';
+  login_title = 'Вход';
 
   // Map legend
   map_legend_completed = 'завершено';
@@ -527,18 +536,18 @@ export class Russian implements Language {
   modal_check_fields = 'Неверные поля = проверьте, заполнили ли вы все поля';
   modal_delete_beneficiary = 'Удалить бенефециара';
   modal_delete_beneficiary_sentence = 'Вы собираетесь удалить ';
-  modal_delete_beneficiary_sentence_2 = ' от этого распределения';
+  modal_delete_beneficiary_sentence_2 = 'от этого распределения';
   modal_delete_many = 'эти элементы';
   modal_complete_distribution = 'Вы уверены, что хотите закрыть это распределение??';
   modal_delete_sentence = 'Вы собираетесь удалить ';
-  modal_delete_sentence_2 = '. Хотите ли вы продолжить? ';
+  modal_delete_sentence_2 = 'Хотите ли вы продолжить? ';
   modal_details_title = 'Подробности этого';
   modal_edit_title = 'Редактировать это';
   modal_failure = 'Отказ';
   modal_file_extension_error = 'Расширение файла должно быть ';
   modal_language_actual = 'Текущий язык';
   modal_leave = 'Выход';
-  modal_leave_sentence = 'Вы действительно хотите выйти с несохраненными изменениями?';
+  modal_leave_sentence = 'Вы действительно хотите выйти, не сохранив изменения?';
   modal_no_file = 'Файл не выбран';
   modal_not_enough_strong =
     'Пароль недостаточно надежен ... Требуется минимум = 8 символов, 1 строчная буква, 1 заглавная буква, 1 цифра';
@@ -560,12 +569,14 @@ export class Russian implements Language {
 
   // National ID
   national_id_card = 'Национальный идентификационный номер';
-  national_id_family_registry = 'Family Registry';
-  national_id_license = "Driver's License";
+  national_id_family_registry = 'Семейное положение';
+  national_id_license = 'Водительское удостоверение';
   national_id_number = 'Идентификационный номер';
-  national_id_passport = 'Passport';
-  national_id_birth_certificate = 'Birth Certificate';
+  national_id_passport = 'Паспорт';
+  national_id_birth_certificate = 'Свидетельство о рождении';
   national_id_type = 'Тип национального идентификационного номера';
+  national_id_camp = 'идентификационный номер лагеря';
+  national_id_social_service = 'Карта социального страхования';
 
   //Network
   network_access_offline = 'Эти данные не могут быть доступны в автономном режиме:';
@@ -577,7 +588,7 @@ export class Russian implements Language {
   network_status_disconnected = 'Вы сейчас отключены от сети';
 
   // Null values
-  null_none = 'ни одного';
+  null_none = 'Ничего';
   null_not_yet = 'еще нет';
   null_not_distributed = 'не распределены';
   null_not_yet_defined = 'еще не определено';
@@ -637,7 +648,7 @@ export class Russian implements Language {
     'Этот Проект не содержит распределений. Создайте свое первое!';
   project_no_household = 'Этот проект не содержит домохозяйств.';
   project_no_projects = 'В этой стране в настоящее время нет активных проектов.';
-  project_number_of_households = 'Количество физических лиц';
+  project_number_of_households = 'Количество домохозяйств';
   project_sectors_name = 'Сектора';
   project_start_date = 'Дата начала';
   project_value = 'Всего целевых бенефициаров';
@@ -672,7 +683,7 @@ export class Russian implements Language {
   report_total_number_of_distributions = 'Общее количество распределений';
   report_total_transactions_completed = 'Всего выполненных транзакций';
   report_transactions_completed = 'транзакции завершены';
-  report_upcoming_reporting = 'Предстоящая отчетность';
+  report_upcoming_reporting = 'Предстоящий отчет';
 
   report_age_breakdown = 'Возрастная разбивка';
   report_donors = this.donors; // 'Donors'
@@ -698,7 +709,7 @@ export class Russian implements Language {
 
   // Role
   role_user_admin = 'Администратор';
-  role_user_country_manager = 'Менеджер по стране';
+  role_user_country_manager = 'Глава миссии';
   role_user_enumerator = 'Счетчик';
   role_user_field_officer = 'Старший руководитель';
   role_user_project_manager = 'Менеджер по управлению проектами';
@@ -717,13 +728,13 @@ export class Russian implements Language {
   sector_protection = 'Защита';
   sector_shelter = 'Укрытие';
   sector_water = 'Мытье';
-  sector_cash_for_work = 'деньги за работу';
+  sector_cash_for_work = 'Оплата за труд';
   sector_tvet = 'TVET';
   sector_food_kits = 'Еда, RTE комплекты';
   sector_nfi = 'NFIs';
 
   // Settings
-  settings_country_specific_options = 'варианты для конкретной страны';
+  settings_country_specific_options = 'дополнительные варианты для страны';
   settings_created = ' создано';
   settings_financial_provider = 'Сторонние подключения';
   settings_log_button = 'Получить журнал  пользователей по электронной почте';
@@ -735,7 +746,7 @@ export class Russian implements Language {
   snackbar_change_password_done = 'Пароль изменен !';
   snackbar_change_password_fail = 'Не удалось сменить пароль ...';
   snackbar_change_password_not_possible =
-    'Пароль должен содержать более 1 символа и соответствовать требованиям безопасности';
+    'Пароль должен содержать более 1 символа и совпадать с повторной проверкой';
   snackbar_created_successfully = 'Создано успешно';
   snackbar_error_creating = 'Ошибка при создании ';
   snackbar_error_updating = 'Ошибка при обновлении ';
@@ -749,7 +760,8 @@ export class Russian implements Language {
   snackbar_verification_code_error = 'Не удалось отправить код:';
   snackbar_verification_code_wait_error =
     'Последний код был отправлен менее 10 секунд назад, вы должны подождать';
-  snackbar_pdf_export_failed = this.missingTranslation;
+  snackbar_pdf_export_failed =
+    'Невозможно экспортировать файл PDF, потому что на веб-странице нет графиков.';
 
   // Table
   table_actions = 'Действия';
@@ -786,7 +798,7 @@ export class Russian implements Language {
   transaction_id_transaction = 'Идентификационный номер транзакции';
   transaction_info_export =
     'Если распределение не содержит транзакций, файл не будет экспортирован ",Транзакция выполняется...';
-  transaction_inProgress = 'Transaction in progress...';
+  transaction_inProgress = 'Транзакция в процессе...';
   transaction_message = 'Сообщение';
   transaction_no_transaction_sent =
     'Нет завершенной транзакции, не может быть экспортирован';
@@ -802,7 +814,7 @@ export class Russian implements Language {
   transaction_state_not_sent = 'Не послано';
   transaction_state_picked_up = 'Подхвачено';
   transaction_state_sending_failed = 'Отправка не удалась';
-  transaction_state_sent = 'Послано'; // Means sent during the current transaction (after loading the page)
+  transaction_state_sent = 'послано'; // Means sent during the current transaction (after loading the page)
   transaction_transaction = 'Старт транзакции';
   transaction_validate_distribution =
     'Вы действительно хотите проверить это распределение?';
@@ -861,7 +873,7 @@ export class Russian implements Language {
   voucher_select_beneficiary = 'Вы должны выбрать бенефициара';
   voucher_select_distribution = 'Вы должны выбрать  распределение';
   voucher_select_project = 'Вы должны выбрать  проект';
-  voucher_sending = 'The data is being sent';
+  voucher_sending = 'Данные отправляются';
   voucher_step = 'Будет добавлено';
   vouchers_booklet = 'Буклет(ы) ваучера';
 
@@ -878,7 +890,7 @@ export class Russian implements Language {
 
   // Criteria (must be the last thing declared because uses the previous variables)
   criteria_operator = 'Условие';
-  criteria_weight = 'Оценка веса';
+  criteria_weight = 'Весомость балла';
   criteria_target = 'Цель критерия';
   currentAdm1 = this.household_location_current_location;
   currentAdm2 = this.household_location_current_location;
@@ -903,99 +915,116 @@ export class Russian implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
-  false = '-- MISSING TRANSLATION --';
-  header_logs = '-- MISSING TRANSLATION --';
-  log_active_users_title = '-- MISSING TRANSLATION --';
-  log_add_beneficiary = '-- MISSING TRANSLATION --';
-  log_add_households = '-- MISSING TRANSLATION --';
-  log_archive = '-- MISSING TRANSLATION --';
-  log_assign = '-- MISSING TRANSLATION --';
-  log_beneficiary = '-- MISSING TRANSLATION --';
-  log_booklet = '-- MISSING TRANSLATION --';
-  log_code = '-- MISSING TRANSLATION --';
-  log_complete = '-- MISSING TRANSLATION --';
-  log_country = '-- MISSING TRANSLATION --';
-  log_create = '-- MISSING TRANSLATION --';
-  log_deactivate = '-- MISSING TRANSLATION --';
-  log_deactivate_booklets = '-- MISSING TRANSLATION --';
-  log_delete = '-- MISSING TRANSLATION --';
-  log_delete_batch = '-- MISSING TRANSLATION --';
-  log_distribution = '-- MISSING TRANSLATION --';
-  log_donor = '-- MISSING TRANSLATION --';
-  log_edit_general_relief_notes = '-- MISSING TRANSLATION --';
-  log_family_name = '-- MISSING TRANSLATION --';
-  log_field = '-- MISSING TRANSLATION --';
-  log_field_action = '-- MISSING TRANSLATION --';
-  log_field_country = '-- MISSING TRANSLATION --';
-  log_field_date = '-- MISSING TRANSLATION --';
-  log_field_details = '-- MISSING TRANSLATION --';
-  log_field_id = '-- MISSING TRANSLATION --';
-  log_field_object = '-- MISSING TRANSLATION --';
-  log_field_status = '-- MISSING TRANSLATION --';
-  log_field_user = '-- MISSING TRANSLATION --';
-  log_household = '-- MISSING TRANSLATION --';
-  log_import = '-- MISSING TRANSLATION --';
-  log_import_beneficiaries_from_api = '-- MISSING TRANSLATION --';
-  log_import_beneficiaries_from_syria_file = '-- MISSING TRANSLATION --';
-  log_import_beneficiary = '-- MISSING TRANSLATION --';
-  log_name = '-- MISSING TRANSLATION --';
-  log_no_details = '-- MISSING TRANSLATION --';
-  log_not_exists = '-- MISSING TRANSLATION --';
-  log_number_booklets = '-- MISSING TRANSLATION --';
-  log_number_vouchers = '-- MISSING TRANSLATION --';
-  log_old_id = '-- MISSING TRANSLATION --';
-  log_organization = '-- MISSING TRANSLATION --';
-  log_post_language = '-- MISSING TRANSLATION --';
-  log_post_password = '-- MISSING TRANSLATION --';
-  log_product = '-- MISSING TRANSLATION --';
-  log_project = '-- MISSING TRANSLATION --';
-  log_remove_many = '-- MISSING TRANSLATION --';
-  log_remove_one_beneficiary = '-- MISSING TRANSLATION --';
-  log_requests = '-- MISSING TRANSLATION --';
-  log_requests_country_title = '-- MISSING TRANSLATION --';
-  log_requests_day_title = '-- MISSING TRANSLATION --';
-  log_scan = '-- MISSING TRANSLATION --';
-  log_send_transaction = '-- MISSING TRANSLATION --';
-  log_send_verification_email = '-- MISSING TRANSLATION --';
-  log_set_general_relief_items_as_distributed = '-- MISSING TRANSLATION --';
-  log_status_200 = '-- MISSING TRANSLATION --';
-  log_status_300 = '-- MISSING TRANSLATION --';
-  log_status_400 = '-- MISSING TRANSLATION --';
-  log_status_401 = '-- MISSING TRANSLATION --';
-  log_status_403 = '-- MISSING TRANSLATION --';
-  log_status_404 = '-- MISSING TRANSLATION --';
-  log_status_rate_title = '-- MISSING TRANSLATION --';
-  log_time = '-- MISSING TRANSLATION --';
-  log_transaction = '-- MISSING TRANSLATION --';
-  log_update = '-- MISSING TRANSLATION --';
-  log_update_f_p = '-- MISSING TRANSLATION --';
-  log_upload_image = '-- MISSING TRANSLATION --';
-  log_upload_logo = '-- MISSING TRANSLATION --';
-  log_user = '-- MISSING TRANSLATION --';
-  log_username = '-- MISSING TRANSLATION --';
-  log_users = '-- MISSING TRANSLATION --';
-  log_validate = '-- MISSING TRANSLATION --';
-  log_value = '-- MISSING TRANSLATION --';
-  log_vendor = '-- MISSING TRANSLATION --';
-  log_voucher = '-- MISSING TRANSLATION --';
-  login_title_google = '-- MISSING TRANSLATION --';
-  login_title_hid = '-- MISSING TRANSLATION --';
-  login_two_fa_invalid_code = '-- MISSING TRANSLATION --';
-  login_two_fa_message = '-- MISSING TRANSLATION --';
-  logs = '-- MISSING TRANSLATION --';
-  profile_change_phone = '-- MISSING TRANSLATION --';
-  profile_phone_changed = '-- MISSING TRANSLATION --';
-  profile_phone_not_valid = '-- MISSING TRANSLATION --';
-  profile_two_fa_disable = '-- MISSING TRANSLATION --';
-  profile_two_fa_disabled = '-- MISSING TRANSLATION --';
-  profile_two_fa_enable = '-- MISSING TRANSLATION --';
-  profile_two_fa_enabled = '-- MISSING TRANSLATION --';
-  profile_two_fa_information = '-- MISSING TRANSLATION --';
-  profile_two_fa_title = '-- MISSING TRANSLATION --';
-  profile_two_fa_warning = '-- MISSING TRANSLATION --';
-  profile_user_hint_new_phone_number = '-- MISSING TRANSLATION --';
-  profile_user_hint_new_phone_prefix = '-- MISSING TRANSLATION --';
-  true = '-- MISSING TRANSLATION --';
-  user_phone_number = '-- MISSING TRANSLATION --';
-  user_phone_prefix = '-- MISSING TRANSLATION --';
+  false = 'Ложный';
+  header_logs = 'Журнал пользователя';
+  log_active_users_title = 'Наиболее активные пользователи';
+  log_add_beneficiary = 'Бенефициары добавлены';
+  log_add_households = 'Домохозяйства добавлены';
+  log_archive = 'Заархивировано';
+  log_assign = 'Назначено';
+  log_beneficiary = 'Бенефициар';
+  log_booklet = 'Буклет';
+  log_code = 'Код';
+  log_complete = 'Завершено';
+  log_country = 'Специфика страны';
+  log_create = 'Создано';
+  log_deactivate = 'Деактивировано';
+  log_deactivate_booklets = 'Деактивировано';
+  log_delete = 'Удалено';
+  log_delete_batch = 'Партия удалена';
+  log_distribution = 'Выдача';
+  log_donor = 'Донор';
+  log_edit_general_relief_notes = 'Заметки по общим товарам помощи добавлены';
+  log_family_name = 'Фамилия';
+  log_field = 'Поле';
+  log_field_action = 'Действие';
+  log_field_country = 'Страна';
+  log_field_date = 'Дата';
+  log_field_details = 'Детали:';
+  log_field_id = 'Идентификационный номер';
+  log_field_object = 'Обьект';
+  log_field_status = 'СТАТУС (местный житель, ВПЛ или беженец)';
+  log_field_user = 'Пользователь';
+  log_household = 'Домохозяйство';
+  log_import = 'Импортировано';
+  log_import_beneficiaries_from_api = 'Импортировано из Api';
+  log_import_beneficiaries_from_syria_file = 'Импортировано из файла сирийской миссии';
+  log_import_beneficiary = 'Импортированные бенефициары';
+  log_name = 'Имя:';
+  log_no_details = 'Нет данных для отображения';
+  log_not_exists = 'Больше не существует';
+  log_number_booklets = 'Количество буклетов';
+  log_number_vouchers = 'Количество ваучеров';
+  log_old_id = 'Предыдущая идентификация';
+  log_organization = 'Организация';
+  log_post_language = 'Язык по умолчанию изменен';
+  log_update_password = 'Пароль обновлен';
+  log_post_password = 'Пароль изменен';
+  log_product = 'Продукт';
+  log_project = 'Проект';
+  log_remove_many = 'Удалено';
+  log_remove_one_beneficiary = 'Удален один бенефициар';
+  log_requests = 'Запросы';
+  log_requests_country_title = 'Запросы по стране';
+  log_requests_day_title = 'Запросы за день';
+  log_scan = 'Отсканировано';
+  log_send_transaction = 'Мобильный платеж отправлен';
+  log_send_verification_email = 'Код отправлен';
+  log_set_general_relief_items_as_distributed = 'Товары общей помощи распределены';
+  log_status_200 = 'Успешно';
+  log_status_300 = 'Перенаправлено';
+  log_status_400 = 'Ошибка';
+  log_status_401 = 'Неопознано';
+  log_status_403 = 'Запрещено';
+  log_status_404 = 'Не найдено';
+  log_status_rate_title = 'Показатель статуса';
+  log_time = 'Время';
+  log_transaction = 'Операция';
+  log_update = 'Обновлено';
+  log_update_f_p = '3-х стороннее соединение отредактировано';
+  log_upload_image = 'Изображение загружено';
+  log_upload_logo = 'Логотип загружен';
+  log_user = 'Пользователь';
+  log_username = 'Имя пользователя';
+  log_users = 'Пользователи';
+  log_validate = 'Подтверждено';
+  log_value = 'Стоимость';
+  log_vendor = 'Продавец';
+  log_voucher = 'Ваучер';
+  login_title_google = 'Вход через Google';
+  login_title_hid = 'Вход через HID';
+  login_two_fa_invalid_code = 'Неверный код, пожалуйста, попробуйте еще раз';
+  login_two_fa_message = 'Это ваш код идентификации Humansis';
+  logs = 'Журнал пользователя';
+  profile_change_phone = 'Изменить номер телефона';
+  profile_phone_changed = 'Номер телефона успешно изменен';
+  profile_phone_not_valid = 'Введенный номер телефона недействителен';
+  profile_two_fa_disable = 'Отключить';
+  profile_two_fa_disabled = 'Отключена двухфакторная аутентификация';
+  profile_two_fa_enable = 'Включить';
+  profile_two_fa_enabled = 'Успешно включена двухфакторная аутентификация';
+  profile_two_fa_information =
+    'Двухфакторная аутентификация обеспечивает дополнительную безопасность вашей учетной записи, требуя для входа не только пароль';
+  profile_two_fa_title = 'Двухфакторная аутентификация';
+  profile_two_fa_warning =
+    'Вам нужен зарегистрированный телефонный номер, чтобы включить двухфакторную аутентификацию';
+  profile_user_hint_new_phone_number = 'НОМЕР ТЕЛЕФОНА';
+  profile_user_hint_new_phone_prefix = 'Приставка';
+  true = 'правда';
+  user_phone_number = 'Номер телефона';
+  user_phone_prefix = 'Приставка';
+
+  // Insituttion
+  institution_name = 'Имя';
+  institution_contact_name = 'Имя  контактного лица';
+  institution_contact_family_name = 'Фамилия контактного лица';
+  institution_contact_id_type = this.missingTranslation;
+  institution_contact_id_number = this.missingTranslation;
+
+  institution_type_school = 'Школа';
+  institution_type_health = 'Больница/Медицинский центр';
+  institution_type_community_center = 'Общественный центр';
+  institution_type_government = 'Другое правительственное здание или сооружение';
+  institution_type_production = 'Склад/фабрика';
+  institution_type_commerce = 'Другое Коммерческое Здание';
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MonthPickerComponent } from './month-picker.component';
+import { FormControl } from '@angular/forms';
 
 describe('MonthPickerComponent', () => {
   let component: MonthPickerComponent;
@@ -15,6 +16,7 @@ describe('MonthPickerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MonthPickerComponent);
     component = fixture.componentInstance;
+    component.control = new FormControl('');
     fixture.detectChanges();
   });
 

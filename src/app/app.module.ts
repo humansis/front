@@ -20,7 +20,9 @@ import { CustomDateAdapter } from './shared/adapters/date.adapter';
 import { SharedModule } from './shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LogsModule } from './modules/logs/logs.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HistoryTableComponent } from './components/history-table/history-table.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +35,11 @@ import { LogsModule } from './modules/logs/logs.module';
   imports: [
     // Modules
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DeviceDetectorModule,
     SharedModule,
     NgSelectModule,
 
@@ -57,6 +61,7 @@ import { LogsModule } from './modules/logs/logs.module';
     CustomDateAdapter,
   ],
   bootstrap: [AppComponent],
+  exports: [HistoryTableComponent],
 })
 export class AppModule {
   constructor(injector: Injector) {

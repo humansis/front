@@ -33,6 +33,7 @@ export interface Language {
   this: string;
   true: string;
   selected: string;
+  history: string;
 
   // Models
   beneficiaries: string;
@@ -66,6 +67,10 @@ export interface Language {
   vendor: string;
   vendors: string;
   voucher: string;
+  institution: string;
+  institutions: string;
+  community: string;
+  communities: string;
 
   // Actions
   add: string;
@@ -265,6 +270,7 @@ export interface Language {
 
   // Commodities
   commodity_cash: string;
+  commodity_smartcard: string;
   commodity_in_kind: string;
   commodity_modality_cash: string;
   commodity_modality_qr_voucher: string;
@@ -392,6 +398,9 @@ export interface Language {
   distribution_validated: string;
   distribution_want_add: string;
 
+  // Data mapping
+  data_mapping_title: string;
+
   // Donor
   donor_fullname: string;
   donor_shortname: string;
@@ -405,6 +414,7 @@ export interface Language {
   header_settings: string;
   'header_update-beneficiary': string;
   header_beneficiaries: string;
+  'header_data-mapping': string;
   header_disconnect: string;
   header_home: string;
   header_import: string;
@@ -508,6 +518,7 @@ export interface Language {
   log_import_beneficiaries_from_syria_file: string;
   log_import_beneficiary: string;
   log_post_language: string;
+  log_update_password: string;
   log_post_password: string;
   log_scan: string;
   log_remove_many: string;
@@ -633,6 +644,8 @@ export interface Language {
   national_id_passport: string;
   national_id_birth_certificate: string;
   national_id_type: string;
+  national_id_camp: string;
+  national_id_social_service: string;
 
   //Network
   network_access_offline: string;
@@ -926,4 +939,17 @@ export interface Language {
   user_password_question: string;
   user_phone_number: string;
   user_phone_prefix: string;
+
+  // Insituttion
+  institution_name: string;
+  institution_contact_name: string;
+  institution_contact_family_name: string;
+  institution_contact_id_type: string;
+  institution_contact_id_number: string;
+  institution_type_school: string;
+  institution_type_health: string;
+  institution_type_community_center: string;
+  institution_type_government: string;
+  institution_type_production: string;
+  institution_type_commerce: string;
 }

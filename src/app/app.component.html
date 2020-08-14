@@ -37,7 +37,7 @@
         <mat-list-item *ngIf="currentDisplayType.type !== 'mobile'" routerLink="/">
             <img class="bms-logo" src="assets/images/bms_logo.png" mat-list-icon>
         </mat-list-item>
-        <mat-list-item [ngClass]="{selected: matchUrl() === ''}" routerLink="/dashboard">
+        <mat-list-item [ngClass]="{selected: matchUrl() === ''}" routerLink="/">
             <span class="full-width">{{getLanguage().home | titlecase}}</span>
             <mat-icon mat-list-icon>home</mat-icon>
         </mat-list-item>

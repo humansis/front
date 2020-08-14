@@ -53,6 +53,8 @@ import {
   CustomDateAdapter,
 } from 'src/app/shared/adapters/date.adapter';
 import { IdNameModel } from 'src/app/models/id-name-model';
+import { IHousehold } from 'src/app/models/api/household';
+import { MdePopover, MdePopoverTrigger } from '@material-extended/mde';
 
 @Component({
   selector: 'app-update-beneficiary',
@@ -125,7 +127,11 @@ export class UpdateBeneficiaryComponent
     resident: null,
   };
 
+  public historyAttribute: keyof IHousehold;
+  public historyTitle: string;
+
   @ViewChild(MatStepper) stepper: MatStepper;
+  @ViewChild(MdePopoverTrigger) popoverTrigger: MdePopoverTrigger;
 
   constructor(
     public route: ActivatedRoute,
@@ -570,7 +576,7 @@ export class UpdateBeneficiaryComponent
   }
 
   //
-  // ─── SUMBIT FUNCTIONS ───────────────────────────────────────────────────────────
+  // ─── SUBMIT FUNCTIONS ───────────────────────────────────────────────────────────
   //
 
   /**
@@ -1178,6 +1184,11 @@ export class UpdateBeneficiaryComponent
         return countrySpecifics;
       })
     );
+  }
+
+  showHistory(title: string, attribute: keyof IHousehold) {
+    this.historyAttribute = attribute;
+    this.historyTitle = title;
   }
 
   //

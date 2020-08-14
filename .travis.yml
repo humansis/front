@@ -4,6 +4,9 @@ node_js:
 
 cache: yarn
 
+addons:
+  chrome: stable
+
 # Define environment variables
 env:
   - secure: "GOdoNQ+r7dn1A1UXznym68WkLH57GBWJ4zN4/gOdAcrUWMJaQJCGmDrqo9v9uk2nj3Mz05NV5GvwEsWz3lWzeA1kzmKY6k7vqS+wZOTMBch0iboa12nT2DBALb5TwGi10whfBIAk/NDCfpJeQ01q88Cl7yV3vBoynlzMUiAw/N8Z0meEjdcAQRuD10lKfos7fJd9WCr6LvRJb9rm0Zq0MAqNLw6ZBA2aVz8Jfz4QrBB6oZJwMu0T/URJoX96kQ6WFPDevPCLjT1V2ezCOWyyTYHdUf6C7Omod9TvWSthTGXs0Wr/epY6e51R+e4tMVr/+dA41jetwmvfFTf0HuefQ1+v5EuQj/UD6vsidxf3wohesnfxzJastuA0wcYm8zK99lQlXhqRB2YB9r+sZII339my3icRBImsX2oj7Vu+tzDMx0092ifQLktHwmX5VrVKdg8iACzq7CA11vKLDUp6ickXiDGxymVEbPRa6SIZWoX0pRQcAHrPNwDHpa0u005/zVinZHACAdLxq4hYMfhwJQ92Uq22+Yv2eAwgqieJJaMUyfJeb5AL3wKSyKufLYvMUuX8wbTg1hdzFMhtYfbM+m6qTosgWjm5aAr5Jqqk0dV9j+GjArUTDYnzGeTxespNyBebfE1+LvoMS6WmR0qt2FMM5B93X2t3+Rdn7nVenGo="
@@ -19,7 +22,7 @@ install:
 jobs:
     include:
         - stage: test
-          script: yarn run lint && yarn run build -- --prod --stats-json
+          script: yarn run lint && yarn run test
           fast_finish: true
         - stage: deploy
           if: branch = dev AND NOT type = "pull_request"

@@ -1,0 +1,29 @@
+mat-card {
+    min-width: 450px;
+}
+
+table {
+    width: 100%;
+
+    th {
+        text-transform: capitalize;
+    }
+}
+
+.mat-column-date {
+    width: 50%;
+}
+
+.mat-column-value {
+    width: 50%;
+}
+
+
+.highlight {
+    font-weight: 700;
+}
+
+.table-container {
+    overflow-y: scroll;
+    max-height: 300px;
+}
