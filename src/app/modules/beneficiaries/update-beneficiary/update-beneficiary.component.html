@@ -143,6 +143,70 @@
                                                 <app-hint-error [form]="mainForm" fieldName="supportReceived" [field]="household.fields.supportReceived" [isMatField]="true"></app-hint-error>
                                             </mat-form-field>
                                         </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number" min="0" max="100"
+                                                       [placeholder]="language.household_debt_level | uppercaseFirst"
+                                                       formControlName="debtLevel">
+                                                <app-hint-error [form]="mainForm" fieldName="debtLevel"
+                                                                [field]="household.fields.debtLevel"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <ng-select class="multiple-select" formControlName="assets"
+                                                       placeholder="{{language.household_assets | uppercaseFirst}} *" [multiple]="true"
+                                                       [closeOnSelect]="false" [searchable]="true">
+                                                <ng-option *ngFor="let asset of household.getOptions('assets')"
+                                                           [value]="asset.get('id')">
+                                                    {{asset.get('name') | uppercaseFirst}}
+                                                </ng-option>
+                                            </ng-select>
+                                            <app-hint-error [form]="mainForm" fieldName="assets" [field]="household.fields.assets"
+                                                            [isMatField]="false"></app-hint-error>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_food_consumption_score | uppercaseFirst"
+                                                       formControlName="foodConsumptionScore">
+                                                <app-hint-error [form]="mainForm" fieldName="foodConsumptionScore"
+                                                                [field]="household.fields.foodConsumptionScore" [isMatField]="true">
+                                                </app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
+                                                       formControlName="copingStrategiesIndex">
+                                                <app-hint-error [form]="mainForm" fieldName="copingStrategiesIndex"
+                                                                [field]="household.fields.copingStrategiesIndex"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="column-container">
+                                        <h4>{{ language.add_beneficiary_external_support | uppercaseFirst }}</h4>
+                                        <div>
+                                            <ng-select class="multiple-select" formControlName="supportReceivedOtherOrg"
+                                                       placeholder="{{language.household_support_received_other_org | uppercaseFirst}} *" [multiple]="true"
+                                                       [closeOnSelect]="false" [searchable]="true">
+                                                <ng-option *ngFor="let support of household.getOptions('supportReceivedOtherOrg')"
+                                                           [value]="support.get('id')">
+                                                    {{support.get('name') | uppercaseFirst}}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <div>
+                                            <mat-form-field class="support-received">
+                                                <input matInput [matDatepicker]="supportReceived" placeholder="{{language.household_support_date_received | uppercaseFirst }}"
+                                                       formControlName="supportReceived">
+                                                <mat-datepicker-toggle matSuffix [for]="supportReceived"></mat-datepicker-toggle>
+                                                <mat-datepicker #supportReceived></mat-datepicker>
+                                                <app-hint-error [form]="mainForm" fieldName="supportReceived" [field]="household.fields.supportReceived" [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                     <div class="column-container">
                                         <div class="specifics" *ngIf="countrySpecificList.length">
