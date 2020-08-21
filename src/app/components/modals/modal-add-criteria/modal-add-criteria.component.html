@@ -54,7 +54,7 @@
               </td>
           </tr>
 
-          <tr class="modal-row" *ngIf="!isBooleanValue(form.controls.field.value)">
+          <tr class="modal-row" *ngIf="showValueField(form.controls.field.value)">
             <th class="table-title">{{ criteria.fields.value.title  | uppercaseFirst }}</th>
             <td class="form-item">
               <ng-select appendTo="body" *ngIf="form.controls.field.value === 'gender' || form.controls.field.value === 'headOfHouseholdGender'; else livelihood" class="single-select" formControlName="value" [closeOnSelect]="true" [searchable]="true">

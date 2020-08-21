@@ -185,12 +185,13 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
   }
 
   // To know if the value input/select is gonna be displayed
-  isBooleanValue(field) {
-    return [
+  showValueField(field) {
+    return ![
       'disabled',
+      'currentLocation',
       'soloParent',
-      'lactating ',
-      'pregnant ',
+      'lactating',
+      'pregnant',
       'nutritionalIssues',
     ].includes(field);
   }
@@ -367,7 +368,7 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
 
     this.criteria.set('weight', controls.weight.value);
 
-    if (!this.isBooleanValue(controls.field.value) && !controls.value.value) {
+    if (this.showValueField(controls.field.value) && !controls.value.value) {
       this.snackbar.error(this.language.modal_add_no_value);
     } else {
       this.modalReference.close(this.criteria);
