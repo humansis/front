@@ -708,6 +708,7 @@ export class Russian implements Language {
   report_soloparent = 'Одинокий родитель';
   report_vulnerability_served = 'обслуженные уязвимости в защите информационных систем';
   report_women = 'Женщины';
+  report_missing_distribution = 'Вы не выбрали распределение!';
 
   // Role
   role_user_admin = 'Администратор';

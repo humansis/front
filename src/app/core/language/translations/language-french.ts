@@ -826,6 +826,7 @@ export class French implements Language {
   report_soloparent = 'Seul Parent';
   report_vulnerability_served = 'Vulnérabilité desservie';
   report_women = 'Femmes';
+  report_missing_distribution = this.missingTranslation;
 
   // Role
   role_user_admin = 'Administrateur';

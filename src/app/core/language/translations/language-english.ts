@@ -818,6 +818,7 @@ export class English implements Language {
   report_soloparent = 'Solo Parent';
   report_vulnerability_served = 'Vulnerability Served';
   report_women = 'Women';
+  report_missing_distribution = 'You did not select a distribution!';
 
   // Role
   role_user_admin = 'Administrator';

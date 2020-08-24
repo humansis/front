@@ -802,6 +802,7 @@ export class Arabic implements Language {
   report_soloparent = 'الوالد منفرد';
   report_vulnerability_served = 'الضعف يخدم';
   report_women = 'نساء1';
+  report_missing_distribution = this.missingTranslation;
 
   // Role
   role_user_admin = 'مسؤول';
