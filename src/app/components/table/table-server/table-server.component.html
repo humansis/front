@@ -10,7 +10,7 @@
         <div class="container-header" *ngIf="tableServerData">
             <mat-form-field class="search-input">
                 <input matInput (keyup)="applySpecificFilter($event.target.value, 'any')"
-                    placeholder="{{language.table_filter | uppercaseFirst}}">
+                    placeholder="{{language.table_filter}}">
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
@@ -18,17 +18,17 @@
             <button mat-flat-button class="button-text-accent" (click)="showAdvancedResearch()">
                 <mat-icon *ngIf="!advancedResearch">keyboard_arrow_down</mat-icon>
                 <mat-icon *ngIf="advancedResearch">keyboard_arrow_up</mat-icon>
-                {{language.beneficiary_advanced_research | uppercaseFirst}}
+                {{language.beneficiary_advanced_research}}
             </button>
             <button *ngIf="advancedResearch" mat-flat-button class="button-text-accent" (click)="clearSearch()">
                 <mat-icon>clear</mat-icon>
-                {{language.beneficiary_clear_all_research | uppercaseFirst}}
+                {{language.beneficiary_clear_all_research}}
             </button>
         </div>
-        
+
         <div class="items-info">
             <p class="text" *ngIf="(selectable && selection.selected.length > 0)">
-                    {{language.table_selected}}: {{selection.selected.length}}</p>  
+                    {{language.table_selected}}: {{selection.selected.length}}</p>
             <p class="text" *ngIf="paginator">{{language.table_filtered}}: {{paginator.length}}</p>
         </div>
     </div>
@@ -38,19 +38,19 @@
             <ng-container *ngFor="let fieldName of filterFields">
                 <div *ngIf="display(filters.fields[fieldName]); let field" class="filter-fields">
                     <ng-container *ngIf="field.kindOfField === 'MultipleSelect'; else isSingleSelect">
-                        <ng-select [formControlName]="fieldName" [placeholder]="field.title | uppercaseFirst"
+                        <ng-select [formControlName]="fieldName" [placeholder]="field.title"
                             [multiple]="true" [closeOnSelect]="false">
                             <ng-option *ngFor="let option of field.options" [value]="option.get('id')">
-                                {{(language[option.get(field.bindField)] || option.get(field.bindField)) | uppercaseFirst}}
+                                {{(language[option.get(field.bindField)] || option.get(field.bindField))}}
                             </ng-option>
                         </ng-select>
                     </ng-container>
 
                     <ng-template #isSingleSelect>
                         <ng-container *ngIf="field.kindOfField === 'SingleSelect'; else isMaterialField">
-                            <ng-select [formControlName]="fieldName" [placeholder]="field.title | uppercaseFirst">
+                            <ng-select [formControlName]="fieldName" [placeholder]="field.title">
                                 <ng-option *ngFor="let option of field.options" [value]="option.get('id')">
-                                    {{option.get(field.bindField) | uppercaseFirst}}
+                                    {{option.get(field.bindField)}}
                                 </ng-option>
                             </ng-select>
                         </ng-container>
@@ -61,19 +61,19 @@
                             *ngIf="field.kindOfField !== 'Object' && field.kindOfField !== 'MultipleObject'; else isObject">
                             <ng-container *ngIf="field.kindOfField === 'Text'; else checkForDateField">
                                 <input *ngIf="field.isPassword; else checkForTextArea"
-                                    [placeholder]="field.title | uppercaseFirst" matInput type="password"
+                                    [placeholder]="field.title matInput type="password"
                                     [formControlName]="fieldName" autocomplete="new-password">
 
                                 <ng-template #checkForTextArea>
                                     <ng-container *ngIf="field.isLongText; else checkForTextInput">
                                         <textarea matInput type="text" [formControlName]="fieldName"
-                                            [placeholder]="field.title | uppercaseFirst"></textarea>
+                                            [placeholder]="field.title"></textarea>
                                     </ng-container>
                                 </ng-template>
 
                                 <ng-template #checkForTextInput>
                                     <input matInput type="text" [formControlName]="fieldName"
-                                        [placeholder]="field.title | uppercaseFirst">
+                                        [placeholder]="field.title">
                                 </ng-template>
                             </ng-container>
 
@@ -81,7 +81,7 @@
                             <ng-template #checkForDateField>
                                 <ng-container *ngIf="field.kindOfField === 'Date'; else checkForNumberField">
                                     <input matInput [matDatepicker]="picker" [formControlName]="fieldName"
-                                        [placeholder]="field.title | uppercaseFirst">
+                                        [placeholder]="field.title">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </ng-container>
@@ -94,14 +94,14 @@
                             </ng-template>
                             <mat-error
                                 *ngIf="(form.controls[fieldName] && form.controls[fieldName].hasError('required')) || (form.controls[fieldName + '0'] && form.controls[fieldName + '0'].hasError('required'))">
-                                {{ fieldName | uppercaseFirst}} {{ language.is_required }}
+                                {{ fieldName }} {{ language.is_required }}
                             </mat-error>
                             <mat-error
                                 *ngIf="(form.controls[fieldName] && form.controls[fieldName].hasError('pattern')) || (form.controls[fieldName + '0'] && form.controls[fieldName + '0'].hasError('pattern'))">
-                                {{field.hint | uppercaseFirst}}
+                                {{field.hint}}
                             </mat-error>
                             <mat-hint align="start" *ngIf="field.hint && modalType !== 'Details'">
-                                <strong>{{field.hint | uppercaseFirst}}</strong> </mat-hint>
+                                <strong>{{field.hint}}</strong> </mat-hint>
                         </mat-form-field>
                     </ng-template>
                 </div>
@@ -132,7 +132,7 @@
         </ng-container>
         <ng-container *ngFor="let property of displayProperties" matColumnDef="{{property}}">
             <mat-header-cell mat-sort-header *matHeaderCellDef>
-                {{entityInstance.fields[property].title | uppercaseFirst}}
+                {{entityInstance.fields[property].title}}
             </mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <ng-container *ngIf="element.fields[property]; let field">
@@ -142,18 +142,18 @@
         </ng-container>
 
         <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef>{{language.table_actions | uppercaseFirst }}</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{language.table_actions}}</mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <ng-container *ngIf="validatable">
                     <button mat-icon-button (click)="openDialog('visit', element); $event.stopPropagation();" [disabled]="disabledActions">
-                        <mat-icon *ngIf="element.get('validated') && element.get('finished')" class="green" [matTooltip]="language.update | uppercaseFirst">done</mat-icon>
-                        <mat-icon *ngIf="element.get('validated') && !element.get('finished')" class="red" [matTooltip]="language.update | uppercaseFirst">lock
+                        <mat-icon *ngIf="element.get('validated') && element.get('finished')" class="green" [matTooltip]="language.update">done</mat-icon>
+                        <mat-icon *ngIf="element.get('validated') && !element.get('finished')" class="red" [matTooltip]="language.update">lock
                         </mat-icon>
-                        <mat-icon *ngIf="!element.get('validated') && updatable" class="dark-blue" [matTooltip]="language.update | uppercaseFirst">edit</mat-icon>
+                        <mat-icon *ngIf="!element.get('validated') && updatable" class="dark-blue" [matTooltip]="language.update">edit</mat-icon>
                     </button>
                 </ng-container>
                 <button mat-icon-button (click)="openDialog('visit', element); $event.stopPropagation();" class="dark-blue"
-                *ngIf="(!validatable && updatable)" [matTooltip]="language.update | uppercaseFirst" [disabled]="disabledActions">
+                *ngIf="(!validatable && updatable)" [matTooltip]="language.update" [disabled]="disabledActions">
                     <mat-icon>edit</mat-icon>
                 </button>
 
@@ -173,11 +173,11 @@
                     <mat-icon>delete_outline</mat-icon>
                 </button>
                 <button *ngIf="printable" mat-icon-button (click)="print(element); $event.stopPropagation()"
-                    [matTooltip]="language.table_print | uppercaseFirst" class="grey" [disabled]="!element.isPrintable()
+                    [matTooltip]="language.table_print" class="grey" [disabled]="!element.isPrintable()
                     || disabledActions">
                     <mat-icon>printer</mat-icon>
                 </button>
-                <button mat-icon-button [matTooltip]="language.table_assign | uppercaseFirst" *ngIf="assignable"
+                <button mat-icon-button [matTooltip]="language.table_assign" *ngIf="assignable"
                     (click)="assign(element); $event.stopPropagation()" class="grey"
                     [disabled]="!element.isAssignable() || disabledActions">
                     <mat-icon>assignment</mat-icon>

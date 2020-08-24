@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommunityModalComponent } from './community-modal.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -13,7 +12,6 @@ import { AdministrativeAreaInputComponent } from '../../../../../components/admi
 import { CommunityService } from '../../../../../core/api/community.service';
 import { CommunityMockService } from '../../../../../core/api/mock/community-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
 
 describe('CommunityModalComponent', () => {
   let component: CommunityModalComponent;
@@ -28,7 +26,6 @@ describe('CommunityModalComponent', () => {
         CommunityModalComponent,
         CommunityFormComponent,
         AdministrativeAreaInputComponent,
-        UppercaseFirstPipe,
       ],
       imports: [
         MatDialogModule,

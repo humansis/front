@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoxSettingComponent } from './box-setting.component';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
-import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BoxSettingComponent', () => {
   let component: BoxSettingComponent;
@@ -10,7 +8,7 @@ describe('BoxSettingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BoxSettingComponent, UppercaseFirstPipe],
+      declarations: [BoxSettingComponent],
     }).compileComponents();
   }));
 

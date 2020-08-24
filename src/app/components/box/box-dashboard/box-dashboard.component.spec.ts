@@ -3,8 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BoxDashboardComponent } from './box-dashboard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
-
 describe('BoxDashboardComponent', () => {
   let component: BoxDashboardComponent;
   let fixture: ComponentFixture<BoxDashboardComponent>;
@@ -12,7 +10,7 @@ describe('BoxDashboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [BoxDashboardComponent, UppercaseFirstPipe],
+      declarations: [BoxDashboardComponent],
     }).compileComponents();
   }));
 

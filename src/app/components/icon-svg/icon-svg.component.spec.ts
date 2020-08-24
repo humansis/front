@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconSvgComponent } from './icon-svg.component';
-import { UppercaseFirstPipe } from '../../shared/pipes/uppercase-first.pipe';
 
 describe('IconSvgComponent', () => {
   let component: IconSvgComponent;
@@ -9,7 +8,7 @@ describe('IconSvgComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [],
-      declarations: [IconSvgComponent, UppercaseFirstPipe],
+      declarations: [IconSvgComponent],
     }).compileComponents();
   }));
 

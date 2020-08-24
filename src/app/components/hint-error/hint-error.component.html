@@ -1,21 +1,21 @@
 <ng-container *ngIf="!isMatField">
   <p class="not-mat-form-field-error" *ngIf="hasError('required')">
-    {{ field.title | uppercaseFirst }} {{ language.is_required | uppercaseFirst }}
+    {{ field.title }} {{ language.is_required }}
   </p>
   <p class="not-mat-form-field-error" *ngIf="hasError('pattern')">
-    {{field.hint | uppercaseFirst }}
+    {{field.hint}}
   </p>
-  <p class="not-mat-form-field-hint" align="start" *ngIf="!hasError('pattern') && !hasError('required') && field.hint"><strong>{{field.hint | uppercaseFirst }}</strong> </p>  
+  <p class="not-mat-form-field-hint" align="start" *ngIf="!hasError('pattern') && !hasError('required') && field.hint"><strong>{{field.hint}}</strong> </p>
 </ng-container>
 
 <ng-container *ngIf="isMatField">
   <mat-error *ngIf="hasError('required')" [ngClass]="{'textarea-hint-error': field.isLongText}">
-    {{ field.title | uppercaseFirst }} {{ language.is_required | uppercaseFirst }}
+    {{ field.title }} {{ language.is_required }}
   </mat-error>
   <mat-error *ngIf="hasError('pattern')">
-      {{field.patternError | uppercaseFirst }}
+      {{field.patternError}}
   </mat-error>
   <mat-hint align="start" *ngIf="!hasError('pattern') && !hasError('required') && field.hint" [ngClass]="{'textarea-hint-error': field.isLongText}">
-    <strong>{{field.hint | uppercaseFirst }}</strong>
+    <strong>{{field.hint}}</strong>
   </mat-hint>
 </ng-container>

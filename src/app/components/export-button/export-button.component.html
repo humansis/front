@@ -2,7 +2,7 @@
      [ngClass]="{'rtl':language.direction === 'rtl'}">
     <button mat-flat-button class="button-background-primary" (click)="export()" *ngIf="!loadingExport">
         <mat-icon>get_app</mat-icon>
-        <span>{{language.export | titlecase}}</span>
+        <span>{{language.export}}</span>
     </button>
     <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
     <div class="extension">

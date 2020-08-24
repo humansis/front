@@ -1,11 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalAddBeneficiaryComponent } from './modal-add-beneficiary.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { Distribution } from '../../../models/distribution';
 import { Project } from '../../../models/project';
 import { BeneficiariesService } from '../../../core/api/beneficiaries.service';
@@ -25,7 +23,7 @@ describe('ModalAddBeneficiaryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
-      declarations: [ModalAddBeneficiaryComponent, UppercaseFirstPipe],
+      declarations: [ModalAddBeneficiaryComponent],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: {} },

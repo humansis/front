@@ -7,7 +7,6 @@ import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatDialogModule } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BeneficiariesComponent } from '../beneficiaries/beneficiaries.component';
@@ -18,7 +17,7 @@ describe('HouseholdsDataMappingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DataMappingComponent, UppercaseFirstPipe],
+      declarations: [DataMappingComponent],
       imports: [
         HttpClientTestingModule,
         MatSnackBarModule,

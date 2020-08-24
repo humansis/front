@@ -1,16 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdateBeneficiaryComponent } from './update-beneficiary.component';
-import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MdePopoverModule } from '@material-extended/mde';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HouseholdsService } from '../../../core/api/households.service';
 import { HouseholdsMockService } from '../../../core/api/mock/households-mock.service';
 import { LocationService } from '../../../core/api/location.service';
@@ -29,7 +26,7 @@ describe('UpdateBeneficiaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UpdateBeneficiaryComponent, UppercaseFirstPipe],
+      declarations: [UpdateBeneficiaryComponent],
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,

@@ -6,7 +6,6 @@ import { setAppInjector } from '../../../app-injector';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { AuthenticationService } from '../../../core/authentication/authentication.service';
 import { AuthenticationMockService } from '../../../core/api/mock/authentication-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -23,7 +22,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent, UppercaseFirstPipe],
+      declarations: [LoginComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule],
       providers: [
         { provide: AuthenticationService, useClass: AuthenticationMockService },

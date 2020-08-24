@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalAddCommodityComponent } from './modal-add-commodity.component';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { AsyncacheService } from '../../../core/storage/asyncache.service';
 import { AsyncacheMockService } from '../../../core/api/mock/asyncache-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -21,7 +19,7 @@ describe('ModalAddCommodityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalAddCommodityComponent, UppercaseFirstPipe],
+      declarations: [ModalAddCommodityComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         {

@@ -1,6 +1,6 @@
 <div class="page-container">
     <div class="container-title">
-        <h2>{{language.voucher | uppercaseFirst}}</h2>
+        <h2>{{language.voucher}}</h2>
     </div>
 
     <div class="container-table">
@@ -10,7 +10,7 @@
                     <button mat-flat-button
                         *ngIf="selection.selected.length > 0 && !loadingPrint && userService.hasRights('ROLE_PROJECT_MANAGEMENT')"
                         class="button-background-primary action-button" (click)="printMany()">
-                        <span>{{language.voucher_print_selection | uppercaseFirst}}</span>
+                        <span>{{language.voucher_print_selection}}</span>
                     </button>
                     <mat-spinner [diameter]='25' *ngIf="loadingPrint"></mat-spinner>
 
@@ -20,9 +20,9 @@
                             class="button-background-primary" (click)="exportCodes()" *ngIf="!loadingExportCodes">
                             <mat-icon>get_app</mat-icon>
                             <span
-                                *ngIf="selection.selected.length > 0; else noSelected">{{language.export_selected | uppercaseFirst}}</span>
+                                *ngIf="selection.selected.length > 0; else noSelected">{{language.export_selected}}</span>
                             <ng-template #noSelected>
-                                <span>{{language.export | uppercaseFirst}}</span>
+                                <span>{{language.export}}</span>
                             </ng-template>
                         </button>
                         <mat-spinner [diameter]='25' *ngIf="loadingExportCodes"></mat-spinner>
@@ -52,7 +52,7 @@
                     *ngIf="currentDisplayType.type !== 'mobile' && userService.hasRights('ROLE_PROJECT_MANAGEMENT')"
                     (click)="openDialog({action: 'add'})" class="add-button-create">
                     <mat-icon>add</mat-icon>
-                    {{language.add | uppercaseFirst}}
+                    {{language.add}}
                 </button>
                 <button mat-fab *ngIf="currentDisplayType.type === 'mobile'" (click)="openDialog({action: 'add'})"
                     class="add-button" [ngClass]="{'add-button-rtl': language.direction === 'rtl'}">

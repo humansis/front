@@ -1,5 +1,5 @@
 <h4 mat-dialog-title class="modal-title underline-primary" [ngClass]="{'rtl':language.direction === 'rtl'}">
-    {{language.voucher_assign_title | uppercaseFirst}}</h4>
+    {{language.voucher_assign_title}}</h4>
 
 <!-- Step 1 -->
 <mat-dialog-content class="modal-container" *ngIf="step === 1">
@@ -42,7 +42,7 @@
             </tr>
         </table>
     </form>
-    <p class="red-color" *ngIf="!form.controls.beneficiaryControl.value" > {{language.select_beneficiary | uppercaseFirst}} </p>
+    <p class="red-color" *ngIf="!form.controls.beneficiaryControl.value" > {{language.select_beneficiary}} </p>
     <app-scanner *ngIf="form.controls.beneficiaryControl.value" (result)="getResultScanner($event)"></app-scanner>
 </mat-dialog-content>
 
@@ -55,7 +55,7 @@
 
 <!-- Step 2 -->
 <mat-dialog-content class="modal-container" *ngIf="step === 2">
-    <p>{{language.voucher_scan_text }}</p>
+    <p>{{language.voucher_scan_text}}</p>
 
     <div class="scan-checked">
         <mat-icon>check_circle_outline</mat-icon>
@@ -82,7 +82,7 @@
     <div class="modal-body">
         <p>{{ language.booklet }} {{ bookletQRCode }} {{ language.voucher_step }} {{ beneficiaryName }} {{
                 language.voucher_for }} {{ distributionName }}</p>
-                
+
         <span>{{ language.voucher_define_password}}?</span>
         <mat-checkbox color="primary" [formControl]="displayPasswordControl" class="margin-left"></mat-checkbox>
         <div [hidden]="!displayPasswordControl.value">
@@ -90,9 +90,9 @@
             <div class="modal-body">
                 <mat-form-field class="full-width">
                     <input matInput type="password" autocomplete="new-password" [formControl]="voucherPasswordControl"
-                        [placeholder]="language.password | uppercaseFirst" />
+                        [placeholder]="language.password " />
                     <mat-error *ngIf="voucherPasswordControl.hasError('required')">
-                        {{ language.password }} {{ language.is_required | uppercaseFirst }}
+                        {{ language.password }} {{ language.is_required  }}
                     </mat-error>
                     <mat-error *ngIf="voucherPasswordControl.hasError('pattern')">
                         {{ language.booklet_password_pattern }}

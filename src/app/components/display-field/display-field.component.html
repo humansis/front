@@ -1,11 +1,11 @@
 <div [matTooltip]="field.value && field.tooltip ? field.tooltip(field.value) : null">
     <ng-container *ngIf="isEmpty(field); else isBoolean">
-        {{ field.nullValue | uppercaseFirst }}
+        {{ field.nullValue }}
     </ng-container>
 
     <ng-template #isBoolean>
         <ng-container *ngIf="field.kindOfField === 'Boolean' ; else isObject">
-            {{ field.value ? field.language['true'] : field.language['false'] | uppercaseFirst }}
+            {{ field.value ? field.language['true'] : field.language['false'] }}
         </ng-container>
     </ng-template>
 
@@ -49,11 +49,11 @@
                 </ng-container>
                 <ng-template #notImage>
                         <span *ngIf="makeList(field.value, field).length <= MAX_PROP_LENGTH; else arrayIsTooLong">
-                                {{makeList(field.value, field) | uppercaseFirst }}
+                                {{makeList(field.value, field)}}
                             </span>
                         <ng-template #arrayIsTooLong>
-                            <span [matTooltip]="makeList(field.value, field) | uppercaseFirst ">
-                                {{makeList(field.value, field).substring(0,MAX_PROP_LENGTH-1) | uppercaseFirst}} ...
+                            <span [matTooltip]="makeList(field.value, field)">
+                                {{makeList(field.value, field).substring(0,MAX_PROP_LENGTH-1)}} ...
                             </span>
                         </ng-template>
                 </ng-template>
@@ -69,10 +69,10 @@
                 <ng-template #singleNotImage>
                     <ng-container *ngIf="field.value">
                             <ng-container *ngIf="field.isTranslatable; else notTranslatable">
-                                    {{field.value.getTooltip() | uppercaseFirst}}
+                                    {{field.value.getTooltip()}}
                             </ng-container>
                             <ng-template #notTranslatable>
-                                    {{field.value.get(field.bindField) | uppercaseFirst}}
+                                    {{field.value.get(field.bindField)}}
                             </ng-template>
                     </ng-container>
                 </ng-template>
@@ -81,13 +81,13 @@
 
     <ng-template #isNotSelect>
         <ng-container *ngIf="field.kindOfField === 'Date'; else isNotDate">
-            <ng-container *ngIf="field.value && !field.displayTime">{{ field.value | date: 'dd-MM-yyyy' }}</ng-container>
-            <ng-container *ngIf="field.value && field.displayTime">{{ field.value | date: 'dd-MM-yyyy HH:mm' }}</ng-container>
+            <ng-container *ngIf="field.value && !field.displayTime">{{ field.value | date: 'dd-MM-yyyy'}}</ng-container>
+            <ng-container *ngIf="field.value && field.displayTime">{{ field.value | date: 'dd-MM-yyyy HH:mm'}}</ng-container>
         </ng-container>
     </ng-template>
     <ng-template #isNotDate>
         <ng-container *ngIf="field.displayValue; else isGeneralValue">
-            {{ field.displayValue | uppercaseFirst }}
+            {{ field.displayValue }}
         </ng-container>
     </ng-template>
 
@@ -104,19 +104,19 @@
         </ng-container>
         <ng-template #checkFont>
             <ng-container *ngIf="field.isFont; else checkTranslatable">
-                <div [ngStyle]="{'font-family':field.value}">{{ field.value | uppercaseFirst }}</div>
+                <div [ngStyle]="{'font-family':field.value}">{{ field.value }}</div>
             </ng-container>
         </ng-template>
         <ng-template #checkTranslatable>
             <ng-container *ngIf="field.isTranslatable; else isAString">
-                {{language[field.value] | uppercaseFirst }}
+                {{language[field.value]}}
             </ng-container>
         </ng-template>
         <ng-template #isAString>
-            {{field.value | uppercaseFirst }}
+            {{field.value}}
         </ng-template>
     </ng-template>
     <ng-template #notAString>
-        {{field.value }}
+        {{field.value}}
     </ng-template>
 </div>

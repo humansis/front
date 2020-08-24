@@ -1,14 +1,14 @@
 <form [formGroup]="form" *ngIf="form">
     <tr class="modal-row" *ngFor="let field of formStructure">
         <th class="table-title">
-            {{ field.name | uppercaseFirst }}
+            {{ field.name }}
         </th>
         <td class="form-item">
             <ng-container *ngIf="field.type === 'string'; else isBoolean">
                 <mat-form-field>
                     <input matInput disabled="false" type="text"
                         [formControlName]="field.name"
-                        [placeholder]="field.name | uppercaseFirst">
+                        [placeholder]="field.name">
                 </mat-form-field>
             </ng-container>
 
@@ -22,7 +22,7 @@
                 <ng-container *ngIf="field.type === 'number'">
                     <input matInput disabled="false"
                         type="number" [formControlName]="field.name"
-                        [placeholder]="field.name | uppercaseFirst">
+                        [placeholder]="field.name">
                 </ng-container>
             </ng-template>
         </td>

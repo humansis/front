@@ -4,6 +4,7 @@ import { Language } from './language';
 import { Arabic } from './translations/language-arabic';
 import { English } from './translations/language-english';
 import { Russian } from './translations/language-russian';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,11 @@ export class LanguageService {
   public english = new English();
   public arabic = new Arabic();
   public russian = new Russian();
+
+  private selectedLanguageSource: Subject<Language> = new Subject();
+  public selectedLanguage$: Observable<
+    Language
+  > = this.selectedLanguageSource.asObservable();
 
   public readonly enabledLanguages: Array<Language> = [
     this.english,
@@ -29,6 +35,7 @@ export class LanguageService {
   }
   set selectedLanguage(language: Language) {
     this._selectedLanguage = language;
+    this.selectedLanguageSource.next(language);
     this.setMargins();
   }
   //

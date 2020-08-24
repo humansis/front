@@ -57,14 +57,14 @@
                     [searchable]="true"
                     class="single-select"
                     formControlName="type"
-                    placeholder="{{language.institution_contact_id_type | uppercaseFirst}}">
+                    placeholder="{{language.institution_contact_id_type}}">
                     <ng-option *ngFor="let type of cardTypes" [value]="type.id">
                         {{language[type.language_key]}}
                     </ng-option>
                 </ng-select>
                 <mat-form-field>
                     <input matInput
-                           placeholder="{{language.institution_contact_id_number | uppercaseFirst}}"
+                           placeholder="{{language.institution_contact_id_number}}"
                            formControlName="number">
                 </mat-form-field>
             </div>

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="modal-title underline-accent" [ngClass]="{'rtl':language.direction === 'rtl'}">{{language.modal_add_multiple_title | uppercaseFirst}} {{language.community}}</h1>
+<h1 mat-dialog-title class="modal-title underline-accent" [ngClass]="{'rtl':language.direction === 'rtl'}">{{language.modal_add_multiple_title}} {{language.community}}</h1>
 <div mat-dialog-content>
     <app-community-form [data]="data" #communityForm (save)="onSave($event)"></app-community-form>
 </div>

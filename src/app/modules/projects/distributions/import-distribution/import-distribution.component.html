@@ -9,7 +9,7 @@
                 <div class="select-file">
                     <a href="javascript:void(0)" (click)="file.click()">
                         <button mat-stroked-button
-                            color="primary">{{language.beneficiary_import_addFile | uppercaseFirst}}</button>
+                            color="primary">{{language.beneficiary_import_addFile}}</button>
                     </a>
                     <input type="file" #file [multiple] (change)="fileChange($event, 'target')" style="display:none" />
                 </div>
@@ -20,7 +20,7 @@
     <div class="content-button content-button-footer">
         <button mat-flat-button class="upload-button" (click)="updateDistribution(1)" *ngIf="csv && !loadFile">
             <mat-icon>publish</mat-icon>
-            <span>{{language.import | uppercaseFirst }}</span>
+            <span>{{language.import}}</span>
         </button>
         <mat-spinner [diameter]="35" *ngIf="loadFile"></mat-spinner>
         <mat-list *ngIf="csv">
@@ -39,7 +39,7 @@
             <ng-template mat-tab-label>
                 <div class="badge">
                     <label>
-                        {{ language.import_added | uppercaseFirst }}
+                        {{ language.import_added }}
                     </label>
                     <mat-chip-list>
                         <mat-chip>{{numberAdded}}</mat-chip>
@@ -66,7 +66,7 @@
             <ng-template mat-tab-label>
                 <div class="badge">
                     <label>
-                        {{ language.import_deleted | uppercaseFirst }}
+                        {{ language.import_deleted }}
                     </label>
                     <mat-chip-list>
                         <mat-chip>{{numberRemoved}}</mat-chip>
@@ -93,7 +93,7 @@
             <ng-template mat-tab-label>
                 <div class="badge">
                     <label>
-                        {{ language.import_created | uppercaseFirst }}
+                        {{ language.import_created }}
                     </label>
                     <mat-chip-list>
                         <mat-chip>{{numberCreated}}</mat-chip>
@@ -120,7 +120,7 @@
             <ng-template mat-tab-label>
                 <div class="badge">
                     <label>
-                        {{ language.import_updated | uppercaseFirst }}
+                        {{ language.import_updated }}
                     </label>
                     <mat-chip-list>
                         <mat-chip>{{numberUpdated}}</mat-chip>
@@ -164,7 +164,7 @@
         <div class="modal-body">
             <mat-form-field>
                 <textarea matInput [formControl]="justification" type="text"
-                    [placeholder]="language.justification | uppercaseFirst" required></textarea>
+                    [placeholder]="language.justification" required></textarea>
             </mat-form-field>
         </div>
     </mat-dialog-content>

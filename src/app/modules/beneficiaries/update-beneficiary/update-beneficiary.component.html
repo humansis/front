@@ -1,7 +1,7 @@
 <div class="page-container">
     <div class="container-title">
-        <h2 *ngIf='mode=="update"'>{{language.beneficiary_update_title | uppercaseFirst}}</h2>
-        <h2 *ngIf='mode=="create"'>{{language.add_beneficiary_title | uppercaseFirst}}</h2>
+        <h2 *ngIf='mode=="update"'>{{language.beneficiary_update_title}}</h2>
+        <h2 *ngIf='mode=="create"'>{{language.add_beneficiary_title}}</h2>
     </div>
 
     <app-placeholder-stepper *ngIf="!household || !mainForm"></app-placeholder-stepper>
@@ -13,11 +13,11 @@
             <mat-icon>done</mat-icon>
         </ng-template>
         <mat-step [completed]="validStep1">
-            <ng-template class="step" matStepLabel>{{language.household | uppercaseFirst}} </ng-template>
+            <ng-template class="step" matStepLabel>{{language.household}} </ng-template>
             <div class="container-table">
                 <div class="stepInMobile">
                     <span class="dot">1</span>
-                    <span>{{language.household | uppercaseFirst}} </span>
+                    <span>{{language.household}} </span>
                 </div>
                 <div class="container-content box-primary">
                     <div class="content-table content-table-step1">
@@ -29,7 +29,7 @@
                                 </app-location-form>
                                 <form [formGroup]="mainForm" class="location-question">
                                     <mat-checkbox color="primary" formControlName="locationDifferent"></mat-checkbox>
-                                    <span>{{ language.household_location_question | uppercaseFirst }}</span>
+                                    <span>{{ language.household_location_question }}</span>
                                 </form>
                                 <app-location-form *ngIf="mainForm && locations && mainForm.controls.locationDifferent.value"
                                     [initialAdms]="initialAdms" [locations]="locations" [form]="mainForm"
@@ -38,15 +38,15 @@
                                 </app-location-form>
                                 <form [formGroup]="mainForm" class="not-location-form">
                                     <div class="column-container">
-                                        <h4>{{language.household_livelihood | uppercaseFirst}}</h4>
+                                        <h4>{{language.household_livelihood}}</h4>
                                         <div>
                                             <ng-select [clearable]="false" class="single-select" [multiple]="false"
                                                        [searchable]="true" [closeOnSelect]="true"
-                                                       placeholder="{{language.household_livelihood | uppercaseFirst}}"
+                                                       placeholder="{{language.household_livelihood}}"
                                                        formControlName="livelihood">
                                                 <ng-option *ngFor="let livelihood of household.getOptions('livelihood')"
                                                            [value]="livelihood.get('id')">
-                                                    {{livelihood.get('name') | uppercaseFirst}}
+                                                    {{livelihood.get('name')}}
                                                 </ng-option>
                                             </ng-select>
                                             <app-hint-error [form]="mainForm" fieldName="livelihood"
@@ -56,10 +56,10 @@
                                         <div>
                                             <mat-form-field>
                                                 <mat-select class="single-select" [multiple]="false"
-                                                            placeholder="{{language.household_income | uppercaseFirst}}"
+                                                            placeholder="{{language.household_income}}"
                                                             formControlName="incomeLevel">
                                                     <mat-option *ngFor="let option of household.getOptions('incomeLevel')" [value]="option.get('id')">
-                                                        {{ option.get('name')  | uppercaseFirst }}
+                                                        {{ option.get('name') }}
                                                     </mat-option>
                                                 </mat-select>
                                                 <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.incomeLevel, 'income_level')"
@@ -70,7 +70,7 @@
                                         <div>
                                             <mat-form-field>
                                                 <input matInput type="number" min="0" max="100"
-                                                       [placeholder]="language.household_debt_level | uppercaseFirst"
+                                                       [placeholder]="language.household_debt_level "
                                                        formControlName="debtLevel">
                                                 <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_debt_level, 'debt_level')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
@@ -82,11 +82,11 @@
                                         </div>
                                         <div>
                                             <ng-select class="multiple-select" formControlName="assets"
-                                                       placeholder="{{language.household_assets | uppercaseFirst}}" [multiple]="true"
+                                                       placeholder="{{language.household_assets}}" [multiple]="true"
                                                        [closeOnSelect]="false" [searchable]="true">
                                                 <ng-option *ngFor="let asset of household.getOptions('assets')"
                                                            [value]="asset.get('id')">
-                                                    {{asset.get('name') | uppercaseFirst}}
+                                                    {{asset.get('name')}}
                                                 </ng-option>
                                             </ng-select>
                                             <app-hint-error [form]="mainForm" fieldName="assets" [field]="household.fields.assets"
@@ -95,7 +95,7 @@
                                         <div>
                                             <mat-form-field>
                                                 <input matInput type="number"
-                                                       [placeholder]="language.household_food_consumption_score | uppercaseFirst"
+                                                       [placeholder]="language.household_food_consumption_score"
                                                        formControlName="foodConsumptionScore">
                                                 <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.foodConsumptionScore,'food_consumption_score')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
@@ -108,7 +108,7 @@
                                         <div>
                                             <mat-form-field>
                                                 <input matInput type="number"
-                                                       [placeholder]="language.household_coping_strategies_index | uppercaseFirst"
+                                                       [placeholder]="language.household_coping_strategies_index"
                                                        formControlName="copingStrategiesIndex">
                                                 <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.copingStrategiesIndex,'coping_strategies_index')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
@@ -120,20 +120,20 @@
                                         </div>
                                     </div>
                                     <div class="column-container">
-                                        <h4>{{ language.add_beneficiary_external_support | uppercaseFirst }}</h4>
+                                        <h4>{{ language.add_beneficiary_external_support }}</h4>
                                         <div>
                                             <ng-select class="multiple-select" formControlName="supportReceivedOtherOrg"
-                                                       placeholder="{{language.household_support_received_other_org | uppercaseFirst}}" [multiple]="true"
+                                                       placeholder="{{language.household_support_received_other_org}}" [multiple]="true"
                                                        [closeOnSelect]="false" [searchable]="true">
                                                 <ng-option *ngFor="let support of household.getOptions('supportReceivedOtherOrg')"
                                                            [value]="support.get('id')">
-                                                    {{support.get('name') | uppercaseFirst}}
+                                                    {{support.get('name')}}
                                                 </ng-option>
                                             </ng-select>
                                         </div>
                                         <div>
                                             <mat-form-field class="support-received">
-                                                <input matInput [matDatepicker]="supportReceived" placeholder="{{language.household_support_date_received | uppercaseFirst }}"
+                                                <input matInput [matDatepicker]="supportReceived" placeholder="{{language.household_support_date_received}}"
                                                        formControlName="supportReceived">
                                                 <mat-datepicker-toggle matSuffix [for]="supportReceived"></mat-datepicker-toggle>
                                                 <mat-datepicker #supportReceived></mat-datepicker>
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="column-container">
                                         <div class="specifics" *ngIf="countrySpecificList.length">
-                                            <h4>{{ language.settings_country_specific_options | uppercaseFirst }}</h4>
+                                            <h4>{{ language.settings_country_specific_options }}</h4>
                                             <mat-form-field
                                                 *ngFor="let countrySpecific of countrySpecificList">
                                                 <input
@@ -159,7 +159,7 @@
                                                     *ngIf="countrySpecific.get('field') !== 'IDPoor'"
                                                     matInput
                                                     [type]="countrySpecific.get('type')"
-                                                    [placeholder]="countrySpecific.get('field') | uppercaseFirst"
+                                                    [placeholder]="countrySpecific.get('field')"
                                                     [formControlName]="countrySpecific.get('field')">
                                                 <app-hint-error [form]="mainForm"
                                                     fieldName="countrySpecific.get('field')"
@@ -171,14 +171,14 @@
                                     <div class="column-container">
 
                                         <div class="shelter-status">
-                                            <h4>{{ language.household_status | uppercaseFirst }}</h4>
+                                            <h4>{{ language.household_status }}</h4>
                                             <div>
                                                 <ng-select formControlName="shelterStatus"
-                                                           placeholder="{{language.household_shelter_status | uppercaseFirst}} *" [multiple]="false"
+                                                           placeholder="{{language.household_shelter_status}} *" [multiple]="false"
                                                            [closeOnSelect]="false" [searchable]="false">
                                                     <ng-option *ngFor="let shelterStatus of household.getOptions('shelterStatus')"
                                                                [value]="shelterStatus.get('id')">
-                                                        {{shelterStatus.get('name') | uppercaseFirst}}
+                                                        {{shelterStatus.get('name')}}
                                                     </ng-option>
                                                 </ng-select>
 
@@ -194,7 +194,7 @@
                                     <div class="lign-container textarea-input">
                                         <mat-form-field class="area-size">
                                             <textarea matInput matTextareaAutosize="true" matAutosizeMinRows="5"
-                                                matAutosizeMaxRows="5" placeholder="{{language.notes | uppercaseFirst}}"
+                                                matAutosizeMaxRows="5" placeholder="{{language.notes}}"
                                                 formControlName="notes"></textarea>
                                             <app-hint-error [form]="mainForm" fieldName="notes"
                                                 [field]="household.fields.notes" [isMatField]="true"></app-hint-error>
@@ -204,15 +204,15 @@
                                         <div class="action-buttons">
                                             <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
                                             <button mat-button class="button-text-primary" (click)="leave()">
-                                                {{language.cancel | uppercaseFirst }}
+                                                {{language.cancel}}
                                             </button>
                                             <button mat-flat-button class="button-background-primary"
                                                 (click)="nextValidation(1)">
-                                                {{language.next | uppercaseFirst }}
+                                                {{language.next}}
                                             </button>
                                             <button mat-flat-button class="button-background-primary"
                                                 *ngIf="mode=='update' && !validationLoading"
-                                                (click)="submit(1)">{{language.update | uppercaseFirst }}</button>
+                                                (click)="submit(1)">{{language.update}}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -224,11 +224,11 @@
         </mat-step>
 
         <mat-step [completed]="validStep2">
-            <ng-template class="step" matStepLabel>{{language.beneficiary_head | uppercaseFirst }}</ng-template>
+            <ng-template class="step" matStepLabel>{{language.beneficiary_head}}</ng-template>
             <div class="container-table">
                 <div class="stepInMobile">
                     <span class="dot">2</span>
-                    <span>{{language.beneficiary_head | uppercaseFirst }}</span>
+                    <span>{{language.beneficiary_head}}</span>
                 </div>
                 <div class="container-content box-primary">
                     <div class="content-table">
@@ -240,14 +240,14 @@
                             <div class="action-buttons">
                                 <mat-progress-bar mode="determinate" value="35"></mat-progress-bar>
                                 <button mat-button class="button-text-primary" (click)="stepper.previous()">
-                                    {{language.back | uppercaseFirst}}
+                                    {{language.back}}
                                 </button>
                                 <button mat-flat-button class="button-background-primary" (click)='nextValidation(2)'>
-                                    {{language.next | uppercaseFirst}}
+                                    {{language.next}}
                                 </button>
                                 <button mat-flat-button class="button-background-primary"
                                     *ngIf="mode=='update' && !validationLoading"
-                                    (click)="submit(2)">{{language.update | uppercaseFirst}}</button>
+                                    (click)="submit(2)">{{language.update}}</button>
                             </div>
                         </div>
                     </div>
@@ -256,11 +256,11 @@
         </mat-step>
 
         <mat-step [completed]="validStep3">
-            <ng-template class="step" matStepLabel>{{language.household_members | uppercaseFirst }}</ng-template>
+            <ng-template class="step" matStepLabel>{{language.household_members}}</ng-template>
             <div class="container-table">
                 <div class="stepInMobile">
                     <span class="dot">3</span>
-                    <span>{{language.household_members | uppercaseFirst }}</span>
+                    <span>{{language.household_members}}</span>
                 </div>
                 <div class="container-content box-primary">
                     <div class="content-table">
@@ -286,19 +286,19 @@
                                 <mat-progress-bar mode="determinate" value="70"></mat-progress-bar>
                                 <button mat-stroked-button (click)="addBeneficiary()" class="button-text-accent">
                                     <mat-icon>add</mat-icon>
-                                    {{ language.add | uppercaseFirst}}
+                                    {{ language.add }}
                                 </button>
                                 <button mat-button class="button-text-primary" (click)="stepper.previous()">
-                                    {{language.back | uppercaseFirst}}
+                                    {{language.back}}
                                 </button>
                                 <button mat-flat-button class="button-background-primary"
                                     (click)="passHousehold(); nextValidation(3)">
-                                    {{language.next | uppercaseFirst}}
+                                    {{language.next}}
                                 </button>
                                 <button mat-flat-button class="button-background-primary"
                                     *ngIf="mode=='update' && !validationLoading"
                                     (click)="submit(3)">
-                                    {{language.update | uppercaseFirst}}
+                                    {{language.update}}
                                 </button>
                             </div>
                         </div>
@@ -308,39 +308,39 @@
         </mat-step>
 
         <mat-step [completed]="step4Complete">
-            <ng-template matStepLabel>{{language.summary | uppercaseFirst}}</ng-template>
+            <ng-template matStepLabel>{{language.summary}}</ng-template>
             <div class="container-table">
                 <div class="stepInMobile">
                     <span class="dot">4</span>
-                    <span>{{language.summary | uppercaseFirst}}</span>
+                    <span>{{language.summary}}</span>
                 </div>
                 <div class="container-content box-primary">
                     <div class="content-table">
-                        <h3>{{ language.add_beneficiary_project | uppercaseFirst }}</h3>
+                        <h3>{{ language.add_beneficiary_project }}</h3>
                         <form [formGroup]="mainForm">
                             <ng-select class="multiple-select" formControlName="projects"
-                                placeholder="{{language.projects | uppercaseFirst}} *" [multiple]="true"
+                                placeholder="{{language.projects}} *" [multiple]="true"
                                 [closeOnSelect]="false" [searchable]="true" required>
                                 <ng-option *ngFor="let option of household.getOptions('projects')"
                                     [value]="option.get('id')">
-                                    {{option.get(household.fields.projects.bindField) | uppercaseFirst}}
+                                    {{option.get(household.fields.projects.bindField)}}
                                 </ng-option>
                             </ng-select>
                             <app-hint-error [form]="mainForm" fieldName="projects" [field]="household.fields.projects"
                                 [isMatField]="false"></app-hint-error>
                         </form>
                         <div class="summary">
-                            <h3>{{language.household_info | uppercaseFirst}}</h3>
+                            <h3>{{language.household_info}}</h3>
                             <div class="info-resume">
                                 <div class="info-container" *ngIf="mainForm.controls.livelihood.value">
-                                    <h4 class='summary-title'>{{language.household_livelihood | uppercaseFirst }} </h4>
+                                    <h4 class='summary-title'>{{language.household_livelihood}} </h4>
                                     <p class="summary-title-value">{{getLivelihood().get('name')}}</p>
                                 </div>
                                 <ng-container *ngFor="let locationGroup of ['current', 'resident']">
                                     <div class="info-container"
                                         *ngIf="mainForm.controls[locationGroup + 'Type'] && mainForm.controls[locationGroup + 'Type'].value && mainForm.controls[locationGroup + 'Type'].value !== 'camp'">
                                         <h4 class='summary-title'>
-                                            {{language['household_location_' + locationGroup + '_address'] | uppercaseFirst }} </h4>
+                                            {{language['household_location_' + locationGroup + '_address']}} </h4>
                                         <p class="summary-title-value">
                                             {{mainForm.controls[locationGroup + 'AddressNumber'].value}}
                                             {{mainForm.controls[locationGroup + 'AddressStreet'].value}},
@@ -350,10 +350,10 @@
                                     <div class="info-container"
                                         *ngIf="mainForm.controls[locationGroup + 'Type'] && mainForm.controls[locationGroup + 'Type'].value === 'camp'">
                                         <h4 class='summary-title'>
-                                            {{language['household_location_' + locationGroup + '_address'] | uppercaseFirst }} </h4>
+                                            {{language['household_location_' + locationGroup + '_address']}} </h4>
                                         <p class="summary-title-value">
                                             <span
-                                                *ngIf="!mainForm.controls[locationGroup + 'CreateCamp'].value">{{ getCampName(locationGroup) }}</span>
+                                                *ngIf="!mainForm.controls[locationGroup + 'CreateCamp'].value">{{ getCampName(locationGroup)}}</span>
                                             <span
                                                 *ngIf="mainForm.controls[locationGroup + 'CreateCamp'].value">{{ mainForm.controls[locationGroup + 'NewCamp'].value }}</span>
                                             <br>
@@ -363,18 +363,18 @@
                                     </div>
                                     <div class="info-container" *ngIf="mainForm.controls[locationGroup + 'Adm1'] && mainForm.controls[locationGroup + 'Adm1'].value">
                                         <h4 class='summary-title'>
-                                            {{ language['household_location_' + locationGroup + '_location'] | uppercaseFirst }} </h4>
+                                            {{ language['household_location_' + locationGroup + '_location'] }} </h4>
                                         <p class="summary-title-value">
                                             {{getFullLocation(locationGroup)}}
                                         </p>
                                     </div>
                                 </ng-container>
                             </div>
-                            <h3> {{ language.household_summary_members | uppercaseFirst}}</h3>
+                            <h3> {{ language.household_summary_members }}</h3>
                             <table mat-table [dataSource]="tableData" *ngIf="validStep2">
 
                                 <ng-container matColumnDef="localGivenName">
-                                  <th mat-header-cell *matHeaderCellDef> {{ language.beneficiary_local_given_name | uppercaseFirst }} </th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ language.beneficiary_local_given_name }} </th>
                                   <td mat-cell *matCellDef="let element">
                                     {{ element.controls.localGivenName.value }}
                                     <span *ngIf="element.controls.enGivenName.value">({{ element.controls.enGivenName.value }})</span>
@@ -382,7 +382,7 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef=localFamilyName>
-                                  <th mat-header-cell *matHeaderCellDef> {{ language.beneficiary_local_family_name | uppercaseFirst }} </th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ language.beneficiary_local_family_name }} </th>
                                   <td mat-cell *matCellDef="let element">
                                     {{ element.controls.localFamilyName.value }}
                                     <span *ngIf="element.controls.enFamilyName.value">({{ element.controls.enFamilyName.value }})</span>
@@ -390,21 +390,21 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="gender">
-                                    <th mat-header-cell *matHeaderCellDef> {{ language.gender |uppercaseFirst }} </th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ language.gender }} </th>
                                     <td mat-cell *matCellDef="let element">
-                                        {{ getGender(element.controls.gender.value) | uppercaseFirst }} </td>
+                                        {{ getGender(element.controls.gender.value) }} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="dateOfBirth">
                                     <th mat-header-cell *matHeaderCellDef>
-                                        {{ language.beneficiary_date_of_birth |uppercaseFirst }} </th>
+                                        {{ language.beneficiary_date_of_birth }} </th>
                                     <td mat-cell *matCellDef="let element">
                                         {{ element.controls.dateOfBirth.value | date: 'dd-MM-yyyy' }}
                                     </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="phone">
-                                    <th mat-header-cell *matHeaderCellDef> {{ language.phone |uppercaseFirst}} </th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ language.phone }} </th>
                                     <td mat-cell *matCellDef="let element">
                                         {{ element.controls.phoneNumber0.value }}
                                         {{ element.controls.phoneNumber1.value }}
@@ -412,7 +412,7 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="nationalId">
-                                    <th mat-header-cell *matHeaderCellDef> {{ language.national_id | uppercaseFirst }}
+                                    <th mat-header-cell *matHeaderCellDef> {{ language.national_id }}
                                     </th>
                                     <td mat-cell *matCellDef="let element"> {{element.controls.IDNumber.value}} </td>
                                 </ng-container>
@@ -425,15 +425,15 @@
                             <div class="action-buttons">
                                 <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
                                 <button mat-button class="button-text-primary"
-                                    (click)="leave()">{{language.cancel | uppercaseFirst }}</button>
+                                    (click)="leave()">{{language.cancel}}</button>
 
                                 <mat-spinner [diameter]="25" *ngIf="validationLoading"></mat-spinner>
                                 <button mat-flat-button class="button-background-primary"
                                     *ngIf="mode=='create' && !validationLoading"
-                                    (click)="submit()">{{language.create | uppercaseFirst }}</button>
+                                    (click)="submit()">{{language.create}}</button>
                                 <button mat-flat-button class="button-background-primary"
                                     *ngIf="mode=='update' && !validationLoading"
-                                    (click)="submit()">{{language.update | uppercaseFirst }}</button>
+                                    (click)="submit()">{{language.update}}</button>
                             </div>
                         </div>
 

@@ -2,12 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BeneficiariesComponent } from './beneficiaries.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HouseholdsService } from '../../../core/api/households.service';
 import { HouseholdsMockService } from '../../../core/api/mock/households-mock.service';
 import { LocationService } from '../../../core/api/location.service';
@@ -22,7 +20,7 @@ describe('HouseholdsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BeneficiariesComponent, UppercaseFirstPipe],
+      declarations: [BeneficiariesComponent],
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,

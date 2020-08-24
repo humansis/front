@@ -1,6 +1,6 @@
 <div class="page-container">
     <div class="container-title">
-        <h2>{{language.data_mapping_title | uppercaseFirst}}</h2>
+        <h2>{{language.data_mapping_title}}</h2>
     </div>
 
     <div class="container-table">
@@ -32,7 +32,7 @@
                 <mat-spinner [diameter]="35" *ngIf="loading"></mat-spinner>
                 <button *ngIf="!loading" mat-flat-button class="button-background-primary"
                         (click)="importMapping()">
-                    {{language.next | uppercaseFirst }}
+                    {{language.next}}
                 </button>
                 <button mat-button class="button-text-primary" (click)="cancel()">{{language.cancel}}</button>
             </div>

@@ -3,7 +3,6 @@ import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ModalConfirmationComponent } from './modal-confirmation.component';
 
@@ -17,7 +16,7 @@ describe('ModalConfirmationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalConfirmationComponent, UppercaseFirstPipe],
+      declarations: [ModalConfirmationComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         {

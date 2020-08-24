@@ -1,6 +1,6 @@
 <div class="page-container" *ngIf="!initializing">
     <div class="container-title">
-        <h2>{{language.reports | titlecase}}</h2>
+        <h2>{{language.reports}}</h2>
     </div>
 
     <div class="container-boxes">
@@ -22,14 +22,14 @@
                         (click)="selectFrequency(frequency)"
                         mat-flat-button
                         [ngClass]="{'selected-frequency': frequency === selectedFrequency}">
-                        {{frequency.label | titlecase}}
+                        {{frequency.label}}
                     </button>
 
                     <button
                         (click)="togglePeriod()"
                         mat-flat-button
                         [ngClass]="{'period-mode-enabled': periodMode}">
-                        {{language.report_filter_chose_periode | titlecase}}
+                        {{language.report_filter_chose_periode}}
                     </button>
                 </div>
 
@@ -38,7 +38,7 @@
                     <div class="extension button-with-extension" [ngClass]="{'arabic':languageService.languageToString(language)==='ar'}" *ngIf='!isDownloading'>
                         <button mat-flat-button class="button-background-primary" (click)="export(exportFileType)">
                             <mat-icon>get_app</mat-icon>
-                            <span>{{language.export | titlecase}}</span>
+                            <span>{{language.export}}</span>
                         </button>
                         <div class="extension">
 
@@ -79,14 +79,14 @@
                     <form [formGroup]="projectsControl">
                         <mat-card class="content-card" *ngIf="selectedReport.value === 'projects';else distributionType">
                             <ng-select class="multiple-select" formControlName="projectsSelect" [clearable]="false"
-                                [multiple]="true" [placeholder]="language.projects | titlecase" [closeOnSelect]="false" [searchable]="true">
+                                [multiple]="true" [placeholder]="language.projects" [closeOnSelect]="false" [searchable]="true">
                                 <ng-template ng-header-tmp>
                                     <ng-container
                                         *ngTemplateOutlet="ngSelectHeader;context:{formControl: projectsControl.controls.projectsSelect, entities: projects}">
                                     </ng-container>
                                 </ng-template>
                                 <ng-option *ngFor="let project of projects" [value]="project.get('id')">
-                                    {{project.get('name') | titlecase}}
+                                    {{project.get('name')}}
                                 </ng-option>
                             </ng-select>
                         </mat-card>
@@ -96,21 +96,21 @@
                         <form [formGroup]="distributionsControl">
                             <mat-card class="content-card">
                                 <ng-select class="single-select" formControlName="projectSelect" [clearable]="false"
-                                    [multiple]="false" [placeholder]="language.projects | titlecase" [closeOnSelect]="true" [searchable]="true">
+                                    [multiple]="false" [placeholder]="language.projects" [closeOnSelect]="true" [searchable]="true">
                                     <ng-option *ngFor="let project of projects" [value]="project.get('id')">
-                                        {{project.get('name') | titlecase}}
+                                        {{project.get('name')}}
                                     </ng-option>
                                 </ng-select>
 
                                 <ng-select class="multiple-select" formControlName="distributionsSelect" [clearable]="false"
-                                    [multiple]="true" [placeholder]="language.distributions | titlecase" [closeOnSelect]="false" [searchable]="true">
+                                    [multiple]="true" [placeholder]="language.distributions" [closeOnSelect]="false" [searchable]="true">
                                     <ng-template ng-header-tmp>
                                         <ng-container
                                             *ngTemplateOutlet="ngSelectHeader;context:{formControl: distributionsControl.controls.distributionsSelect, entities: distributions}">
                                         </ng-container>
                                     </ng-template>
                                     <ng-option *ngFor="let distribution of distributions" [value]="distribution.get('id')">
-                                        {{distribution.get('name') | titlecase}}
+                                        {{distribution.get('name')}}
                                     </ng-option>
                                 </ng-select>
                             </mat-card>
@@ -120,7 +120,7 @@
             </div>
             <div id="graphs" *ngIf="!canvasAreReloading">
                 <div *ngFor="let graph of graphs" class="graph">
-                    <h2 class="graph-title">{{graph.name | titlecase}}</h2>
+                    <h2 class="graph-title">{{graph.name}}</h2>
                     <ng-container *ngIf="!graphValuesAreEmpty(graph); else noData">
                         <app-line-chart [graphInfo]="graph" *ngIf="graph.type === 'line'" [yLabel] = "getYLabel(graph)"></app-line-chart>
                         <app-pie-chart [graphInfo]="graph" *ngIf="graph.type === 'pie' || graph.type === 'grid'" [yLabel] = "getYLabel(graph)"></app-pie-chart>

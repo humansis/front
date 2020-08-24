@@ -2,25 +2,25 @@
     <div class="container-content box-primary">
         <div *ngIf="transactionData !== undefined" class="progression">
             <div class="commodities">
-                <h4>{{ language.transaction_progress | uppercaseFirst }}
+                <h4>{{ language.transaction_progress }}
                     {{ getPercentageValue(actualDistribution.get('commodities')[0]) | number: '1.0-0' }} % </h4>
                 <mat-progress-bar mode="determinate" [value]="getPercentageValue(actualDistribution.get('commodities')[0])">
                 </mat-progress-bar>
                 <div class="details">
                     <div class="info_1">
-                        <h5>{{language.transaction_amount_total | uppercaseFirst}}</h5>
+                        <h5>{{language.transaction_amount_total}}</h5>
                         <span *ngFor="let commodity of actualDistribution.get('commodities')">
                             {{ getTotalCommodityValue(commodity) }} {{commodity.get('unit')}} <br>
                         </span>
                     </div>
                     <div class="info_2">
-                        <h5>{{language.transaction_amount_distributed | uppercaseFirst}}</h5>
+                        <h5>{{language.transaction_amount_distributed}}</h5>
                         <span *ngFor="let commodity of actualDistribution.get('commodities')">
                             {{ getAmountSent(commodity) }} {{commodity.get('unit')}} <br>
                         </span>
                     </div>
                     <div class="info_3">
-                        <h5>{{language.transaction_amount_used | uppercaseFirst}}</h5>
+                        <h5>{{language.transaction_amount_used}}</h5>
                         <span *ngFor="let commodity of actualDistribution.get('commodities')">
                             {{ getReceivedValue(commodity) }} {{commodity.get('unit')}} <br>
                         </span>
@@ -36,7 +36,7 @@
                 <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
                     <button mat-flat-button class="button-background-primary" (click)="exportTransaction(extensionType, 'voucherDistribution')" *ngIf="!loadingExport">
                         <mat-icon>get_app</mat-icon>
-                        <span>{{language.export | uppercaseFirst}}</span>
+                        <span>{{language.export}}</span>
                     </button>
                     <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
                     <div class="extension" *ngIf="!loadingExport">
@@ -58,7 +58,7 @@
             </div>
             <button mat-flat-button *ngIf="currentDisplayType.type !== 'mobile' && userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')" (click)="openModal({action:'addBeneficiary', distribution: actualDistribution})" class="add-button-create">
                 <mat-icon>add</mat-icon>
-                {{language.add | titlecase}}
+                {{language.add}}
             </button>
             <button mat-fab *ngIf="currentDisplayType.type === 'mobile' && userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')" (click)="openModal({action:'addBeneficiary', distribution: actualDistribution})" class="add-button" [ngClass]="{'add-button-rtl': language.direction === 'rtl'}">
                 <mat-icon>add</mat-icon>
