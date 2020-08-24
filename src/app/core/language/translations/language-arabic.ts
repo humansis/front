@@ -109,6 +109,8 @@ export class Arabic implements Language {
   unit = 'وحدة';
   username = 'اسم المستخدم';
   value = 'القيمة';
+  latitude = this.missingTranslation;
+  longitude = this.missingTranslation;
 
   // Error
   back_to_homepage = 'العودة إلى الصفحة الرئيسية';

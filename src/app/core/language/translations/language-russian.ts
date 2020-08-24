@@ -86,6 +86,8 @@ export class Russian implements Language {
   save = 'Сохранить';
   update = 'Обновить';
   view = 'Вид';
+  latitude = 'Широта';
+  longitude = 'Долгота';
 
   // Common Fields
   address = 'Адрес';

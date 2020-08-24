@@ -105,6 +105,8 @@ export interface Language {
   unit: string;
   username: string;
   value: string;
+  latitude: string;
+  longitude: string;
 
   // Error
   back_to_homepage: string;

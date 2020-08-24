@@ -111,6 +111,8 @@ export class English implements Language {
   unit = 'unit';
   username = 'Username';
   value = 'Value';
+  latitude = 'Latitude';
+  longitude = 'Longitude';
 
   // Error
   back_to_homepage = 'Go back to homepage';

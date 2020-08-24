@@ -109,6 +109,8 @@ export class French implements Language {
   unit = 'Unité';
   username = 'Identifiant';
   value = 'Valeur';
+  latitude = this.missingTranslation;
+  longitude = this.missingTranslation;
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";

@@ -11,4 +11,6 @@ export interface Community {
     id_type: string;
     id_number: string;
   };
+  latitude: string;
+  longitude: string;
 }

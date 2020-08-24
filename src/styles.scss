@@ -300,6 +300,19 @@ form.standard {
     > * {
         width: 100%;
         margin: 10px;
+
+        .input-group {
+            display: flex;
+
+            mat-form-field {
+                margin-right: 10px;
+            }
+
+            mat-form-field:last-child {
+                margin-right: 0;
+            }
+
+        }
     }
 
     mat-form-field {

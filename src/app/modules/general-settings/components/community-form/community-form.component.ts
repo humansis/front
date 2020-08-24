@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CARD_TYPES } from 'src/app/models/constants/card-type';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { LanguageService } from 'src/app/core/language/language.service';
@@ -25,7 +25,11 @@ export class CommunityFormComponent implements OnInit {
   set data(community: Community) {
     if (community) {
       this.communityId = community.id;
-      this.form.patchValue(community, { emitEvent: false });
+      const formData = { ...community };
+      if (formData.national_id === null) {
+        delete formData.national_id;
+      }
+      this.form.patchValue(formData, { emitEvent: false });
     }
   }
 
@@ -60,6 +64,24 @@ export class CommunityFormComponent implements OnInit {
         type: [],
         number: [],
       }),
+      latitude: [
+        undefined,
+        [
+          Validators.min(-90),
+          Validators.max(90),
+          Validators.max(90),
+          Validators.pattern('\\d+((\\.|,)\\d+)?'),
+        ],
+      ],
+      longitude: [
+        undefined,
+        [
+          Validators.min(-180),
+          Validators.max(180),
+          Validators.max(90),
+          Validators.pattern('\\d+((\\.|,)\\d+)?'),
+        ],
+      ],
     });
   }
 }
