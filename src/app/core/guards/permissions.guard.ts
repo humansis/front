@@ -4,7 +4,6 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlSegment,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

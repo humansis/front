@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  CanLoad,
+  Route,
   Router,
   RouterStateSnapshot,
+  UrlSegment,
 } from '@angular/router';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { LanguageService } from 'src/app/core/language/language.service';
@@ -15,7 +18,7 @@ import { UserService } from '../api/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   // Language
   public language = this.languageService.selectedLanguage
     ? this.languageService.selectedLanguage
@@ -30,6 +33,17 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.checkUser();
+  }
+
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this.checkUser();
+  }
+
+  checkUser() {
     if (this.userService.currentUser === undefined) {
       return this.authenticationService.getUser().pipe(
         switchMap((user: any) => {
