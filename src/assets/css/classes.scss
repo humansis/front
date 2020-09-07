@@ -725,7 +725,7 @@ body {
     &.en {
         text-transform: capitalize;
 
-        .page-container, input, button, .select-container, .single-select, th, .items-info > p, p.not-mat-form-field-error, p.not-mat-form-field-hint, .mat-row, .mat-form-field, .mat-button-wrapper{
+        .page-container, button, .select-container, .single-select, th, .items-info > p, p.not-mat-form-field-error, p.not-mat-form-field-hint, .mat-row, .mat-form-field, .mat-button-wrapper{
             text-transform: capitalize;
         }
         ::-webkit-input-placeholder {
@@ -751,7 +751,7 @@ body {
     }
 
     &.ru {
-        .page-container, button, input, .items-info > p, .select-container, .single-select, .mat-row, th, mat-list-item, p.not-mat-form-field-error, .mat-error,  .modal-title, .mat-form-field {
+        .page-container, button, .items-info > p, .select-container, .single-select, .mat-row, th, mat-list-item, p.not-mat-form-field-error, .mat-error,  .modal-title, .mat-form-field {
             text-transform: capitalize;
         }
         ::-webkit-input-placeholder {
