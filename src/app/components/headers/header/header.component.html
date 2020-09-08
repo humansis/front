@@ -24,7 +24,7 @@
                 <span>{{countriesService.selectedCountry.get('id')}}</span>
             </button>
             <mat-menu #country overlapTrigger=false>
-                <button class="flag-button" [ngClass]="{'selected': country === selectedCountry}" *ngFor="let country of countries" mat-menu-item (click)="selectCountry(country)">
+                <button class="flag-button" [ngClass]="{'selected': country === countriesService.selectedCountry}" *ngFor="let country of countries" mat-menu-item (click)="selectCountry(country)">
                     <mat-icon>language</mat-icon>
                     <span>{{country.get('id')}}</span>
                 </button>

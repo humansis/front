@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public language = this.languageService.selectedLanguage;
 
   // Countries
-  public selectedCountry: Country = this.countriesService.selectedCountry;
   public countries: Array<Country> = this.countriesService.selectableCountries;
   private subscriptions: Array<Subscription>;
 
