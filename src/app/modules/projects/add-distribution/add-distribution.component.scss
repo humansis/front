@@ -1,6 +1,17 @@
 @import '../../../../assets/css/variable.scss';
 @import '../../../../assets/css/global.scss';
 
+.page-container {
+    .container-data {
+        .container-content  {
+            .mat-card {
+                background: white;
+            }
+        }
+    }
+}
+
+
 .container-fields {
     display: flex;
     width: 100%;
