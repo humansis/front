@@ -1,96 +1,100 @@
 <div class="page-container">
-  <div class="container-fields">
-    <div class="field-distribution" [ngClass]="{'rtl':language.direction === 'rtl'}">
-      <h2 class="distribution-title">{{language.add_project_new_distribution | uppercaseFirst}}</h2>
-      <div class="distribution-accordion">
-        <mat-card class="accordion-card">
-          <app-adm-form [form]="form" [location]="objectInstance.get('location')" [initialValues]="initialAdmValues"></app-adm-form>
-          <form [formGroup]="form">
-            <mat-form-field class="accordion-field">
-              <input matInput [matDatepicker]="dateDistribution" [placeholder]="objectInstance.fields.date.title | uppercaseFirst"
-                formControlName="date" [max]="projectInfo.endDate" required>
-              <mat-datepicker-toggle matSuffix [for]="dateDistribution"></mat-datepicker-toggle>
-              <mat-datepicker #dateDistribution></mat-datepicker>
-              <app-hint-error [form]="form" fieldName="date" [field]="objectInstance.fields.date" [isMatField]="true"></app-hint-error>
-            </mat-form-field>
-            <label>{{objectInstance.fields.type.title}}</label>
-            <mat-radio-group formControlName="type" class="type-distribution" (change)="updateNbBeneficiary()">
-              <mat-radio-button color="warn" [value]="objectInstance.getOptions('type')[0].get('id')">{{objectInstance.getOptions('type')[0].get('name')}}</mat-radio-button>
-              <mat-radio-button color="warn" [value]="objectInstance.getOptions('type')[1].get('id')">{{objectInstance.getOptions('type')[1].get('name')}}</mat-radio-button>
-            </mat-radio-group>
-          </form>
-        </mat-card>
-      </div>
-    </div>
+    <div class="container-data">
+        <div class="container-content">
+            <div class="container-fields">
+                <div class="field-distribution" [ngClass]="{'rtl':language.direction === 'rtl'}">
+                    <h2 class="distribution-title">{{language.add_project_new_distribution | uppercaseFirst}}</h2>
+                    <div class="distribution-accordion">
+                        <mat-card class="accordion-card">
+                            <app-adm-form [form]="form" [location]="objectInstance.get('location')" [initialValues]="initialAdmValues"></app-adm-form>
+                            <form [formGroup]="form">
+                                <mat-form-field class="accordion-field">
+                                    <input matInput [matDatepicker]="dateDistribution" [placeholder]="objectInstance.fields.date.title | uppercaseFirst"
+                                           formControlName="date" [max]="projectInfo.endDate" required>
+                                    <mat-datepicker-toggle matSuffix [for]="dateDistribution"></mat-datepicker-toggle>
+                                    <mat-datepicker #dateDistribution></mat-datepicker>
+                                    <app-hint-error [form]="form" fieldName="date" [field]="objectInstance.fields.date" [isMatField]="true"></app-hint-error>
+                                </mat-form-field>
+                                <label>{{objectInstance.fields.type.title}}</label>
+                                <mat-radio-group formControlName="type" class="type-distribution" (change)="updateNbBeneficiary()">
+                                    <mat-radio-button color="warn" [value]="objectInstance.getOptions('type')[0].get('id')">{{objectInstance.getOptions('type')[0].get('name')}}</mat-radio-button>
+                                    <mat-radio-button color="warn" [value]="objectInstance.getOptions('type')[1].get('id')">{{objectInstance.getOptions('type')[1].get('name')}}</mat-radio-button>
+                                </mat-radio-group>
+                            </form>
+                        </mat-card>
+                    </div>
+                </div>
 
 
-    <div class="field-forms">
-      <div class="forms-criteria">
-        <div class="distribution-title">
-          <h2>{{language.add_distribution_selection_criteria | uppercaseFirst}}</h2>
-          <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="openDialog('addCriteria')">
-            <span>{{ language.add | uppercaseFirst }}</span>
-          </button>
+                <div class="field-forms">
+                    <div class="forms-criteria">
+                        <div class="distribution-title">
+                            <h2>{{language.add_distribution_selection_criteria | uppercaseFirst}}</h2>
+                            <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="openDialog('addCriteria')">
+                                <span>{{ language.add | uppercaseFirst }}</span>
+                            </button>
+                        </div>
+
+                        <form [formGroup]="form">
+                            <div class="form" *ngIf="currentDisplayType.type !== 'mobile'">
+                                <app-table (openModal)="removeElement($event, 'criteria')" [entity]="criteriaClass" [data]="criteriaData" deletable="true" rights="true" #criteriaTable></app-table>
+                            </div>
+
+                            <div class="summary-container">
+                                <mat-form-field class="accordion-field" id="threshold">
+                                    <mat-label>{{ language.add_distribution_threshold }}</mat-label>
+                                    <input class="field-input" matInput type="number" formControlName="threshold" (change)="updateNbBeneficiary()">
+                                </mat-form-field>
+
+                                <h3 class="summary-text" *ngIf="criteriaData.data.length != 0 && form.controls.type.value === '1'">
+                                    <span *ngIf="!load">{{criteriaNbBeneficiaries}}</span>
+                                    <span *ngIf="load">
+                    <mat-spinner [diameter]="25"></mat-spinner>
+                  </span>
+                                    {{language.add_distribution_beneficiaries_reached | uppercaseFirst}}
+                                </h3>
+                                <h3 class="summary-text" *ngIf="criteriaData.data.length != 0 && form.controls.type.value === '0'">
+                                    <span *ngIf="!load">{{criteriaNbBeneficiaries}}</span>
+                                    <span *ngIf="load">
+                    <mat-spinner [diameter]="25"></mat-spinner>
+                  </span>
+                                    {{language.add_distribution_households_reached | uppercaseFirst}}
+                                </h3>
+                            </div>
+                            <small id="text-explanation">{{ language.add_distribution_text_explanation }}</small>
+                            <div class="form" *ngIf="currentDisplayType.type === 'mobile'">
+                                <app-table-mobile (openModal)="removeElement($event, 'criteria')" [entity]="criteriaClass" [data]="criteriaData" deletable="true" rights="true"></app-table-mobile>
+                            </div>
+                        </form>
+
+                        <div class="forms-commodity">
+                            <div class="distribution-title">
+                                <h2>{{language.add_distribution_distributed_commodity | uppercaseFirst}}</h2>
+                                <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="openDialog('addCommodity')">
+                                    <span>{{ language.add | uppercaseFirst }}</span>
+                                </button>
+                            </div>
+                            <div class="form" *ngIf="currentDisplayType.type !== 'mobile'">
+                                <app-table (openModal)="removeElement($event, 'commodity')" [entity]="commodityClass" [data]="commodityData" deletable="true" rights="true" #commodityTable></app-table>
+                            </div>
+                            <div class="summary-container" *ngIf="commodityData.data.length != 0">
+                                <h3 class="summary-text" *ngFor="let commodity of commodityData.data; let i = index;">
+                                    <span>{{commodityNb[i]}}</span>{{commodity.get('unit')}}
+                                    {{language.add_distribution_commodities_delivered | uppercaseFirst}}</h3>
+                            </div>
+                            <div class="form" *ngIf="currentDisplayType.type === 'mobile'">
+                                <app-table-mobile (openModal)="removeElement($event, 'commodity')" [entity]="commodityClass" [data]="commodityData" deletable="true" rights="true"></app-table-mobile>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="action-buttons content-button content-button-footer">
+                <button mat-flat-button *ngIf="!loadingCreation" (click)="add()" class="button-background-primary">{{language.create}}</button>
+                <mat-spinner *ngIf="loadingCreation" [diameter]="30"></mat-spinner>
+                <button mat-button (click)="cancel()" class="button-text-primary">{{language.cancel}}</button>
+            </div>
         </div>
-
-        <form [formGroup]="form">
-          <div class="form" *ngIf="currentDisplayType.type !== 'mobile'">
-            <app-table (openModal)="removeElement($event, 'criteria')" [entity]="criteriaClass" [data]="criteriaData" deletable="true" rights="true" #criteriaTable></app-table>
-          </div>
-
-          <div class="summary-container">
-            <mat-form-field class="accordion-field" id="threshold">
-              <mat-label>{{ language.add_distribution_threshold }}</mat-label>
-              <input class="field-input" matInput type="number" formControlName="threshold" (change)="updateNbBeneficiary()">
-            </mat-form-field>
-
-            <h3 class="summary-text" *ngIf="criteriaData.data.length != 0 && form.controls.type.value === '1'">
-              <span *ngIf="!load">{{criteriaNbBeneficiaries}}</span>
-              <span *ngIf="load">
-                <mat-spinner [diameter]="25"></mat-spinner>
-              </span>
-              {{language.add_distribution_beneficiaries_reached | uppercaseFirst}}
-            </h3>
-            <h3 class="summary-text" *ngIf="criteriaData.data.length != 0 && form.controls.type.value === '0'">
-              <span *ngIf="!load">{{criteriaNbBeneficiaries}}</span>
-              <span *ngIf="load">
-                <mat-spinner [diameter]="25"></mat-spinner>
-              </span>
-              {{language.add_distribution_households_reached | uppercaseFirst}}
-            </h3>
-          </div>
-          <small id="text-explanation">{{ language.add_distribution_text_explanation }}</small>
-          <div class="form" *ngIf="currentDisplayType.type === 'mobile'">
-            <app-table-mobile (openModal)="removeElement($event, 'criteria')" [entity]="criteriaClass" [data]="criteriaData" deletable="true" rights="true"></app-table-mobile>
-          </div>
-        </form>
-
-        <div class="forms-commodity">
-          <div class="distribution-title">
-            <h2>{{language.add_distribution_distributed_commodity | uppercaseFirst}}</h2>
-            <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="openDialog('addCommodity')">
-              <span>{{ language.add | uppercaseFirst }}</span>
-            </button>
-          </div>
-          <div class="form" *ngIf="currentDisplayType.type !== 'mobile'">
-            <app-table (openModal)="removeElement($event, 'commodity')" [entity]="commodityClass" [data]="commodityData" deletable="true" rights="true" #commodityTable></app-table>
-          </div>
-          <div class="summary-container" *ngIf="commodityData.data.length != 0">
-            <h3 class="summary-text" *ngFor="let commodity of commodityData.data; let i = index;">
-              <span>{{commodityNb[i]}}</span>{{commodity.get('unit')}}
-              {{language.add_distribution_commodities_delivered | uppercaseFirst}}</h3>
-          </div>
-          <div class="form" *ngIf="currentDisplayType.type === 'mobile'">
-            <app-table-mobile (openModal)="removeElement($event, 'commodity')" [entity]="commodityClass" [data]="commodityData" deletable="true" rights="true"></app-table-mobile>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
-  <div class="action-buttons content-button content-button-footer">
-    <button mat-flat-button *ngIf="!loadingCreation" (click)="add()" class="button-background-primary">{{language.create}}</button>
-    <mat-spinner *ngIf="loadingCreation" [diameter]="30"></mat-spinner>
-    <button mat-button (click)="cancel()" class="button-text-primary">{{language.cancel}}</button>
-  </div>
 </div>
