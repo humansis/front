@@ -33,16 +33,19 @@ export class DateModelField extends CustomModelField<Date> {
     if (!date) {
       return null;
     }
-    const splittedDate = date.split(' ');
-    const dateWithoutTime = splittedDate[0].split('-');
-    const time = splittedDate[1].split(':');
-    const day = dateWithoutTime[0];
-    const month = dateWithoutTime[1];
-    const year = dateWithoutTime[2];
-    const hour = time[0];
-    const minute = time[1];
-    const formattedDate = new Date(year, month - 1, day, hour, minute, 0, 0); // month starts at 0
-    return formattedDate;
+    if (date.indexOf(' ') > 0) {
+      const splittedDate = date.split(' ');
+      const dateWithoutTime = splittedDate[0].split('-');
+      const time = splittedDate[1].split(':');
+      const day = dateWithoutTime[0];
+      const month = dateWithoutTime[1];
+      const year = dateWithoutTime[2];
+      const hour = time[0];
+      const minute = time[1];
+      return new Date(year, month - 1, day, hour, minute, 0, 0); // month starts at 0
+    } else {
+      return new Date(date);
+    }
   }
 
   formatForApi(): any {
