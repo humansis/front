@@ -472,6 +472,7 @@ export class Russian implements Language {
   household_debt_level = 'Уровень задолженности';
   household_support_received_other_org = 'Помощь полученная другими организациями';
   household_support_date_received = 'Дата получения помощи';
+  household_support_organization = 'Организация по оказанию помощи';
   household_assets = 'Активы';
   household_shelter_status = 'Статус жилья';
   household_status = 'Положение домохозяйств';

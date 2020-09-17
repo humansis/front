@@ -143,9 +143,16 @@
                                                 <app-hint-error [form]="mainForm" fieldName="supportReceived" [field]="household.fields.supportReceived" [isMatField]="true"></app-hint-error>
                                             </mat-form-field>
                                         </div>
+                                        <div *ngIf="userService.hasRights('ROLE_ADMIN')">
+                                            <mat-form-field>
+                                                <input matInput placeholder="{{language.household_support_organization}}"
+                                                       formControlName="supportOrganization">
+                                                <app-hint-error [form]="mainForm" fieldName="supportOrganization" [field]="household.fields.supportOrganization" [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
-                                    <div class="column-container">
-                                        <div class="specifics" *ngIf="countrySpecificList.length">
+                                    <div class="column-container" *ngIf="countrySpecificList.length">
+                                        <div class="specifics" >
                                             <h4>{{ language.settings_country_specific_options }}</h4>
                                             <mat-form-field
                                                 *ngFor="let countrySpecific of countrySpecificList">

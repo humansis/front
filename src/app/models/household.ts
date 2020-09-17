@@ -194,6 +194,10 @@ export class Household extends CustomModel {
       title: this.language.household_support_date_received,
       isDisplayedInModal: true,
     }),
+    supportOrganization: new TextModelField({
+      title: this.language.household_support_organization,
+      value: '',
+    }),
     assets: new MultipleSelectModelField({
       title: this.language.household_assets,
       isDisplayedInModal: true,
@@ -279,6 +283,7 @@ export class Household extends CustomModel {
     );
     newHousehold.set('debtLevel', householdFromApi.debt_level);
     newHousehold.set('supportReceived', householdFromApi.support_date_received);
+    newHousehold.set('supportOrganization', householdFromApi.support_organization_name);
     newHousehold.set(
       'supportReceivedOtherOrg',
       householdFromApi.assets
@@ -440,6 +445,7 @@ export class Household extends CustomModel {
       debt_level: this.fields.debtLevel.formatForApi(),
       support_received_types: this.fields.supportReceivedOtherOrg.formatForApi(),
       support_date_received: this.fields.supportReceived.formatForApi(),
+      support_organization_name: this.fields.supportOrganization.formatForApi(),
       shelter_status: this.fields.shelterStatus.formatForApi(),
       assets: this.fields.assets.formatForApi(),
     };

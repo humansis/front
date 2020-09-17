@@ -466,6 +466,7 @@ export class Arabic implements Language {
   household_debt_level = 'مستوى الدين';
   household_support_received_other_org = 'نوع الدعم الخارجي المستلم';
   household_support_date_received = 'تاريخ تلقي الدعم';
+  household_support_organization = this.missingTranslation;
   household_assets = 'ممتلكات';
   household_shelter_status = 'حالة المأوى';
   household_status = this.missingTranslation;

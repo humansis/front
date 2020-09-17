@@ -458,6 +458,7 @@ export interface Language {
   household_debt_level: string;
   household_support_received_other_org: string;
   household_support_date_received: string;
+  household_support_organization: string;
   household_assets: string;
   household_shelter_status: string;
   household_status: string;

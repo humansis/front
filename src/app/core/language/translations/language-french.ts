@@ -484,6 +484,7 @@ export class French implements Language {
   household_debt_level = this.missingTranslation;
   household_support_received_other_org = this.missingTranslation;
   household_support_date_received = this.missingTranslation;
+  household_support_organization = this.missingTranslation;
   household_assets = this.missingTranslation;
   household_shelter_status = this.missingTranslation;
   household_status = this.missingTranslation;
