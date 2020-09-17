@@ -8,6 +8,6 @@ fi
 
 # if the node_modules directory is not exsiting
 if [ ! -d node_modules ]; then
-    npm install
+    yarn install
     exit 0
 fi

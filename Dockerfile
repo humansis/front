@@ -2,8 +2,8 @@ FROM node:latest
 
 # ARGS
 ARG PROJECT_NAME=bms_front
-# get default node user : 'node' 
-ARG USER=node  
+# get default node user : 'node'
+ARG USER=node
 ARG WORKSPACE=/usr/dockers/devapp
 
 # update system
@@ -11,14 +11,14 @@ RUN apt-get update
 
 # allow npm to install as root user
 #other solution : RUN npm -g install nodegit --unsafe-perm
-RUN npm -g config set user root
+RUN yarn -g config set user root
 
 
 #install project dependencies
-RUN npm install -g @angular/cli@^6.0.8
-RUN npm install -g node-sass
+RUN yarn global add @angular/cli
+RUN yarn global add node-sass
 RUN apt-get install git
-RUN npm -v
+RUN yarn -v
 RUN ng -v
 
 WORKDIR $WORKSPACE
@@ -33,7 +33,7 @@ COPY ./Docker/check-project.sh ./Docker/check-project.sh
 # nano /etc/subgid
 # https://blog.ippon.tech/docker-and-permission-management/
 #
-# Exemple of content : 
+# Exemple of content :
 #  currentUser:1000:65536
 #
 # add node user

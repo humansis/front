@@ -2,11 +2,8 @@
 
 echo "Starting the container"
 
-if [ ! -d node_modules ]; then
-    npm install
-fi
+yarn install
 
-ng serve --host 0.0.0.0 -c docker 
+ng serve --host 0.0.0.0 --configuration=docker
 # you can precise your environment
-# ng serve --host 0.0.0.0 --env=dev --port 4560 
-   
+# ng serve --host 0.0.0.0 --env=dev --port 4560
