@@ -75,6 +75,9 @@ export class French implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
+  amount = this.missingTranslation;
+  price = this.missingTranslation;
+  purchased_by = this.missingTranslation;
 
   // Actions
   add = 'Ajouter';
@@ -444,6 +447,7 @@ export class French implements Language {
   header_beneficiaries = 'Bénéficiaires';
   header_disconnect = 'déconnexion';
   header_home = 'Accueil';
+  header_household = this.household;
   header_import = 'Import de bénéficiaires';
   header_imported = 'Données des bénéficiaires importés';
   header_language = this.language;

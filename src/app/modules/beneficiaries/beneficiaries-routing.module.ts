@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BeneficiariesComponent } from './beneficiaries/beneficiaries.component';
-import { BeneficiariesImportComponent } from './beneficiaries-import/beneficiaries-import.component';
 import { AuthGuard } from '../../core/guards/auth.guard';
 import { PermissionsGuard } from '../../core/guards/permissions.guard';
-import { ImportedDataComponent } from './beneficiaries-import/imported-data/imported-data.component';
-import { DataValidationComponent } from './data-validation/data-validation.component';
 import { DeactivateGuard } from '../../core/guards/deactivate.guard';
-import { UpdateBeneficiaryComponent } from './update-beneficiary/update-beneficiary.component';
-import { DataMappingComponent } from 'src/app/modules/beneficiaries/data-mapping/data-mapping.component';
+import { BeneficiariesImportComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries-import/beneficiaries-import.component';
+import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries/beneficiaries.component';
+import { ImportedDataComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries-import/imported-data/imported-data.component';
+import { DataMappingComponent } from 'src/app/modules/beneficiaries/containers/data-mapping/data-mapping.component';
+import { DataValidationComponent } from 'src/app/modules/beneficiaries/containers/data-validation/data-validation.component';
+import { UpdateBeneficiaryComponent } from 'src/app/modules/beneficiaries/containers/update-beneficiary/update-beneficiary.component';
+import { HouseholdDetailComponent } from 'src/app/modules/beneficiaries/containers/household-detail/household-detail.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,12 @@ const routes: Routes = [
   {
     path: 'update-beneficiary/:id',
     component: UpdateBeneficiaryComponent,
+    canDeactivate: [DeactivateGuard],
+    canActivate: [AuthGuard, PermissionsGuard],
+  },
+  {
+    path: 'household/:id',
+    component: HouseholdDetailComponent,
     canDeactivate: [DeactivateGuard],
     canActivate: [AuthGuard, PermissionsGuard],
   },

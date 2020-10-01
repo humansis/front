@@ -88,6 +88,9 @@ export class Russian implements Language {
   view = 'Вид';
   latitude = 'Широта';
   longitude = 'Долгота';
+  amount = 'Сумма';
+  price = 'Cтоимость';
+  purchased_by = 'Приобретено';
 
   // Common Fields
   address = 'Адрес';
@@ -433,6 +436,7 @@ export class Russian implements Language {
   header_beneficiaries = 'бенефициары';
   header_disconnect = 'выйти';
   header_home = 'главная страница';
+  header_household = this.household;
   header_import = 'Импорт данных бенефициара';
   header_imported = 'Импортированные данные бенефициаров';
   header_language = this.language;

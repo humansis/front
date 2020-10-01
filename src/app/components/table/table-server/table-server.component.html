@@ -182,6 +182,9 @@
                     [disabled]="!element.isAssignable() || disabledActions">
                     <mat-icon>assignment</mat-icon>
                 </button>
+                <ng-container
+                    *ngTemplateOutlet="actionsTemplate; context: {element: element}">
+                </ng-container>
             </mat-cell>
         </ng-container>
 

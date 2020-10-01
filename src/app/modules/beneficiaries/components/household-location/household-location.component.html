@@ -1,0 +1,8 @@
+<h4 class='summary-title'>
+    {{ language['household_location_' + locationGroup + '_location'] }} </h4>
+<p class="summary-title-value" *ngIf="address">
+    <ng-container *ngIf="address.adm1 || address.adm4?.adm3?.adm2?.adm1">{{address.adm1?.name || address.adm4?.adm3?.adm2?.adm1?.name}}</ng-container>
+    <ng-container *ngIf="address.adm2 || address.adm4?.adm3?.adm2">, {{address.adm3?.name || address.adm4?.adm3?.adm2?.name}}</ng-container>
+    <ng-container *ngIf="address.adm3 || address.adm4?.adm3">, {{address.adm3?.name || address.adm4?.adm3?.name}}</ng-container>
+    <ng-container *ngIf="address.adm4">, {{address.adm4.name}}</ng-container>
+</p>

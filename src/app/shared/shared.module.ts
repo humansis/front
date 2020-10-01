@@ -75,13 +75,6 @@ import { TableServerComponent } from '../components/table/table-server/table-ser
 import { TableComponent } from '../components/table/table.component';
 import { MobilePressDirective } from '../core/directives/mobile-press.directive';
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
-import { BeneficiariesImportComponent } from '../modules/beneficiaries/beneficiaries-import/beneficiaries-import.component';
-import { ImportedDataComponent } from '../modules/beneficiaries/beneficiaries-import/imported-data/imported-data.component';
-import { DataMappingComponent } from '../modules/beneficiaries/data-mapping/data-mapping.component';
-import { DataValidationComponent } from '../modules/beneficiaries/data-validation/data-validation.component';
-import { BeneficiaryFormComponent } from '../modules/beneficiaries/update-beneficiary/beneficiary-form/beneficiary-form.component';
-import { LocationFormComponent } from '../modules/beneficiaries/update-beneficiary/location-form/location-form.component';
-import { UpdateBeneficiaryComponent } from '../modules/beneficiaries/update-beneficiary/update-beneficiary.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
 import { AddDistributionComponent } from '../modules/projects/add-distribution/add-distribution.component';
 import { DistributionsComponent } from '../modules/projects/distributions/distributions.component';
@@ -102,9 +95,17 @@ import { JsonFormComponent } from '../components/json-form/json-form.component';
 import { AdministrativeAreaInputComponent } from 'src/app/components/administrative-area/administrative-area-input.component';
 import { CleanTableComponent } from 'src/app/components/clean-table/clean-table.component';
 import { ExportButtonComponent } from 'src/app/components/export-button/export-button.component';
-import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/beneficiaries/beneficiaries.component';
 import { MdePopoverModule } from '@material-extended/mde';
 import { HistoryTableComponent } from 'src/app/components/history-table/history-table.component';
+import { ImportedDataComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries-import/imported-data/imported-data.component';
+import { LocationFormComponent } from 'src/app/modules/beneficiaries/containers/update-beneficiary/location-form/location-form.component';
+import { BeneficiaryFormComponent } from 'src/app/modules/beneficiaries/containers/update-beneficiary/beneficiary-form/beneficiary-form.component';
+import { UpdateBeneficiaryComponent } from 'src/app/modules/beneficiaries/containers/update-beneficiary/update-beneficiary.component';
+import { DataMappingComponent } from 'src/app/modules/beneficiaries/containers/data-mapping/data-mapping.component';
+import { BeneficiariesImportComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries-import/beneficiaries-import.component';
+import { DataValidationComponent } from 'src/app/modules/beneficiaries/containers/data-validation/data-validation.component';
+import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries/beneficiaries.component';
+import { LivelihoodPipe } from './pipes/livelihood.pipe';
 
 @NgModule({
   imports: [
@@ -223,6 +224,7 @@ import { HistoryTableComponent } from 'src/app/components/history-table/history-
     SsoComponent,
     JsonFormComponent,
     ExportButtonComponent,
+    LivelihoodPipe,
   ],
   entryComponents: [
     ModalDeleteComponent,
@@ -318,6 +320,7 @@ import { HistoryTableComponent } from 'src/app/components/history-table/history-
     AdministrationComponent,
     JsonFormComponent,
     UppercaseFirstPipe,
+    LivelihoodPipe,
     SsoComponent,
     ExportButtonComponent,
     HistoryTableComponent,
