@@ -1,0 +1,37 @@
+<h3>{{language.household_info}}</h3>
+
+
+<div class="summary">
+    <div class="info-resume" *ngIf="household">
+        <div class="info-container" *ngIf="household.livelihood">
+            <h4 class='summary-title'>{{language.household_livelihood}} </h4>
+            <p class="summary-title-value">{{household.livelihood | livelihood}}</p>
+        </div>
+
+
+        <ng-container *ngFor="let locationGroup of household.household_locations">
+            <div class="info-container"
+                 *ngIf="locationGroup.type !== 'camp'">
+                <h4 class='summary-title'>
+                    {{language['household_location_' + locationGroup.location_group + '_address']}} </h4>
+                <p class="summary-title-value">
+                    <ng-container *ngIf="locationGroup.address.number">{{locationGroup.address.number}}</ng-container>
+                    <ng-container *ngIf="locationGroup.address.street">{{locationGroup.address.street}},</ng-container>
+                    <ng-container *ngIf="locationGroup.address.postcode">{{locationGroup.address.postcode}}</ng-container>
+                </p>
+            </div>
+            <div class="info-container"
+                 *ngIf="locationGroup.type === 'camp' && locationGroup.camp_address">
+                <h4 class='summary-title'>
+                    {{language['household_location_' + locationGroup.location_group + '_address']}} </h4>
+                <p class="summary-title-value">
+                    <span *ngIf="locationGroup.camp_address.camp">{{ locationGroup.camp_address.camp.name}}</span>
+                    <br>
+                    <span>{{ language.household_location_tent }} : </span>
+                    {{ locationGroup.camp_address.tent_number }}
+                </p>
+            </div>
+
+        </ng-container>
+    </div>
+</div>

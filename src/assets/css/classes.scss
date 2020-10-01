@@ -701,6 +701,42 @@ app-icon-svg {
     }
 }
 
+mat-table {
+    button {
+        margin: 0.5vh;
+
+        mat-icon {
+            font-weight: 800 !important;
+            font-size: 25px;
+        }
+
+        &:hover {
+            background-color: $bms_white;
+        }
+    }
+
+
+    .light-blue {
+        color: $bms_light_blue;
+    }
+
+    .green {
+        color: $bms_green
+    }
+
+    .red {
+        color: $bms_red;
+    }
+
+    .dark-blue {
+        color: $bms_dark_blue;
+    }
+
+    .grey {
+        color: $bms_dark_grey;
+    }
+}
+
 /**
  * Fix Firefox dotted border
  */
@@ -788,7 +824,6 @@ body {
         }
     }
 }
-
 
 /**
  * Due to text transformations as icon is considering as a first letter
