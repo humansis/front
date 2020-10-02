@@ -748,6 +748,12 @@ body {
         p, #text-explanation, .resume, .location-question, .mat-column-email, .spacement {
             text-transform: none;
         }
+
+        .mat-menu-content {
+            button {
+                text-transform: none;
+            }
+        }
     }
 
     &.ru {
@@ -773,6 +779,12 @@ body {
         // No text transformation
         p, #text-explanation, .resume, .location-question, .mat-column-email, .spacement {
             text-transform: none;
+        }
+
+        .mat-menu-content {
+            button {
+                text-transform: none;
+            }
         }
     }
 }
