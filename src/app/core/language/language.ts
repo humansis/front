@@ -431,6 +431,7 @@ export interface Language {
   header_projects: string;
   header_reports: string;
   header_vouchers: string;
+  header_vendors: string;
 
   // Household
   household_coping_strategies_index: string;

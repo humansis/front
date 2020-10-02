@@ -50,6 +50,11 @@
             <mat-icon mat-list-icon>supervisor_account</mat-icon>
         </mat-list-item>
         <mat-list-item *ngIf="userService.hasRights('ROLE_ENUMERATOR', false)"
+            [ngClass]="{selected: matchUrl() === 'vendors'}" routerLink="/vendors">
+            <span class="full-width">{{getLanguage().vendors}}</span>
+            <mat-icon mat-list-icon svgIcon="vendors"></mat-icon>
+        </mat-list-item>
+        <mat-list-item *ngIf="userService.hasRights('ROLE_ENUMERATOR', false)"
             [ngClass]="{selected: matchUrl() === 'reports'}" routerLink="/reports">
             <span class="full-width">{{getLanguage().reports}}</span>
             <mat-icon mat-list-icon>timeline</mat-icon>

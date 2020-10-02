@@ -451,6 +451,7 @@ export class English implements Language {
   header_projects = this.projects;
   header_reports = this.reports;
   header_vouchers = this.voucher;
+  header_vendors = this.vendors;
 
   // Household
   household_coping_strategies_index = 'Coping strategies index';

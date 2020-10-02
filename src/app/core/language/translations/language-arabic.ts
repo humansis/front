@@ -439,6 +439,7 @@ export class Arabic implements Language {
   header_reports = this.reports;
   header_vouchers = this.voucher;
   header_logs = this.logs;
+  header_vendors = this.vendors;
 
   // Household
   household_coping_strategies_index = 'مؤشر استراتيجيات المواجهة';
