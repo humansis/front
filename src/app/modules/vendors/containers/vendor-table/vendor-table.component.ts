@@ -4,6 +4,8 @@ import { ClientDataSource } from 'src/app/core/datasource/client-data-source';
 import { VendorsService } from 'src/app/core/api/vendors.service';
 import { VendorRow } from 'src/app/models/table/vendor-row';
 import { Vendor } from 'src/app/models/api/vendor';
+import { MatDialog } from '@angular/material/dialog';
+import { SmartcardSummaryModalComponent } from 'src/app/modules/vendors/containers/modal/smartcard-summary-modal/smartcard-summary-modal.component';
 
 @Component({
   selector: 'app-vendor-table',
@@ -22,7 +24,7 @@ export class VendorTableComponent implements OnInit {
 
   dataSource: ClientDataSource<VendorRow> = new ClientDataSource<VendorRow>();
 
-  constructor(private vendorsService: VendorsService) {}
+  constructor(private vendorsService: VendorsService, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadVendors();
@@ -49,5 +51,14 @@ export class VendorTableComponent implements OnInit {
         this.dataSource.loading = false;
       }
     );
+  }
+
+  showRedeemModal(id: string) {
+    this.matDialog.open(SmartcardSummaryModalComponent, {
+      width: '650px',
+      data: {
+        id,
+      },
+    });
   }
 }

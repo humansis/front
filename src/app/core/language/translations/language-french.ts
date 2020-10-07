@@ -75,9 +75,6 @@ export class French implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
-  amount = this.missingTranslation;
-  price = this.missingTranslation;
-  purchased_by = this.missingTranslation;
 
   // Actions
   add = 'Ajouter';
@@ -114,6 +111,11 @@ export class French implements Language {
   value = 'Valeur';
   latitude = this.missingTranslation;
   longitude = this.missingTranslation;
+  amount = this.missingTranslation;
+  price = this.missingTranslation;
+  purchased_by = this.missingTranslation;
+  quantity = 'Quantité';
+  total = this.missingTranslation;
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";
@@ -329,7 +331,7 @@ export class French implements Language {
   commodity_kgs = 'Kgs';
   commodity_kit = 'Kit';
   commodity_modality = 'Modalité';
-  commodity_value = 'Quantité';
+  commodity_value = this.quantity;
   commodity_value_voucher = 'Valeur totale de la brochure';
 
   // Countries

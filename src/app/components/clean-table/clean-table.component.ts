@@ -65,6 +65,9 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
   @Input()
   showActionColumn = true;
 
+  @Input()
+  showFilter = true;
+
   get tableHeaders() {
     return this._tableHeaders;
   }

@@ -116,6 +116,8 @@ export class English implements Language {
   amount = 'Amount';
   price = 'Price';
   purchased_by = 'Purchased by';
+  quantity = 'Quantity';
+  total = 'Total';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -327,7 +329,7 @@ export class English implements Language {
   commodity_kgs = 'Kgs';
   commodity_kit = 'Kit';
   commodity_modality = 'Modality';
-  commodity_value = 'Quantity';
+  commodity_value = this.quantity;
   commodity_value_voucher = 'Total value of the booklet';
 
   // Countries

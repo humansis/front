@@ -1,5 +1,9 @@
 <app-clean-table [dataSource]="dataSource"
                  [tableHeaders]="TABLE_HEADERS"
-                 [showActionColumn]="false">
-
+                 [showActionColumn]="true">
+    <ng-template #actions let-element="element">
+        <button (click)="showRedeemModal(element.id)" mat-icon-button class="light-blue">
+            <mat-icon svgIcon="smartcard"></mat-icon>
+        </button>
+    </ng-template>
 </app-clean-table>

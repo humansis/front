@@ -110,6 +110,8 @@ export interface Language {
   amount: string;
   price: string;
   purchased_by: string;
+  quantity: string;
+  total: string;
 
   // Error
   back_to_homepage: string;

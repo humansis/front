@@ -8,6 +8,10 @@ import { AuthenticationService } from '../authentication/authentication.service'
 import { HttpService } from '../network/http.service';
 import { CustomModelService } from '../utils/custom-model.service';
 import { LocationService } from './location.service';
+import { Observable } from 'rxjs';
+import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
+import { PurchasesToRedeem } from 'src/app/models/api/purchases-to-redeem';
+import { CountValue } from 'src/app/models/api/count-value';
 
 @Injectable({
   providedIn: 'root',

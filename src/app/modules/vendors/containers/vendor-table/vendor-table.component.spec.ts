@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VendorTableComponent } from './vendor-table.component';
 import { VendorsService } from 'src/app/core/api/vendors.service';
 import { VendorsMockService } from 'src/app/core/api/mock/vendors-mock.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('VendorTableComponent', () => {
   let component: VendorTableComponent;
@@ -10,6 +11,7 @@ describe('VendorTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [MatDialogModule],
       providers: [{ provide: VendorsService, useClass: VendorsMockService }],
       declarations: [VendorTableComponent],
     }).compileComponents();

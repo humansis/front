@@ -75,9 +75,6 @@ export class Arabic implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
-  amount = this.missingTranslation;
-  price = this.missingTranslation;
-  purchased_by = this.missingTranslation;
 
   // Actions
   add = 'أضف';
@@ -114,6 +111,11 @@ export class Arabic implements Language {
   value = 'القيمة';
   latitude = this.missingTranslation;
   longitude = this.missingTranslation;
+  amount = this.missingTranslation;
+  price = this.missingTranslation;
+  purchased_by = this.missingTranslation;
+  quantity = 'كمية';
+  total = this.missingTranslation;
 
   // Error
   back_to_homepage = 'العودة إلى الصفحة الرئيسية';
@@ -319,7 +321,7 @@ export class Arabic implements Language {
   commodity_kgs = 'كلغ';
   commodity_kit = 'عدة';
   commodity_modality = 'القيد';
-  commodity_value = 'كمية';
+  commodity_value = this.quantity;
   commodity_value_voucher = 'القيمة الإجمالية للكتيب';
 
   // Countries
