@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
 import { ClientDataSource } from 'src/app/core/datasource/client-data-source';
 import { TableHeader } from 'src/app/models/interfaces/table-header';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-smartcard-summary',
@@ -18,6 +19,8 @@ export class SmartcardSummaryComponent implements OnInit {
   @Input()
   sumToRedeem: number;
   @Input()
+  currency: string;
+  @Input()
   set redeemedBatches(redeemedBatches: RedeemedBatch[]) {
     if (redeemedBatches) {
       this.dataSource.data = redeemedBatches;
@@ -31,10 +34,14 @@ export class SmartcardSummaryComponent implements OnInit {
   public readonly TABLE_HEADERS: TableHeader[] = [
     { key: 'date', languageKey: 'date' },
     { key: 'count', languageKey: 'quantity' },
-    { key: 'value', languageKey: 'total' },
+    {
+      key: 'value',
+      languageKey: 'total',
+      transform: (value) => this.currencyPipe.transform(value, this.currency),
+    },
   ];
 
-  constructor() {}
+  constructor(private currencyPipe: CurrencyPipe) {}
 
   ngOnInit(): void {}
 

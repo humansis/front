@@ -4,6 +4,7 @@ import { SmartcardSummaryModalComponent } from './smartcard-summary-modal.compon
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { SmartcardService } from 'src/app/core/api/smartcard.service';
 import { SmartcardMockService } from 'src/app/core/api/mock/smartcard-mock.service';
+import { FormService } from 'src/app/core/utils/form.service';
 
 describe('SmartcardSummaryModalComponent', () => {
   let component: SmartcardSummaryModalComponent;
@@ -23,6 +24,12 @@ describe('SmartcardSummaryModalComponent', () => {
         {
           provide: SmartcardService,
           useClass: SmartcardMockService,
+        },
+        {
+          provide: FormService,
+          useValue: {
+            getLocalCurrency: () => 'USD',
+          },
         },
       ],
     }).compileComponents();

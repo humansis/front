@@ -6,6 +6,7 @@ import { PurchasesToRedeem } from 'src/app/models/api/purchases-to-redeem';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { endWith, map, share, shareReplay, startWith, tap } from 'rxjs/operators';
 import { SmartcardService } from 'src/app/core/api/smartcard.service';
+import { FormService } from 'src/app/core/utils/form.service';
 
 @Component({
   selector: 'app-smartcard-summary-modal',
@@ -17,6 +18,7 @@ export class SmartcardSummaryModalComponent implements OnInit {
   purchasesRedeemStats$: Observable<PurchasesToRedeem>;
   redeemedBatches$: Observable<RedeemedBatch[]>;
   loading$: Observable<any>;
+  currency: string;
 
   private readonly id: string;
 
@@ -25,13 +27,15 @@ export class SmartcardSummaryModalComponent implements OnInit {
     public data: {
       id: string;
     },
-    private smartcardService: SmartcardService
+    private smartcardService: SmartcardService,
+    private formService: FormService
   ) {
     this.id = data.id;
   }
 
   ngOnInit(): void {
     this.load();
+    this.currency = this.formService.getLocalCurrency();
   }
 
   load() {

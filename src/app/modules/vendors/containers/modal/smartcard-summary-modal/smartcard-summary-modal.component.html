@@ -5,6 +5,7 @@
     [purchasesToRedeem]="(purchasesRedeemStats$ | async)?.purchases_ids"
     [sumToRedeem]="(purchasesRedeemStats$ | async)?.value"
     [redeemedBatches]="redeemedBatches$ | async"
+    [currency]="currency"
     (redeem)="onRedeem($event)"
 ></app-smartcard-summary>
 

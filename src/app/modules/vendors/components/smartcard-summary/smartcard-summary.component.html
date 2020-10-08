@@ -1,13 +1,13 @@
 <h2>Smartcard summary for vendor</h2>
 
 <strong>Total purchases:</strong> {{totalPurchases}}<br />
-<strong>Sum of purchases:</strong> {{sumOfPurchases | currency}}<br />
+<strong>Sum of purchases:</strong> {{sumOfPurchases | currency: currency}}<br />
 
 <h3>To redeem</h3>
 <div class="redemption" *ngIf="purchasesToRedeem">
     <div>
         <strong>Purchases to redeem:</strong> {{purchasesToRedeem?.length}}<br />
-        <strong>Sum to redeem:</strong> {{sumToRedeem | currency}}<br />
+        <strong>Sum to redeem:</strong> {{sumToRedeem | currency: currency}}<br />
     </div>
     <div class="controls" *ngIf="purchasesToRedeem?.length > 0">
         <button mat-flat-button class="button-background-primary" (click)="redeemClick()">
