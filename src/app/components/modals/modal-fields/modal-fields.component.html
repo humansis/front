@@ -68,7 +68,7 @@
                                         [placeholder]="field.title" [multiple]="true"
                                         [closeOnSelect]="false">
                                         <ng-container *ngIf="field.isTranslatable; else notTranslatable">
-                                            <ng-option *ngFor="let option of field.opions" [value]="option.get('id')">
+                                            <ng-option *ngFor="let option of field.options" [value]="option.get('id')">
                                                 {{option.getTooltip()}}
                                             </ng-option>
                                         </ng-container>

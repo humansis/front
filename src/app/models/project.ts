@@ -44,7 +44,7 @@ export class Project extends CustomModel {
       isEditable: true,
       value: [],
       apiLabel: 'id',
-      isTranslatable: true,
+      isTranslatable: false,
     }),
     startDate: new DateModelField({
       title: this.language.project_start_date,
