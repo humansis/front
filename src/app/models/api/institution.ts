@@ -13,4 +13,6 @@ export interface Institution {
     id_type: string;
     id_number: string;
   };
+  latitude: string;
+  longitude: string;
 }

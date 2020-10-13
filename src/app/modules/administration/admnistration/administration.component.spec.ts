@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdministrationComponent } from './administration.component';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { SettingsComponent } from '../../../components/settings/settings.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserService } from '../../../core/api/user.service';
@@ -19,7 +17,7 @@ describe('AdministrationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AdministrationComponent, UppercaseFirstPipe, SettingsComponent],
+      declarations: [AdministrationComponent, SettingsComponent],
       imports: [
         HttpClientTestingModule,
         MatSnackBarModule,

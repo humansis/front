@@ -715,3 +715,84 @@ input[type="file"] > input[type="button"] {
 }
 
 
+
+//Capitalize first letter
+/*mat-sidenav, input, button, .mat-dialog-title, .select-container, .single-select, th {
+    text-transform: capitalize;
+}*/
+
+body {
+    &.en {
+        text-transform: capitalize;
+
+        .page-container, button, .select-container, .single-select, th, .items-info > p, p.not-mat-form-field-error, p.not-mat-form-field-hint, .mat-row, .mat-form-field, .mat-button-wrapper{
+            text-transform: capitalize;
+        }
+        ::-webkit-input-placeholder {
+            text-transform: capitalize;
+        }
+        :-moz-placeholder {
+            text-transform: capitalize;
+        }
+        ::-moz-placeholder {
+            text-transform: capitalize;
+        }
+        :-ms-input-placeholder {
+            text-transform: capitalize;
+        }
+        .ng-placeholder {
+            text-transform: capitalize;
+        }
+
+        // No text transformation
+        p, #text-explanation, .resume, .location-question, .mat-column-email, .spacement {
+            text-transform: none;
+        }
+
+        .mat-menu-content {
+            button {
+                text-transform: none;
+            }
+        }
+    }
+
+    &.ru {
+        .page-container, button, .items-info > p, .select-container, .single-select, .mat-row, th, mat-list-item, p.not-mat-form-field-error, .mat-error,  .modal-title, .mat-form-field {
+            text-transform: capitalize;
+        }
+        ::-webkit-input-placeholder {
+            text-transform: capitalize;
+        }
+        :-moz-placeholder {
+            text-transform: capitalize;
+        }
+        ::-moz-placeholder {
+            text-transform: capitalize;
+        }
+        :-ms-input-placeholder {
+            text-transform: capitalize;
+        }
+        .ng-placeholder {
+            text-transform: capitalize;
+        }
+
+        // No text transformation
+        p, #text-explanation, .resume, .location-question, .mat-column-email, .spacement {
+            text-transform: none;
+        }
+
+        .mat-menu-content {
+            button {
+                text-transform: none;
+            }
+        }
+    }
+}
+
+
+/**
+ * Due to text transformations as icon is considering as a first letter
+ */
+mat-icon::after {
+    content: " ";
+}

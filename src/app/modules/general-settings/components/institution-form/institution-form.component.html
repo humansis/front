@@ -57,34 +57,51 @@
                     [searchable]="true"
                     class="single-select"
                     formControlName="type"
-                    placeholder="{{language.institution_contact_id_type | uppercaseFirst}}">
+                    placeholder="{{language.institution_contact_id_type}}">
                     <ng-option *ngFor="let type of cardTypes" [value]="type.id">
                         {{language[type.language_key]}}
                     </ng-option>
                 </ng-select>
                 <mat-form-field>
                     <input matInput
-                           placeholder="{{language.institution_contact_id_number | uppercaseFirst}}"
+                           placeholder="{{language.institution_contact_id_number}}"
                            formControlName="number">
                 </mat-form-field>
             </div>
         </div>
-        <div formGroupName="address">
-            <app-administrative-area formControlName="location"></app-administrative-area>
-            <mat-form-field>
-                <input matInput
-                       [placeholder]="language.address_number"
-                       formControlName="number">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput
-                       [placeholder]="language.address_street"
-                       formControlName="street">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput
-                       [placeholder]="language.address_postcode"
-                       formControlName="postcode">
-            </mat-form-field>
+        <div>
+            <div formGroupName="address">
+                <app-administrative-area formControlName="location"></app-administrative-area>
+                <mat-form-field>
+                    <input matInput
+                           [placeholder]="language.address_number"
+                           formControlName="number">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput
+                           [placeholder]="language.address_street"
+                           formControlName="street">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput
+                           [placeholder]="language.address_postcode"
+                           formControlName="postcode">
+                </mat-form-field>
+            </div>
+            <div class="input-group">
+                <mat-form-field>
+                    <input matInput
+                           type="text"
+                           [placeholder]="language.latitude"
+                           formControlName="latitude">
+                </mat-form-field>
+                <mat-form-field class="number">
+                    <input matInput
+                           type="text"
+                           [placeholder]="language.longitude"
+                           formControlName="longitude">
+                </mat-form-field>
+            </div>
         </div>
+
     </form>

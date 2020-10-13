@@ -12,7 +12,6 @@ import { AdministrativeAreaInputComponent } from '../../../../../components/admi
 import { InstitutionService } from '../../../../../core/api/institution.service';
 import { InstitutionMockService } from '../../../../../core/api/mock/institution-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
 
 describe('InstitutionModalComponent', () => {
   let component: InstitutionModalComponent;
@@ -28,7 +27,6 @@ describe('InstitutionModalComponent', () => {
         InstitutionModalComponent,
         InstitutionFormComponent,
         AdministrativeAreaInputComponent,
-        UppercaseFirstPipe,
       ],
       imports: [
         MatDialogModule,

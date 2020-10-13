@@ -4,7 +4,6 @@ import { BoxPropertiesComponent } from './box-properties.component';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { Distribution } from '../../../models/distribution';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 
 describe('BoxPropertiesComponent', () => {
   let component: BoxPropertiesComponent;
@@ -12,7 +11,7 @@ describe('BoxPropertiesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BoxPropertiesComponent, UppercaseFirstPipe],
+      declarations: [BoxPropertiesComponent],
     }).compileComponents();
   }));
 

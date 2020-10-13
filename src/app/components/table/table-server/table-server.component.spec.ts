@@ -4,10 +4,8 @@ import { TableServerComponent } from './table-server.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HouseholdsDataSource } from '../../../models/data-sources/households-data-source';
 import { HouseholdsService } from '../../../core/api/households.service';
 import { Household } from '../../../models/household';
@@ -21,7 +19,7 @@ describe('TableServerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TableServerComponent, UppercaseFirstPipe],
+      declarations: [TableServerComponent],
       imports: [
         MatDialogModule,
         HttpClientTestingModule,

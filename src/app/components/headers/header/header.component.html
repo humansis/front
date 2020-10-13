@@ -5,7 +5,7 @@
                 >
             </span>
            <a routerLink={{item.route}}>
-                {{item.name | titlecase}}
+                {{item.name}}
             </a>
         </span>
     </div>
@@ -24,7 +24,7 @@
                 <span>{{countriesService.selectedCountry.get('id')}}</span>
             </button>
             <mat-menu #country overlapTrigger=false>
-                <button class="flag-button" [ngClass]="{'selected': country === selectedCountry}" *ngFor="let country of countries" mat-menu-item (click)="selectCountry(country)">
+                <button class="flag-button" [ngClass]="{'selected': country === countriesService.selectedCountry}" *ngFor="let country of countries" mat-menu-item (click)="selectCountry(country)">
                     <mat-icon>language</mat-icon>
                     <span>{{country.get('id')}}</span>
                 </button>
@@ -35,15 +35,15 @@
             <mat-menu #menu="matMenu" overlapTrigger=false>
                 <button mat-menu-item (click)="openLanguageDialog()">
                     <mat-icon>language</mat-icon>
-                    <span>{{language.language | titlecase}}</span>
+                    <span>{{language.language}}</span>
                 </button>
                 <button mat-menu-item routerLink="/profile">
                     <mat-icon>person_outline</mat-icon>
-                    <span>{{language.profile | titlecase}}</span>
+                    <span>{{language.profile}}</span>
                 </button>
                 <button mat-menu-item (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
-                    <span>{{language.header_disconnect | titlecase}}</span>
+                    <span>{{language.header_disconnect}}</span>
                 </button>
             </mat-menu>
         </div>

@@ -28,7 +28,11 @@ export class InstitutionFormComponent implements OnInit {
   set data(institution: Institution) {
     if (institution) {
       this.institutionId = institution.id;
-      this.form.patchValue(institution, { emitEvent: false });
+      const formData = { ...institution };
+      if (formData.national_id === null) {
+        delete formData.national_id;
+      }
+      this.form.patchValue(formData, { emitEvent: false });
     }
   }
 
@@ -65,6 +69,22 @@ export class InstitutionFormComponent implements OnInit {
         type: [],
         number: [],
       }),
+      latitude: [
+        undefined,
+        [
+          Validators.min(-90),
+          Validators.max(90),
+          Validators.pattern('\\d+((\\.|,)\\d+)?'),
+        ],
+      ],
+      longitude: [
+        undefined,
+        [
+          Validators.min(-180),
+          Validators.max(180),
+          Validators.pattern('\\d+((\\.|,)\\d+)?'),
+        ],
+      ],
     });
   }
 }

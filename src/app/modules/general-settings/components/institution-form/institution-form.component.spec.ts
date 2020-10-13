@@ -11,7 +11,6 @@ import { setAppInjector } from '../../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
 
 describe('InstitutionFormComponent', () => {
   let component: InstitutionFormComponent;
@@ -19,11 +18,7 @@ describe('InstitutionFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        InstitutionFormComponent,
-        AdministrativeAreaInputComponent,
-        UppercaseFirstPipe,
-      ],
+      declarations: [InstitutionFormComponent, AdministrativeAreaInputComponent],
       imports: [
         ReactiveFormsModule,
         MatFormFieldModule,

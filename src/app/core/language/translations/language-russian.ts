@@ -86,6 +86,8 @@ export class Russian implements Language {
   save = 'Сохранить';
   update = 'Обновить';
   view = 'Вид';
+  latitude = 'Широта';
+  longitude = 'Долгота';
 
   // Common Fields
   address = 'Адрес';
@@ -645,7 +647,7 @@ export class Russian implements Language {
   project_name = 'Название проекта';
   project_internal_id = 'Внутренний ID';
   project_no_distribution =
-    'Этот Проект не содержит распределений. Создайте свое первое!';
+    'Этот проект не содержит распределений. Создайте свое первое!';
   project_no_household = 'Этот проект не содержит домохозяйств.';
   project_no_projects = 'В этой стране в настоящее время нет активных проектов.';
   project_number_of_households = 'Количество домохозяйств';
@@ -706,6 +708,7 @@ export class Russian implements Language {
   report_soloparent = 'Одинокий родитель';
   report_vulnerability_served = 'обслуженные уязвимости в защите информационных систем';
   report_women = 'Женщины';
+  report_missing_distribution = 'Вы не выбрали распределение!';
 
   // Role
   role_user_admin = 'Администратор';

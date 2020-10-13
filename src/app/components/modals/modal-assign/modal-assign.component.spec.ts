@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalAssignComponent } from './modal-assign.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { BookletService } from '../../../core/api/booklet.service';
 import { BookletMockService } from '../../../core/api/mock/booklet-mock.service';
 import { DistributionMockService } from '../../../core/api/mock/distribution-mock.service';
@@ -25,7 +23,7 @@ describe('ModalAssignComponent', () => {
         RouterTestingModule,
         MatDialogModule,
       ],
-      declarations: [ModalAssignComponent, UppercaseFirstPipe],
+      declarations: [ModalAssignComponent],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: BookletService, useClass: BookletMockService },

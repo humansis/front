@@ -2,12 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalEditComponent } from './modal-edit.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Household } from '../../../models/household';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ModalEditComponent', () => {
@@ -19,7 +17,7 @@ describe('ModalEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalEditComponent, UppercaseFirstPipe],
+      declarations: [ModalEditComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },

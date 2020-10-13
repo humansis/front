@@ -1,16 +1,16 @@
 <h4 mat-dialog-title class="modal-title underline-accent"
     [ngClass]="{'rtl':language.direction === 'rtl'}">
-    {{language.modal_add_title |uppercaseFirst }} {{commodity.title | uppercaseFirst}}</h4>
+    {{language.modal_add_title}} {{commodity.title}}</h4>
 <mat-dialog-content class="modal-container" *ngIf="commodity">
     <form [formGroup]="form">
         <table class="modal-table" cdkFocusRegionstart [ngClass]="{'rtl':language.direction === 'rtl'}">
             <tr class="modal-row">
-                <th class="table-title">{{ commodity.fields.modality.title | uppercaseFirst}}</th>
+                <th class="table-title">{{ commodity.fields.modality.title }}</th>
                 <td class="form-item">
                     <ng-select appendTo="body" formControlName="modality"
-                        [placeholder]="commodity.fields.modality.title | uppercaseFirst" (change)="loadTypes($event)">
+                        [placeholder]="commodity.fields.modality.title" (change)="loadTypes($event)">
                         <ng-option *ngFor="let option of commodity.getOptions('modality')" [value]="option.get('id')">
-                            {{option.getTooltip() | uppercaseFirst}}
+                            {{option.getTooltip()}}
                         </ng-option>
                     </ng-select>
                     <app-hint-error [form]="form" fieldName="modality" [field]="commodity.fields.modality"
@@ -19,13 +19,13 @@
             </tr>
 
             <tr class="modal-row">
-                <th class="table-title">{{ commodity.fields.modalityType.title | uppercaseFirst}}</th>
+                <th class="table-title">{{ commodity.fields.modalityType.title }}</th>
                 <td class="form-item">
                     <ng-select appendTo="body" formControlName="modalityType"
-                        [placeholder]="commodity.fields.modalityType.title | uppercaseFirst" (change)="setUnit()">
+                        [placeholder]="commodity.fields.modalityType.title" (change)="setUnit()">
                         <ng-option *ngFor="let option of commodity.getOptions('modalityType')"
                             [value]="option.get('id')">
-                            {{option.getTooltip() | uppercaseFirst}}
+                            {{option.getTooltip()}}
                         </ng-option>
                     </ng-select>
                     <app-hint-error [form]="form" fieldName="modalityType" [field]="commodity.fields.modalityType"
@@ -34,16 +34,16 @@
             </tr>
 
             <tr class="modal-row">
-                <th class="table-title">{{ getUnit() | uppercaseFirst}}</th>
+                <th class="table-title">{{ getUnit() }}</th>
                 <td class="form-item">
                     <mat-form-field *ngIf="!isCurrency">
-                        <input matInput type="text" formControlName="unit" [placeholder]="getUnit() | uppercaseFirst">
+                        <input matInput type="text" formControlName="unit" [placeholder]="getUnit()">
                         <app-hint-error [form]="form" fieldName="unit" [field]="commodity.fields.unit"
                             [isMatField]="true"></app-hint-error>
                     </mat-form-field>
-                    <ng-select appendTo="body" *ngIf="isCurrency" formControlName="unit" [placeholder]="getUnit() | uppercaseFirst">
+                    <ng-select appendTo="body" *ngIf="isCurrency" formControlName="unit" [placeholder]="getUnit()">
                         <ng-option *ngFor="let currency of currencies" [value]="currency.name">
-                            {{currency.name | uppercaseFirst}}
+                            {{currency.name}}
                         </ng-option>
                     </ng-select>
                     <app-hint-error *ngIf="isCurrency" [form]="form" fieldName="unit" [field]="commodity.fields.unit"
@@ -52,11 +52,11 @@
             </tr>
 
             <tr class="modal-row">
-                <th class="table-title">{{ commodity.fields.value.title | uppercaseFirst}}</th>
+                <th class="table-title">{{ commodity.fields.value.title }}</th>
                 <td class="form-item">
                     <mat-form-field>
                         <input matInput type="text" formControlName="value"
-                            [placeholder]="commodity.fields.value.title | uppercaseFirst">
+                            [placeholder]="commodity.fields.value.title">
                         <app-hint-error [form]="form" fieldName="value" [field]="commodity.fields.value"
                             [isMatField]="true"></app-hint-error>
                     </mat-form-field>
@@ -64,11 +64,11 @@
             </tr>
 
             <tr *ngIf="form.controls.modality.value === 3" class="modal-row">
-                <th class="table-title">{{ commodity.fields.description.title | uppercaseFirst}}</th>
+                <th class="table-title">{{ commodity.fields.description.title }}</th>
                 <td class="form-item">
                     <mat-form-field>
                         <textarea matInput type="text" formControlName="description"
-                            [placeholder]="commodity.fields.description.title | titlecase"></textarea>
+                            [placeholder]="commodity.fields.description.title"></textarea>
                         <app-hint-error [form]="form" fieldName="description" [field]="commodity.fields.description"
                             [isMatField]="true"></app-hint-error>
                     </mat-form-field>

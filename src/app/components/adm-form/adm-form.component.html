@@ -9,9 +9,9 @@
                 class="single-select"
                 [formControlName]="formName[adm]"
                 (change)="loadAdm(adm, $event)"
-                [placeholder]="location.fields[adm].title | uppercaseFirst">
+                [placeholder]="location.fields[adm].title ">
                 <ng-option *ngFor="let option of location.getOptions(adm)" [value]="option.get('id')">
-                    {{option.get('name') | uppercaseFirst}}
+                    {{option.get('name')}}
                 </ng-option>
             </ng-select>
             <app-hint-error [form]="form" [fieldName]="adm" [field]="location.fields[adm]" [isMatField]="false"></app-hint-error>
@@ -21,7 +21,7 @@
     <ng-template #formWithTitle>
         <tr class="modal-row" *ngFor="let adm of ['adm1', 'adm2', 'adm3', 'adm4']">
             <th class="table-title">
-                {{ location.fields[adm].title | uppercaseFirst }}
+                {{ location.fields[adm].title }}
             </th>
             <td class="form-item">
                 <ng-select
@@ -33,9 +33,9 @@
                 class="single-select"
                 [formControlName]="formName[adm]"
                 (change)="loadAdm(adm, $event)"
-                [placeholder]="location.fields[adm].title | uppercaseFirst">
+                [placeholder]="location.fields[adm].title ">
                 <ng-option *ngFor="let option of location.getOptions(adm)" [value]="option.get('id')">
-                    {{option.get('name') | uppercaseFirst}}
+                    {{option.get('name')}}
                 </ng-option>
                 </ng-select>
                 <app-hint-error [form]="form" [fieldName]="adm" [field]="location.fields[adm]" [isMatField]="false"></app-hint-error>

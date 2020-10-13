@@ -4,12 +4,10 @@ import { BeneficiariesImportComponent } from './beneficiaries-import.component';
 
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HouseholdsService } from '../../../core/api/households.service';
 import { HouseholdsMockService } from '../../../core/api/mock/households-mock.service';
 import { BeneficiariesService } from '../../../core/api/beneficiaries.service';
@@ -24,7 +22,7 @@ describe('BeneficiariesImportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BeneficiariesImportComponent, UppercaseFirstPipe],
+      declarations: [BeneficiariesImportComponent],
       imports: [
         HttpClientTestingModule,
         MatSnackBarModule,

@@ -1,11 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DisplayFieldComponent } from './display-field.component';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { UppercaseFirstPipe } from '../../shared/pipes/uppercase-first.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DisplayFieldComponent', () => {
@@ -14,7 +12,7 @@ describe('DisplayFieldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DisplayFieldComponent, UppercaseFirstPipe],
+      declarations: [DisplayFieldComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule],
     }).compileComponents();
   }));

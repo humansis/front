@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalAddCriteriaComponent } from './modal-add-criteria.component';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { CriteriaService } from '../../../core/api/criteria.service';
 import { CriteriaMockService } from '../../../core/api/mock/criteria-mock.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -20,7 +18,7 @@ describe('ModalAddCriteriaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalAddCriteriaComponent, UppercaseFirstPipe],
+      declarations: [ModalAddCriteriaComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },

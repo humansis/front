@@ -422,11 +422,16 @@ export class ReportsComponent implements OnInit, OnDestroy {
       case 'distributions':
         report = 'distributions';
         projects = [this.distributionsControl.value.projectSelect];
-        distributions = this.distributionsControl.value.distributionsSelect.map(
-          (selectedDistribution: Distribution) => {
-            return selectedDistribution;
-          }
-        );
+        distributions = this.distributionsControl.value.distributionsSelect
+          ? this.distributionsControl.value.distributionsSelect.map(
+              (selectedDistribution: Distribution) => {
+                return selectedDistribution;
+              }
+            )
+          : [];
+        if (distributions.length === 0) {
+          this.snackbar.warning(this.language.report_missing_distribution);
+        }
         break;
       case 'countries':
       default:

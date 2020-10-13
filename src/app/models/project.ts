@@ -146,19 +146,7 @@ export class Project extends CustomModel {
         : []
     );
 
-    // Move to distributions.new.ts
-    const reachedBeneficiaries = [];
-    if (projectFromApi.distributions) {
-      projectFromApi.distributions.forEach((distribution) => {
-        distribution.distribution_beneficiaries.forEach((distributionBeneficiary) => {
-          reachedBeneficiaries.push(distributionBeneficiary.beneficiary.id);
-        });
-      });
-    }
-    const uniqueReachedBeneficiaries = reachedBeneficiaries
-      ? [new Set(reachedBeneficiaries)]
-      : [];
-    newProject.set('reachedBeneficiaries', uniqueReachedBeneficiaries[0].size);
+    newProject.set('reachedBeneficiaries', projectFromApi.reached_beneficiaries);
     return newProject;
   }
 

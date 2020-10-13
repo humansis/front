@@ -1,11 +1,11 @@
 <div class="page-container">
 
     <div class="container-title" *ngIf="actualDistribution && !actualDistribution.get('validated') && !loadingDistribution">
-        <h2>{{language.distribution_edit | uppercaseFirst}}</h2>
+        <h2>{{language.distribution_edit}}</h2>
     </div>
 
     <div class="container-title" *ngIf="actualDistribution && actualDistribution.get('validated') && !loadingDistribution">
-        <h2>{{ language.distribution_validated_title | uppercaseFirst }}</h2>
+        <h2>{{ language.distribution_validated_title }}</h2>
     </div>
 
     <div class="container-data" *ngIf="actualDistribution && !loadingDistribution">
@@ -14,7 +14,7 @@
                 <div class="subtitle-main">
                     <div class="subtitle">
                         <h3>
-                            {{actualDistribution.get('name') | uppercaseFirst}}
+                            {{actualDistribution.get('name')}}
                         </h3>
                         <mat-icon class="valid" *ngIf="actualDistribution.get('validated')">lock</mat-icon>
                         <mat-icon class="unvalid" *ngIf="!actualDistribution.get('validated')">lock_open</mat-icon>
@@ -22,12 +22,12 @@
                     </div>
                 </div>
                 <h4 class="last-modification">
-                    {{ language.distribution_last_modification | uppercaseFirst}}
+                    {{ language.distribution_last_modification}}
                     <ng-container *ngIf="updated; else notUpdated">
-                        {{ language.time_just_now }}
+                        {{ language.time_just_now}}
                     </ng-container>
                     <ng-template #notUpdated>
-                        {{actualDistribution.get('updatedOn') | date: 'dd-MM-yyyy HH:mm' }}
+                        {{actualDistribution.get('updatedOn') | date: 'dd-MM-yyyy HH:mm'}}
                     </ng-template>
 
                 </h4>

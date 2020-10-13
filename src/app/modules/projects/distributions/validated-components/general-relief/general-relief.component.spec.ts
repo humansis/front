@@ -1,13 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { GeneralReliefComponent } from './general-relief.component';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../../../app-injector';
 import { Distribution } from '../../../../../models/distribution';
-import { UppercaseFirstPipe } from '../../../../../shared/pipes/uppercase-first.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('GeneralReliefComponent', () => {
@@ -22,7 +20,7 @@ describe('GeneralReliefComponent', () => {
         MatSnackBarModule,
         MatDialogModule,
       ],
-      declarations: [GeneralReliefComponent, UppercaseFirstPipe],
+      declarations: [GeneralReliefComponent],
     }).compileComponents();
   }));
 

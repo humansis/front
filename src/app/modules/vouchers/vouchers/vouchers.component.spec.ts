@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { BookletService } from '../../../core/api/booklet.service';
@@ -23,7 +22,7 @@ describe('VouchersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [VouchersComponent, UppercaseFirstPipe],
+      declarations: [VouchersComponent],
       imports: [
         HttpClientModule,
         MatSnackBarModule,

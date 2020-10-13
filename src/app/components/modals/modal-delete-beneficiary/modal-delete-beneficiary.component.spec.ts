@@ -5,7 +5,6 @@ import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 
 describe('ModalDeleteBeneficiaryComponent', () => {
   let component: ModalDeleteBeneficiaryComponent;
@@ -17,7 +16,7 @@ describe('ModalDeleteBeneficiaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalDeleteBeneficiaryComponent, UppercaseFirstPipe],
+      declarations: [ModalDeleteBeneficiaryComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         {

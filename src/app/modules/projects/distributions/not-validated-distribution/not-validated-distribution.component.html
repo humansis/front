@@ -1,6 +1,6 @@
 <mat-horizontal-stepper #myStepper *ngIf="!loadingDatas && actualDistribution && !actualDistribution.get('validated')">
 
-    <mat-step label="{{ language.distribution_details_export | uppercaseFirst }}">
+    <mat-step label="{{ language.distribution_details_export }}">
         <div class="container-table" *ngIf="myStepper.selectedIndex === 0">
             <div class="container-content box-primary box-primary">
                 <div class="content-button">
@@ -11,7 +11,7 @@
                                 [disabled]="!(initialBeneficiaryData && initialBeneficiaryData.data.length >0)"
                                 (click)="export()" *ngIf="!loadingExport">
                                 <mat-icon>get_app</mat-icon>
-                                <span>{{language.export | uppercaseFirst}}</span>
+                                <span>{{language.export}}</span>
                             </button>
                             <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
                             <div class="extension" *ngIf="!loadingExport">
@@ -42,7 +42,7 @@
                         (click)="openModal({action:'addBeneficiary', distribution: actualDistribution})"
                         class="add-button-create">
                         <mat-icon>add</mat-icon>
-                        {{language.add | uppercaseFirst}}
+                        {{language.add}}
                     </button>
                     <button mat-fab
                         *ngIf="currentDisplayType.type === 'mobile' && userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
@@ -75,7 +75,7 @@
         </div>
     </mat-step>
 
-    <mat-step label="{{ language.distribution_details_import | uppercaseFirst }}" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
+    <mat-step label="{{ language.distribution_details_import }}" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
         <div class="container-table" *ngIf="myStepper.selectedIndex === 1">
             <div class="container-content box-primary">
                 <div class="import-content">
@@ -99,7 +99,7 @@
         </div>
     </mat-step>
 
-    <mat-step label="{{ language.distribution_details_random | uppercaseFirst }}">
+    <mat-step label="{{ language.distribution_details_random }}">
         <div class="container-table" *ngIf="myStepper.selectedIndex === 2">
             <div class="container-content box-primary">
                 <div class="content-button">
@@ -110,7 +110,7 @@
                                 [disabled]="!(randomSampleData && randomSampleData.data.length >0)"
                                 class="button-background-primary" (click)="exportSample()" *ngIf="!loadingExport">
                                 <mat-icon>get_app</mat-icon>
-                                <span>{{language.export | uppercaseFirst}}</span>
+                                <span>{{language.export}}</span>
                             </button>
                             <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
                             <div class="extension">
@@ -140,7 +140,7 @@
                             <mat-icon>shuffle</mat-icon>
                         </button>
                         <mat-form-field>
-                            {{language.distribution_details_sample_size | uppercaseFirst}} :
+                            {{language.distribution_details_sample_size}} :
                             <input matInput [formControl]="sampleSizeControl" min="0" max="100" type="number">
                             %
                         </mat-form-field>
@@ -174,7 +174,7 @@
         </div>
     </mat-step>
 
-    <mat-step label="{{ language.distribution_details_validate | uppercaseFirst }}" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
+    <mat-step label="{{ language.distribution_details_validate }}" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
         <div class="container-table" *ngIf="myStepper.selectedIndex === 3">
             <div class="container-content box-primary">
                 <div class="content-button">
@@ -219,7 +219,7 @@
 </mat-horizontal-stepper>
 
 <ng-template #validation>
-    <h4 mat-dialog-title class="modal-title underline-accent" [ngClass]="{'rtl':language.direction === 'rtl'}">{{language.transaction_validation | titlecase}}</h4>
+    <h4 mat-dialog-title class="modal-title underline-accent" [ngClass]="{'rtl':language.direction === 'rtl'}">{{language.transaction_validation}}</h4>
     <mat-dialog-content class="modal-container">
         <div class="modal-body">
             <p> {{language.transaction_validate_distribution}} </p>

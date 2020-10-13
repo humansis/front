@@ -3,13 +3,13 @@
         <div class="container-content">
             <div class="container-fields">
                 <div class="field-distribution" [ngClass]="{'rtl':language.direction === 'rtl'}">
-                    <h2 class="distribution-title">{{language.add_project_new_distribution | uppercaseFirst}}</h2>
+                    <h2 class="distribution-title">{{language.add_project_new_distribution}}</h2>
                     <div class="distribution-accordion">
                         <mat-card class="accordion-card">
                             <app-adm-form [form]="form" [location]="objectInstance.get('location')" [initialValues]="initialAdmValues"></app-adm-form>
                             <form [formGroup]="form">
                                 <mat-form-field class="accordion-field">
-                                    <input matInput [matDatepicker]="dateDistribution" [placeholder]="objectInstance.fields.date.title | uppercaseFirst"
+                                    <input matInput [matDatepicker]="dateDistribution" [placeholder]="objectInstance.fields.date.title"
                                            formControlName="date" [max]="projectInfo.endDate" required>
                                     <mat-datepicker-toggle matSuffix [for]="dateDistribution"></mat-datepicker-toggle>
                                     <mat-datepicker #dateDistribution></mat-datepicker>
@@ -29,9 +29,9 @@
                 <div class="field-forms">
                     <div class="forms-criteria">
                         <div class="distribution-title">
-                            <h2>{{language.add_distribution_selection_criteria | uppercaseFirst}}</h2>
+                            <h2>{{language.add_distribution_selection_criteria}}</h2>
                             <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="openDialog('addCriteria')">
-                                <span>{{ language.add | uppercaseFirst }}</span>
+                                <span>{{ language.add }}</span>
                             </button>
                         </div>
 
@@ -51,14 +51,14 @@
                                     <span *ngIf="load">
                     <mat-spinner [diameter]="25"></mat-spinner>
                   </span>
-                                    {{language.add_distribution_beneficiaries_reached | uppercaseFirst}}
+                                    {{language.add_distribution_beneficiaries_reached}}
                                 </h3>
                                 <h3 class="summary-text" *ngIf="criteriaData.data.length != 0 && form.controls.type.value === '0'">
                                     <span *ngIf="!load">{{criteriaNbBeneficiaries}}</span>
                                     <span *ngIf="load">
                     <mat-spinner [diameter]="25"></mat-spinner>
                   </span>
-                                    {{language.add_distribution_households_reached | uppercaseFirst}}
+                                    {{language.add_distribution_households_reached}}
                                 </h3>
                             </div>
                             <small id="text-explanation">{{ language.add_distribution_text_explanation }}</small>
@@ -69,9 +69,9 @@
 
                         <div class="forms-commodity">
                             <div class="distribution-title">
-                                <h2>{{language.add_distribution_distributed_commodity | uppercaseFirst}}</h2>
+                                <h2>{{language.add_distribution_distributed_commodity}}</h2>
                                 <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="openDialog('addCommodity')">
-                                    <span>{{ language.add | uppercaseFirst }}</span>
+                                    <span>{{ language.add }}</span>
                                 </button>
                             </div>
                             <div class="form" *ngIf="currentDisplayType.type !== 'mobile'">
@@ -80,7 +80,7 @@
                             <div class="summary-container" *ngIf="commodityData.data.length != 0">
                                 <h3 class="summary-text" *ngFor="let commodity of commodityData.data; let i = index;">
                                     <span>{{commodityNb[i]}}</span>{{commodity.get('unit')}}
-                                    {{language.add_distribution_commodities_delivered | uppercaseFirst}}</h3>
+                                    {{language.add_distribution_commodities_delivered}}</h3>
                             </div>
                             <div class="form" *ngIf="currentDisplayType.type === 'mobile'">
                                 <app-table-mobile (openModal)="removeElement($event, 'commodity')" [entity]="commodityClass" [data]="commodityData" deletable="true" rights="true"></app-table-mobile>

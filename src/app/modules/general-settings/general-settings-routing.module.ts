@@ -4,11 +4,14 @@ import { DynamicSettingsComponent } from 'src/app/modules/general-settings/conta
 import { GeneralSettingsComponent } from 'src/app/modules/general-settings/containers/general-settings/general-settings.component';
 import { InstitutionsComponent } from 'src/app/modules/general-settings/containers/institutions/institutions.component';
 import { CommunitiesComponent } from 'src/app/modules/general-settings/containers/communities/communities.component';
+import { PermissionsGuard } from 'src/app/core/guards/permissions.guard';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: GeneralSettingsComponent,
+    canActivate: [AuthGuard, PermissionsGuard],
     children: [
       {
         path: '',

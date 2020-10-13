@@ -1,6 +1,6 @@
 <div class="page-container">
     <div class="container-title">
-        <h2>{{ language.logs | titlecase}}</h2>
+        <h2>{{ language.logs }}</h2>
     </div>
     <div class="container-boxes">
         <app-box-setting [isSelected]="selectedTab === 'distributions'" (click)="selectTab('distributions')"
@@ -34,8 +34,8 @@
                     </app-line-chart>
                 </div>
                 <div class="graph">
-                    <h2 class="graph-title">{{language.log_requests_country_title | titlecase}}</h2>
-                    <app-line-chart [multipleGraphInfo]="[requestsKHM, requestsSYR]" [yLabel]=language.log_requests 
+                    <h2 class="graph-title">{{language.log_requests_country_title}}</h2>
+                    <app-line-chart [multipleGraphInfo]="[requestsKHM, requestsSYR]" [yLabel]=language.log_requests
                         [xLabel]=language.log_time>
                     </app-line-chart>
                 </div>

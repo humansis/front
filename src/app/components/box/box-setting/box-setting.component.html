@@ -5,8 +5,8 @@
             <img src="assets/images/{{info.icon}}.svg">
       </div>
       <div class="content-info">
-        <h3 class="info-title" *ngIf="info.title.length <= maxLength">{{ info.title | uppercaseFirst }}</h3>
-        <h3 class="info-title" *ngIf="info.title.length > maxLength" [matTooltip] = "info.title"> {{info.title.substring(0, maxLength-1) | uppercaseFirst}} ...</h3>
+        <h3 class="info-title" *ngIf="info.title.length <= maxLength">{{ info.title }}</h3>
+        <h3 class="info-title" *ngIf="info.title.length > maxLength" [matTooltip] = "info.title"> {{info.title.substring(0, maxLength-1)}} ...</h3>
       </div>
     </div>
   </button>

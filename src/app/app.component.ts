@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -35,7 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
     public languageService: LanguageService,
     private screenSizeService: ScreenSizeService,
     private updateService: UpdateService,
-    private countriesService: CountriesService
+    private countriesService: CountriesService,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -52,6 +53,11 @@ export class AppComponent implements OnInit, OnDestroy {
       }),
       this.updateService.checkForUpdates().subscribe(),
     ];
+    this.languageService.selectedLanguage$.subscribe((language: Language) => {
+      if (language) {
+        this.renderer.addClass(document.body, language.LANGUAGE_ISO);
+      }
+    });
   }
 
   ngOnDestroy() {

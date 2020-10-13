@@ -109,6 +109,8 @@ export class French implements Language {
   unit = 'Unité';
   username = 'Identifiant';
   value = 'Valeur';
+  latitude = this.missingTranslation;
+  longitude = this.missingTranslation;
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";
@@ -824,6 +826,7 @@ export class French implements Language {
   report_soloparent = 'Seul Parent';
   report_vulnerability_served = 'Vulnérabilité desservie';
   report_women = 'Femmes';
+  report_missing_distribution = this.missingTranslation;
 
   // Role
   role_user_admin = 'Administrateur';

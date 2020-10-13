@@ -105,6 +105,8 @@ export interface Language {
   unit: string;
   username: string;
   value: string;
+  latitude: string;
+  longitude: string;
 
   // Error
   back_to_homepage: string;
@@ -778,6 +780,7 @@ export interface Language {
   report_soloparent: string;
   report_vulnerability_served: string;
   report_women: string;
+  report_missing_distribution: string;
 
   // Role
   role_user_admin: string;

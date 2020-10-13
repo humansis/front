@@ -13,7 +13,7 @@ export const routes: Routes = [
     path: 'projects',
     loadChildren: () =>
       import('./modules/projects/projects.module').then((m) => m.ProjectsModule),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'beneficiaries',
@@ -21,13 +21,13 @@ export const routes: Routes = [
       import('./modules/beneficiaries/beneficiaries.module').then(
         (m) => m.BeneficiariesModule
       ),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'reports',
     loadChildren: () =>
       import('./modules/reports/reports.module').then((m) => m.ReportsModule),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'settings',
@@ -35,19 +35,19 @@ export const routes: Routes = [
       import('./modules/general-settings/general-settings.module').then(
         (m) => m.GeneralSettingsModule
       ),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'profile',
     loadChildren: () =>
       import('./modules/profile/profile.module').then((m) => m.ProfileModule),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'vouchers',
     loadChildren: () =>
       import('./modules/vouchers/vouchers.module').then((m) => m.VouchersModule),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin',
@@ -55,12 +55,12 @@ export const routes: Routes = [
       import('./modules/administration/administration.module').then(
         (m) => m.AdministrationModule
       ),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'logs',
     loadChildren: () => import('./modules/logs/logs.module').then((m) => m.LogsModule),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
@@ -71,7 +71,7 @@ export const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [AuthGuard, PermissionsGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

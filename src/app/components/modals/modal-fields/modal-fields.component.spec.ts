@@ -2,12 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalFieldsComponent } from './modal-fields.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
-import { AppInjector, setAppInjector } from '../../../app-injector';
+import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Household } from '../../../models/household';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { UploadService } from '../../../core/api/upload.service';
 import { UploadMockService } from '../../../core/api/mock/upload-mock.service';
 import { LocationService } from '../../../core/api/location.service';
@@ -23,7 +21,7 @@ describe('ModalFieldsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalFieldsComponent, UppercaseFirstPipe],
+      declarations: [ModalFieldsComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },

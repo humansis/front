@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: 'reports',
     component: ReportsComponent,
+    canActivate: [AuthGuard, PermissionsGuard],
   },
 ];
 

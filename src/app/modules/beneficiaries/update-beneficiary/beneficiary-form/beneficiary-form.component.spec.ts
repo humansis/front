@@ -3,11 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BeneficiaryFormComponent } from './beneficiary-form.component';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../../app-injector';
-import { UppercaseFirstPipe } from '../../../../shared/pipes/uppercase-first.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { Beneficiary } from '../../../../models/beneficiary';
-import { NationalId } from '../../../../models/national-id';
-import { Phone } from '../../../../models/phone';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -17,7 +13,7 @@ describe('BeneficiaryFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BeneficiaryFormComponent, UppercaseFirstPipe],
+      declarations: [BeneficiaryFormComponent],
       imports: [NgSelectModule, RouterTestingModule],
     }).compileComponents();
   }));

@@ -3,7 +3,6 @@ import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UppercaseFirstPipe } from '../../../shared/pipes/uppercase-first.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ModalLanguageComponent } from './modal-language.component';
 import { AsyncacheService } from '../../../core/storage/asyncache.service';
@@ -21,7 +20,7 @@ describe('ModalLanguageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalLanguageComponent, UppercaseFirstPipe],
+      declarations: [ModalLanguageComponent],
       imports: [HttpClientTestingModule, MatSnackBarModule, MatDialogModule],
       providers: [
         {
