@@ -113,6 +113,9 @@ export class English implements Language {
   value = 'Value';
   latitude = 'Latitude';
   longitude = 'Longitude';
+  amount = 'Amount';
+  price = 'Price';
+  purchased_by = 'Purchased by';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -439,6 +442,7 @@ export class English implements Language {
   header_beneficiaries = 'Beneficiaries';
   header_disconnect = 'log out';
   header_home = 'Home';
+  header_household = this.household;
   header_import = 'Import beneficiary data';
   header_imported = 'Imported beneficiaries data';
   header_language = this.language;

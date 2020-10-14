@@ -2,16 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderMobileComponent } from './header-mobile.component';
 import { Injector } from '@angular/core';
-import { setAppInjector } from '../../../app-injector';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-import { BeneficiariesComponent } from '../../../modules/beneficiaries/beneficiaries/beneficiaries.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ProjectService } from '../../../core/api/project.service';
-import { ProjectMockService } from '../../../core/api/mock/project-mock.service';
+import { ProjectService } from 'src/app/core/api/project.service';
+import { ProjectMockService } from 'src/app/core/api/mock/project-mock.service';
+import { setAppInjector } from 'src/app/app-injector';
+import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries/beneficiaries.component';
 
 describe('HeaderMobileComponent', () => {
   let component: HeaderMobileComponent;

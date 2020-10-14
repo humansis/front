@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { Distribution } from 'src/app/models/distribution';
+import { Distribution as ApiDistribution } from 'src/app/models/api/distribution';
 import { SnackbarService } from '../logging/snackbar.service';
 import { HttpService } from '../network/http.service';
 import { NetworkService } from '../network/network.service';
 import { AsyncacheService } from '../storage/asyncache.service';
 import { CustomModelService } from '../utils/custom-model.service';
 import { ExportService } from './export.service';
+import { from, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +60,47 @@ export class DistributionService extends CustomModelService {
   public getBeneficiaries(id: number) {
     const url = this.apiBase + '/distributions/' + id + '/beneficiaries';
     return this.http.get(url);
+  }
+
+  public getHouseholdDistributions(id: number): Observable<ApiDistribution[]> {
+    const url = this.apiBase + '/distributions/household/' + id;
+    return this.http.get(url);
+    /**
+    return of([
+      {
+        id: 248,
+        name: 'Rasm Elakhdar-18-09-2020',
+        date_distribution: '2020-09-18T00:00:00+00:00',
+        type: 0,
+        commodities: [
+          {
+            modality_type: {
+              name: 'Paper Voucher',
+            },
+            unit: 'SYP',
+            value: 44444,
+            description: null,
+          },
+        ],
+      },
+      {
+        id: 254,
+        name: 'Rasm Elakhdar-09-09-2020',
+        date_distribution: '2020-09-09T00:00:00+00:00',
+        type: 0,
+        commodities: [
+          {
+            modality_type: {
+              name: 'Paper Voucher',
+            },
+            unit: 'SYP',
+            value: 110000,
+            description: null,
+          },
+        ],
+      },
+    ]);
+     */
   }
 
   public getAssignableBeneficiaries(id: number) {

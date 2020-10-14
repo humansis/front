@@ -62,6 +62,9 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
     this._tableHeaders = tableHeaders;
   }
 
+  @Input()
+  showActionColumn = true;
+
   get tableHeaders() {
     return this._tableHeaders;
   }
@@ -69,7 +72,11 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
   language: Language = this.languageService.selectedLanguage;
 
   get displayedColumns() {
-    return [...this._displayedColumns, 'actions'];
+    if (this.showActionColumn) {
+      return [...this._displayedColumns, 'actions'];
+    } else {
+      return this._displayedColumns;
+    }
   }
   private _displayedColumns: string[] = [];
 
@@ -96,6 +103,17 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getValue(element: any, path: string) {
+    const attributes = path.split('.');
+    let value = element;
+    attributes.forEach((attribute: string) => {
+      if (value && attribute in value) {
+        value = value[attribute];
+      }
+    });
+    return value;
   }
 
   ngAfterViewInit(): void {

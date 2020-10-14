@@ -1,10 +1,12 @@
 import {
   AfterViewInit,
   Component,
+  ContentChild,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -46,6 +48,7 @@ export class TableServerComponent extends TableComponent
     }
   }
 
+  @ContentChild('actions') actionsTemplate: TemplateRef<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

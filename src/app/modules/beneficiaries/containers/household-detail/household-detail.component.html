@@ -1,0 +1,16 @@
+<div class="page-container">
+    <div class="container-table">
+        <div class="container-content box-primary">
+            <app-household-summary-header [household]="household$ | async"></app-household-summary-header>
+            <mat-tab-group>
+                <mat-tab label="Distributions">
+                    <app-household-distributions [householdId]="householdId"></app-household-distributions>
+                </mat-tab>
+                <mat-tab label="Transactions">
+                    <app-household-transactions [householdId]="householdId"></app-household-transactions>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
+

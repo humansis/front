@@ -75,6 +75,9 @@ export class Arabic implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
+  amount = this.missingTranslation;
+  price = this.missingTranslation;
+  purchased_by = this.missingTranslation;
 
   // Actions
   add = 'أضف';
@@ -427,6 +430,7 @@ export class Arabic implements Language {
   header_beneficiaries = 'المستفيدون';
   header_disconnect = 'تسجيل الخروج من الحساب';
   header_home = 'الصفحة الرئيسية';
+  header_household = this.household;
   header_import = 'تحميل بيانات المستفيد';
   header_imported = 'إستيراد بيانات المستفيدين';
   header_language = this.language;

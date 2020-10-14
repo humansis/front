@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CustomModelMockService } from './custom-model-mock.service';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Distribution as ApiDistribution } from 'src/app/models/api/distribution';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,10 @@ export class DistributionMockService extends CustomModelMockService {
   }
 
   public getAssignableBeneficiaries(id: number) {
+    return of();
+  }
+
+  public getHouseholdDistributions(id: number): Observable<ApiDistribution[]> {
     return of();
   }
 

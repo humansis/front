@@ -107,6 +107,9 @@ export interface Language {
   value: string;
   latitude: string;
   longitude: string;
+  amount: string;
+  price: string;
+  purchased_by: string;
 
   // Error
   back_to_homepage: string;
@@ -419,6 +422,7 @@ export interface Language {
   'header_data-mapping': string;
   header_disconnect: string;
   header_home: string;
+  header_household: string;
   header_import: string;
   header_imported: string;
   header_language: string;
