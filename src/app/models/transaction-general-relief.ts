@@ -5,11 +5,9 @@ import { DateModelField } from './custom-models/date-model-field';
 import { MultipleObjectsModelField } from './custom-models/multiple-object-model-field';
 import { NestedFieldModelField } from './custom-models/nested-field';
 import { NumberModelField } from './custom-models/number-model-field';
-import { ObjectModelField } from './custom-models/object-model-field';
 import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { FormGroup } from '@angular/forms';
-import { BooleanModelField } from './custom-models/boolan-model-field';
 
 export class GeneralRelief extends CustomModel {
   public fields = {
@@ -103,11 +101,6 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         nullValue: this.language.null_not_distributed,
         displayTime: true,
       }),
-      status: new BooleanModelField({
-        title: this.language.status,
-        isDisplayedInTable: true,
-        isDisplayedInModal: false,
-      }),
       // Can only be filled by the distribution, in Distribution.apiToModel()
       values: new TextModelField({
         title: this.language.value,
@@ -172,11 +165,9 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         ? DateModelField.formatDateTimeFromApi(
             distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
           )
-        : null
-    );
-    newGeneralRelief.set(
-        'status',
-        distributionBeneficiaryFromApi.smartcard_distributed
+        : DateModelField.formatFromApi(
+            distributionBeneficiaryFromApi.smartcard_distributed_at
+          )
     );
     newGeneralRelief.set(
       'notes',
