@@ -165,7 +165,9 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         ? DateModelField.formatDateTimeFromApi(
             distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
           )
-        : distributionBeneficiaryFromApi.smartcard_distributed_at
+        : DateModelField.formatFromApi(
+            distributionBeneficiaryFromApi.smartcard_distributed_at
+          )
     );
     newGeneralRelief.set(
       'notes',
