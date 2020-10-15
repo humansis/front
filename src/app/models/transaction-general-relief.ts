@@ -38,6 +38,20 @@ export class GeneralRelief extends CustomModel {
   }
 }
 
+const getDistributedAt = (distributionBeneficiaryFromApi: any): Date | null => {
+  if (distributionBeneficiaryFromApi.smartcard_distributed === null) {
+    return distributionBeneficiaryFromApi.general_reliefs[0]
+      && distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
+        ? DateModelField.formatDateTimeFromApi(
+          distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
+        ) : null
+    }
+
+  return DateModelField.formatDateTimeFromApi(
+    distributionBeneficiaryFromApi.smartcard_distributed_at
+  )
+}
+
 export class TransactionGeneralRelief extends DistributionBeneficiary {
   matSortActive = 'localFamilyName';
   title = this.language.general_relief;
@@ -160,14 +174,7 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
     );
     newGeneralRelief.set(
       'distributedAt',
-      distributionBeneficiaryFromApi.general_reliefs[0] &&
-        distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
-        ? DateModelField.formatDateTimeFromApi(
-            distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
-          )
-        : DateModelField.formatFromApi(
-            distributionBeneficiaryFromApi.smartcard_distributed_at
-          )
+      getDistributedAt(distributionBeneficiaryFromApi)
     );
     newGeneralRelief.set(
       'notes',
