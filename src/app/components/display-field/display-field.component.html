@@ -11,7 +11,12 @@
 
     <ng-template #isObject>
         <ng-container *ngIf="field.kindOfField === 'Object'; else isMultipleObject">
-            {{ field.displayTableFunction(field.value) }}
+            <span *ngIf="field.displayTableFunction(field.value).length <= MAX_PROP_LENGTH; else isTooLong">
+                {{ field.displayTableFunction(field.value) }}
+            </span>
+            <ng-template #isTooLong>
+                {{ field.displayTableFunction(field.value).substring(0,MAX_PROP_LENGTH-1) }}...
+            </ng-template>
         </ng-container>
     </ng-template>
 
