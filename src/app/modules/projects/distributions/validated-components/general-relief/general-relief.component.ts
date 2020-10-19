@@ -180,7 +180,10 @@ export class GeneralReliefComponent extends ValidatedDistributionComponent
     const commodityIndex = this.actualDistribution
       .get<Commodity[]>('commodities')
       .indexOf(commodityInDistribution);
-    if (!beneficiary.get('generalReliefs')) {
+    if (
+      !beneficiary.get('generalReliefs') ||
+      beneficiary.get('generalReliefs').length === 0
+    ) {
       return 0;
     }
     const correspondingGeneralRelief = beneficiary.get<GeneralRelief[]>('generalReliefs')[
@@ -188,6 +191,8 @@ export class GeneralReliefComponent extends ValidatedDistributionComponent
     ];
     if (correspondingGeneralRelief) {
       return correspondingGeneralRelief.get('distributedAt') ? commodity.get('value') : 0;
+    } else {
+      return 0;
     }
   }
 
