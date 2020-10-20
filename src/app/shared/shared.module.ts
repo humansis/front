@@ -106,7 +106,7 @@ import { BeneficiariesImportComponent } from 'src/app/modules/beneficiaries/cont
 import { DataValidationComponent } from 'src/app/modules/beneficiaries/containers/data-validation/data-validation.component';
 import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries/beneficiaries.component';
 import { LivelihoodPipe } from './pipes/livelihood.pipe';
-import { NgPipesModule, ShortenPipe } from 'ngx-pipes';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   imports: [

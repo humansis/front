@@ -5,7 +5,6 @@ import { DateModelField } from './custom-models/date-model-field';
 import { MultipleObjectsModelField } from './custom-models/multiple-object-model-field';
 import { NestedFieldModelField } from './custom-models/nested-field';
 import { NumberModelField } from './custom-models/number-model-field';
-import { ObjectModelField } from './custom-models/object-model-field';
 import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { FormGroup } from '@angular/forms';
@@ -37,6 +36,20 @@ export class GeneralRelief extends CustomModel {
       distributed_at: this.fields.distributedAt.formatDateTimeForApi(),
     };
   }
+}
+
+const getDistributedAt = (distributionBeneficiaryFromApi: any): Date | null => {
+  if (distributionBeneficiaryFromApi.smartcard_distributed === null) {
+    return distributionBeneficiaryFromApi.general_reliefs[0]
+      && distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
+        ? DateModelField.formatDateTimeFromApi(
+          distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
+        ) : null
+    }
+
+  return DateModelField.formatDateTimeFromApi(
+    distributionBeneficiaryFromApi.smartcard_distributed_at
+  )
 }
 
 export class TransactionGeneralRelief extends DistributionBeneficiary {
@@ -161,12 +174,7 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
     );
     newGeneralRelief.set(
       'distributedAt',
-      distributionBeneficiaryFromApi.general_reliefs[0] &&
-        distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
-        ? DateModelField.formatDateTimeFromApi(
-            distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
-          )
-        : null
+      getDistributedAt(distributionBeneficiaryFromApi)
     );
     newGeneralRelief.set(
       'notes',
