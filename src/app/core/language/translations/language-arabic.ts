@@ -75,9 +75,6 @@ export class Arabic implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
-  amount = this.missingTranslation;
-  price = this.missingTranslation;
-  purchased_by = this.missingTranslation;
 
   // Actions
   add = 'أضف';
