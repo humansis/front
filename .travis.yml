@@ -25,7 +25,7 @@ jobs:
           script: yarn run lint && yarn run test
           fast_finish: true
         - stage: deploy
-          if: branch = dev AND NOT type = "pull_request"
+          if: branch = develop AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
