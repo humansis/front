@@ -22,6 +22,7 @@ install:
 jobs:
     include:
         - stage: test
+          if: (NOT branch =~ /^release\/.*$/) AND tag IS NOT present
           script: yarn run lint && yarn run test
           fast_finish: true
         - stage: deploy
@@ -29,7 +30,7 @@ jobs:
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh testing
+          script: ./build-deploy.sh test
         - stage: deploy
           if: branch =~ /^release\/.*$/ AND NOT type = "pull_request"
           before_install:
@@ -37,14 +38,14 @@ jobs:
               - pip3 install awscli --upgrade
           script: ./build-deploy.sh stage
         - stage: deploy
-          if: (NOT branch = master) AND tag IS present
+          if: tag IS present AND tag =~ /^deploy.*$/ AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh develop
+          script: ./build-deploy.sh dev
         - stage: deploy
-          if: branch = master AND NOT type = "pull_request"
+          if: tag IS present AND tag =~ /^v.*$/ AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh front && ./build-deploy.sh demo
+          script: ./build-deploy.sh prod && ./build-deploy.sh demo
