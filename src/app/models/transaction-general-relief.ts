@@ -8,6 +8,7 @@ import { NumberModelField } from './custom-models/number-model-field';
 import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { FormGroup } from '@angular/forms';
+import { BooleanModelField } from './custom-models/boolan-model-field';
 
 export class GeneralRelief extends CustomModel {
   public fields = {
@@ -40,17 +41,18 @@ export class GeneralRelief extends CustomModel {
 
 const getDistributedAt = (distributionBeneficiaryFromApi: any): Date | null => {
   if (distributionBeneficiaryFromApi.smartcard_distributed === null) {
-    return distributionBeneficiaryFromApi.general_reliefs[0]
-      && distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
-        ? DateModelField.formatDateTimeFromApi(
+    return distributionBeneficiaryFromApi.general_reliefs[0] &&
+      distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
+      ? DateModelField.formatDateTimeFromApi(
           distributionBeneficiaryFromApi.general_reliefs[0].distributed_at
-        ) : null
-    }
+        )
+      : null;
+  }
 
   return DateModelField.formatDateTimeFromApi(
     distributionBeneficiaryFromApi.smartcard_distributed_at
-  )
-}
+  );
+};
 
 export class TransactionGeneralRelief extends DistributionBeneficiary {
   matSortActive = 'localFamilyName';
@@ -115,6 +117,11 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         nullValue: this.language.null_not_distributed,
         displayTime: true,
       }),
+      smartcardDistributed: new BooleanModelField({
+        title: this.language.distributed,
+        isDisplayedInTable: false,
+        isDisplayedInModal: false,
+      }),
       // Can only be filled by the distribution, in Distribution.apiToModel()
       values: new TextModelField({
         title: this.language.value,
@@ -175,6 +182,10 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
     newGeneralRelief.set(
       'distributedAt',
       getDistributedAt(distributionBeneficiaryFromApi)
+    );
+    newGeneralRelief.set(
+      'smartcardDistributed',
+      distributionBeneficiaryFromApi.smartcard_distributed
     );
     newGeneralRelief.set(
       'notes',
