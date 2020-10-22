@@ -184,7 +184,11 @@ export class GeneralReliefComponent extends ValidatedDistributionComponent
       !beneficiary.get('generalReliefs') ||
       beneficiary.get('generalReliefs').length === 0
     ) {
-      return 0;
+      if (beneficiary.get('smartcardDistributed')) {
+        return commodity.get('value');
+      } else {
+        return 0;
+      }
     }
     const correspondingGeneralRelief = beneficiary.get<GeneralRelief[]>('generalReliefs')[
       commodityIndex
