@@ -48,7 +48,7 @@ export class DistributionService extends CustomModelService {
   }
 
   public getByProject(idProject: number) {
-    const url = this.apiBase + '/distributions/projects/' + idProject;
+    const url = this.apiBase + '/web-app/v1/distributions/projects/' + idProject;
     return this.http.get(url);
   }
 
