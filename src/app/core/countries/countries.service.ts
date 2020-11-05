@@ -11,6 +11,7 @@ export class CountriesService {
   public khm = new Country('KHM', 'Cambodia');
   public syr = new Country('SYR', 'Syria');
   public ukr = new Country('UKR', 'Ukraine');
+  public eth = new Country('ETH', 'Ethiopia');
 
   constructor() {}
 
@@ -31,7 +32,12 @@ export class CountriesService {
     this._selectableCountries = countries;
   }
 
-  public readonly enabledCountries: Array<Country> = [this.khm, this.syr, this.ukr];
+  public readonly enabledCountries: Array<Country> = [
+    this.khm,
+    this.syr,
+    this.ukr,
+    this.eth,
+  ];
 
   //
   // ─── SELECTABLE COUNTRIES ───────────────────────────────────────────────────────
@@ -69,6 +75,8 @@ export class CountriesService {
         return this.syr;
       case 'UKR':
         return this.ukr;
+      case 'ETH':
+        return this.eth;
     }
   }
 
@@ -80,6 +88,8 @@ export class CountriesService {
         return 'SYR';
       case this.ukr:
         return 'UKR';
+      case this.eth:
+        return 'ETH';
     }
   }
 }
