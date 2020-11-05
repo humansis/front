@@ -88,6 +88,8 @@
 
     mat-toolbar {
         background: $bms_grey;
+        height: 45px;
+        padding-top: 24px;
 
         &.mobile {
             background-color: $bms_black;

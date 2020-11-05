@@ -55,6 +55,7 @@ import {
 import { IdNameModel } from 'src/app/models/id-name-model';
 import { IHousehold } from 'src/app/models/api/household';
 import { MdePopover, MdePopoverTrigger } from '@material-extended/mde';
+import { UserService } from 'src/app/core/api/user.service';
 
 @Component({
   selector: 'app-update-beneficiary',
@@ -148,7 +149,8 @@ export class UpdateBeneficiaryComponent
     public languageService: LanguageService,
     public countryService: CountriesService,
     public phoneService: PhoneService,
-    public countrySpecificService: CountrySpecificService
+    public countrySpecificService: CountrySpecificService,
+    public userService: UserService
   ) {}
 
   ngOnInit() {
@@ -186,6 +188,7 @@ export class UpdateBeneficiaryComponent
       'debtLevel',
       'supportReceivedOtherOrg',
       'supportReceived',
+      'supportOrganization',
       'shelterStatus',
       'assets',
     ];
@@ -616,6 +619,7 @@ export class UpdateBeneficiaryComponent
           )
       );
       this.household.set('supportReceived', controls.supportReceived.value);
+      this.household.set('supportOrganization', controls.supportOrganization.value);
       this.household.set(
         'assets',
         this.household

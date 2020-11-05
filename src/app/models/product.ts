@@ -22,7 +22,7 @@ export class Product extends CustomModel {
       isDisplayedInTable: true,
       isSettable: true,
       isEditable: true,
-      isRequired: true,
+      isRequired: false,
     }),
     image: new TextModelField({
       title: this.language.product_image,

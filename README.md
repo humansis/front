@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/humansis/front.svg?branch=dev)](https://travis-ci.com/humansis/front)
+[![Build Status](https://travis-ci.com/humansis/front.svg?branch=develop)](https://travis-ci.com/humansis/front)
 [![GitHub version](https://badge.fury.io/gh/ReliefApplications%2Fbms_front.svg)](https://badge.fury.io/gh/ReliefApplications%2Fbms_front)
 
 Humansis - Beneficiary Management System

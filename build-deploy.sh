@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# first parameter: environment to deploy to (front | testing)
+# first parameter: environment to deploy to [prod, test, dev, stage and demo]
 
 #immediately exits if a command exits with an non-zero status
 set -e
 
 # build the project (contents will be in directory dist/bms-front)
 echo "Build starting"
-if [[ $1 == "front" ]]; then
+if [[ $1 == "prod" ]]; then
     yarn run build -- --prod --progress
-elif [[ $1 == "testing" ]]; then
+elif [[ $1 == "test" ]]; then
     yarn run build -- --prod -c testing --progress
-elif [[ $1 == "develop" ]]; then
+elif [[ $1 == "dev" ]]; then
     yarn run build -- --prod -c develop --progress
 elif [[ $1 == "stage" ]]; then
     yarn run build -- --prod -c stage --progress
@@ -44,15 +44,15 @@ aws configure set aws_access_key_id ${aws_access_key_id}
 aws configure set aws_secret_access_key ${aws_secret_access_key}
 aws configure set default.region eu-central-1
 
-if [[ $1 == "front" ]]; then
+if [[ $1 == "prod" ]]; then
     aws s3 rm s3://pin.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://pin.humansis.org --recursive --acl public-read --content-encoding gzip
     aws cloudfront create-invalidation --distribution-id E2CS9FD9XA4VY8 --paths '/*'
-elif [[ $1 == "testing" ]]; then
+elif [[ $1 == "test" ]]; then
     aws s3 rm s3://test.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://test.humansis.org --recursive --acl public-read --content-encoding gzip
     aws cloudfront create-invalidation --distribution-id ELILCCWXYP760 --paths '/*'
-elif [[ $1 == "develop" ]]; then
+elif [[ $1 == "dev" ]]; then
     aws s3 rm s3://dev.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://dev.humansis.org --recursive --acl public-read --content-encoding gzip
     aws cloudfront create-invalidation --distribution-id E1FDBGHL3DD0Y8 --paths '/*'

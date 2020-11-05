@@ -11,7 +11,8 @@
     "serve": "ng serve",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "lint-staged": {
     "*.ts": [
@@ -68,6 +69,7 @@
     "ng-recaptcha": "^5.0.0",
     "ng2-charts": "2.3.0",
     "ngx-device-detector": "^1.4.5",
+    "ngx-pipes": "^2.7.5",
     "rxjs": "^6.5.4",
     "zone.js": "~0.10.3"
   },

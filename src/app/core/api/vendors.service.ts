@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { AppInjector } from 'src/app/app-injector';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { User } from 'src/app/models/user';
 import { Vendor } from 'src/app/models/vendor';
 import { URL_BMS_API } from '../../../environments/environment';
 import { ExportService } from '../../core/api/export.service';
-import { Location } from '../../models/location';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { HttpService } from '../network/http.service';
 import { CustomModelService } from '../utils/custom-model.service';
 import { LocationService } from './location.service';
+import { Observable } from 'rxjs';
+import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
+import { PurchasesToRedeem } from 'src/app/models/api/purchases-to-redeem';
+import { CountValue } from 'src/app/models/api/count-value';
 
 @Injectable({
   providedIn: 'root',

@@ -112,6 +112,8 @@ export class Russian implements Language {
   unit = 'Единица измерения';
   username = 'имя пользователя';
   value = 'Стоимость';
+  quantity = 'количество';
+  total = this.missingTranslation;
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -321,7 +323,7 @@ export class Russian implements Language {
   commodity_kgs = 'кг';
   commodity_kit = 'комплект';
   commodity_modality = 'Модальность';
-  commodity_value = 'количество';
+  commodity_value = this.quantity;
   commodity_value_voucher = 'Общая стоимость буклета';
 
   // Countries
@@ -444,6 +446,7 @@ export class Russian implements Language {
   header_projects = this.projects;
   header_reports = this.reports;
   header_vouchers = this.voucher;
+  header_vendors = this.vendors;
 
   // Household
   household_coping_strategies_index = 'Индекс стратегии преодоления';
@@ -476,6 +479,7 @@ export class Russian implements Language {
   household_debt_level = 'Уровень задолженности';
   household_support_received_other_org = 'Помощь полученная другими организациями';
   household_support_date_received = 'Дата получения помощи';
+  household_support_organization = 'Организация по оказанию помощи';
   household_assets = 'Активы';
   household_shelter_status = 'Статус жилья';
   household_status = 'Положение домохозяйств';

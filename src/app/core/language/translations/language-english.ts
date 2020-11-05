@@ -116,6 +116,8 @@ export class English implements Language {
   amount = 'Amount';
   price = 'Price';
   purchased_by = 'Purchased by';
+  quantity = 'Quantity';
+  total = 'Total';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -327,7 +329,7 @@ export class English implements Language {
   commodity_kgs = 'Kgs';
   commodity_kit = 'Kit';
   commodity_modality = 'Modality';
-  commodity_value = 'Quantity';
+  commodity_value = this.quantity;
   commodity_value_voucher = 'Total value of the booklet';
 
   // Countries
@@ -451,6 +453,7 @@ export class English implements Language {
   header_projects = this.projects;
   header_reports = this.reports;
   header_vouchers = this.voucher;
+  header_vendors = this.vendors;
 
   // Household
   household_coping_strategies_index = 'Coping strategies index';
@@ -482,6 +485,7 @@ export class English implements Language {
   household_debt_level = 'Debt Level';
   household_support_received_other_org = 'External Support Received Type';
   household_support_date_received = 'Support date received';
+  household_support_organization = 'Support organization';
   household_assets = 'Assets';
   household_shelter_status = 'Shelter type';
   household_status = 'Household status';

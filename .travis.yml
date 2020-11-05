@@ -9,7 +9,7 @@ addons:
 
 # Define environment variables
 env:
-  - secure: "GOdoNQ+r7dn1A1UXznym68WkLH57GBWJ4zN4/gOdAcrUWMJaQJCGmDrqo9v9uk2nj3Mz05NV5GvwEsWz3lWzeA1kzmKY6k7vqS+wZOTMBch0iboa12nT2DBALb5TwGi10whfBIAk/NDCfpJeQ01q88Cl7yV3vBoynlzMUiAw/N8Z0meEjdcAQRuD10lKfos7fJd9WCr6LvRJb9rm0Zq0MAqNLw6ZBA2aVz8Jfz4QrBB6oZJwMu0T/URJoX96kQ6WFPDevPCLjT1V2ezCOWyyTYHdUf6C7Omod9TvWSthTGXs0Wr/epY6e51R+e4tMVr/+dA41jetwmvfFTf0HuefQ1+v5EuQj/UD6vsidxf3wohesnfxzJastuA0wcYm8zK99lQlXhqRB2YB9r+sZII339my3icRBImsX2oj7Vu+tzDMx0092ifQLktHwmX5VrVKdg8iACzq7CA11vKLDUp6ickXiDGxymVEbPRa6SIZWoX0pRQcAHrPNwDHpa0u005/zVinZHACAdLxq4hYMfhwJQ92Uq22+Yv2eAwgqieJJaMUyfJeb5AL3wKSyKufLYvMUuX8wbTg1hdzFMhtYfbM+m6qTosgWjm5aAr5Jqqk0dV9j+GjArUTDYnzGeTxespNyBebfE1+LvoMS6WmR0qt2FMM5B93X2t3+Rdn7nVenGo="
+  - secure: "JMpsHaV3yrtMcJswXY7+rTkj7j+PlGmS3px+GzzhnrgUDfcp7UPlSnw8PWXUiO1MaQuclStpvLECIeDWDeQODoFVLyivu6V8jd3nz16OEjlG968Sh9zkMqW7xamzZRxYcOivy3/oCtnsiPNRrlQx7zAhXcR38yVectbfoCBEFFvU9M0CE53DTuHsjfC4Z116ONFIboFzMZ2tojCFOpAeg7TfhUjIIVdNtuTjdHESyqrwtOwQGRubHmejTTjWb/VCMMEAvoZ9REhdrHkKve7jTjgIjG3wyyaBfEDhw6S2yc6/U83zJuKz3paa8oosv3UTVtpYj11UN+E83XSR9vrdyr7dG9U27BilnDUcaZwt/dpHqlbvJXb24HFxi5eG5JOrqdnHx2fuSkHQvQ7Gs+rcaMaPJx/LC0bMAbhm9iF9zHbOfJd0n83w4zPSqVzwTxKYvbiek79OzsMrbG5dwvBwbv9vuIgn1IjqOtJkJNWLDbXAjQDj53jNHiNDQ6ONcLUDZUv3+vSR3qTRAvDuP6vHPru7MdxQ0YjzgPUPV1sW3mDBEGaIGYyrBAiN59aI/tUtQHbC0pK1fOSK9mQGN6JH17fQrv/JmOJqQoKSGdpsaUVuvro/D9bygQizXzfD5fUFc+AYQDY0+iPGV63s09cmFaX2Of3+w0VrQj+MITmK7cc="
 
 git:
   depth: false
@@ -22,14 +22,15 @@ install:
 jobs:
     include:
         - stage: test
+          if: (NOT branch =~ /^release\/.*$/) AND tag IS NOT present
           script: yarn run lint && yarn run test
           fast_finish: true
         - stage: deploy
-          if: branch = dev AND NOT type = "pull_request"
+          if: branch = develop AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh testing
+          script: ./build-deploy.sh test
         - stage: deploy
           if: branch =~ /^release\/.*$/ AND NOT type = "pull_request"
           before_install:
@@ -37,14 +38,14 @@ jobs:
               - pip3 install awscli --upgrade
           script: ./build-deploy.sh stage
         - stage: deploy
-          if: (NOT branch = master) AND tag IS present
+          if: tag IS present AND tag =~ /^deploy.*$/ AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh develop
+          script: ./build-deploy.sh dev
         - stage: deploy
-          if: branch = master AND NOT type = "pull_request"
+          if: tag IS present AND tag =~ /^v.*$/ AND NOT type = "pull_request"
           before_install:
               - sudo apt-get install python3-pip python3-setuptools
               - pip3 install awscli --upgrade
-          script: ./build-deploy.sh front && ./build-deploy.sh demo
+          script: ./build-deploy.sh prod && ./build-deploy.sh demo

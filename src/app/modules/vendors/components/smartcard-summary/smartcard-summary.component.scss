@@ -1,0 +1,27 @@
+:host {
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 0.3em;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+hr {
+    margin: 1em 0;
+}
+
+.redemption {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

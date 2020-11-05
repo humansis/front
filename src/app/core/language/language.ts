@@ -110,6 +110,8 @@ export interface Language {
   amount: string;
   price: string;
   purchased_by: string;
+  quantity: string;
+  total: string;
 
   // Error
   back_to_homepage: string;
@@ -431,6 +433,7 @@ export interface Language {
   header_projects: string;
   header_reports: string;
   header_vouchers: string;
+  header_vendors: string;
 
   // Household
   household_coping_strategies_index: string;
@@ -462,6 +465,7 @@ export interface Language {
   household_debt_level: string;
   household_support_received_other_org: string;
   household_support_date_received: string;
+  household_support_organization: string;
   household_assets: string;
   household_shelter_status: string;
   household_status: string;

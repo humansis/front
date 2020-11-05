@@ -11,6 +11,9 @@ import { LanguageService } from './core/language/language.service';
 import { ScreenSizeService } from './core/screen-size/screen-size.service';
 import { UpdateService } from './core/service-worker/update.service';
 import { gitInfo } from 'src/app/version';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { svgIcons } from 'src/app/svg-mat-icon';
 
 @Component({
   selector: 'app-root',
@@ -36,8 +39,17 @@ export class AppComponent implements OnInit, OnDestroy {
     private screenSizeService: ScreenSizeService,
     private updateService: UpdateService,
     private countriesService: CountriesService,
-    private renderer: Renderer2
-  ) {}
+    private renderer: Renderer2,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    svgIcons.forEach((icon) => {
+      this.matIconRegistry.addSvgIcon(
+        icon.icon,
+        this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/' + icon.path)
+      );
+    });
+  }
 
   ngOnInit() {
     this.subscriptions = [

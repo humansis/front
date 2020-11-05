@@ -75,9 +75,6 @@ export class French implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
-  amount = this.missingTranslation;
-  price = this.missingTranslation;
-  purchased_by = this.missingTranslation;
 
   // Actions
   add = 'Ajouter';
@@ -114,6 +111,11 @@ export class French implements Language {
   value = 'Valeur';
   latitude = this.missingTranslation;
   longitude = this.missingTranslation;
+  amount = this.missingTranslation;
+  price = this.missingTranslation;
+  purchased_by = this.missingTranslation;
+  quantity = 'Quantité';
+  total = this.missingTranslation;
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";
@@ -329,7 +331,7 @@ export class French implements Language {
   commodity_kgs = 'Kgs';
   commodity_kit = 'Kit';
   commodity_modality = 'Modalité';
-  commodity_value = 'Quantité';
+  commodity_value = this.quantity;
   commodity_value_voucher = 'Valeur totale de la brochure';
 
   // Countries
@@ -456,6 +458,7 @@ export class French implements Language {
   header_projects = this.projects;
   header_reports = this.reports;
   header_vouchers = this.voucher;
+  header_vendors = this.vendors;
 
   // Household
   household_coping_strategies_index = "Indice de stratégies d'adaptation";
@@ -488,6 +491,7 @@ export class French implements Language {
   household_debt_level = this.missingTranslation;
   household_support_received_other_org = this.missingTranslation;
   household_support_date_received = this.missingTranslation;
+  household_support_organization = this.missingTranslation;
   household_assets = this.missingTranslation;
   household_shelter_status = this.missingTranslation;
   household_status = this.missingTranslation;
