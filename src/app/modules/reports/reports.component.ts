@@ -566,7 +566,9 @@ export class ReportsComponent implements OnInit, OnDestroy {
   // ─── NG SELECT HEADERS ──────────────────────────────────────────────────────────
   //
   public selectAll(control: FormControl, entities: Array<CustomModel>) {
-    control.setValue(entities.map((entity: CustomModel) => entity.get('id')));
+    if (entities) {
+      control.setValue(entities.map((entity: CustomModel) => entity.get('id')));
+    }
   }
 
   public getYLabel(graph: Graph) {
