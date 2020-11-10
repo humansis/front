@@ -73,7 +73,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   @ViewChild(TableComponent, { static: false }) table: TableComponent;
   @ViewChild(TableMobileComponent, { static: false }) tableMobile: TableMobileComponent;
 
-  public displayedTable = this.table;
+  public displayedTable = null;
 
   // Screen size
   public currentDisplayType: DisplayType;

@@ -1,51 +1,19 @@
-FROM node:latest
+FROM node:12-alpine
 
-# ARGS
-ARG PROJECT_NAME=bms_front
-# get default node user : 'node'
-ARG USER=node
-ARG WORKSPACE=/usr/dockers/devapp
+RUN apk update
+RUN apk add git
 
-# update system
-RUN apt-get update
+WORKDIR /app
 
-# allow npm to install as root user
-#other solution : RUN npm -g install nodegit --unsafe-perm
-RUN yarn -g config set user root
+ENV PATH /app/node_modules/.bin:$PATH
 
+COPY package.json ./
+COPY yarn.lock ./
 
-#install project dependencies
-RUN yarn global add @angular/cli
-RUN yarn global add node-sass
-RUN apt-get install git
-RUN yarn -v
-RUN ng -v
+RUN yarn
 
-WORKDIR $WORKSPACE
-
-# copy the check script : do what you want. see below for the call
-COPY ./Docker/check-project.sh ./Docker/check-project.sh
-
-##
-# Since we are not creating any user here, you need to add the default docker's user
-# to your computer by updatinf both following files:
-# nano /etc/subuid
-# nano /etc/subgid
-# https://blog.ippon.tech/docker-and-permission-management/
-#
-# Exemple of content :
-#  currentUser:1000:65536
-#
-# add node user
-#  node:1000:65536
-##
-RUN chown -R $USER:$USER $WORKSPACE
-
-USER $USER
-
-RUN npm -g config set user $USER
-COPY ./package*.json ./
-RUN bash Docker/check-project.sh $PROJECT_NAME
-
+COPY . ./
 
 EXPOSE 4200
+
+CMD ["yarn", "serve"]

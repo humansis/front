@@ -1,9 +1,0 @@
-#!/bin/bash
-
-echo "Starting the container"
-
-yarn install
-
-ng serve --host 0.0.0.0 --configuration=docker
-# you can precise your environment
-# ng serve --host 0.0.0.0 --env=dev --port 4560

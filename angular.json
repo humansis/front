@@ -17,6 +17,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+                "crypto-js",
+                "file-saver",
+                "jspdf",
+                "html2canvas",
+                "angular2-counto",
+                "@mapbox/leaflet-omnivore",
+                "color",
+                "chart.js",
+                "lodash",
+                "@zxing/library",
+                "firebase/app"
+            ],
             "outputPath": "dist/bms-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -162,7 +175,7 @@
             },
             "develop": {
               "browserTarget": "bms-front:build:develop"
-            },
+            }
           }
         },
         "extract-i18n": {

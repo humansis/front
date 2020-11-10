@@ -1,11 +1,13 @@
-version: '2'
-services:
+version: '3.7'
 
-    devapp:
-        image: bms/front
-        build: .
-        ports:
-            - '4200:4200' # default port
-        volumes:
-            - './:/usr/dockers/devapp/'
-        entrypoint: Docker/docker-entrypoint.sh
+services:
+  service:
+    container_name: front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 4200:4200
