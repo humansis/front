@@ -104,6 +104,7 @@ export class Household extends CustomModel {
       title: this.language.beneficiary_vulnerabilities,
       isDisplayedInTable: true,
       isImageInTable: true,
+      isIcon: true,
       value: [],
       isDisplayedInModal: true,
       displayModalFunction: null,

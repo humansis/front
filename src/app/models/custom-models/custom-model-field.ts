@@ -43,6 +43,11 @@ export class CustomModelField<T> {
    */
   isImageInTable: boolean;
   /**
+   * Is the field displayed as an SVG icon in tables?
+   * @type {boolean}
+   */
+  isIcon: boolean;
+  /**
    * Is the field required?
    * @type {boolean}
    */
@@ -120,6 +125,7 @@ export class CustomModelField<T> {
     this.isDisplayedInSummary = properties['isDisplayedInSummary'];
     this.isDisplayedInTable = properties['isDisplayedInTable'];
     this.isImageInTable = properties['isImageInTable'];
+    this.isIcon = properties['isIcon'];
     this.isRequired = properties['isRequired'];
     this.isSettable = properties['isSettable'];
     this.isEditable = properties['isEditable'];
@@ -146,6 +152,7 @@ export class CustomModelField<T> {
       isDisplayedInSummary: false,
       isDisplayedInTable: false,
       isImageInTable: false,
+      isIcon: false,
       isPassword: false,
       isRequired: false,
       isSettable: false,

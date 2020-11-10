@@ -28,6 +28,7 @@ export class Product extends CustomModel {
       title: this.language.product_image,
       isDisplayedInTable: true,
       isImageInTable: true,
+      isIcon: false,
     }),
     imageData: new FileModelField({
       title: this.language.product_image,

@@ -27,26 +27,32 @@ export class Sector extends CustomModel {
   // Map sector to sector image
   public getImage(): string {
     const sectorsImages: object = {
-      'camp coordination and management': 'cccm',
-      'early recovery': 'early_recovery',
-      education: 'education',
-      'emergency telecommunications': 'emergency_telecommunications',
-      'food security': 'food_security',
+      camp_management: 'cccm',
+      early_recovery: 'early-recovery',
+      emergency_telco: 'emergency-telecommunications',
+      food_security: 'food-security',
       health: 'health',
       logistics: 'logistics',
       nutrition: 'nutrition',
       protection: 'protection',
+      livelihoods: 'livelihood',
+      mine: 'mine-action',
+      non_sector: 'nonspecific',
       shelter: 'shelter',
-      WASH: 'water_sanitation',
-      'cash for work': 'cash_for_work',
-      TVET: 'tvet',
+      drr_resilience: 'resilience',
+      wash: 'water-sanitation',
+      multipurpose_cash: 'cash-for-work',
+      education: 'education',
       'food, RTE kits': 'kits',
-      NFIs: 'nfi',
+      nfis: 'nfi',
     };
 
     // Todo: Use global variable, fix typing in order to not do this if check
-    if (typeof this.get('name') === 'string') {
-      return `/assets/images/sectors/${sectorsImages[this.get<string>('name')]}.svg`;
+    if (typeof this.get('id') === 'string') {
+      const name = this.get('id').toLowerCase();
+      if (sectorsImages[name]) {
+        return sectorsImages[name];
+      }
     } else {
       return '';
     }
@@ -55,25 +61,28 @@ export class Sector extends CustomModel {
   // Map sector to sector image
   public getTooltip(): string {
     const sectorsTooltips: object = {
-      'camp coordination and management': this.language.sector_cccm,
-      'early recovery': this.language.sector_recovery,
-      education: this.language.sector_education,
-      'emergency telecommunications': this.language.sector_telecom,
-      'food security': this.language.sector_food,
+      camp_management: this.language.sector_cccm,
+      early_recovery: this.language.sector_recovery,
+      emergency_telco: this.language.sector_telecom,
+      food_security: this.language.sector_food,
       health: this.language.sector_health,
       logistics: this.language.sector_logistics,
+      livelihoods: this.language.sector_livelihoods,
       nutrition: this.language.sector_nutrition,
       protection: this.language.sector_protection,
+      mine: this.language.sector_mine_action,
+      non_sector: this.language.sector_nonspecific,
       shelter: this.language.sector_shelter,
-      WASH: this.language.sector_water,
-      'cash for work': this.language.sector_cash_for_work,
-      TVET: this.language.sector_tvet,
+      drr_resilience: this.language.sector_drr_diligence,
+      wash: this.language.sector_water,
+      multipurpose_cash: this.language.sector_multipurpose_cash,
+      education: this.language.sector_education_tvet,
       'food, RTE kits': this.language.sector_food_kits,
-      NFIs: this.language.sector_nfi,
+      nfis: this.language.sector_nfi,
     };
     // Todo: Use global variable, fix typing in order to not do this if check
-    if (typeof this.get('name') === 'string') {
-      return sectorsTooltips[this.get<string>('name')];
+    if (typeof this.get('id') === 'string') {
+      return sectorsTooltips[this.get<string>('id')?.toLowerCase()];
     } else {
       return '';
     }

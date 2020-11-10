@@ -195,7 +195,7 @@ export class Commodity extends CustomModel {
     const modalityName = this.get('modalityType').get('name');
 
     if (typeof modalityName === 'string') {
-      return `/assets/images/commodities/${commoditiesImages[modalityName]}.svg`;
+      return commoditiesImages[modalityName];
     } else {
       return '';
     }

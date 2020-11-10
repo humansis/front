@@ -116,6 +116,7 @@ export class Distribution extends CustomModel {
       title: this.language.commodity,
       isDisplayedInTable: true,
       isImageInTable: true,
+      isIcon: true,
       isDisplayedInSummary: true,
       value: [],
       displayTableFunction: null,

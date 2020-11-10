@@ -853,6 +853,12 @@ export class English implements Language {
   sector_tvet = 'TVET';
   sector_food_kits = 'food, RTE kits';
   sector_nfi = 'NFIs';
+  sector_livelihoods = 'Livelihood';
+  sector_mine_action = 'Mine action';
+  sector_nonspecific = 'Non-specific sector';
+  sector_multipurpose_cash = 'Multi-Purpose Cash Assistance';
+  sector_education_tvet = 'Education & TVET';
+  sector_drr_diligence = 'DRR Diligence';
 
   // Settings
   settings_country_specific_options = 'country specific options';

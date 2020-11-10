@@ -861,6 +861,12 @@ export class French implements Language {
   sector_tvet = 'TVET';
   sector_food_kits = 'nourriture, kits RTE';
   sector_nfi = 'NFIs';
+  sector_livelihoods = this.missingTranslation;
+  sector_mine_action = this.missingTranslation;
+  sector_nonspecific = this.missingTranslation;
+  sector_multipurpose_cash = this.missingTranslation;
+  sector_education_tvet = this.missingTranslation;
+  sector_drr_diligence = this.missingTranslation;
 
   // Settings
   settings_country_specific_options = 'options par pays';

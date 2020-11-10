@@ -815,6 +815,12 @@ export interface Language {
   sector_tvet: string;
   sector_food_kits: string;
   sector_nfi: string;
+  sector_livelihoods: string;
+  sector_mine_action: string;
+  sector_nonspecific: string;
+  sector_multipurpose_cash: string;
+  sector_education_tvet: string;
+  sector_drr_diligence: string;
 
   // Settings
   settings_country_specific_options: string;
