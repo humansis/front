@@ -78,6 +78,10 @@ body>ng-dropdown-panel {
 
 .mat-dialog-container {
     background-color: $bms_white;
+
+    .action-buttons {
+        justify-content: flex-end !important;
+    }
 }
 
 .mat-sort-header-container {
