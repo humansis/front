@@ -512,30 +512,14 @@ export class French implements Language {
   import_updated = 'Mis à jour';
 
   // Livelihoods
-  livelihood_livestock = 'Agriculture - Bétail';
-  livelihood_crops = 'Agriculture - Champs';
-  livelihood_fishing = 'Agriculture – Pêche';
-  livelihood_agriculture_other = 'Agriculture – Autre';
-  livelihood_mining = 'Minerai';
-  livelihood_construction = 'Construction';
-  livelihood_manufacturing = 'Production industrielle';
-  livelihood_retail = 'Revente';
-  livelihood_transportation = 'Transports';
-  livelihood_education = 'Education';
-  livelihood_health = 'Santé';
-  livelihood_tourism = 'Tourisme et hospitalité';
-  livelihood_legal = 'Services légaux';
-  livelihood_home = 'Aide à domicile';
-  livelihood_religious = 'Religion';
-  livelihood_telecom = 'Ingénieurie et telecommunications';
-  livelihood_finance = 'Finance et assurances';
-  livelihood_manual = 'Artisanat';
-  livelihood_ngo = 'ONG et non lucratif';
-  livelihood_military = 'Armée et police';
-  livelihood_government = 'Gouvernement et entreprises publiques';
-  livelihood_garment = 'Industrie textile';
-  livelihood_security = 'Sécurité';
-  livelihood_service = 'Service et autres professionnels';
+  livelihood_daily_labour = this.missingTranslation;
+  livelihood_farming_agriculture = this.missingTranslation;
+  livelihood_farming_livestock = this.missingTranslation;
+  livelihood_government = this.missingTranslation;
+  livelihood_home_duties = this.missingTranslation;
+  livelihood_trading = this.missingTranslation;
+  livelihood_own_business = this.missingTranslation;
+  livelihood_textiles = this.missingTranslation;
 
   //Log audit
 

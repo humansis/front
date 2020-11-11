@@ -506,30 +506,14 @@ export class English implements Language {
   import_updated = 'Will be updated';
 
   // Livelihoods
-  livelihood_livestock = 'Agriculture - Livestock';
-  livelihood_crops = 'Agriculture - Crops';
-  livelihood_fishing = 'Agriculture – Fishing';
-  livelihood_agriculture_other = 'Agriculture – Other';
-  livelihood_mining = 'Mining';
-  livelihood_construction = 'Construction';
-  livelihood_manufacturing = 'Manufacturing';
-  livelihood_retail = 'Retail';
-  livelihood_transportation = 'Transportation';
-  livelihood_education = 'Education';
-  livelihood_health = 'Health Care';
-  livelihood_tourism = 'Hospitality and Tourism';
-  livelihood_legal = 'Legal Services';
-  livelihood_home = 'Home Duties';
-  livelihood_religious = 'Religious Service';
-  livelihood_telecom = 'IT and Telecommunications';
-  livelihood_finance = 'Finance and Insurance';
-  livelihood_manual = 'Manual Labour';
-  livelihood_ngo = 'NGO and Non Profit';
-  livelihood_military = 'Military or Police';
-  livelihood_government = 'Government and Public Enterprise';
-  livelihood_garment = 'Garment Industry';
-  livelihood_security = 'Security Industry';
-  livelihood_service = 'Service Industry and Other Professionals';
+  livelihood_daily_labour = 'Daily Labour';
+  livelihood_farming_agriculture = 'Farming - Agriculture';
+  livelihood_farming_livestock = 'Farming - Livestock';
+  livelihood_government = 'Government';
+  livelihood_home_duties = 'Home Duties';
+  livelihood_trading = 'Trading';
+  livelihood_own_business = 'Own Business';
+  livelihood_textiles = 'Textiles';
 
   //Log audit
 

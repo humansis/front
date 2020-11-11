@@ -484,30 +484,14 @@ export interface Language {
   import_updated: string;
 
   // Livelihoods
-  livelihood_livestock: string;
-  livelihood_crops: string;
-  livelihood_fishing: string;
-  livelihood_agriculture_other: string;
-  livelihood_mining: string;
-  livelihood_construction: string;
-  livelihood_manufacturing: string;
-  livelihood_retail: string;
-  livelihood_transportation: string;
-  livelihood_education: string;
-  livelihood_health: string;
-  livelihood_tourism: string;
-  livelihood_legal: string;
-  livelihood_home: string;
-  livelihood_religious: string;
-  livelihood_telecom: string;
-  livelihood_finance: string;
-  livelihood_manual: string;
-  livelihood_ngo: string;
-  livelihood_military: string;
+  livelihood_daily_labour: string;
+  livelihood_farming_agriculture: string;
+  livelihood_farming_livestock: string;
   livelihood_government: string;
-  livelihood_garment: string;
-  livelihood_security: string;
-  livelihood_service: string;
+  livelihood_home_duties: string;
+  livelihood_trading: string;
+  livelihood_own_business: string;
+  livelihood_textiles: string;
 
   //Log audit
 

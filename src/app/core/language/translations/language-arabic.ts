@@ -494,30 +494,14 @@ export class Arabic implements Language {
   import_updated = 'تم تحديثها';
 
   // Livelihoods
-  livelihood_livestock = 'الزراعة - الثروة الحيوانية';
-  livelihood_crops = 'الزراعة - المحاصيل';
-  livelihood_fishing = 'الزراعة - الصيد';
-  livelihood_agriculture_other = 'الزراعة - أخرى';
-  livelihood_mining = 'تعدين';
-  livelihood_construction = 'اعمال بناء';
-  livelihood_manufacturing = 'تصنيع';
-  livelihood_retail = 'التجزئه';
-  livelihood_transportation = 'وسائل النقل';
-  livelihood_education = 'التعليم';
-  livelihood_health = 'الرعاىة الصحية';
-  livelihood_tourism = 'الضيافة والسياحة';
-  livelihood_legal = 'خدمات قانونية';
-  livelihood_home = 'مهام منزلية';
-  livelihood_religious = 'خدمة دينية';
-  livelihood_telecom = 'تكنولوجيا المعلومات والاتصالات';
-  livelihood_finance = 'التمويل والتأمين';
-  livelihood_manual = 'عمل يدوي';
-  livelihood_ngo = 'المنظمات غير الحكومية وغير الربحية';
-  livelihood_military = 'الجيش أو الشرطة';
-  livelihood_government = 'الحكومة والمؤسسات العامة';
-  livelihood_garment = 'صناعة الملابس';
-  livelihood_security = 'صناعة الأمن';
-  livelihood_service = 'صناعة الخدمات وغيرهم من المهنيين';
+  livelihood_daily_labour = this.missingTranslation;
+  livelihood_farming_agriculture = this.missingTranslation;
+  livelihood_farming_livestock = this.missingTranslation;
+  livelihood_government = this.missingTranslation;
+  livelihood_home_duties = this.missingTranslation;
+  livelihood_trading = this.missingTranslation;
+  livelihood_own_business = this.missingTranslation;
+  livelihood_textiles = this.missingTranslation;
 
   //Log audit
 
