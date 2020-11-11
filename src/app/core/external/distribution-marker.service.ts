@@ -54,24 +54,29 @@ export class DistributionMarkerService {
       ? this.languageService.selectedLanguage
       : this.languageService.english;
     const titlePipe = new UppercaseFirstPipe();
+
+    const adms = [
+        {
+            title: titlePipe.transform(language.adm4[countryId]),
+            location: distribution.get(['location', 'adm4', 'name'])
+        },
+        {
+            title: titlePipe.transform(language.adm3[countryId]),
+            location: distribution.get(['location', 'adm3', 'name'])
+        },
+        {
+            title: titlePipe.transform(language.adm2[countryId]),
+            location: distribution.get(['location', 'adm2', 'name'])
+        },
+        {
+            title: titlePipe.transform(language.adm1[countryId]),
+            location: distribution.get(['location', 'adm1', 'name'])
+        }
+    ];
+
     popup.innerHTML = `
             <div id="bms-popup">
-                ${this.formatPropertyIfExists(
-                  titlePipe.transform(language.adm1[countryId]),
-                  distribution.get(['location', 'adm1', 'name'])
-                )}
-                ${this.formatPropertyIfExists(
-                  titlePipe.transform(language.adm2[countryId]),
-                  distribution.get(['location', 'adm2', 'name'])
-                )}
-                ${this.formatPropertyIfExists(
-                  titlePipe.transform(language.adm3[countryId]),
-                  distribution.get(['location', 'adm3', 'name'])
-                )}
-                ${this.formatPropertyIfExists(
-                  titlePipe.transform(language.adm4[countryId]),
-                  distribution.get(['location', 'adm4', 'name'])
-                )}
+                ${this.displayLowestLevelOfAdm(adms)}
                 ${this.formatPropertyIfExists(
                   titlePipe.transform(language.name),
                   distribution.get(['location', 'adm4', 'name'])
@@ -105,6 +110,11 @@ export class DistributionMarkerService {
             </div>
         `;
     return popup;
+  }
+
+  private displayLowestLevelOfAdm(adms){
+    const lowestAdm = adms.find(adm => adm.location);
+    return this.formatPropertyIfExists(lowestAdm.title, lowestAdm.location);
   }
 
   private formatPropertyIfExists(name: string, property: string) {
