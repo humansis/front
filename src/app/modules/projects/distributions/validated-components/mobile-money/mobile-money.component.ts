@@ -151,9 +151,11 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
       if (!this.actualUser.get('email') && this.actualUser.get('username')) {
         this.actualUser.set('email', this.actualUser.get('username'));
       }
-      this.codeVerif();
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
       const distributionDate = new Date(this.actualDistribution.get('date'));
-      if (new Date() < distributionDate) {
+      if (yesterday < distributionDate) {
+        this.codeVerif();
         this.dialog.open(template);
       } else {
         this.snackbar.error(this.language.snackbar_invalid_transaction_date);
