@@ -1,7 +1,7 @@
-@import "../node_modules/leaflet/dist/leaflet.css";
-@import "./assets/css/classes.scss";
-@import "./assets/css/animations.scss";
-@import "~@ng-select/ng-select/themes/material.theme.css";
+@import '../node_modules/leaflet/dist/leaflet.css';
+@import './assets/css/classes.scss';
+@import './assets/css/animations.scss';
+@import '~@ng-select/ng-select/themes/material.theme.css';
 // THEME
 @import '~@angular/material/theming';
 @include mat-core();
@@ -11,324 +11,328 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
 @include angular-material-theme($candy-app-theme);
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: $bms_grey !important;
-    margin: 0px;
-    position: relative;
+  font-family: 'Roboto', sans-serif;
+  background-color: $bms_grey !important;
+  margin: 0px;
+  position: relative;
 }
 
 @media (pointer: coarse) {
-    ::-webkit-scrollbar {
-        width: 0;
-    }
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 // Ng-select in modals are appended to body so they are visible
-body>ng-dropdown-panel {
-    margin-top: -12px;
-    margin-left: 8px;
+body > ng-dropdown-panel {
+  margin-top: -12px;
+  margin-left: 8px;
 
-    .ng-option-selected {
-        color: #424242 !important;
-    }
-
+  .ng-option-selected {
+    color: #424242 !important;
+  }
 }
 
 // Override Leaflet theme
 .leaflet-control-attribution.leaflet-control {
-    display: none !important;
+  display: none !important;
 }
 
 // Override Material theme
 .mat-stepper-horizontal {
-    background-color: $bms_grey !important;
-    width: calc(100% - 40px);
+  background-color: $bms_grey !important;
+  width: calc(100% - 40px);
 }
 
 .mat-drawer-container {
-    background-color: $bms_grey !important;
+  background-color: $bms_grey !important;
 
-    .mat-drawer-inner-container {
-        overflow: hidden !important;
-    }
+  .mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
 }
 
 .mat-step-icon {
-    color: $bms_grey !important;
+  color: $bms_grey !important;
 }
 
 .mat-step-icon-not-touched {
-    color: $bms_grey !important;
+  color: $bms_grey !important;
 }
 
 .mat-horizontal-content-container {
-    padding: 0 !important;
-    overflow: unset !important;
+  padding: 0 !important;
+  overflow: unset !important;
 }
 
 .mat-progress-bar {
-    display: none !important;
+  display: none !important;
 }
 
 .mat-sidenav-content {
-    width: 100vw !important;
-    box-sizing: border-box;
-    overflow-x: hidden !important;
+  width: 100vw !important;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
 }
 
 .mat-dialog-container {
-    background-color: $bms_white;
+  background-color: $bms_white;
 
-    .action-buttons {
-        justify-content: flex-end !important;
-    }
+  .action-buttons {
+    justify-content: flex-end !important;
+  }
 }
 
 .mat-sort-header-container {
-    justify-content: center;
+  justify-content: center;
 }
 
 .mat-fab {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 @media only screen and (max-width: 750px) {
-    .mat-stepper-horizontal {
-        width: 100%;
-    }
+  .mat-stepper-horizontal {
+    width: 100%;
+  }
 
-    .mat-horizontal-stepper-header-container {
-        display: none !important;
-    }
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
 
-    .mat-progress-bar {
-        display: block !important;
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
+  .mat-progress-bar {
+    display: block !important;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
 
-    .mat-dialog-container {
-        width: 80vw !important;
-    }
+  .mat-dialog-container {
+    width: 80vw !important;
+  }
 
-    .mat-checkbox-layout {
-        white-space: normal !important;
-    }
+  .mat-checkbox-layout {
+    white-space: normal !important;
+  }
 }
 
 app-display-field.ng-star-inserted {
-    text-align: center;
+  text-align: center;
 }
 
 // Leaflet styling below
 .cluster {
-    background-color: $bms_red;
-    height: 50px !important;
-    width: 50px !important;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $bms_white;
-    font-weight: bold;
-    font-size: x-large;
-    box-shadow: 0 0 20px 3px $bms_red;
+  background-color: $bms_red;
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $bms_white;
+  font-weight: bold;
+  font-size: x-large;
+  box-shadow: 0 0 20px 3px $bms_red;
 }
 
 .leaflet-popup-content {
-    margin: 0;
+  margin: 0;
 }
 
 #bms-popup {
-    margin: 0;
-    padding: 20px;
+  margin: 0;
+  padding: 20px;
 
-    * {
-        margin: unset;
-    }
+  * {
+    margin: unset;
+  }
 }
 
 // LEAFLET
 .marker-container {
+  .marker-pointer {
+    width: 8px;
+    height: 40px;
+    z-index: 500;
+  }
 
-    .marker-pointer {
-        width: 8px;
-        height: 40px;
-        z-index: 500;
-    }
+  .marker-icon {
+    width: 25px;
+    position: absolute;
+    top: 10px;
+    left: 7px;
+    filter: invert(1);
+    z-index: 501;
+    pointer-events: none;
+  }
 
-    .marker-icon {
-        width: 25px;
-        position: absolute;
-        top: 10px;
-        left: 7px;
-        filter: invert(1);
-        z-index: 501;
-        pointer-events: none;
-    }
+  &.not-validated {
+    fill: $bms_red;
+  }
 
-    &.not-validated {
-        fill: $bms_red;
-    }
+  &.validated {
+    fill: $bms_dark_blue;
+  }
 
-    &.validated {
-        fill: $bms_dark_blue;
-    }
-
-    &.completed {
-        fill: $bms_green;
-    }
+  &.completed {
+    fill: $bms_green;
+  }
 }
 
 .marker-cluster {
-    background-color: rgba(241, 211, 87, 0.6);
+  background-color: rgba(241, 211, 87, 0.6);
 }
 
 .marker-cluster div {
-    background-color: rgba(240, 194, 12, 0.6);
+  background-color: rgba(240, 194, 12, 0.6);
 }
 
-
 .marker-cluster-medium {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50px !important;
+
+  div {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 40px !important;
+
+    span {
+      line-height: 40px;
+    }
+  }
+}
+
+.marker-cluster-large {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 60px !important;
+
+  div {
     width: 50px !important;
     height: 50px !important;
     border-radius: 50px !important;
 
-    div {
-        width: 40px !important;
-        height: 40px !important;
-        border-radius: 40px !important;
-
-        span {
-            line-height: 40px;
-        }
+    span {
+      line-height: 50px;
     }
+  }
 }
-
-
-.marker-cluster-large {
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 60px !important;
-
-    div {
-        width: 50px !important;
-        height: 50px !important;
-        border-radius: 50px !important;
-
-        span {
-            line-height: 50px;
-        }
-    }
-}
-
 
 .legend {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0 15px;
+  border-radius: 5px;
+  width: 100px;
+  pointer-events: none;
 
-    background: rgba(255, 255, 255, 0.75);
-    padding: 0 15px;
-    border-radius: 5px;
-    width: 100px;
-    pointer-events: none;
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    p {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        svg {
-            width: 20px;
-        }
-
-        span {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        &.not-validated {
-            svg {
-                fill: $bms_red;
-            }
-        }
-
-        &.validated {
-            svg {
-                fill: $bms_dark_blue;
-            }
-        }
-
-        &.completed {
-            svg {
-                fill: $bms_green;
-            }
-        }
+    svg {
+      width: 20px;
     }
 
-    h4 {
-        margin: 0;
+    span {
+      flex-grow: 1;
+      text-align: center;
     }
 
+    &.not-validated {
+      svg {
+        fill: $bms_red;
+      }
+    }
+
+    &.validated {
+      svg {
+        fill: $bms_dark_blue;
+      }
+    }
+
+    &.completed {
+      svg {
+        fill: $bms_green;
+      }
+    }
+  }
+
+  h4 {
+    margin: 0;
+  }
 }
 
 // Map scss overwite
 .rtl {
-    .leaflet-marker-icon {
-        div {
-            margin-left: 0px;
-            margin-right: 5px;
-        }
+  .leaflet-marker-icon {
+    div {
+      margin-left: 0px;
+      margin-right: 5px;
     }
+  }
 }
 
 // REPORTS
 
 @media screen and (min-width: 700px) {
-    .graph-canvas {
-        width: 400px !important;
-        height: 400px !important;
-    }
+  .graph-canvas {
+    width: 400px !important;
+    height: 400px !important;
+  }
 }
 
 @media screen and (max-width: 700px) {
-    .graph-canvas {
-        width: 200px !important;
-        height: 200px !important;
-    }
+  .graph-canvas {
+    width: 200px !important;
+    height: 200px !important;
+  }
 }
 
 form.standard {
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
 
-    > * {
-        width: 100%;
-        margin: 10px;
+  > * {
+    width: 100%;
+    margin: 10px;
 
-        .input-group {
-            display: flex;
+    .input-group {
+      display: flex;
 
-            mat-form-field {
-                margin-right: 10px;
-            }
+      mat-form-field {
+        margin-right: 10px;
+      }
 
-            mat-form-field:last-child {
-                margin-right: 0;
-            }
-
-        }
+      mat-form-field:last-child {
+        margin-right: 0;
+      }
     }
+  }
 
-    mat-form-field {
-        width: 100%;
-    }
+  mat-form-field {
+    width: 100%;
+  }
 
-    .ng-select-container {
-        min-height: 45px;
-    }
-
+  .ng-select-container {
+    min-height: 45px;
+  }
 }
 
 svg {
-    pointer-events: none;
+  pointer-events: none;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

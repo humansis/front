@@ -1,16 +1,31 @@
-<app-smartcard-summary
+<mat-dialog-content class="mat-typography">
+  <app-smartcard-summary
     *ngIf="!(loading$ | async)"
     [totalPurchases]="(purchasesStats$ | async)?.count"
     [sumOfPurchases]="(purchasesStats$ | async)?.value"
     [purchasesToRedeem]="(purchasesRedeemStats$ | async)?.purchases_ids"
     [sumToRedeem]="(purchasesRedeemStats$ | async)?.value"
-    [redeemedBatches]="redeemedBatches$ | async"
     [currency]="currency"
-    (redeem)="onRedeem($event)"
-></app-smartcard-summary>
-
-<div class="spinner" *ngIf="loading$ | async">
-    <mat-spinner [diameter]='25'></mat-spinner>
-    Loading...
-</div>
-
+    (showHistory)="onShowHistoryClick()"
+  ></app-smartcard-summary>
+  <div class="spinner-container">
+    <div class="spinner" *ngIf="loading$ | async">
+      <mat-spinner [diameter]="25"></mat-spinner>
+      {{ language.loading }}...
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="button-text-accent">
+    {{ language.close }}
+  </button>
+  <button
+    *ngIf="canRedeem() && !redeeming"
+    mat-button
+    class="button-background-primary"
+    (click)="redeem()"
+  >
+    {{ language.redeem }}
+  </button>
+  <mat-spinner *ngIf="redeeming" diameter="25"></mat-spinner>
+</mat-dialog-actions>

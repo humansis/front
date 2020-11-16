@@ -60,6 +60,7 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
   set tableHeaders(tableHeaders: TableHeader[]) {
     this._displayedColumns = tableHeaders.map((item) => item.key);
     this._tableHeaders = tableHeaders;
+    this.showTotalFooter = tableHeaders.filter((item) => item.showTotal).length > 0;
   }
 
   @Input()
@@ -73,6 +74,8 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
   }
 
   language: Language = this.languageService.selectedLanguage;
+
+  showTotalFooter = false;
 
   get displayedColumns() {
     if (this.showActionColumn) {
@@ -117,6 +120,12 @@ export class CleanTableComponent implements OnInit, AfterViewInit {
       }
     });
     return value;
+  }
+
+  sumColumn(attribute: string) {
+    return this._dataSource.data
+      .map((t) => Number(t[attribute]))
+      .reduce((acc, value) => acc + value, 0);
   }
 
   ngAfterViewInit(): void {

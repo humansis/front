@@ -1,0 +1,32 @@
+<mat-dialog-content class="mat-typography">
+  <h3>{{ language.vendor_redemption_summary }}</h3>
+  <app-clean-table
+    *ngIf="!loading"
+    [dataSource]="dataSource"
+    [tableHeaders]="TABLE_HEADERS"
+    [showFilter]="false"
+    [showActionColumn]="false"
+  >
+  </app-clean-table>
+
+  <div class="spinner-container">
+    <div class="spinner" *ngIf="loading">
+      <mat-spinner diameter="25"></mat-spinner>
+      {{ language.loading }}...
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="button-text-accent">
+    {{ language.close }}
+  </button>
+  <button
+    mat-button
+    *ngIf="!downloadingExport"
+    class="button-background-primary"
+    (click)="print()"
+  >
+    {{ language.print }}
+  </button>
+  <mat-spinner *ngIf="downloadingExport" diameter="25"></mat-spinner>
+</mat-dialog-actions>

@@ -56,22 +56,22 @@ export class DistributionMarkerService {
     const titlePipe = new UppercaseFirstPipe();
 
     const adms = [
-        {
-            title: titlePipe.transform(language.adm4[countryId]),
-            location: distribution.get(['location', 'adm4', 'name'])
-        },
-        {
-            title: titlePipe.transform(language.adm3[countryId]),
-            location: distribution.get(['location', 'adm3', 'name'])
-        },
-        {
-            title: titlePipe.transform(language.adm2[countryId]),
-            location: distribution.get(['location', 'adm2', 'name'])
-        },
-        {
-            title: titlePipe.transform(language.adm1[countryId]),
-            location: distribution.get(['location', 'adm1', 'name'])
-        }
+      {
+        title: titlePipe.transform(language.adm4[countryId]),
+        location: distribution.get(['location', 'adm4', 'name']),
+      },
+      {
+        title: titlePipe.transform(language.adm3[countryId]),
+        location: distribution.get(['location', 'adm3', 'name']),
+      },
+      {
+        title: titlePipe.transform(language.adm2[countryId]),
+        location: distribution.get(['location', 'adm2', 'name']),
+      },
+      {
+        title: titlePipe.transform(language.adm1[countryId]),
+        location: distribution.get(['location', 'adm1', 'name']),
+      },
     ];
 
     popup.innerHTML = `
@@ -112,8 +112,8 @@ export class DistributionMarkerService {
     return popup;
   }
 
-  private displayLowestLevelOfAdm(adms){
-    const lowestAdm = adms.find(adm => adm.location);
+  private displayLowestLevelOfAdm(adms) {
+    const lowestAdm = adms.find((adm) => adm.location);
     return this.formatPropertyIfExists(lowestAdm.title, lowestAdm.location);
   }
 

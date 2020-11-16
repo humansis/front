@@ -1,0 +1,31 @@
+<mat-dialog-content class="mat-typography">
+  <h3>{{ language.vendor_redeemed_batches }}</h3>
+  <app-clean-table
+    *ngIf="!loading"
+    [dataSource]="dataSource"
+    [tableHeaders]="TABLE_HEADERS"
+    [showFilter]="false"
+    [showActionColumn]="true"
+  >
+    <ng-template #actions let-element="element">
+      <button
+        (click)="showRedemptionSummary(element.id)"
+        mat-icon-button
+        class="light-blue"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </ng-template>
+  </app-clean-table>
+  <div class="spinner-container">
+    <div class="spinner" *ngIf="loading">
+      <mat-spinner [diameter]="25"></mat-spinner>
+      {{ language.loading }}...
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="button-text-accent">
+    {{ language.close }}
+  </button>
+</mat-dialog-actions>

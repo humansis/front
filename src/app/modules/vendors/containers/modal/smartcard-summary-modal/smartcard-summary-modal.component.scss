@@ -1,14 +1,13 @@
 .spinner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 10px;
 }
 
 :host {
-    max-height: 80vh;
-    overflow-y: auto;
-    display: flex;
+  max-height: 80vh;
+  overflow-y: auto;
 }

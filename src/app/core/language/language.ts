@@ -34,6 +34,7 @@ export interface Language {
   true: string;
   selected: string;
   history: string;
+  loading: string;
 
   // Models
   beneficiaries: string;
@@ -84,6 +85,8 @@ export interface Language {
   save: string;
   update: string;
   view: string;
+  redeem: string;
+  print: string;
 
   // Common fields
   address: string;
@@ -469,6 +472,16 @@ export interface Language {
   household_assets: string;
   household_shelter_status: string;
   household_status: string;
+
+  //Vendors
+  vendor_redeemed_batches: string;
+  vendor_redemption_summary: string;
+  vendor_transaction_summary: string;
+  vendor_total_number_transactions: string;
+  vendor_total_value_transactions: string;
+  vendor_see_history: string;
+  vendor_unpaid_transactions: string;
+  vendor_unpaid_transaction_value: string;
 
   // Import
   import_added: string;

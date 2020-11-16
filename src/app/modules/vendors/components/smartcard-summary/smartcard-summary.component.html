@@ -1,25 +1,24 @@
-<h2>Smartcard summary for vendor</h2>
+<h2>{{ language.vendor_transaction_summary }}</h2>
 
-<strong>Total purchases:</strong> {{totalPurchases}}<br />
-<strong>Sum of purchases:</strong> {{sumOfPurchases | currency: currency}}<br />
-
-<h3>To redeem</h3>
-<div class="redemption" *ngIf="purchasesToRedeem">
-    <div>
-        <strong>Purchases to redeem:</strong> {{purchasesToRedeem?.length}}<br />
-        <strong>Sum to redeem:</strong> {{sumToRedeem | currency: currency}}<br />
-    </div>
-    <div class="controls" *ngIf="purchasesToRedeem?.length > 0">
-        <button mat-flat-button class="button-background-primary" (click)="redeemClick()">
-            <span>Redeem now</span>
-        </button>
-    </div>
+<div class="summary">
+  <div>
+    <strong>{{ language.vendor_total_number_transactions }}:</strong> {{ totalPurchases
+    }}<br />
+    <strong>{{ language.vendor_total_value_transactions }}:</strong>
+    {{ sumOfPurchases | currency: currency }}<br />
+  </div>
+  <div class="controls">
+    <button mat-button (click)="showHistory.emit()">
+      <span>{{ language.vendor_see_history }}</span>
+    </button>
+  </div>
 </div>
-<hr/>
-<h3>Redeemed batches</h3>
-<app-clean-table [dataSource]="dataSource"
-                 [tableHeaders]="TABLE_HEADERS"
-                 [showFilter]="false"
-                 [showActionColumn]="false">
-
-</app-clean-table>
+<hr />
+<div class="redemption" *ngIf="purchasesToRedeem">
+  <div>
+    <strong>{{ language.vendor_unpaid_transactions }}:</strong>
+    {{ purchasesToRedeem?.length }}<br />
+    <strong>{{ language.vendor_unpaid_transaction_value }}:</strong>
+    {{ sumToRedeem | currency: currency }}<br />
+  </div>
+</div>

@@ -38,6 +38,7 @@ export class French implements Language {
   true = 'Vrai';
   selected = 'selectionné';
   history = this.missingTranslation;
+  loading = this.missingTranslation;
 
   // Models
   beneficiaries = 'Bénéficiaires';
@@ -88,6 +89,8 @@ export class French implements Language {
   save = 'Enregistrer';
   update = 'Modifier';
   view = 'Voir';
+  redeem = this.missingTranslation;
+  print = this.missingTranslation;
 
   // Common Fields
   address = 'Adresse';
@@ -495,6 +498,16 @@ export class French implements Language {
   household_assets = this.missingTranslation;
   household_shelter_status = this.missingTranslation;
   household_status = this.missingTranslation;
+
+  //Vendors
+  vendor_redeemed_batches = this.missingTranslation;
+  vendor_redemption_summary = this.missingTranslation;
+  vendor_transaction_summary = this.missingTranslation;
+  vendor_total_number_transactions = this.missingTranslation;
+  vendor_total_value_transactions = this.missingTranslation;
+  vendor_see_history = this.missingTranslation;
+  vendor_unpaid_transactions = this.missingTranslation;
+  vendor_unpaid_transaction_value = this.missingTranslation;
 
   // Import
   import_added = 'Ajout';

@@ -37,6 +37,7 @@ export class Russian implements Language {
   this = 'этот';
   selected = 'выбранный';
   history = 'история';
+  loading = 'Загрузка';
 
   // Models
   beneficiaries = 'бенефициары';
@@ -86,11 +87,8 @@ export class Russian implements Language {
   save = 'Сохранить';
   update = 'Обновить';
   view = 'Вид';
-  latitude = 'Широта';
-  longitude = 'Долгота';
-  amount = 'Сумма';
-  price = 'Cтоимость';
-  purchased_by = 'Приобретено';
+  redeem = 'Выкупить';
+  print = 'Распечатать';
 
   // Common Fields
   address = 'Адрес';
@@ -114,6 +112,11 @@ export class Russian implements Language {
   value = 'Стоимость';
   quantity = 'количество';
   total = this.missingTranslation;
+  latitude = 'Широта';
+  longitude = 'Долгота';
+  amount = 'Сумма';
+  price = 'Cтоимость';
+  purchased_by = 'Приобретено';
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -483,6 +486,16 @@ export class Russian implements Language {
   household_assets = 'Активы';
   household_shelter_status = 'Статус жилья';
   household_status = 'Положение домохозяйств';
+
+  //Vendors
+  vendor_redeemed_batches = 'Выкупленные партии';
+  vendor_redemption_summary = 'Сводка погашений поставщика';
+  vendor_transaction_summary = 'Сводка транзакций поставщика';
+  vendor_total_number_transactions = 'Итоговое кол-во транзакций';
+  vendor_total_value_transactions = 'Итоговая сумма транзакций';
+  vendor_see_history = 'Посмотреть историю';
+  vendor_unpaid_transactions = 'Неоплаченые транзакции';
+  vendor_unpaid_transaction_value = 'Сумма неоплаченных транзакций';
 
   // Import
   import_added = 'Добавлено  существующими бенефициарами';

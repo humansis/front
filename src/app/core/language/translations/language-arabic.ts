@@ -38,6 +38,7 @@ export class Arabic implements Language {
   true = 'صحيح';
   selected = 'المحدد';
   history = this.missingTranslation;
+  loading = this.missingTranslation;
 
   // Models
   beneficiaries = 'المستفيدون';
@@ -88,6 +89,8 @@ export class Arabic implements Language {
   save = 'حفظ';
   update = 'تحديث';
   view = 'درس';
+  redeem = this.missingTranslation;
+  print = this.missingTranslation;
 
   // Common fields
   address = 'عنوان';
@@ -477,6 +480,16 @@ export class Arabic implements Language {
   household_assets = 'ممتلكات';
   household_shelter_status = 'حالة المأوى';
   household_status = this.missingTranslation;
+
+  //Vendors
+  vendor_redeemed_batches = this.missingTranslation;
+  vendor_redemption_summary = this.missingTranslation;
+  vendor_transaction_summary = this.missingTranslation;
+  vendor_total_number_transactions = this.missingTranslation;
+  vendor_total_value_transactions = this.missingTranslation;
+  vendor_see_history = this.missingTranslation;
+  vendor_unpaid_transactions = this.missingTranslation;
+  vendor_unpaid_transaction_value = this.missingTranslation;
 
   // Import
   import_added = 'تم إضافتها';

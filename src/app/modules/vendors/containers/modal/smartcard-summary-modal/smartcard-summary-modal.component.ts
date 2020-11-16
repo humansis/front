@@ -1,12 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { combineLatest, merge, Observable } from 'rxjs';
-import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
+import { merge, Observable } from 'rxjs';
 import { CountValue } from 'src/app/models/api/count-value';
 import { PurchasesToRedeem } from 'src/app/models/api/purchases-to-redeem';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { endWith, map, share, shareReplay, startWith, tap } from 'rxjs/operators';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { endWith, shareReplay, startWith } from 'rxjs/operators';
 import { SmartcardService } from 'src/app/core/api/smartcard.service';
 import { FormService } from 'src/app/core/utils/form.service';
+import { RedeemedBatchesOverviewModalComponent } from '../redeemed-batches-overview-modal/redeemed-batches-overview-modal.component';
+import { LanguageService } from '../../../../../core/language/language.service';
+import { Language } from '../../../../../core/language/language';
+import { RedemptionSummaryModalComponent } from '../redemption-summary-modal/redemption-summary-modal.component';
 
 @Component({
   selector: 'app-smartcard-summary-modal',
@@ -16,11 +19,13 @@ import { FormService } from 'src/app/core/utils/form.service';
 export class SmartcardSummaryModalComponent implements OnInit {
   purchasesStats$: Observable<CountValue>;
   purchasesRedeemStats$: Observable<PurchasesToRedeem>;
-  redeemedBatches$: Observable<RedeemedBatch[]>;
   loading$: Observable<any>;
-  currency: string;
+  redeeming = false;
+  currency = 'USD';
+  language: Language = this.languageService.selectedLanguage;
 
   private readonly id: string;
+  private batch: number[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -28,14 +33,16 @@ export class SmartcardSummaryModalComponent implements OnInit {
       id: string;
     },
     private smartcardService: SmartcardService,
-    private formService: FormService
+    private formService: FormService,
+    private matDialog: MatDialog,
+    private languageService: LanguageService,
+    private dialogRef: MatDialogRef<SmartcardSummaryModalComponent>
   ) {
     this.id = data.id;
   }
 
   ngOnInit(): void {
     this.load();
-    this.currency = this.formService.getLocalCurrency();
   }
 
   load() {
@@ -45,19 +52,42 @@ export class SmartcardSummaryModalComponent implements OnInit {
     this.purchasesRedeemStats$ = this.smartcardService
       .getVendorPurchasesToRedeem(this.id)
       .pipe(shareReplay());
-    this.redeemedBatches$ = this.smartcardService
-      .getVendorRedeemedBatches(this.id)
-      .pipe(shareReplay());
-    this.loading$ = merge(
-      this.purchasesStats$,
-      this.purchasesRedeemStats$,
-      this.redeemedBatches$
-    ).pipe(startWith(true), endWith(false));
+    this.loading$ = merge(this.purchasesStats$, this.purchasesRedeemStats$).pipe(
+      startWith(true),
+      endWith(false)
+    );
+    this.purchasesRedeemStats$.subscribe((stats) => (this.batch = stats.purchases_ids));
   }
 
-  onRedeem(batch: number[]) {
-    this.smartcardService.redeemBatch(this.id, batch).subscribe(() => {
-      this.load();
+  redeem() {
+    this.redeeming = true;
+    this.smartcardService.redeemBatch(this.id, this.batch).subscribe(
+      (response: { id: number }) => {
+        this.redeeming = false;
+        this.dialogRef.close();
+        this.matDialog.open(RedemptionSummaryModalComponent, {
+          width: '650px',
+          data: {
+            vendorId: this.id,
+            batchId: response.id,
+          },
+        });
+      },
+      () => (this.redeeming = false)
+    );
+  }
+
+  canRedeem() {
+    return this.batch && this.batch.length > 0;
+  }
+
+  onShowHistoryClick() {
+    this.dialogRef.close();
+    this.matDialog.open(RedeemedBatchesOverviewModalComponent, {
+      width: '650px',
+      data: {
+        id: this.id,
+      },
     });
   }
 }

@@ -40,6 +40,7 @@ export class English implements Language {
   true = 'True';
   selected = 'selected';
   history = 'history';
+  loading = 'Loading';
 
   // Models
   beneficiaries = 'Beneficiaries';
@@ -90,6 +91,8 @@ export class English implements Language {
   save = 'Save';
   update = 'Update';
   view = 'View';
+  redeem = 'Redeem';
+  print = 'Print';
 
   // Common Fields
   address = 'Address';
@@ -490,6 +493,16 @@ export class English implements Language {
   household_shelter_status = 'Shelter type';
   household_status = 'Household status';
 
+  //Vendors
+  vendor_redeemed_batches = 'Redeemed Batches';
+  vendor_redemption_summary = 'Vendor Redemption Summary';
+  vendor_transaction_summary = 'Vendor Transaction Summary';
+  vendor_total_number_transactions = 'Total No. Transactions';
+  vendor_total_value_transactions = 'Total Value Transactions';
+  vendor_see_history = 'See History';
+  vendor_unpaid_transactions = 'Unpaid Transactions';
+  vendor_unpaid_transaction_value = 'Unpaid Transaction Value';
+
   // Import
   import_added = 'Added from existing beneficiaries';
   import_back_to_beneficiaries = 'Back to Beneficiaries';
@@ -889,7 +902,7 @@ export class English implements Language {
   table_next_page = 'Next page';
   table_of_page = 'of';
   table_previous_page = 'Previous page';
-  table_print = 'Print';
+  table_print = this.print;
   table_selected = 'Items selected';
 
   // Time
