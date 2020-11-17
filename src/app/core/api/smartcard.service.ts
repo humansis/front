@@ -22,21 +22,22 @@ export class SmartcardService {
     return this.http.get(url);
   }
 
-  public getVendorBatch(vendorId: string, batchId: string): Observable<PurchaseInfo[]> {
-    const url = `${this.api}/purchases/batch/${batchId}`;
+  public getVendorBatchPurchases(batchId: string): Observable<PurchaseInfo[]> {
+    const url = `${this.api}/batch/${batchId}/purchases`;
+    return this.http.get(url);
+  }
+
+  public getVendorBatch(batchId: string): Observable<any> {
+    const url = `${this.api}/batch/${batchId}`;
     return this.http.get(url);
   }
 
   public getVendorBatchExport(batchId: string) {
-    const url = `${this.api}/invoices/export/${batchId}`;
+    const url = `${this.api}/batch/${batchId}/export`;
     const options = {
       responseType: 'blob',
     };
-    return this.http.get(url, options).pipe(
-      tap((response) => {
-        FileSaver.saveAs(response, 'invoice.xlsx');
-      })
-    );
+    return this.http.get(url, options);
   }
 
   public getVendorPurchasesToRedeem(id: string): Observable<PurchasesToRedeem> {
@@ -45,8 +46,13 @@ export class SmartcardService {
   }
 
   public getVendorRedeemedBatches(id: string): Observable<RedeemedBatch[]> {
-    const url = `${this.api}/purchases/redeemed-batches/${id}`;
-    return this.http.get(url);
+    const url = `${this.api}/batch`;
+    const options = {
+      params: {
+        vendor: id,
+      },
+    };
+    return this.http.get(url, options);
   }
 
   public redeemBatch(id: string, batch: number[]): Observable<{ id: number }> {

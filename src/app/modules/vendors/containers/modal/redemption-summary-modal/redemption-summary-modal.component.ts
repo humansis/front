@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SmartcardService } from '../../../../../core/api/smartcard.service';
-import { Observable } from 'rxjs';
+import { forkJoin, merge, Observable } from 'rxjs';
 import { PurchaseInfo } from '../../../../../models/api/purchase-info';
 import { ClientDataSource } from '../../../../../core/datasource/client-data-source';
 import { RedeemedBatch } from '../../../../../models/api/redeemed-batch';
@@ -10,6 +10,10 @@ import { CurrencyPipe } from '@angular/common';
 import { FormService } from '../../../../../core/utils/form.service';
 import { Language } from '../../../../../core/language/language';
 import { LanguageService } from '../../../../../core/language/language.service';
+import { VendorsService } from '../../../../../core/api/vendors.service';
+import { combineAll } from 'rxjs/operators';
+import { Vendor } from '../../../../../models/api/vendor';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-redemption-summary-modal',
@@ -47,6 +51,7 @@ export class RedemptionSummaryModalComponent implements OnInit {
     private currencyPipe: CurrencyPipe,
     private formService: FormService,
     private languageService: LanguageService,
+    private vendorsService: VendorsService,
     private dialogRef: MatDialogRef<RedemptionSummaryModalComponent>
   ) {
     this.batchId = data.batchId;
@@ -55,7 +60,7 @@ export class RedemptionSummaryModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.smartcardService.getVendorBatch(this.vendorId, this.batchId).subscribe(
+    this.smartcardService.getVendorBatchPurchases(this.batchId).subscribe(
       (batch) => {
         this.dataSource = new ClientDataSource<PurchaseInfo>(batch);
         this.loading = false;
@@ -66,8 +71,16 @@ export class RedemptionSummaryModalComponent implements OnInit {
 
   print() {
     this.downloadingExport = true;
-    this.smartcardService.getVendorBatchExport(this.batchId).subscribe(
-      (data) => {
+    forkJoin({
+      vendor: this.vendorsService.getOne(+this.vendorId),
+      batch: this.smartcardService.getVendorBatch(this.batchId),
+      export: this.smartcardService.getVendorBatchExport(this.batchId),
+    }).subscribe(
+      (data: { vendor: Vendor; batch: RedeemedBatch; export: any }) => {
+        FileSaver.saveAs(
+          data.export,
+          `SmatcardInvoice_${data.vendor.name}_${data.batch.date}.xlsx`
+        );
         this.downloadingExport = false;
         this.dialogRef.close();
       },

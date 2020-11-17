@@ -6,6 +6,9 @@ import { SmartcardService } from '../../../../../core/api/smartcard.service';
 import { SmartcardMockService } from '../../../../../core/api/mock/smartcard-mock.service';
 import { FormService } from '../../../../../core/utils/form.service';
 import { CurrencyPipe } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RedemptionSummaryModalComponent', () => {
   let component: RedemptionSummaryModalComponent;
@@ -13,6 +16,7 @@ describe('RedemptionSummaryModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule],
       declarations: [RedemptionSummaryModalComponent],
       providers: [
         CurrencyPipe,

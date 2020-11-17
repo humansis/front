@@ -13,12 +13,15 @@ export class SmartcardMockService {
     return of({} as CountValue);
   }
 
-  public getVendorBatch(
-    vendorId: string,
+  public getVendorBatchPurchases(
     batchId: string,
     observable: Observable<any[]> = of([])
   ): Observable<PurchaseInfo[]> {
     return observable;
+  }
+
+  public getVendorBatch(batchId: string): Observable<any> {
+    return of({});
   }
 
   public getVendorBatchExport(batchId: string) {
