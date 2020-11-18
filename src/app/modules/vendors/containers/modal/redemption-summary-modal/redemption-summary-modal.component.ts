@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SmartcardService } from '../../../../../core/api/smartcard.service';
 import { forkJoin, merge, Observable } from 'rxjs';
 import { PurchaseInfo } from '../../../../../models/api/purchase-info';
@@ -10,6 +10,7 @@ import { CurrencyPipe } from '@angular/common';
 import { FormService } from '../../../../../core/utils/form.service';
 import { Language } from '../../../../../core/language/language';
 import { LanguageService } from '../../../../../core/language/language.service';
+import { RedeemedBatchesOverviewModalComponent } from '../redeemed-batches-overview-modal/redeemed-batches-overview-modal.component';
 import { VendorsService } from '../../../../../core/api/vendors.service';
 import { combineAll } from 'rxjs/operators';
 import { Vendor } from '../../../../../models/api/vendor';
@@ -52,6 +53,7 @@ export class RedemptionSummaryModalComponent implements OnInit {
     private formService: FormService,
     private languageService: LanguageService,
     private vendorsService: VendorsService,
+    private matDialog: MatDialog,
     private dialogRef: MatDialogRef<RedemptionSummaryModalComponent>
   ) {
     this.batchId = data.batchId;
@@ -67,6 +69,15 @@ export class RedemptionSummaryModalComponent implements OnInit {
       },
       () => (this.loading = false)
     );
+  }
+
+  back() {
+    this.matDialog.open(RedeemedBatchesOverviewModalComponent, {
+      width: '650px',
+      data: {
+        id: this.vendorId,
+      },
+    });
   }
 
   print() {

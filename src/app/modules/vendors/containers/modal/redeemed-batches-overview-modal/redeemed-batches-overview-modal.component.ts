@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { RedemptionSummaryModalComponent } from '../redemption-summary-modal/redemption-summary-modal.component';
 import { LanguageService } from '../../../../../core/language/language.service';
 import { Language } from '../../../../../core/language/language';
+import { SmartcardSummaryModalComponent } from '../smartcard-summary-modal/smartcard-summary-modal.component';
 
 @Component({
   selector: 'app-redeemed-batches-overview-modal',
@@ -59,8 +60,16 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
     );
   }
 
+  back() {
+    this.matDialog.open(SmartcardSummaryModalComponent, {
+      width: '650px',
+      data: {
+        id: this.id,
+      },
+    });
+  }
+
   showRedemptionSummary(batchId: string) {
-    this.dialogRef.close();
     this.matDialog.open(RedemptionSummaryModalComponent, {
       width: '650px',
       data: {

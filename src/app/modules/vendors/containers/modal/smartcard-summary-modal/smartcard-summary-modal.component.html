@@ -22,6 +22,7 @@
   <button
     *ngIf="canRedeem() && !redeeming"
     mat-button
+    mat-dialog-close
     class="button-background-primary"
     (click)="redeem()"
   >

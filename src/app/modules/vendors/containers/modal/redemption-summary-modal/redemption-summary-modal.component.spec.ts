@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RedemptionSummaryModalComponent } from './redemption-summary-modal.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SmartcardService } from '../../../../../core/api/smartcard.service';
 import { SmartcardMockService } from '../../../../../core/api/mock/smartcard-mock.service';
 import { FormService } from '../../../../../core/utils/form.service';
@@ -16,7 +16,7 @@ describe('RedemptionSummaryModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule, MatDialogModule],
       declarations: [RedemptionSummaryModalComponent],
       providers: [
         CurrencyPipe,
