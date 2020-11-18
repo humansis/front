@@ -58,7 +58,7 @@ export class LogsService extends CustomModelService {
       const details = this.getDataFromService(objectId[0], Number(objectId[1]), service);
       let beneficiaryDetails = of('');
       const ids = /(\d+).+(\d+)/.exec(url);
-      if (ids) {
+      if (ids && url.includes('beneficiary/')) {
         ids.shift();
         beneficiaryDetails = this.getDataFromService(
           'beneficiary',
