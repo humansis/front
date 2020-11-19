@@ -16,7 +16,12 @@ describe('RedemptionSummaryModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatSnackBarModule, RouterTestingModule, MatDialogModule],
+      imports: [
+        HttpClientTestingModule,
+        MatSnackBarModule,
+        RouterTestingModule,
+        MatDialogModule,
+      ],
       declarations: [RedemptionSummaryModalComponent],
       providers: [
         CurrencyPipe,
