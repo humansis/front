@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -12,17 +12,17 @@ import {
   CustomDateAdapter,
 } from 'src/app/shared/adapters/date.adapter';
 import { Criteria, CriteriaCondition, CriteriaValue } from 'src/app/models/criteria';
-import { Gender, Beneficiary, ResidencyStatus } from 'src/app/models/beneficiary';
-import { LIVELIHOOD } from 'src/app/models/constants/livelihood';
-import { Livelihood, Household, IncomeLevel } from 'src/app/models/household';
+import { Beneficiary, Gender, ResidencyStatus } from 'src/app/models/beneficiary';
+import { IncomeLevel, Livelihood } from 'src/app/models/household';
 import {
   HouseholdLocation,
   HouseholdLocationType,
 } from 'src/app/models/household-location';
 import { Subscription } from 'rxjs';
 import { Camp } from 'src/app/models/camp';
-import { Location, Adm } from 'src/app/models/location';
+import { Adm, Location } from 'src/app/models/location';
 import { INCOMELEVELS } from 'src/app/models/constants/income-levels';
+import { LivelihoodService } from '../../../core/api/livelihood.service';
 
 @Component({
   selector: 'app-modal-add-criteria',
@@ -61,6 +61,7 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
 
   constructor(
     private criteriaService: CriteriaService,
+    private livelihoodService: LivelihoodService,
     public modalReference: MatDialogRef<any>,
     private snackbar: SnackbarService,
     public formService: FormService,
@@ -91,10 +92,16 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
    * Fill the dropdown for the potential criteria values
    */
   fillOptions() {
-    this.livelihoods = LIVELIHOOD.map(
-      (livelihood) =>
-        new Livelihood(livelihood.id, this.language[livelihood.language_key])
-    );
+    this.livelihoodService.get().subscribe((livelihoods) => {
+      this.livelihoods = livelihoods.map(
+        (livelihood) =>
+          new Livelihood(
+            livelihood.value,
+            this.language['livelihood_' + livelihood.value] ||
+              this.language.missingTranslation
+          )
+      );
+    });
     const beneficiary = new Beneficiary();
     this.residencyStatuses = beneficiary.getOptions('residencyStatus');
     const householdLocation = new HouseholdLocation();

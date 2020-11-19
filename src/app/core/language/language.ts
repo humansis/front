@@ -34,6 +34,7 @@ export interface Language {
   true: string;
   selected: string;
   history: string;
+  loading: string;
 
   // Models
   beneficiaries: string;
@@ -84,6 +85,8 @@ export interface Language {
   save: string;
   update: string;
   view: string;
+  redeem: string;
+  print: string;
 
   // Common fields
   address: string;
@@ -470,6 +473,16 @@ export interface Language {
   household_shelter_status: string;
   household_status: string;
 
+  //Vendors
+  vendor_redeemed_batches: string;
+  vendor_redemption_summary: string;
+  vendor_transaction_summary: string;
+  vendor_total_number_transactions: string;
+  vendor_total_value_transactions: string;
+  vendor_see_history: string;
+  vendor_unpaid_transactions: string;
+  vendor_unpaid_transaction_value: string;
+
   // Import
   import_added: string;
   import_back_to_beneficiaries: string;
@@ -484,30 +497,14 @@ export interface Language {
   import_updated: string;
 
   // Livelihoods
-  livelihood_livestock: string;
-  livelihood_crops: string;
-  livelihood_fishing: string;
-  livelihood_agriculture_other: string;
-  livelihood_mining: string;
-  livelihood_construction: string;
-  livelihood_manufacturing: string;
-  livelihood_retail: string;
-  livelihood_transportation: string;
-  livelihood_education: string;
-  livelihood_health: string;
-  livelihood_tourism: string;
-  livelihood_legal: string;
-  livelihood_home: string;
-  livelihood_religious: string;
-  livelihood_telecom: string;
-  livelihood_finance: string;
-  livelihood_manual: string;
-  livelihood_ngo: string;
-  livelihood_military: string;
+  livelihood_daily_labour: string;
+  livelihood_farming_agriculture: string;
+  livelihood_farming_livestock: string;
   livelihood_government: string;
-  livelihood_garment: string;
-  livelihood_security: string;
-  livelihood_service: string;
+  livelihood_home_duties: string;
+  livelihood_trading: string;
+  livelihood_own_business: string;
+  livelihood_textiles: string;
 
   //Log audit
 
@@ -815,6 +812,12 @@ export interface Language {
   sector_tvet: string;
   sector_food_kits: string;
   sector_nfi: string;
+  sector_livelihoods: string;
+  sector_mine_action: string;
+  sector_nonspecific: string;
+  sector_multipurpose_cash: string;
+  sector_education_tvet: string;
+  sector_drr_diligence: string;
 
   // Settings
   settings_country_specific_options: string;

@@ -222,9 +222,7 @@ export class Booklet extends CustomModel {
     newBooklet.set(
       'distribution',
       bookletFromApi.distribution_beneficiary
-        ? Distribution.apiToModel(
-            bookletFromApi.distribution_beneficiary.distribution_data
-          )
+        ? Distribution.apiToModel(bookletFromApi.distribution_beneficiary.assistance)
         : null
     );
 

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
-import { ClientDataSource } from 'src/app/core/datasource/client-data-source';
-import { TableHeader } from 'src/app/models/interfaces/table-header';
-import { CurrencyPipe } from '@angular/common';
+import { LanguageService } from '../../../../core/language/language.service';
+import { Language } from '../../../../core/language/language';
 
 @Component({
   selector: 'app-smartcard-summary',
@@ -20,28 +18,14 @@ export class SmartcardSummaryComponent implements OnInit {
   sumToRedeem: number;
   @Input()
   currency: string;
-  @Input()
-  set redeemedBatches(redeemedBatches: RedeemedBatch[]) {
-    if (redeemedBatches) {
-      this.dataSource.data = redeemedBatches;
-    }
-  }
   @Output()
   redeem: EventEmitter<number[]> = new EventEmitter<number[]>();
+  @Output()
+  showHistory: EventEmitter<undefined> = new EventEmitter<undefined>();
 
-  dataSource: ClientDataSource<RedeemedBatch> = new ClientDataSource<RedeemedBatch>();
+  language: Language = this.languageService.selectedLanguage;
 
-  public readonly TABLE_HEADERS: TableHeader[] = [
-    { key: 'date', languageKey: 'date' },
-    { key: 'count', languageKey: 'quantity' },
-    {
-      key: 'value',
-      languageKey: 'total',
-      transform: (value) => this.currencyPipe.transform(value, this.currency),
-    },
-  ];
-
-  constructor(private currencyPipe: CurrencyPipe) {}
+  constructor(private languageService: LanguageService) {}
 
   ngOnInit(): void {}
 

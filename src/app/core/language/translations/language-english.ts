@@ -40,6 +40,7 @@ export class English implements Language {
   true = 'True';
   selected = 'selected';
   history = 'history';
+  loading = 'Loading';
 
   // Models
   beneficiaries = 'Beneficiaries';
@@ -90,6 +91,8 @@ export class English implements Language {
   save = 'Save';
   update = 'Update';
   view = 'View';
+  redeem = 'Redeem';
+  print = 'Print';
 
   // Common Fields
   address = 'Address';
@@ -490,6 +493,16 @@ export class English implements Language {
   household_shelter_status = 'Shelter type';
   household_status = 'Household status';
 
+  //Vendors
+  vendor_redeemed_batches = 'Redeemed Batches';
+  vendor_redemption_summary = 'Vendor Redemption Summary';
+  vendor_transaction_summary = 'Vendor Transaction Summary';
+  vendor_total_number_transactions = 'Total No. Transactions';
+  vendor_total_value_transactions = 'Total Value Transactions';
+  vendor_see_history = 'See History';
+  vendor_unpaid_transactions = 'Unpaid Transactions';
+  vendor_unpaid_transaction_value = 'Unpaid Transaction Value';
+
   // Import
   import_added = 'Added from existing beneficiaries';
   import_back_to_beneficiaries = 'Back to Beneficiaries';
@@ -506,30 +519,14 @@ export class English implements Language {
   import_updated = 'Will be updated';
 
   // Livelihoods
-  livelihood_livestock = 'Agriculture - Livestock';
-  livelihood_crops = 'Agriculture - Crops';
-  livelihood_fishing = 'Agriculture – Fishing';
-  livelihood_agriculture_other = 'Agriculture – Other';
-  livelihood_mining = 'Mining';
-  livelihood_construction = 'Construction';
-  livelihood_manufacturing = 'Manufacturing';
-  livelihood_retail = 'Retail';
-  livelihood_transportation = 'Transportation';
-  livelihood_education = 'Education';
-  livelihood_health = 'Health Care';
-  livelihood_tourism = 'Hospitality and Tourism';
-  livelihood_legal = 'Legal Services';
-  livelihood_home = 'Home Duties';
-  livelihood_religious = 'Religious Service';
-  livelihood_telecom = 'IT and Telecommunications';
-  livelihood_finance = 'Finance and Insurance';
-  livelihood_manual = 'Manual Labour';
-  livelihood_ngo = 'NGO and Non Profit';
-  livelihood_military = 'Military or Police';
-  livelihood_government = 'Government and Public Enterprise';
-  livelihood_garment = 'Garment Industry';
-  livelihood_security = 'Security Industry';
-  livelihood_service = 'Service Industry and Other Professionals';
+  livelihood_daily_labour = 'Daily Labour';
+  livelihood_farming_agriculture = 'Farming - Agriculture';
+  livelihood_farming_livestock = 'Farming - Livestock';
+  livelihood_government = 'Government';
+  livelihood_home_duties = 'Home Duties';
+  livelihood_trading = 'Trading';
+  livelihood_own_business = 'Own Business';
+  livelihood_textiles = 'Textiles';
 
   //Log audit
 
@@ -853,6 +850,12 @@ export class English implements Language {
   sector_tvet = 'TVET';
   sector_food_kits = 'food, RTE kits';
   sector_nfi = 'NFIs';
+  sector_livelihoods = 'Livelihood';
+  sector_mine_action = 'Mine action';
+  sector_nonspecific = 'Non-specific sector';
+  sector_multipurpose_cash = 'Multi-Purpose Cash Assistance';
+  sector_education_tvet = 'Education & TVET';
+  sector_drr_diligence = 'DRR Diligence';
 
   // Settings
   settings_country_specific_options = 'country specific options';
@@ -899,7 +902,7 @@ export class English implements Language {
   table_next_page = 'Next page';
   table_of_page = 'of';
   table_previous_page = 'Previous page';
-  table_print = 'Print';
+  table_print = this.print;
   table_selected = 'Items selected';
 
   // Time

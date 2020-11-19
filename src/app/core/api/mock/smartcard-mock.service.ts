@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Vendor } from 'src/app/models/vendor';
-import { CustomModelMockService } from './custom-model-mock.service';
 import { Observable, of } from 'rxjs';
 import { CountValue } from 'src/app/models/api/count-value';
 import { PurchasesToRedeem } from 'src/app/models/api/purchases-to-redeem';
 import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
+import { PurchaseInfo } from '../../../models/api/purchase-info';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +11,21 @@ import { RedeemedBatch } from 'src/app/models/api/redeemed-batch';
 export class SmartcardMockService {
   public getVendorPurchases(id: string): Observable<CountValue> {
     return of({} as CountValue);
+  }
+
+  public getVendorBatchPurchases(
+    batchId: string,
+    observable: Observable<any[]> = of([])
+  ): Observable<PurchaseInfo[]> {
+    return observable;
+  }
+
+  public getVendorBatch(batchId: string): Observable<any> {
+    return of({});
+  }
+
+  public getVendorBatchExport(batchId: string) {
+    return of(undefined);
   }
 
   public getVendorPurchasesToRedeem(id: string): Observable<PurchasesToRedeem> {

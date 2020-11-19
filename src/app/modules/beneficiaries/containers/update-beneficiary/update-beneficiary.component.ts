@@ -255,6 +255,7 @@ export class UpdateBeneficiaryComponent
     return new Promise((resolve, reject) => {
       if (this.mode === 'create') {
         this.household = new Household();
+        this._householdsService.fillWithOptions(this.household);
         const currentLocation = new HouseholdLocation();
         const currentLocationGroup = new HouseholdLocationGroup(
           'current',
@@ -278,9 +279,12 @@ export class UpdateBeneficiaryComponent
           if (result && result['id']) {
             this._householdsService.getOne(result['id']).subscribe((household) => {
               if (household) {
-                this.household = Household.apiToModel(household);
+                this.household = new Household();
+                this._householdsService.fillWithOptions(this.household).subscribe(() => {
+                  Household.apiToModel(household, this.household);
+                  resolve();
+                });
               }
-              resolve();
             });
           }
         });

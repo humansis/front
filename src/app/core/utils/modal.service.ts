@@ -94,11 +94,7 @@ export class ModalService {
             .subscribe((response) => {
               // If the response is null, it means we are offline and the request was stored, not really made
               if (response) {
-                this.snackbar.success(
-                  this.referedClassInstance.title +
-                    ' ' +
-                    this.language.snackbar_created_successfully
-                );
+                this.snackbar.success(this.language.snackbar_created_successfully);
               }
               this.isCompleted.next(true);
               this.dataSubject.next(response);
@@ -128,6 +124,7 @@ export class ModalService {
       });
     }
   }
+
   // TODO: don't fill with options if not necessary
   openAddDialog() {
     this.referedClassInstance = new this.referedClassToken();

@@ -44,7 +44,10 @@
             <div class="multiple-items">
                 <ng-container *ngIf="field.isImageInTable; else notImage">
                     <span *ngFor="let value of field.value">
-                        <app-icon-svg [imagePath]="value.getImage()" [tooltip]="value.getTooltip()"></app-icon-svg>
+                        <app-icon-svg  *ngIf="field.isIcon" [imagePath]="value.getImage()" [tooltip]="value.getTooltip()"></app-icon-svg>
+                        <div *ngIf="!field.isIcon" class="image-container">
+                            <img [src]="field.value" />
+                        </div>
                     </span>
                 </ng-container>
                 <ng-template #notImage>
@@ -64,7 +67,10 @@
     <ng-template #isSingleSelect>
         <ng-container *ngIf="field.kindOfField === 'SingleSelect'; else isNotSelect">
                 <ng-container *ngIf="field.isImageInTable; else singleNotImage">
-                    <app-icon-svg [imagePath]="field.value.getImage()" [tooltip]="value.getTooltip()"></app-icon-svg>
+                    <app-icon-svg *ngIf="field.isIcon" [imagePath]="field.value.getImage()" [tooltip]="field.value.getTooltip()"></app-icon-svg>
+                    <div *ngIf="!field.isIcon" class="image-container">
+                        <img [src]="field.value" />
+                    </div>
                 </ng-container>
                 <ng-template #singleNotImage>
                     <ng-container *ngIf="field.value">
@@ -94,7 +100,10 @@
     <ng-template #isGeneralValue>
         <ng-container *ngIf="isString(field.value); else notAString">
             <ng-container *ngIf="field.isImageInTable; else checkColor">
-                <app-icon-svg [imagePath]="field.value"></app-icon-svg>
+                <app-icon-svg *ngIf="field.isIcon" [imagePath]="field.value"></app-icon-svg>
+                <div *ngIf="!field.isIcon" class="image-container">
+                    <img [src]="field.value" />
+                </div>
             </ng-container>
             <ng-template #checkColor>
                 <ng-container *ngIf="field.isColor; else checkFont">

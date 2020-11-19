@@ -84,6 +84,6 @@
             [ngClass]="{'rtl':language.direction === 'rtl'}">
             <button mat-button (click)="onCancel()" class="button-text-accent">{{language.cancel}}</button>
             <button mat-flat-button [disabled]="!form.valid" (click)="onSubmit()"
-                class="button-background-accent">{{language.save}}</button>
+                class="button-background-primary">{{language.save}}</button>
         </div>
 </mat-dialog-actions>

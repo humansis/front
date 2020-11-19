@@ -37,6 +37,7 @@ export class Russian implements Language {
   this = 'этот';
   selected = 'выбранный';
   history = 'история';
+  loading = 'Загрузка';
 
   // Models
   beneficiaries = 'бенефициары';
@@ -86,11 +87,8 @@ export class Russian implements Language {
   save = 'Сохранить';
   update = 'Обновить';
   view = 'Вид';
-  latitude = 'Широта';
-  longitude = 'Долгота';
-  amount = 'Сумма';
-  price = 'Cтоимость';
-  purchased_by = 'Приобретено';
+  redeem = 'Выкупить';
+  print = 'Распечатать';
 
   // Common Fields
   address = 'Адрес';
@@ -114,6 +112,11 @@ export class Russian implements Language {
   value = 'Стоимость';
   quantity = 'количество';
   total = this.missingTranslation;
+  latitude = 'Широта';
+  longitude = 'Долгота';
+  amount = 'Сумма';
+  price = 'Cтоимость';
+  purchased_by = 'Приобретено';
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -484,6 +487,16 @@ export class Russian implements Language {
   household_shelter_status = 'Статус жилья';
   household_status = 'Положение домохозяйств';
 
+  //Vendors
+  vendor_redeemed_batches = 'Выкупленные партии';
+  vendor_redemption_summary = 'Сводка погашений поставщика';
+  vendor_transaction_summary = 'Сводка транзакций поставщика';
+  vendor_total_number_transactions = 'Итоговое кол-во транзакций';
+  vendor_total_value_transactions = 'Итоговая сумма транзакций';
+  vendor_see_history = 'Посмотреть историю';
+  vendor_unpaid_transactions = 'Неоплаченые транзакции';
+  vendor_unpaid_transaction_value = 'Сумма неоплаченных транзакций';
+
   // Import
   import_added = 'Добавлено  существующими бенефициарами';
   import_back_to_beneficiaries = 'Назад к Бенефициарам';
@@ -500,30 +513,14 @@ export class Russian implements Language {
   import_updated = 'Будет обновлено';
 
   // Livelihoods
-  livelihood_livestock = 'Сельское хозяйство - Домашний скот';
-  livelihood_crops = 'Сельское хозяйство - Растениеводство';
-  livelihood_fishing = 'Сельское хозяйство - Рыболовство';
-  livelihood_agriculture_other = 'Сельское хозяйство - другое';
-  livelihood_mining = 'Горная промышленность';
-  livelihood_construction = 'Строительство';
-  livelihood_manufacturing = 'Производство';
-  livelihood_retail = 'Розничная торговля';
-  livelihood_transportation = 'Транспорт';
-  livelihood_education = 'Образование';
-  livelihood_health = 'Здравоохранение';
-  livelihood_tourism = 'Гостеприимство и Туризм';
-  livelihood_legal = 'Юридические услуги';
-  livelihood_home = 'Домашние обязанности';
-  livelihood_religious = 'Религиозные организации';
-  livelihood_telecom = 'IT и телекоммуникации';
-  livelihood_finance = 'Финансирование и страхование';
-  livelihood_manual = 'Ручной труд';
-  livelihood_ngo = 'НПО и некоммерческие организации,';
-  livelihood_military = 'Вооруженные силы или полиция';
-  livelihood_government = 'Правительство и Государственное Предприятие';
-  livelihood_garment = 'Швейная промышленность';
-  livelihood_security = 'Индустрия безопасности';
-  livelihood_service = 'Сфера обслуживания и другие специалисты';
+  livelihood_daily_labour = this.missingTranslation;
+  livelihood_farming_agriculture = this.missingTranslation;
+  livelihood_farming_livestock = this.missingTranslation;
+  livelihood_government = this.missingTranslation;
+  livelihood_home_duties = this.missingTranslation;
+  livelihood_trading = this.missingTranslation;
+  livelihood_own_business = this.missingTranslation;
+  livelihood_textiles = this.missingTranslation;
 
   // Login
   login_bms = 'Система управления бенефициарами';
@@ -743,6 +740,12 @@ export class Russian implements Language {
   sector_tvet = 'TVET';
   sector_food_kits = 'Еда, RTE комплекты';
   sector_nfi = 'NFIs';
+  sector_livelihoods = this.missingTranslation;
+  sector_mine_action = this.missingTranslation;
+  sector_nonspecific = this.missingTranslation;
+  sector_multipurpose_cash = this.missingTranslation;
+  sector_education_tvet = this.missingTranslation;
+  sector_drr_diligence = this.missingTranslation;
 
   // Settings
   settings_country_specific_options = 'дополнительные варианты для страны';

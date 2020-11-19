@@ -5,7 +5,6 @@ import { tap } from 'rxjs/operators';
 import { AppInjector } from 'src/app/app-injector';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { Gender, ResidencyStatus } from 'src/app/models/beneficiary';
-import { LIVELIHOOD } from 'src/app/models/constants/livelihood';
 import { HouseholdFilters } from 'src/app/models/data-sources/households-data-source';
 import { VulnerabilityCriteria } from 'src/app/models/vulnerability-criteria';
 import { URL_BMS_API } from '../../../environments/environment';
@@ -20,9 +19,11 @@ import { CriteriaService } from './criteria.service';
 import { ExportService } from './export.service';
 import { LocationService } from './location.service';
 import { ProjectService } from './project.service';
-import { Observable, of } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { DataChange } from 'src/app/models/api/data-change';
 import { IHousehold } from 'src/app/models/api/household';
+import { LivelihoodService } from 'src/app/core/api/livelihood.service';
+import { IdNameModel } from 'src/app/models/id-name-model';
 
 @Injectable({
   providedIn: 'root',
@@ -184,17 +185,40 @@ export class HouseholdsService extends CustomModelService {
 
   public fillWithOptions(household: Household) {
     const appInjector = AppInjector;
-    appInjector
+    const projects$ = appInjector
       .get(ProjectService)
       .get()
-      .subscribe((projects: any) => {
-        if (projects) {
-          const projectOptions = projects.map((project) => {
-            return Project.apiToModel(project);
-          });
-          household.setOptions('projects', projectOptions);
-        }
-      });
+      .pipe(
+        tap((projects: any) => {
+          if (projects) {
+            const projectOptions = projects.map((project) => {
+              return Project.apiToModel(project);
+            });
+            household.setOptions('projects', projectOptions);
+          }
+        })
+      );
+    projects$.subscribe();
+
+    const livelihoods$ = appInjector
+      .get(LivelihoodService)
+      .get()
+      .pipe(
+        tap((livelihoods: any) => {
+          if (livelihoods) {
+            const options = livelihoods.map((livelihood) => {
+              return new IdNameModel(
+                livelihood.value,
+                this.language['livelihood_' + livelihood.value] ||
+                  this.language.missingTranslation
+              );
+            });
+            household.setOptions('livelihood', options);
+          }
+        })
+      );
+    livelihoods$.subscribe();
+    return forkJoin([projects$, livelihoods$]);
   }
 
   public fillFiltersWithOptions(filters: HouseholdFilters) {
@@ -244,12 +268,21 @@ export class HouseholdsService extends CustomModelService {
     ];
     filters.setOptions('residency', residencyOptions);
 
-    // Get livelihood
-    const livelihoodOptions = LIVELIHOOD.map(
-      (livelihood) =>
-        new Livelihood(livelihood.id, this.language[livelihood.language_key])
-    );
-    filters.setOptions('livelihood', livelihoodOptions);
+    appInjector
+      .get(LivelihoodService)
+      .get()
+      .subscribe((livelihoods: any) => {
+        if (livelihoods) {
+          const options = livelihoods.map((livelihood) => {
+            return new IdNameModel(
+              livelihood.value,
+              this.language['livelihood_' + livelihood.value] ||
+                this.language.missingTranslation
+            );
+          });
+          filters.setOptions('livelihood', options);
+        }
+      });
 
     // Get adm1
     const location = new Location();

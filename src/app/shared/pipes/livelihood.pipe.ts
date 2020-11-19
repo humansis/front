@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { Language } from 'src/app/core/language/language';
-import { LIVELIHOOD } from 'src/app/models/constants/livelihood';
+import { LivelihoodService } from '../../core/api/livelihood.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Pipe({
   name: 'livelihood',
@@ -9,14 +11,28 @@ import { LIVELIHOOD } from 'src/app/models/constants/livelihood';
 export class LivelihoodPipe implements PipeTransform {
   private language: Language = this.languageService.selectedLanguage;
 
-  constructor(private languageService: LanguageService) {}
+  constructor(
+    private languageService: LanguageService,
+    private livelihoodService: LivelihoodService
+  ) {}
 
-  transform(id: number, ...args: unknown[]): unknown {
-    const livelihood = LIVELIHOOD.find((item) => item.id === `${id}`);
-    if (livelihood) {
-      return this.language[livelihood.language_key];
-    } else {
-      return this.language.missingTranslation;
-    }
+  transform(
+    id: number,
+    observable: Observable<any> = this.livelihoodService.get().pipe(
+      map((livelihoods: { value: string }[]) => {
+        const livelihood = livelihoods.find((item) => item.value === `${id}`);
+        if (livelihood) {
+          return (
+            this.language['livelihood_' + livelihood.value] ||
+            this.language.missingTranslation
+          );
+        } else {
+          return this.language.missingTranslation;
+        }
+      })
+    ),
+    ...args: unknown[]
+  ): Observable<string> {
+    return observable;
   }
 }

@@ -2,7 +2,6 @@ import { AppInjector } from '../app-injector';
 import { CountriesService } from '../core/countries/countries.service';
 import { UppercaseFirstPipe } from '../shared/pipes/uppercase-first.pipe';
 import { Beneficiary } from './beneficiary';
-import { LIVELIHOOD } from './constants/livelihood';
 import { CountrySpecificAnswer } from './country-specific';
 import { CustomModel } from './custom-models/custom-model';
 import { MultipleObjectsModelField } from './custom-models/multiple-object-model-field';
@@ -17,7 +16,6 @@ import { Project } from './project';
 import { VulnerabilityCriteria } from './vulnerability-criteria';
 import { NationalId } from './national-id';
 import { DateModelField } from 'src/app/models/custom-models/date-model-field';
-import { BooleanModelField } from 'src/app/models/custom-models/boolan-model-field';
 import { IdNameModel } from 'src/app/models/id-name-model';
 
 export class Livelihood extends CustomModel {
@@ -104,6 +102,7 @@ export class Household extends CustomModel {
       title: this.language.beneficiary_vulnerabilities,
       isDisplayedInTable: true,
       isImageInTable: true,
+      isIcon: true,
       value: [],
       isDisplayedInModal: true,
       displayModalFunction: null,
@@ -133,10 +132,6 @@ export class Household extends CustomModel {
       value: [],
     }),
     livelihood: new SingleSelectModelField({
-      options: LIVELIHOOD.map(
-        (livelihood) =>
-          new Livelihood(livelihood.id, this.language[livelihood.language_key])
-      ),
       apiLabel: 'id',
     }),
     notes: new TextModelField({
@@ -257,8 +252,8 @@ export class Household extends CustomModel {
     }),
   };
 
-  public static apiToModel(householdFromApi: any): Household {
-    const newHousehold = new Household();
+  public static apiToModel(householdFromApi: any, household?: Household): Household {
+    const newHousehold = household || new Household();
 
     newHousehold.set('id', householdFromApi.id);
     newHousehold.set('notes', householdFromApi.notes);

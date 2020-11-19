@@ -41,6 +41,7 @@ export class Project extends CustomModel {
       options: undefined,
       bindField: 'name',
       isImageInTable: true,
+      isIcon: true,
       isEditable: true,
       value: [],
       apiLabel: 'id',

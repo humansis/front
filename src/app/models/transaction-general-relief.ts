@@ -128,10 +128,8 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         isDisplayedInTable: true,
         isDisplayedInModal: true,
       }),
-      // Will be displayed in modal as an array of input field, but filled with a particular modal
-      notes: new ArrayInputField<string>({
+      notes: new TextModelField({
         title: this.language.notes,
-        numberOfInputs: null,
         isDisplayedInModal: true,
         isEditable: true,
       }),

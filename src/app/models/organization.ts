@@ -25,6 +25,7 @@ export class Organization extends CustomModel {
       title: this.language.organization_logo,
       isDisplayedInTable: true,
       isImageInTable: true,
+      isIcon: false,
     }),
     logoData: new FileModelField({
       title: this.language.organization_logo,

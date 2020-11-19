@@ -178,6 +178,7 @@ export class Beneficiary extends CustomModel {
       isDisplayedInModal: true,
       isDisplayedInTable: true,
       isImageInTable: true,
+      isIcon: true,
       displayTableFunction: null,
       displayModalFunction: null,
       value: [],

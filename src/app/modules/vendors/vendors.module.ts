@@ -7,6 +7,8 @@ import { VendorTableComponent } from './containers/vendor-table/vendor-table.com
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SmartcardSummaryComponent } from './components/smartcard-summary/smartcard-summary.component';
 import { SmartcardSummaryModalComponent } from './containers/modal/smartcard-summary-modal/smartcard-summary-modal.component';
+import { RedeemedBatchesOverviewModalComponent } from './containers/modal/redeemed-batches-overview-modal/redeemed-batches-overview-modal.component';
+import { RedemptionSummaryModalComponent } from './containers/modal/redemption-summary-modal/redemption-summary-modal.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { SmartcardSummaryModalComponent } from './containers/modal/smartcard-sum
     VendorTableComponent,
     SmartcardSummaryComponent,
     SmartcardSummaryModalComponent,
+    RedeemedBatchesOverviewModalComponent,
+    RedemptionSummaryModalComponent,
   ],
   imports: [CommonModule, SharedModule, VendorsRoutingModule],
   providers: [CurrencyPipe],
