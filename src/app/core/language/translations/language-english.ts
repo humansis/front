@@ -219,6 +219,7 @@ export class English implements Language {
   beneficiary_en_family_name = 'family name (English)';
   beneficiary_en_given_name = 'first name (English)';
   beneficiary_en_name = 'name (English)';
+  beneficiary_en_parent_name = 'Parent name (English)';
   beneficiary_family_name = 'Family name';
   beneficiary_given_name = 'First name';
   beneficiary_head = 'Household head';
@@ -228,6 +229,7 @@ export class English implements Language {
   beneficiary_local_family_name = 'family name (Local)';
   beneficiary_local_given_name = 'first name (Local)';
   beneficiary_local_name = 'name (Local)';
+  beneficiary_local_parent_name = 'Parent name (Local)';
   beneficiary_member = 'Member';
   beneficiary_missing_selected_project = 'You must select a project before uploading';
   beneficiary_personnal = 'personal information';

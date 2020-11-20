@@ -191,6 +191,7 @@ export interface Language {
   beneficiary_en_family_name: string;
   beneficiary_en_given_name: string;
   beneficiary_en_name: string;
+  beneficiary_en_parent_name: string;
   beneficiary_family_name: string;
   beneficiary_given_name: string;
   beneficiary_head: string;
@@ -200,6 +201,7 @@ export interface Language {
   beneficiary_local_family_name: string;
   beneficiary_local_given_name: string;
   beneficiary_local_name: string;
+  beneficiary_local_parent_name: string;
   beneficiary_member: string;
   beneficiary_missing_selected_project: string;
   beneficiary_personnal: string;

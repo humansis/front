@@ -220,8 +220,10 @@ export class UpdateBeneficiaryComponent
       'id',
       'localGivenName',
       'localFamilyName',
+      'localParentsName',
       'enGivenName',
       'enFamilyName',
+      'enParentsName',
       'gender',
       'dateOfBirth',
       'IDType',
@@ -796,8 +798,10 @@ export class UpdateBeneficiaryComponent
       [
         'localFamilyName',
         'localGivenName',
+        'localParentsName',
         'enFamilyName',
         'enGivenName',
+        'enParentsName',
         'dateOfBirth',
       ].forEach((field: string) => {
         beneficiary.set(field, controls[field].value);

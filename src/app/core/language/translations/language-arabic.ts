@@ -214,6 +214,7 @@ export class Arabic implements Language {
   beneficiary_en_family_name = '(اسم العائلة (انجليزي';
   beneficiary_en_given_name = '(الاسم المعطى (الإنجليزية';
   beneficiary_en_name = '(الاسم (انجليزي';
+  beneficiary_en_parent_name = this.missingTranslation;
   beneficiary_family_name = 'اللقب';
   beneficiary_given_name = 'الاسم ';
   beneficiary_head = 'رب الأسرة';
@@ -223,6 +224,7 @@ export class Arabic implements Language {
   beneficiary_local_family_name = '(اسم العائلة (محلي';
   beneficiary_local_given_name = '(الاسم المحدد (محلي';
   beneficiary_local_name = '(الاسم (محلي';
+  beneficiary_local_parent_name = this.missingTranslation;
   beneficiary_member = 'فرد من العائلة';
   beneficiary_missing_selected_project = 'يجب أن تختار مشروعاقبل التحميل';
   beneficiary_personnal = 'معلومات شخصية';

@@ -239,6 +239,7 @@ export class French implements Language {
   beneficiary_en_family_name = 'Nom de famille (Anglais)';
   beneficiary_en_given_name = 'Prénom (Anglais)';
   beneficiary_en_name = 'Nom (Anglais)';
+  beneficiary_en_parent_name = this.missingTranslation;
   beneficiary_family_name = 'Nom';
   beneficiary_given_name = 'Prénom';
   beneficiary_head = 'Chef de famille';
@@ -248,6 +249,7 @@ export class French implements Language {
   beneficiary_local_family_name = 'Nom de famille (Local)';
   beneficiary_local_given_name = 'Prénom (Local)';
   beneficiary_local_name = 'Nom (Local)';
+  beneficiary_local_parent_name = this.missingTranslation;
   beneficiary_member = 'Membre';
   beneficiary_missing_selected_project =
     "Vous devez selectionner un projet avant l'importation";
