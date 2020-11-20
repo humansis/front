@@ -447,6 +447,7 @@ export interface Language {
   household_id: string;
   household_income_level: object;
   household_income: string;
+  household_income_spent_on_food: string;
   household_info: string;
   household_livelihood: string;
   household_location_address: string;

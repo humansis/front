@@ -180,6 +180,7 @@ export class UpdateBeneficiaryComponent
     this.mainFields = [
       'locationDifferent',
       'incomeLevel',
+      'incomeSpentOnFood',
       'livelihood',
       'notes',
       'projects',
@@ -613,6 +614,7 @@ export class UpdateBeneficiaryComponent
               )[0]
           : null
       );
+      this.household.set('incomeSpentOnFood', controls.incomeSpentOnFood.value);
       this.household.set('foodConsumptionScore', controls.foodConsumptionScore.value);
       this.household.set('copingStrategiesIndex', controls.copingStrategiesIndex.value);
       this.household.set('debtLevel', controls.debtLevel.value);

@@ -151,17 +151,21 @@ export class Household extends CustomModel {
         new IncomeLevel('5', this.language['household_income_level']['5'][this.country]),
       ],
     }),
+    incomeSpentOnFood: new NumberModelField({
+      title: this.language.household_income_spent_on_food,
+      isDisplayedInModal: false,
+    }),
     foodConsumptionScore: new NumberModelField({
       title: this.language.household_food_consumption_score,
-      isDisplayedInModal: true,
+      isDisplayedInModal: false,
     }),
     copingStrategiesIndex: new NumberModelField({
       title: this.language.household_coping_strategies_index,
-      isDisplayedInModal: true,
+      isDisplayedInModal: false,
     }),
     debtLevel: new NumberModelField({
       title: this.language.household_debt_level,
-      isDisplayedInModal: true,
+      isDisplayedInModal: false,
     }),
     supportReceivedOtherOrg: new MultipleSelectModelField({
       title: this.language.household_support_received_other_org,
@@ -268,6 +272,7 @@ export class Household extends CustomModel {
             )
         : null
     );
+    newHousehold.set('incomeSpentOnFood', householdFromApi.income_spent_on_food);
     newHousehold.set('foodConsumptionScore', householdFromApi.food_consumption_score);
     newHousehold.set('copingStrategiesIndex', householdFromApi.coping_strategies_index);
     newHousehold.set(
@@ -432,6 +437,7 @@ export class Household extends CustomModel {
       country_specific_answers: this.fields.countrySpecificAnswers.formatForApi(),
       beneficiaries: this.fields.beneficiaries.formatForApi(),
       income_level: this.fields.incomeLevel.formatForApi(),
+      income_spent_on_food: this.fields.incomeSpentOnFood.formatForApi(),
       household_locations: householdLocations.map(
         (householdLocation: HouseholdLocation) => householdLocation.modelToApi()
       ),

@@ -467,6 +467,7 @@ export class English implements Language {
   household_id = 'Household ID';
   household_income = 'income level';
   household_income_level = INCOMELEVELS.english;
+  household_income_spent_on_food = 'Income spent on food';
   household_info = 'Household information summary';
   household_livelihood = 'Livelihood';
   household_location = 'Household Location';

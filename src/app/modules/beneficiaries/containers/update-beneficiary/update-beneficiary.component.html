@@ -69,6 +69,16 @@
                                         </div>
                                         <div>
                                             <mat-form-field>
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_income_spent_on_food "
+                                                       formControlName="incomeSpentOnFood">
+                                                <app-hint-error [form]="mainForm" fieldName="incomeSpentOnFood"
+                                                                [field]="household.fields.incomeSpentOnFood"
+                                                                [isMatField]="true"></app-hint-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <mat-form-field>
                                                 <input matInput type="number" min="0" max="100"
                                                        [placeholder]="language.household_debt_level "
                                                        formControlName="debtLevel">

@@ -460,6 +460,7 @@ export class Russian implements Language {
   household_id = 'Полный адрес домохозяйства';
   household_income = 'уровень доходов';
   household_income_level = INCOMELEVELS.russian;
+  household_income_spent_on_food = this.missingTranslation;
   household_info = 'Краткая информация о домохозяйстве';
   household_livelihood = 'Средства к существованию';
   household_location = 'Расположение домохозяйства';

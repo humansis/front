@@ -472,6 +472,7 @@ export class French implements Language {
   household_id = 'ID du foyer';
   household_income = 'Niveau de revenu';
   household_income_level = INCOMELEVELS.french;
+  household_income_spent_on_food = this.missingTranslation;
   household_info = 'Résumé des informations du ménage';
   household_livelihood = 'Métier';
   household_location = 'Localisation du ménage';

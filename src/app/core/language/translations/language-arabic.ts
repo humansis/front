@@ -455,6 +455,7 @@ export class Arabic implements Language {
   household_id = 'معرف الأسرة';
   household_income = 'مستوى الدخل';
   household_income_level = INCOMELEVELS.arabic;
+  household_income_spent_on_food = this.missingTranslation;
   household_info = 'ملخص المعلومات الخاصة بالمنزل  :';
   household_livelihood = 'الوظيفة';
   household_location_address = 'عنوان';
