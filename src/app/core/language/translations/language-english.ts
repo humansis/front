@@ -875,6 +875,8 @@ export class English implements Language {
   snackbar_error_creating = 'Error while creating ';
   snackbar_error_updating = 'Error while updating ';
   snackbar_invalid_transaction_date = 'The transaction deadline is over.';
+  snackbar_distribution_in_future =
+    'The Date of the Distribution is in the future. You cannot proceed with this Transaction.';
   snackbar_no_data_export = 'No data to export';
   snackbar_pickup_error = 'It is currently impossible to check the pickup status';
   snackbar_saved_language = 'Default Language Saved';

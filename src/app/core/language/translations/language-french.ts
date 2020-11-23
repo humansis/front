@@ -883,6 +883,7 @@ export class French implements Language {
   snackbar_error_creating = 'Erreur lors de la création = ';
   snackbar_error_updating = 'Erreur lors de la modification = ';
   snackbar_invalid_transaction_date = 'La date valide de transaction est dépassée.';
+  snackbar_distribution_in_future = this.missingTranslation;
   snackbar_no_data_export = 'Pas de données à exporter';
   snackbar_pickup_error =
     'Il est impossile de vérifier le statut de la récupération pour le moment';
