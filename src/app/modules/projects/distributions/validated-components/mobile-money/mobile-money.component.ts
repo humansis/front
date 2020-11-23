@@ -192,7 +192,9 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
 
   getPeopleCount(): number {
     let peopleCount = 0;
-    for (const distributionBeneficiary of this.transactionData.data) {
+    for (const distributionBeneficiary of this.transactionData.data.filter(
+      (item) => !item.get('removed')
+    )) {
       if (parseInt(distributionBeneficiary.get('state').get('id'), 10) <= 0) {
         peopleCount++;
       }
