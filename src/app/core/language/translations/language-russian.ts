@@ -768,6 +768,7 @@ export class Russian implements Language {
   snackbar_error_creating = 'Ошибка при создании ';
   snackbar_error_updating = 'Ошибка при обновлении ';
   snackbar_invalid_transaction_date = 'Срок транзакции истек';
+  snackbar_distribution_in_future = this.missingTranslation;
   snackbar_no_data_export = 'Нет данных для экспорта';
   snackbar_pickup_error = 'В настоящее время невозможно проверить статус получения';
   snackbar_saved_language = 'Язык по умолчанию сохранен';

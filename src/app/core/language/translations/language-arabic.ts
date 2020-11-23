@@ -862,6 +862,7 @@ export class Arabic implements Language {
   snackbar_error_creating = ': حدث خطأ أثناء الإنشاء ';
   snackbar_error_updating = ': حدث خطأ أثناء التحديث';
   snackbar_invalid_transaction_date = 'انتهت مهلة المعاملة.';
+  snackbar_distribution_in_future = this.missingTranslation;
   snackbar_no_data_export = 'لا توجد بيانات للتصدير';
   snackbar_pickup_error = 'من المستحيل حاليًا التحقق من حالة الالتقاط';
   snackbar_saved_language = 'اللغة الافتراضية المحفوظة';

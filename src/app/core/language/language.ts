@@ -839,6 +839,7 @@ export interface Language {
   snackbar_error_creating: string;
   snackbar_error_updating: string;
   snackbar_invalid_transaction_date: string;
+  snackbar_distribution_in_future: string;
   snackbar_no_data_export: string;
   snackbar_pickup_error: string;
   snackbar_saved_language: string;
