@@ -87,6 +87,7 @@ export class SmartcardSummaryModalComponent implements OnInit {
       width: '650px',
       data: {
         id: this.id,
+        backComponent: SmartcardSummaryModalComponent,
       },
     });
   }
