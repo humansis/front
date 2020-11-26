@@ -1,7 +1,7 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
+
 /* tslint:disable */
 export class French implements Language {
   // GENERAL VARIABLES
@@ -470,8 +470,7 @@ export class French implements Language {
   household_food_consumption_score = 'Score de consommation alimentaire';
   household_full_address = 'Adresse entière du ménage';
   household_id = 'ID du foyer';
-  household_income = 'Niveau de revenu';
-  household_income_level = INCOMELEVELS.french;
+  household_income = 'Le revenu';
   household_income_spent_on_food = this.missingTranslation;
   household_info = 'Résumé des informations du ménage';
   household_livelihood = 'Métier';

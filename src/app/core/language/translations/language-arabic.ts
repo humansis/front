@@ -1,7 +1,7 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
+
 /* tslint:disable */
 export class Arabic implements Language {
   // GENERAL VARIABLES
@@ -453,8 +453,7 @@ export class Arabic implements Language {
   household_food_consumption_score = 'درجة استهلاك الغذاء';
   household_full_address = 'عنوان المنزل بالكامل:';
   household_id = 'معرف الأسرة';
-  household_income = 'مستوى الدخل';
-  household_income_level = INCOMELEVELS.arabic;
+  household_income = 'الدخل';
   household_income_spent_on_food = this.missingTranslation;
   household_info = 'ملخص المعلومات الخاصة بالمنزل  :';
   household_livelihood = 'الوظيفة';

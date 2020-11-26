@@ -81,7 +81,7 @@
               </ng-template>
 
               <ng-template #date>
-                <mat-form-field class="full-width" *ngIf="form.controls.field.value === 'dateOfBirth' || form.controls.field.value === 'headOfHouseholdDateOfBirth' || form.controls.field.value === 'hasNotBeenInDistributionsSince'; else incomeLevel">
+                <mat-form-field class="full-width" *ngIf="form.controls.field.value === 'dateOfBirth' || form.controls.field.value === 'headOfHouseholdDateOfBirth' || form.controls.field.value === 'hasNotBeenInDistributionsSince'; else text">
                   <input formControlName="value" matInput [matDatepicker]="date">
                   <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
                   <mat-datepicker #date></mat-datepicker>
@@ -89,21 +89,11 @@
                 </mat-form-field>
               </ng-template>
 
-              <ng-template #incomeLevel>
-                <ng-container *ngIf="form.controls.field.value === 'incomeLevel'; else text">
-                  <mat-form-field>
-                    <mat-select class="single-select" [multiple]="false" placeholder="{{language.household_income}}" formControlName="value">
-                      <mat-option *ngFor="let option of incomeLevels" [value]="option.get('id')">
-                        {{ option.get('name') }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </ng-container>
-              </ng-template>
 
               <ng-template #text>
                 <mat-form-field class="full-width">
                     <input formControlName="value" matInput [type]="getType(form.controls.field.value)">
+                    {{getType(form.controls.field.value)}}
                     <app-hint-error [form]="form" fieldName="value" [field]="criteria.fields.value" [isMatField]="true"></app-hint-error>
                 </mat-form-field>
               </ng-template>

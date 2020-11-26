@@ -31,12 +31,7 @@ import { CampAddress } from 'src/app/models/camp-address';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { CountrySpecific, CountrySpecificAnswer } from 'src/app/models/country-specific';
 import { CustomModel } from 'src/app/models/custom-models/custom-model';
-import {
-  Household,
-  Livelihood,
-  FormLocation,
-  IncomeLevel,
-} from 'src/app/models/household';
+import { Household, Livelihood, FormLocation } from 'src/app/models/household';
 import {
   HouseholdLocation,
   HouseholdLocationGroup,
@@ -179,7 +174,7 @@ export class UpdateBeneficiaryComponent
   fillFormFields() {
     this.mainFields = [
       'locationDifferent',
-      'incomeLevel',
+      'income',
       'incomeSpentOnFood',
       'livelihood',
       'notes',
@@ -603,17 +598,7 @@ export class UpdateBeneficiaryComponent
 
       this.household.set('livelihood', this.getLivelihood());
       this.household.set('notes', controls.notes.value);
-      this.household.set(
-        'incomeLevel',
-        controls.incomeLevel.value
-          ? this.household
-              .getOptions('incomeLevel')
-              .filter(
-                (incomeLevel: IncomeLevel) =>
-                  controls.incomeLevel.value === incomeLevel.get('id')
-              )[0]
-          : null
-      );
+      this.household.set('income', controls.income.value);
       this.household.set('incomeSpentOnFood', controls.incomeSpentOnFood.value);
       this.household.set('foodConsumptionScore', controls.foodConsumptionScore.value);
       this.household.set('copingStrategiesIndex', controls.copingStrategiesIndex.value);

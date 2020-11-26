@@ -1,5 +1,4 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
 
@@ -465,8 +464,7 @@ export class English implements Language {
   household_food_consumption_score = 'Food consumption score';
   household_full_address = 'Full household address';
   household_id = 'Household ID';
-  household_income = 'income level';
-  household_income_level = INCOMELEVELS.english;
+  household_income = 'Income';
   household_income_spent_on_food = 'Income spent on food';
   household_info = 'Household information summary';
   household_livelihood = 'Livelihood';

@@ -55,16 +55,15 @@
                                         </div>
                                         <div>
                                             <mat-form-field>
-                                                <mat-select class="single-select" [multiple]="false"
-                                                            placeholder="{{language.household_income}}"
-                                                            formControlName="incomeLevel">
-                                                    <mat-option *ngFor="let option of household.getOptions('incomeLevel')" [value]="option.get('id')">
-                                                        {{ option.get('name') }}
-                                                    </mat-option>
-                                                </mat-select>
-                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.incomeLevel, 'income_level')"
+                                                <input matInput type="number"
+                                                       [placeholder]="language.household_income"
+                                                       formControlName="income">
+                                                <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_income, 'household_income')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
                                                 </mat-hint>
+                                                <app-hint-error [form]="mainForm" fieldName="income"
+                                                                [field]="household.fields.income"
+                                                                [isMatField]="true"></app-hint-error>
                                             </mat-form-field>
                                         </div>
                                         <div>

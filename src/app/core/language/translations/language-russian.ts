@@ -1,7 +1,7 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
+
 /* tslint:disable */
 export class Russian implements Language {
   // GENERAL VARIABLES
@@ -458,8 +458,7 @@ export class Russian implements Language {
   household_food_consumption_score = 'Оценка потребления пищи';
   household_full_address = 'Полный адрес домохозяйства';
   household_id = 'Полный адрес домохозяйства';
-  household_income = 'уровень доходов';
-  household_income_level = INCOMELEVELS.russian;
+  household_income = 'доходов';
   household_income_spent_on_food = this.missingTranslation;
   household_info = 'Краткая информация о домохозяйстве';
   household_livelihood = 'Средства к существованию';
