@@ -1,0 +1,6 @@
+<div [formGroup]="form">
+    <ng-select formControlName="sector" [placeholder]="language.sector" [items]="sectors" bindLabel="name" bindValue="id"></ng-select>
+    <ng-select formControlName="subsector" [placeholder]="language.subsector" [items]="subsectors" bindLabel="name" bindValue="id"></ng-select>
+    <ng-select formControlName="assistance_type" [placeholder]="language.assistance_type" [clearable]="false" [clearOnBackspace]="false"  [items]="assistanceTypes"></ng-select>
+    <ng-select formControlName="target_type" [placeholder]="language.target_type" [items]="targetTypes"  ></ng-select>
+</div>

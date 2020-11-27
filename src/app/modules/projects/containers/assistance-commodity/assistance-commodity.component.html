@@ -1,0 +1,8 @@
+<app-assistance-commodity-group
+    [commoditiesDataSource]="commoditiesDataSource"
+    [currentDisplayType]="displayType$ | async"
+    [totalBeneficiaries]="totalBeneficiaries"
+    (addClick)="addCommodity()"
+    (removeClick)="removeCommodity($event)">
+
+</app-assistance-commodity-group>

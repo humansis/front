@@ -76,7 +76,6 @@ import { TableComponent } from '../components/table/table.component';
 import { MobilePressDirective } from '../core/directives/mobile-press.directive';
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
-import { AddDistributionComponent } from '../modules/projects/add-distribution/add-distribution.component';
 import { DistributionsComponent } from '../modules/projects/distributions/distributions.component';
 import { ImportDistributionComponent } from '../modules/projects/distributions/import-distribution/import-distribution.component';
 // tslint:disable-next-line
@@ -170,7 +169,6 @@ import { NgPipesModule } from 'ngx-pipes';
     MonthPickerComponent,
     YearPickerComponent,
     ProjectComponent,
-    AddDistributionComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     TableComponent,
@@ -251,7 +249,6 @@ import { NgPipesModule } from 'ngx-pipes';
     BeneficiariesComponent,
     BeneficiariesImportComponent,
     ProjectComponent,
-    AddDistributionComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     BoxPropertiesComponent,

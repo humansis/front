@@ -1,0 +1,21 @@
+<div class="header">
+    <h3>Group {{name}}</h3>
+    <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="removeGroupClick.emit()" >
+        <span>{{ language.remove }}</span>
+    </button>
+</div>
+
+<app-table (openModal)="removeClick.emit($event.element)" [entity]="criteriaClass" [data]="data" deletable="true" rights="true" #criteriaTable></app-table>
+<div class="controls">
+    <h3 class="summary-text">
+        <span>{{reachedBeneficiaries}}</span> {{targetType}}
+    </h3>
+
+    <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="detailsClick.emit()" >
+        <span>Details</span>
+    </button>
+    <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="addClick.emit()" >
+        <span>{{ language.add }}</span>
+    </button>
+</div>
+

@@ -1,5 +1,9 @@
-@import '../../../../assets/css/variable.scss';
-@import '../../../../assets/css/global.scss';
+@import '../../../../../assets/css/variable.scss';
+@import '../../../../../assets/css/global.scss';
+
+.headline {
+    width: 100%;
+}
 
 .page-container {
     .container-data {
@@ -11,6 +15,9 @@
     }
 }
 
+.mat-card {
+    background: white !important;
+}
 
 .container-fields {
     display: flex;
@@ -130,33 +137,6 @@
 
             #text-explanation {
                 margin-bottom: 20px;
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 750px),
-(max-height: 700px) {
-    .container-fields {
-        flex-direction: column !important;
-        overflow-x: hidden;
-
-        .field-distribution {
-            margin-right: 0 !important;
-
-            .distribution-accordion {
-                min-height: 200px !important;
-                padding-right: 0 !important;
-            }
-        }
-
-        .field-forms {
-            .forms-commodity,
-            .forms-criteria {
-                .form {
-                    margin: 20px 0;
-                    background-color: $bms_white;
-                }
             }
         }
     }

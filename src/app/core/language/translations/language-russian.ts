@@ -117,6 +117,9 @@ export class Russian implements Language {
   amount = 'Сумма';
   price = 'Cтоимость';
   purchased_by = 'Приобретено';
+  subsector = this.missingTranslation;
+  assistance_type = this.missingTranslation;
+  target_type = this.missingTranslation;
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -180,12 +183,15 @@ export class Russian implements Language {
   add_distribution_missing_date = 'Дата отсутствует';
   add_distribution_missing_location = 'Добавьте провинцию';
   add_distribution_missing_selection_criteria = 'Критерий отбора отсутствует';
+  add_distribution_missing_criteria_group = this.missingTranslation;
   add_distribution_missing_threshold = this.missingTranslation;
   add_distribution_multiple_modalities =
     'Вы не можете добавлять товары, которые распределяются не одинаково';
   add_distribution_no_beneficiaries =
     'Количество достигнутых бенефициаров / домохозяйств должно быть положительным';
   add_distribution_selection_criteria = 'критерий отбора';
+  add_distribution_target = this.missingTranslation;
+  add_distribution_location_date = this.missingTranslation;
   add_distribution_text_explanation =
     'Система будет выбирать только тех бенефициаров/физических лиц, у которых балл выше минимального балла отбора';
   add_distribution_threshold = 'Минимальный балл отбора';
@@ -201,6 +207,7 @@ export class Russian implements Language {
   // Add project
   add_project_title = 'новый проект';
   add_project_new_distribution = 'новая выдача';
+  add_project_new_assistance = this.missingTranslation;
 
   // Beneficiaries
   beneficiary_add_list = 'Добавить к проекту';

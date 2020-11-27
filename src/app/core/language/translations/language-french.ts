@@ -119,6 +119,9 @@ export class French implements Language {
   purchased_by = this.missingTranslation;
   quantity = 'Quantité';
   total = this.missingTranslation;
+  subsector = this.missingTranslation;
+  assistance_type = this.missingTranslation;
+  target_type = this.missingTranslation;
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";
@@ -183,12 +186,15 @@ export class French implements Language {
   add_distribution_missing_date = 'La date est manquante';
   add_distribution_missing_location = 'Add a Province';
   add_distribution_missing_selection_criteria = 'Un critère de sélection est manquant';
+  add_distribution_missing_criteria_group = this.missingTranslation;
   add_distribution_missing_threshold = this.missingTranslation;
   add_distribution_multiple_modalities =
     'Vous ne pouvez pas ajouter des commodités distribuées différemment';
   add_distribution_no_beneficiaries =
     'Le nombre de bénficiaires/ménages atteints doit être positif';
   add_distribution_selection_criteria = 'critères de sélection';
+  add_distribution_target = this.missingTranslation;
+  add_distribution_location_date = this.missingTranslation;
   add_distribution_text_explanation =
     'Le système va seulement sélectionner les bénéficiaires/ménages avec un score supérieur que le score minimum de sélection';
   add_distribution_threshold = 'Score minimum de sélection';
@@ -202,6 +208,7 @@ export class French implements Language {
 
   // Add project
   add_project_new_distribution = 'nouvelle distribution';
+  add_project_new_assistance = this.missingTranslation;
   add_project_title = 'nouveau projet';
 
   // Benficiary form errors

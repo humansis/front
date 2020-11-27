@@ -158,33 +158,42 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
 
   writeValue(location: any): void {
     if (location) {
-      if (location.adm1) {
-        this.loadAdministrativeArea2Locations(location.adm1);
-      }
-      if (location.adm2) {
-        this.loadAdministrativeArea3Locations(location.adm2);
-      }
-      if (location.adm3) {
-        this.loadAdministrativeArea4Locations(location.adm3);
-      }
-      forkJoin([
+      const loaders = [
         this.area1loading$.pipe(
           filter((value) => !value),
           take(1)
         ),
-        this.area2loading$.pipe(
-          filter((value) => !value),
-          take(1)
-        ),
-        this.area3loading$.pipe(
-          filter((value) => !value),
-          take(1)
-        ),
-        this.area4loading$.pipe(
-          filter((value) => !value),
-          take(1)
-        ),
-      ]).subscribe(() => (this.value = location));
+      ];
+      if (location.adm1) {
+        this.loadAdministrativeArea2Locations(location.adm1);
+        loaders.push(
+          this.area2loading$.pipe(
+            filter((value) => !value),
+            take(1)
+          )
+        );
+      }
+      if (location.adm2) {
+        this.loadAdministrativeArea3Locations(location.adm2);
+        loaders.push(
+          this.area3loading$.pipe(
+            filter((value) => !value),
+            take(1)
+          )
+        );
+      }
+      if (location.adm3) {
+        this.loadAdministrativeArea4Locations(location.adm3);
+        loaders.push(
+          this.area4loading$.pipe(
+            filter((value) => !value),
+            take(1)
+          )
+        );
+      }
+      forkJoin(loaders).subscribe(() => {
+        this.value = location;
+      });
     }
   }
 

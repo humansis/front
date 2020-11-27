@@ -120,6 +120,9 @@ export class English implements Language {
   purchased_by = 'Purchased by';
   quantity = 'Quantity';
   total = 'Total';
+  subsector = 'Subsector';
+  assistance_type = 'Assistance Type';
+  target_type = 'Target Type';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -182,6 +185,8 @@ export class English implements Language {
   add_distribution_missing_date = 'The date is missing';
   add_distribution_missing_location = 'Add a Province';
   add_distribution_missing_selection_criteria = 'A selection criterion is missing';
+  add_distribution_missing_criteria_group =
+    'There are no criteria groups. Please add at least one criteria group.';
   add_distribution_missing_threshold =
     "The minimum selection score's value should be greater than or equal to 0";
   add_distribution_multiple_modalities =
@@ -189,6 +194,8 @@ export class English implements Language {
   add_distribution_no_beneficiaries =
     'The number of reached beneficiaries/households must be positive';
   add_distribution_selection_criteria = 'selection criteria';
+  add_distribution_target = 'Target';
+  add_distribution_location_date = 'Location and date';
   add_distribution_text_explanation =
     'The system will only select beneficiaries/households that have a score higher than the minimum selection score';
   add_distribution_threshold = 'Minimum selection score';
@@ -204,6 +211,7 @@ export class English implements Language {
   // Add project
   add_project_title = 'new project';
   add_project_new_distribution = 'new distribution';
+  add_project_new_assistance = 'New Assistance';
 
   // Beneficiaries
   beneficiary_add_list = 'Add to project';

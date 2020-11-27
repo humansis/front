@@ -100,13 +100,19 @@
                     </div> -->
                     </div>
                     <h3 *ngIf="distributionData && distributionData.data.length > 0">{{language.distributions}}</h3>
-                    <button mat-flat-button *ngIf="currentDisplayType.type !== 'mobile' && userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')" (click)="addDistribution()" class="add-button-create">
+                    <a mat-flat-button
+                       class="add-button-create"
+                       *ngIf="currentDisplayType.type !== 'mobile' && userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')"
+                       [routerLink]="[selectedProject.get('id'), 'assistance', 'create']" >
                     <mat-icon>add</mat-icon>
                     {{language.add}}
-                    </button>
-                    <button mat-fab *ngIf="currentDisplayType.type === 'mobile' && userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')" (click)="addDistribution()" class="add-button" [ngClass]="{'add-button-rtl': language.direction === 'rtl'}">
+                    </a>
+                    <a mat-fab
+                       class="add-button" [ngClass]="{'add-button-rtl': language.direction === 'rtl'}"
+                       *ngIf="currentDisplayType.type === 'mobile' && userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')"
+                       [routerLink]="[selectedProject.get('id'), 'assistance', 'create']">
                     <mat-icon>add</mat-icon>
-                    </button>
+                    </a>
                 </div>
 
                 <div class="undisplay new-project" *ngIf="selectedProject.get('numberOfHouseholds') === 0 &&  !noNetworkData">

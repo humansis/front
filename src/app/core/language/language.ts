@@ -115,6 +115,9 @@ export interface Language {
   purchased_by: string;
   quantity: string;
   total: string;
+  subsector: string;
+  assistance_type: string;
+  target_type: string;
 
   // Error
   back_to_homepage: string;
@@ -161,10 +164,13 @@ export interface Language {
   add_distribution_missing_date: string;
   add_distribution_missing_location: string;
   add_distribution_missing_selection_criteria: string;
+  add_distribution_missing_criteria_group: string;
   add_distribution_missing_threshold: string;
   add_distribution_multiple_modalities: string;
   add_distribution_no_beneficiaries: string;
   add_distribution_selection_criteria: string;
+  add_distribution_target: string;
+  add_distribution_location_date: string;
   add_distribution_text_explanation: string;
   add_distribution_threshold: string;
   add_distribution_zero: string;
@@ -177,6 +183,7 @@ export interface Language {
 
   // Add project
   add_project_new_distribution: string;
+  add_project_new_assistance: string;
   add_project_title: string;
 
   // Beneficiaries
