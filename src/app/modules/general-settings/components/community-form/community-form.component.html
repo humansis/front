@@ -49,6 +49,17 @@
                        formControlName="number">
             </mat-form-field>
         </div>
+        <ng-select
+            [multiple]="true"
+            [closeOnSelect]="true"
+            [searchable]="true"
+            class="single-select"
+            formControlName="projects"
+            placeholder="{{language.projects}} *">
+            <ng-option *ngFor="let project of projects" [value]="project.id">
+                {{project.name}}
+            </ng-option>
+        </ng-select>
     </div>
     <div>
         <div formGroupName="address">

@@ -39,7 +39,9 @@ export class CommunitiesComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(CommunityModalComponent);
+    const dialogRef = this.dialog.open(CommunityModalComponent, {
+      width: '1000px',
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.communityTable.loadCommunities();

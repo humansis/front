@@ -4,6 +4,9 @@ import { SnackbarService } from 'src/app/core/logging/snackbar.service';
 import { Institution } from 'src/app/models/api/institution';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { InstitutionService } from 'src/app/core/api/institution.service';
+import { ProjectService } from 'src/app/core/api/project.service';
+import { Observable } from 'rxjs';
+import { Project } from 'src/app/models/api/project';
 
 @Component({
   selector: 'app-institution-modal',
@@ -13,29 +16,30 @@ import { InstitutionService } from 'src/app/core/api/institution.service';
 export class InstitutionModalComponent implements OnInit {
   language = this.languageService.selectedLanguage;
 
+  projects$: Observable<Project[]>;
+
   constructor(
     public dialogRef: MatDialogRef<InstitutionModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Institution,
     private languageService: LanguageService,
     private institutionService: InstitutionService,
+    private projectService: ProjectService,
     private snackBarService: SnackbarService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.projects$ = this.projectService.get();
+  }
 
   onSave(institution: Institution) {
     if (institution.id) {
       this.institutionService.update(institution.id, institution).subscribe(() => {
-        this.snackBarService.success(
-          `${this.language.institutions} ${this.language.snackbar_updated_successfully}`
-        );
+        this.snackBarService.success(`${this.language.snackbar_updated_successfully}`);
         this.dialogRef.close(true);
       });
     } else {
       this.institutionService.create(institution).subscribe(() => {
-        this.snackBarService.success(
-          `${this.language.institutions} ${this.language.snackbar_created_successfully}`
-        );
+        this.snackBarService.success(`${this.language.snackbar_created_successfully}`);
         this.dialogRef.close(true);
       });
     }

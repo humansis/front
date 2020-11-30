@@ -5,6 +5,7 @@ import { CARD_TYPES } from 'src/app/models/constants/card-type';
 import { INSTITUTION_TYPES } from 'src/app/models/constants/institution-type';
 import { Institution } from 'src/app/models/api/institution';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
+import { Project } from 'src/app/models/api/project';
 
 @Component({
   selector: 'app-institution-form',
@@ -22,7 +23,8 @@ export class InstitutionFormComponent implements OnInit {
 
   public readonly phoneCodes = PHONECODES;
 
-  private institutionId: number;
+  @Input()
+  projects: Project[] = [];
 
   @Input()
   set data(institution: Institution) {
@@ -39,6 +41,8 @@ export class InstitutionFormComponent implements OnInit {
   @Output()
   save: EventEmitter<Institution> = new EventEmitter<Institution>();
 
+  private institutionId: number;
+
   constructor(private fb: FormBuilder, private languageService: LanguageService) {
     this.createForm();
   }
@@ -54,7 +58,8 @@ export class InstitutionFormComponent implements OnInit {
   private createForm() {
     this.form = this.fb.group({
       name: [undefined],
-      type: [],
+      type: [undefined, Validators.required],
+      projects: [[], Validators.required],
       address: this.fb.group({
         number: [],
         street: [],

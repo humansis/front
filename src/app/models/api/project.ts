@@ -5,8 +5,8 @@ export interface Project {
   notes: string;
   target: number;
   donors: any[];
-  start_date: string;
   end_date: string;
+  start_date: string;
   number_of_households: number;
   sectors: any[];
   reached_beneficiaries: number;

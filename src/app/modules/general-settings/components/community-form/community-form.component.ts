@@ -4,6 +4,7 @@ import { CARD_TYPES } from 'src/app/models/constants/card-type';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { Community } from 'src/app/models/api/community';
+import { Project } from 'src/app/models/api/project';
 
 @Component({
   selector: 'app-community-form',
@@ -33,6 +34,9 @@ export class CommunityFormComponent implements OnInit {
     }
   }
 
+  @Input()
+  projects: Project[] = [];
+
   @Output()
   save: EventEmitter<Community> = new EventEmitter<Community>();
 
@@ -56,6 +60,7 @@ export class CommunityFormComponent implements OnInit {
         postcode: [],
         location: [],
       }),
+      projects: [[], Validators.required],
       contact_name: [],
       contact_family_name: [],
       phone_prefix: [],

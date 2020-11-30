@@ -39,7 +39,9 @@ export class InstitutionsComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(InstitutionModalComponent);
+    const dialogRef = this.dialog.open(InstitutionModalComponent, {
+      width: '1000px',
+    });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.institutionTable.loadInstitutions();
