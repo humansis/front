@@ -1,10 +1,10 @@
 export interface Sector {
   id: number;
   name: string;
-  subSectors?: SubSector[];
+  subsectors?: Subsector[];
 }
 
-export interface SubSector {
+export interface Subsector {
   id: number;
   name: string;
   availableTargets: string[];

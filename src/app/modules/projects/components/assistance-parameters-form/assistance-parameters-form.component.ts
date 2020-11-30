@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LanguageService } from 'src/app/core/language/language.service';
-import { Sector, SubSector } from 'src/app/models/api/sector';
+import { Sector, Subsector } from 'src/app/models/api/sector';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 
 @Component({
@@ -24,7 +24,7 @@ export class AssistanceParametersFormComponent implements OnInit {
   @Output()
   dataChanged: EventEmitter<any> = new EventEmitter<any>();
 
-  subsectors: SubSector[];
+  subsectors: Subsector[];
   assistanceTypes: string[];
   targetTypes: string[];
   form: FormGroup;
@@ -49,13 +49,13 @@ export class AssistanceParametersFormComponent implements OnInit {
   private onSectorChange(value) {
     const sector = this.sectors.find((item) => item.id === value);
     if (sector) {
-      if (sector.subSectors && sector.subSectors.length > 0) {
+      if (sector.subsectors && sector.subsectors.length > 0) {
         this.form.get('subsector').enable();
-        this.subsectors = sector.subSectors;
+        this.subsectors = sector.subsectors;
         this.form.patchValue({
           subsector:
-            sector.subSectors && sector.subSectors.length > 0
-              ? sector.subSectors[0].id
+            sector.subsectors && sector.subsectors.length > 0
+              ? sector.subsectors[0].id
               : undefined,
         });
       } else {
