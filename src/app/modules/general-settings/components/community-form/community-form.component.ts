@@ -5,6 +5,7 @@ import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { Community } from 'src/app/models/api/community';
 import { Project } from 'src/app/models/api/project';
+import { PhoneType } from '../../../../models/constants/phone-type';
 
 @Component({
   selector: 'app-community-form',
@@ -20,7 +21,10 @@ export class CommunityFormComponent implements OnInit {
 
   public readonly phoneCodes = PHONECODES;
 
-  private communityId: number;
+  public readonly phoneTypes = Object.keys(PhoneType).map((item) => ({
+    id: PhoneType[item],
+    name: this.language['phone_type_' + item.toLocaleLowerCase()],
+  }));
 
   @Input()
   set data(community: Community) {
@@ -39,6 +43,8 @@ export class CommunityFormComponent implements OnInit {
 
   @Output()
   save: EventEmitter<Community> = new EventEmitter<Community>();
+
+  private communityId: number;
 
   constructor(private fb: FormBuilder, private languageService: LanguageService) {
     this.createForm();
@@ -63,6 +69,7 @@ export class CommunityFormComponent implements OnInit {
       projects: [[], Validators.required],
       contact_name: [],
       contact_family_name: [],
+      phone_type: [],
       phone_prefix: [],
       phone_number: [],
       national_id: this.fb.group({

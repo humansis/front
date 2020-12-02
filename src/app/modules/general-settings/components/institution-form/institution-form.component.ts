@@ -6,6 +6,7 @@ import { INSTITUTION_TYPES } from 'src/app/models/constants/institution-type';
 import { Institution } from 'src/app/models/api/institution';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { Project } from 'src/app/models/api/project';
+import { PhoneType } from 'src/app/models/constants/phone-type';
 
 @Component({
   selector: 'app-institution-form',
@@ -22,6 +23,11 @@ export class InstitutionFormComponent implements OnInit {
   public readonly institutionTypes = INSTITUTION_TYPES;
 
   public readonly phoneCodes = PHONECODES;
+
+  public readonly phoneTypes = Object.keys(PhoneType).map((item) => ({
+    id: PhoneType[item],
+    name: this.language['phone_type_' + item.toLocaleLowerCase()],
+  }));
 
   @Input()
   projects: Project[] = [];
@@ -69,6 +75,7 @@ export class InstitutionFormComponent implements OnInit {
       contact_name: [],
       contact_family_name: [],
       phone_prefix: [],
+      phone_type: [],
       phone_number: [],
       national_id: this.fb.group({
         type: [],
