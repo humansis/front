@@ -58,6 +58,7 @@
                                                 <input matInput type="number"
                                                        [placeholder]="language.household_income"
                                                        formControlName="income">
+                                                <span matSuffix>{{(currency$ | async)}}</span>
                                                 <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_income, 'household_income')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
                                                 </mat-hint>
@@ -71,6 +72,7 @@
                                                 <input matInput type="number"
                                                        [placeholder]="language.household_income_spent_on_food "
                                                        formControlName="incomeSpentOnFood">
+                                                <span matSuffix>{{(currency$ | async)}}</span>
                                                 <app-hint-error [form]="mainForm" fieldName="incomeSpentOnFood"
                                                                 [field]="household.fields.incomeSpentOnFood"
                                                                 [isMatField]="true"></app-hint-error>
@@ -81,6 +83,7 @@
                                                 <input matInput type="number" min="0" max="100"
                                                        [placeholder]="language.household_debt_level "
                                                        formControlName="debtLevel">
+                                                <span matSuffix>{{(currency$ | async)}}</span>
                                                 <mat-hint *ngIf="mode === 'update'" class="history" [mdePopoverTriggerFor]="appPopover" (click)="showHistory(language.household_debt_level, 'debt_level')"
                                                           mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">History
                                                 </mat-hint>

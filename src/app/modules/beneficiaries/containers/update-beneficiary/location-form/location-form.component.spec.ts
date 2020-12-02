@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LocationFormComponent } from './location-form.component';
 import { Injector } from '@angular/core';
 import { setAppInjector } from 'src/app/app-injector';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LocationFormComponent', () => {
   let component: LocationFormComponent;
@@ -10,6 +11,7 @@ describe('LocationFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [LocationFormComponent],
     }).compileComponents();
   }));
