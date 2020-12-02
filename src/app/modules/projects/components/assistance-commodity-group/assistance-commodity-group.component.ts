@@ -23,7 +23,7 @@ export class AssistanceCommodityGroupComponent implements OnInit {
   currentDisplayType: DisplayType;
 
   @Input()
-  totalBeneficiaries = 0;
+  reachedBeneficiaries = 0;
 
   @Input()
   commoditiesDataSource: MatTableDataSource<Commodity> = new ClientDataSource([]);

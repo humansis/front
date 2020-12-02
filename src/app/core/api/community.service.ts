@@ -11,10 +11,8 @@ export class CommunityService {
   readonly api = URL_BMS_API + '/communities';
   constructor(private http: HttpService) {}
 
-  public get() {
+  public get(filter: any = {}, pageSize = 2000) {
     const pageIndex = 0;
-    const pageSize = 2000;
-    const filter = {};
     const sort = {};
     return this.http.post(`${this.api}/get/all`, { filter, sort, pageIndex, pageSize });
   }

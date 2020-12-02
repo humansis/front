@@ -10,10 +10,8 @@ export class InstitutionService {
   readonly api = URL_BMS_API + '/institutions';
   constructor(private http: HttpService) {}
 
-  public get() {
+  public get(filter: any = {}, pageSize = 2000) {
     const pageIndex = 0;
-    const pageSize = 2000;
-    const filter = {};
     const sort = {};
     return this.http.post(`${this.api}/get/all`, { filter, sort, pageIndex, pageSize });
   }

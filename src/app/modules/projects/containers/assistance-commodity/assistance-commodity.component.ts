@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class AssistanceCommodityComponent implements OnInit {
   @Input()
-  totalBeneficiaries = 0;
+  reachedBeneficiaries = 0;
   @Output()
   commoditiesChanged: EventEmitter<any> = new EventEmitter<any>();
 

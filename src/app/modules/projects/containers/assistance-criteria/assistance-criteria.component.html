@@ -1,41 +1,52 @@
 <div class="criteria-title">
-    <h2>{{language.add_distribution_selection_criteria}}</h2>
-    <button *ngIf="targetType" mat-stroked-button class="button-text-accent distribution-add-button" (click)="addGroup()" >
-        <span>{{ language.add }}</span>
-    </button>
+  <h2>{{ language.add_distribution_selection_criteria }}</h2>
+  <button
+    *ngIf="targetType"
+    mat-stroked-button
+    class="button-text-accent distribution-add-button"
+    (click)="addGroup()"
+  >
+    <span>{{ language.add }}</span>
+  </button>
 </div>
 <div>
-    <mat-card>
-        <div *ngFor="let group of groups; index as i;">
-            <app-assistance-criteria-group [name]="i+1+''"
-                                           [reachedBeneficiaries]="groupBeneficiaries[i]"
-                                           [data]="group"
-                                           [targetType]="targetType"
-                                           (addClick)="addCriteria(i)"
-                                           (detailsClick)="showGroupBeneficiaries(i)"
-                                           (removeClick)="removeCriteria(i, $event)"
-                                           (removeGroupClick)="removeGroup(i)">
-
-            </app-assistance-criteria-group>
-            <hr *ngIf="i !== (groups.length - 1)" />
-        </div>
-        <div class="info" *ngIf="groups.length === 0">
-            {{language.add_distribution_missing_criteria_group}}
-
-        </div>
-    </mat-card>
-    <div class="controls">
-        <div [formGroup]="form">
-            <mat-form-field class="accordion-field" id="threshold">
-                <mat-label>{{ language.add_distribution_threshold }}</mat-label>
-                <input class="field-input" matInput type="number" formControlName="threshold">
-            </mat-form-field>
-        </div>
-        <h3 class="summary-text">
-            <span>{{reachedBeneficiaries}} / {{totalBeneficiaries}}</span> {{targetType}}
-        </h3>
-        <button mat-stroked-button class="button-text-accent distribution-add-button" (click)="showBeneficiaries()" >
-            <span>{{language.details}}</span>
-        </button>
+  <mat-card>
+    <div *ngFor="let group of groups; index as i">
+      <app-assistance-criteria-group
+        [name]="i + 1 + ''"
+        [reachedBeneficiaries]="groupBeneficiaries[i]"
+        [data]="group"
+        [targetType]="targetType"
+        (addClick)="addCriteria(i)"
+        (detailsClick)="showGroupBeneficiaries(i)"
+        (removeClick)="removeCriteria(i, $event)"
+        (removeGroupClick)="removeGroup(i)"
+      >
+      </app-assistance-criteria-group>
+      <hr *ngIf="i !== groups.length - 1" />
     </div>
+    <div class="info" *ngIf="groups.length === 0">
+      {{ language.add_distribution_missing_criteria_group }}
+    </div>
+  </mat-card>
+  <div class="controls">
+    <div [formGroup]="form">
+      <mat-form-field class="accordion-field" id="threshold">
+        <mat-label>{{ language.add_distribution_threshold }}</mat-label>
+        <input class="field-input" matInput type="number" formControlName="threshold" />
+      </mat-form-field>
+    </div>
+    <h3 class="summary-text">
+      <span>{{ reachedBeneficiaries }} / {{ totalBeneficiaries }}</span> {{ targetType }}
+    </h3>
+    <button
+      mat-stroked-button
+      class="button-text-accent distribution-add-button"
+      (click)="showBeneficiaries()"
+    >
+      <span>{{ language.details }}</span>
+    </button>
+  </div>
 </div>
+
+{{ projectId | json }}

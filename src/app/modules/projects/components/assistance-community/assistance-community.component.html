@@ -1,0 +1,15 @@
+<div>
+  <h2>{{ language.communities }}</h2>
+  <mat-card [formGroup]="form">
+    <ng-select
+      [items]="filteredCommunities"
+      [minTermLength]="2"
+      [loading]="loading"
+      [multiple]="true"
+      groupBy="type"
+      bindLabel="name"
+      bindValue="id"
+      formControlName="community"
+    ></ng-select>
+  </mat-card>
+</div>

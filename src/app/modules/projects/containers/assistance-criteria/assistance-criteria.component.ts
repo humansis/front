@@ -66,7 +66,6 @@ export class AssistanceCriteriaComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.form = this.createForm();
-    this.form.patchValue({ threshold: 0 });
     this.form.valueChanges.subscribe((value) => {
       this.thresholdChanged.emit(value.threshold);
       if (!isNaN(+value.threshold) && value.threshold !== null) {
@@ -78,7 +77,9 @@ export class AssistanceCriteriaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form.patchValue({ threshold: 0 });
+  }
 
   addCriteria(index: number) {
     this.modalService

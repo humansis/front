@@ -5,7 +5,7 @@ import { ProjectService } from '../../../../core/api/project.service';
 import { Project } from '../../../../models/api/project';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, share, switchMap } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, share, switchMap, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 import { SectorService } from '../../../../core/api/sector.service';
 import { Sector } from '../../../../models/api/sector';
@@ -18,6 +18,10 @@ import { DistributionService } from 'src/app/core/api/distribution.service';
 import { AssistanceLocationFormComponent } from 'src/app/modules/projects/components/assistance-location-form/assistance-location-form.component';
 import { AssistanceCommodityComponent } from 'src/app/modules/projects/containers/assistance-commodity/assistance-commodity.component';
 import { AssistanceCriteriaComponent } from 'src/app/modules/projects/containers/assistance-criteria/assistance-criteria.component';
+import { InstitutionService } from 'src/app/core/api/institution.service';
+import { Institution } from 'src/app/models/api/institution';
+import { Community } from 'src/app/models/api/community';
+import { CommunityService } from 'src/app/core/api/community.service';
 
 @Component({
   selector: 'app-assistance-create-page',
@@ -35,6 +39,10 @@ export class AssistanceCreatePageComponent implements OnInit {
   totalBeneficiaries = 0;
   reachedBeneficiaries = 0;
   loadingCreation = false;
+  institutions$: Observable<Institution[]>;
+  communities$: Observable<Community[]>;
+  loadingInstitutions = false;
+  loadingCommunities = false;
 
   @ViewChild(AssistanceLocationFormComponent)
   assistanceLocationForm: AssistanceLocationFormComponent;
@@ -47,6 +55,8 @@ export class AssistanceCreatePageComponent implements OnInit {
     private projectService: ProjectService,
     private sectorService: SectorService,
     private languageService: LanguageService,
+    private institutionService: InstitutionService,
+    private communityService: CommunityService,
     private distributionService: DistributionService,
     private snackbar: SnackbarService,
     private route: ActivatedRoute,
@@ -59,6 +69,15 @@ export class AssistanceCreatePageComponent implements OnInit {
   ngOnInit(): void {
     this.loadProject();
     this.loadSectors();
+    this.loadCommunities();
+    this.loadInstitutions();
+
+    this.form.controls.target_type.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe((value) => {
+        this.reachedBeneficiaries = 0;
+        this.totalBeneficiaries = 0;
+      });
 
     this.route.queryParamMap
       .pipe(
@@ -119,8 +138,38 @@ export class AssistanceCreatePageComponent implements OnInit {
     this.form.patchValue({ commodities: value });
   }
 
+  communitiesChanged(value: number[]) {
+    this.reachedBeneficiaries = value?.length || 0;
+    this.form.patchValue({ communities: value });
+  }
+
+  institutionsChanged(value: number[]) {
+    this.reachedBeneficiaries = value?.length || 0;
+    this.form.patchValue({ institutions: value });
+  }
+
+  loadInstitutions() {
+    this.loadingInstitutions = true;
+    this.institutions$ = this.institutionService.get().pipe(
+      map(([total, items]) => items),
+      tap((items) => (this.loadingInstitutions = false))
+    );
+  }
+
+  loadCommunities() {
+    this.loadingCommunities = true;
+    this.communities$ = this.communityService.get().pipe(
+      map(([total, items]) => items),
+      tap((items) => (this.loadingCommunities = false))
+    );
+  }
+
   createProject() {
-    if (!this.form.controls.selection_criteria.value?.length) {
+    if (
+      !this.form.controls.selection_criteria.value?.length &&
+      (this.form.controls.target_type.value === 'household' ||
+        this.form.controls.target_type.value === 'individual')
+    ) {
       this.snackbar.error(this.language.add_distribution_missing_selection_criteria);
     } else if (!this.form.controls.commodities.value?.length) {
       this.snackbar.error(this.language.add_distribution_missing_commodity);
@@ -136,7 +185,6 @@ export class AssistanceCreatePageComponent implements OnInit {
       this.distributionService
         .create({
           ...this.form.value,
-          name: 'Test ' + new Date().toDateString(),
         })
         .subscribe(
           (response) => {
@@ -171,6 +219,8 @@ export class AssistanceCreatePageComponent implements OnInit {
       name: [],
       project: [],
       selection_criteria: [],
+      institutions: [],
+      communities: [],
       commodities: [],
       threshold: [],
       sector: [],

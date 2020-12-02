@@ -13,6 +13,8 @@ import { AssistanceCriteriaGroupComponent } from './components/assistance-criter
 import { AssistanceCommodityComponent } from './containers/assistance-commodity/assistance-commodity.component';
 import { AssistanceCommodityGroupComponent } from './components/assistance-commodity-group/assistance-commodity-group.component';
 import { TargetedBeneficiariesModalComponent } from './modals/targeted-beneficiaries-modal/targeted-beneficiaries-modal.component';
+import { AssistanceInstitutionComponent } from './components/assistance-institution/assistance-institution.component';
+import { AssistanceCommunityComponent } from './components/assistance-community/assistance-community.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { TargetedBeneficiariesModalComponent } from './modals/targeted-beneficia
     AssistanceCommodityComponent,
     AssistanceCommodityGroupComponent,
     TargetedBeneficiariesModalComponent,
+    AssistanceInstitutionComponent,
+    AssistanceCommunityComponent,
   ],
   imports: [
     CommonModule,
