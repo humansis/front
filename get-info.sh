@@ -4,14 +4,14 @@ COMMIT=`git rev-parse --short HEAD`
 TAG=`git describe --tags`
 BRANCH=$TRAVIS_BRANCH
 
-if [[ $TAG =~ ^v.*$ ]]; then
+if [[ $BRANCH =~ ^v.*$ ]]; then
+  TAG=$BRANCH
   BRANCH="master"
-elif [[ $TAG =~ ^deploy.*$ ]]; then
+elif [[ $BRANCH =~ ^deploy.*$ ]]; then
+  TAG=$BRANCH
   BRANCH="dev deploy"
 elif [[ $BRANCH == "develop" ]]; then
   BRANCH="develop"
-else
-  BRANCH=`git symbolic-ref HEAD | cut -d/ -f3-`
 fi
 
 if [[ $BRANCH == "master" ]]; then
@@ -19,7 +19,8 @@ if [[ $BRANCH == "master" ]]; then
 elif [[ $BRANCH == "develop" ]]; then
     APPVERSION=$COMMIT
 elif [[ $BRANCH =~ ^release\/.*$ ]]; then
-    APPVERSION=$COMMIT
+    VERSION=`echo $BRANCH | sed -e 's/release\///g'`
+    APPVERSION=$VERSION-$COMMIT
 elif [[ $TAG =~ ^deploy.*$ ]]; then
     APPVERSION=$COMMIT
 else
