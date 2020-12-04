@@ -25,6 +25,10 @@ export class AssistanceCriteriaComponent implements OnInit {
   projectId: number;
   @Input()
   targetType: string;
+  @Input()
+  sector: string;
+  @Input()
+  subsector: string;
 
   @Output()
   reachedBeneficiariesChanged: EventEmitter<number> = new EventEmitter<number>();
@@ -181,7 +185,8 @@ export class AssistanceCriteriaComponent implements OnInit {
   private getGroupAssistanceCriteria(index: number) {
     const criteria = this.groups[index].data.map((item) => item.modelToApi());
     return {
-      distribution_type: '0',
+      sector: this.sector,
+      subsector: this.subsector,
       criteria: [criteria],
       threshold: 0,
     };
@@ -192,7 +197,8 @@ export class AssistanceCriteriaComponent implements OnInit {
       .filter((data) => data.data.length > 0)
       .map((data) => data.data.map((item) => item.modelToApi()));
     return {
-      distribution_type: '0',
+      sector: this.sector,
+      subsector: this.subsector,
       criteria,
       threshold: 0,
     };

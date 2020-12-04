@@ -1,7 +1,8 @@
 import { Criteria } from './criteria';
 
 export interface AssistanceCriteria {
-  distribution_type: string;
   criteria: Criteria[][];
+  sector: string;
+  subsector: string;
   threshold: number;
 }

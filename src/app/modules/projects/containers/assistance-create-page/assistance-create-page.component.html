@@ -34,6 +34,8 @@
               "
               [projectId]="form.controls.project.value?.id"
               [targetType]="form.get('target_type')?.value"
+              [sector]="form.get('sector')?.value"
+              [subsector]="form.get('subsector')?.value"
               (totalBeneficiariesChanged)="totalBeneficiaries = $event"
               (reachedBeneficiariesChanged)="reachedBeneficiaries = $event"
               (criteriaChanged)="criteriaChanged($event)"

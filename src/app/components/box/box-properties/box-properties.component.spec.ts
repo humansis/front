@@ -6,7 +6,7 @@ import { setAppInjector } from '../../../app-injector';
 import { Distribution } from '../../../models/distribution';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-fdescribe('BoxPropertiesComponent', () => {
+describe('BoxPropertiesComponent', () => {
   let component: BoxPropertiesComponent;
   let fixture: ComponentFixture<BoxPropertiesComponent>;
 
