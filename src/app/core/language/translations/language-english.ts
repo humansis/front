@@ -199,7 +199,7 @@ export class English implements Language {
   add_distribution_location_date = 'Location and date';
   add_distribution_text_explanation =
     'The system will only select beneficiaries/households that have a score higher than the minimum selection score';
-  add_distribution_threshold = 'Minimum selection score';
+  add_distribution_threshold = 'Minimum Vulnerability Score';
   add_distribution_zero =
     'The number of households reached or the amount to be distributed is 0';
 
@@ -208,6 +208,7 @@ export class English implements Language {
   add_distribution_average = 'Average';
   add_distribution_high = 'High';
   add_distribution_very_high = 'Very high';
+  add_distribution_add_group = 'Add Group';
 
   // Add project
   add_project_title = 'new project';

@@ -195,7 +195,7 @@ export class Arabic implements Language {
   add_distribution_location_date = this.missingTranslation;
   add_distribution_text_explanation =
     'سيختار النظام فقط المستفيدين / الأسر التي لديها مجموع أعلى من المجموع الادنى ';
-  add_distribution_threshold = ' المجموع الادنى لاختيار ';
+  add_distribution_threshold = this.missingTranslation;
   add_distribution_zero = 'عدد الأسر التي تم الوصول إليها أو المبلغ المطلوب توزيعه هو 0';
 
   add_distribution_very_low = 'منخفظ جدا';
@@ -203,6 +203,7 @@ export class Arabic implements Language {
   add_distribution_average = 'معدل';
   add_distribution_high = 'متوسط';
   add_distribution_very_high = 'عالي جدا';
+  add_distribution_add_group = this.missingTranslation;
 
   // Add project
   add_project_new_distribution = 'توزيعة جديدة';

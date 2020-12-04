@@ -181,6 +181,7 @@ export interface Language {
   add_distribution_average: string;
   add_distribution_high: string;
   add_distribution_very_high: string;
+  add_distribution_add_group: string;
 
   // Add project
   add_project_new_distribution: string;

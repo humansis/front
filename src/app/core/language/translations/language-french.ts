@@ -198,7 +198,7 @@ export class French implements Language {
   add_distribution_location_date = this.missingTranslation;
   add_distribution_text_explanation =
     'Le système va seulement sélectionner les bénéficiaires/ménages avec un score supérieur que le score minimum de sélection';
-  add_distribution_threshold = 'Score minimum de sélection';
+  add_distribution_threshold = this.missingTranslation;
   add_distribution_zero = 'Le nombre de ménage atteint ou le montant à distribuer est 0';
 
   add_distribution_very_low = 'Très bas';
@@ -206,6 +206,7 @@ export class French implements Language {
   add_distribution_average = 'Moyenne';
   add_distribution_high = 'Haut';
   add_distribution_very_high = 'Très haut';
+  add_distribution_add_group = this.missingTranslation;
 
   // Add project
   add_project_new_distribution = 'nouvelle distribution';

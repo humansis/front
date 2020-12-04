@@ -206,11 +206,12 @@ export class Russian implements Language {
   add_distribution_average = 'Средний';
   add_distribution_high = 'Высокий';
   add_distribution_very_high = 'Очень высокий';
+  add_distribution_add_group = 'Добавить группу';
 
   // Add project
   add_project_title = 'новый проект';
   add_project_new_distribution = 'новая выдача';
-  add_project_new_assistance = this.missingTranslation;
+  add_project_new_assistance = 'Новая помощь';
 
   // Beneficiaries
   beneficiary_add_list = 'Добавить к проекту';
@@ -225,7 +226,7 @@ export class Russian implements Language {
   beneficiary_en_family_name = 'фамилия (английский язык)';
   beneficiary_en_given_name = 'имя (английский язык)';
   beneficiary_en_name = 'имя (английский язык)';
-  beneficiary_en_parent_name = this.missingTranslation;
+  beneficiary_en_parent_name = 'Фамилия (на английском)';
   beneficiary_family_name = 'Фамилия';
   beneficiary_given_name = 'Имя';
   beneficiary_head = 'Глава домохозяйства';
@@ -235,7 +236,7 @@ export class Russian implements Language {
   beneficiary_local_family_name = 'фамилия (местный язык)';
   beneficiary_local_given_name = 'имя (местный язык)';
   beneficiary_local_name = 'имя (местный язык)';
-  beneficiary_local_parent_name = this.missingTranslation;
+  beneficiary_local_parent_name = 'Фамилия (на местном языке)';
   beneficiary_member = 'Член';
   beneficiary_missing_selected_project = 'Вы должны выбрать проект перед загрузкой';
   beneficiary_personnal = 'личные данные';
