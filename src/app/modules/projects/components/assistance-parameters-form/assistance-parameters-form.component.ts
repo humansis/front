@@ -68,12 +68,15 @@ export class AssistanceParametersFormComponent implements OnInit {
 
   private onSubSectorChange(value) {
     if (this.subsectors) {
-      const subSector = this.subsectors.find((item) => item.id === value);
-      if (subSector) {
-        this.assistanceTypes = [subSector.assistanceType];
-        this.targetTypes = subSector.availableTargets;
+      const subsector = this.subsectors.find((item) => item.id === value);
+      if (subsector) {
+        this.assistanceTypes = [...subsector.assistanceTypes];
+        this.targetTypes = subsector.availableTargets;
         this.form.patchValue({
-          assistance_type: subSector.assistanceType,
+          assistance_type:
+            subsector.assistanceTypes && subsector.assistanceTypes.length > 0
+              ? this.assistanceTypes[0]
+              : undefined,
           target_type:
             this.targetTypes && this.targetTypes.length > 0
               ? this.targetTypes[0]

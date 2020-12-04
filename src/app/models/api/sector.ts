@@ -8,5 +8,5 @@ export interface Subsector {
   id: number;
   name: string;
   availableTargets: string[];
-  assistanceType: string;
+  assistanceTypes: string[];
 }
