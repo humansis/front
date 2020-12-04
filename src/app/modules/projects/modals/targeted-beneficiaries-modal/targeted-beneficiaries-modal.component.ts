@@ -16,6 +16,7 @@ export class TargetedBeneficiariesModalComponent implements OnInit {
     { key: 'id', languageKey: 'id' },
     { key: 'en_family_name', languageKey: 'beneficiary_en_family_name' },
     { key: 'en_given_name', languageKey: 'beneficiary_en_given_name' },
+    { key: 'score', languageKey: 'vulnerability' },
   ];
   dataSource: ClientDataSource<any> = new ClientDataSource();
 
@@ -31,7 +32,10 @@ export class TargetedBeneficiariesModalComponent implements OnInit {
       .getTargetedBeneficiaries(this.data.projectId, this.data.criteria)
       .subscribe(
         (data) => {
-          this.dataSource.data = data;
+          this.dataSource.data = data.map((item) => ({
+            ...item,
+            score: item.scores?.totalScore,
+          }));
           this.dataSource.loading = false;
         },
         (error) => {

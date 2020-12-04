@@ -118,6 +118,7 @@ export interface Language {
   subsector: string;
   assistance_type: string;
   target_type: string;
+  vulnerability: string;
 
   // Error
   back_to_homepage: string;

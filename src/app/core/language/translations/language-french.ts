@@ -122,6 +122,7 @@ export class French implements Language {
   subsector = this.missingTranslation;
   assistance_type = this.missingTranslation;
   target_type = this.missingTranslation;
+  vulnerability = this.missingTranslation;
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";

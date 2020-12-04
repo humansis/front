@@ -111,15 +111,16 @@ export class Russian implements Language {
   username = 'имя пользователя';
   value = 'Стоимость';
   quantity = 'количество';
-  total = this.missingTranslation;
+  total = 'Всего';
   latitude = 'Широта';
   longitude = 'Долгота';
   amount = 'Сумма';
   price = 'Cтоимость';
   purchased_by = 'Приобретено';
-  subsector = this.missingTranslation;
-  assistance_type = this.missingTranslation;
-  target_type = this.missingTranslation;
+  subsector = 'Субсектор';
+  assistance_type = 'Тип помощи';
+  target_type = 'Конечный тип';
+  vulnerability = 'Уязвимость';
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -183,15 +184,17 @@ export class Russian implements Language {
   add_distribution_missing_date = 'Дата отсутствует';
   add_distribution_missing_location = 'Добавьте провинцию';
   add_distribution_missing_selection_criteria = 'Критерий отбора отсутствует';
-  add_distribution_missing_criteria_group = this.missingTranslation;
-  add_distribution_missing_threshold = this.missingTranslation;
+  add_distribution_missing_criteria_group =
+    'Нет выбранных групп критериев. Пожалуйта, добавьте хотя бы одну группу критериев.';
+  add_distribution_missing_threshold =
+    'Минимальное значение оценки должно быть больше нуля';
   add_distribution_multiple_modalities =
     'Вы не можете добавлять товары, которые распределяются не одинаково';
   add_distribution_no_beneficiaries =
     'Количество достигнутых бенефициаров / домохозяйств должно быть положительным';
   add_distribution_selection_criteria = 'критерий отбора';
-  add_distribution_target = this.missingTranslation;
-  add_distribution_location_date = this.missingTranslation;
+  add_distribution_target = 'Цель';
+  add_distribution_location_date = 'Место и дата';
   add_distribution_text_explanation =
     'Система будет выбирать только тех бенефициаров/физических лиц, у которых балл выше минимального балла отбора';
   add_distribution_threshold = 'Минимальный балл отбора';

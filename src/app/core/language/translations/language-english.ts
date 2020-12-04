@@ -123,6 +123,7 @@ export class English implements Language {
   subsector = 'Subsector';
   assistance_type = 'Assistance Type';
   target_type = 'Target Type';
+  vulnerability = 'Vulnerability';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -454,7 +455,7 @@ export class English implements Language {
   'header_settings' = 'Configuration';
   'header_update-beneficiary' = 'Update Beneficiaries';
   header_beneficiaries = 'Beneficiaries';
-  header_disconnect = 'log out';
+  header_disconnect = 'Log out';
   header_home = 'Home';
   header_household = this.household;
   header_import = 'Import beneficiary data';
