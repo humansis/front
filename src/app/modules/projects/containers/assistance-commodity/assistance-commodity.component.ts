@@ -41,11 +41,13 @@ export class AssistanceCommodityComponent implements OnInit {
 
   addCommodity() {
     this.modalService.openAddCommodityDialog().subscribe((commodity: Commodity) => {
-      this.commoditiesDataSource = new ClientDataSource([
-        ...this.commoditiesDataSource.data,
-        commodity,
-      ]);
-      this.notifyCommodityChanged();
+      if (commodity) {
+        this.commoditiesDataSource = new ClientDataSource([
+          ...this.commoditiesDataSource.data,
+          commodity,
+        ]);
+        this.notifyCommodityChanged();
+      }
     });
   }
 
