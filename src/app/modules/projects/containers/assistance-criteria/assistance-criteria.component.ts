@@ -10,7 +10,6 @@ import { BeneficiariesService } from '../../../../core/api/beneficiaries.service
 import { MatDialog } from '@angular/material/dialog';
 import { TargetedBeneficiariesModalComponent } from '../../modals/targeted-beneficiaries-modal/targeted-beneficiaries-modal.component';
 import { Criteria } from 'src/app/models/api/criteria';
-import { Commodity } from 'src/app/models/commodity';
 import { AssistanceCriteria } from 'src/app/models/api/assistance-criteria';
 
 @Component({
@@ -103,9 +102,13 @@ export class AssistanceCriteriaComponent implements OnInit {
   addGroup() {
     const emptyGroups = this.groups.filter((group) => group.data.length === 0);
     if (emptyGroups.length === 0) {
-      this.groups = [...this.groups, new ClientDataSource([])];
-      this.groupBeneficiaries = [...this.groupBeneficiaries, 0];
-      this.addCriteria(this.groupBeneficiaries.length - 1);
+      if (this.groups.length === 0) {
+        this.groups = [...this.groups, new ClientDataSource([])];
+      }
+      if (this.groups.length > this.groupBeneficiaries.length) {
+        this.groupBeneficiaries = [...this.groupBeneficiaries, 0];
+      }
+      this.addCriteria(this.groups.length - 1);
     }
   }
 
@@ -117,6 +120,8 @@ export class AssistanceCriteriaComponent implements OnInit {
 
   removeGroup(index: number) {
     this.groups = this.groups.filter((item, itemIndex) => itemIndex !== index);
+    this.reloadTotalBeneficiaries();
+    this.notifyCriteriaChanged();
   }
 
   showBeneficiaries() {
@@ -147,14 +152,11 @@ export class AssistanceCriteriaComponent implements OnInit {
   }
 
   private reloadBeneficiaries(index: number) {
-    this.beneficiariesService
-      .getTargetedBeneficiariesNumber(
-        this.projectId,
-        this.getGroupAssistanceCriteria(index)
-      )
-      .subscribe((response) => {
-        this.groupBeneficiaries[index] = response.number;
-      });
+    this.reloadGroupBeneficiaries(index);
+    this.reloadTotalBeneficiaries();
+  }
+
+  private reloadTotalBeneficiaries() {
     const assistanceCriteria = this.getAssistanceCriteria();
     const threshold = this.form.get('threshold').value || 0;
     this.beneficiariesService
@@ -165,6 +167,19 @@ export class AssistanceCriteriaComponent implements OnInit {
       });
 
     this.reloadTargetedBeneficiaries(assistanceCriteria, threshold);
+  }
+
+  private reloadGroupBeneficiaries(index: number) {
+    const criteria = this.getGroupAssistanceCriteria(index);
+    if (criteria.criteria.length > 0 && criteria.criteria[0].length > 0) {
+      this.beneficiariesService
+        .getTargetedBeneficiariesNumber(this.projectId, criteria)
+        .subscribe((response) => {
+          this.groupBeneficiaries[index] = response.number;
+        });
+    } else {
+      this.groupBeneficiaries[index] = 0;
+    }
   }
 
   private reloadTargetedBeneficiaries(
