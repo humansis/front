@@ -29,10 +29,10 @@ import { BeneficiariesService } from './../../../../core/api/beneficiaries.servi
 })
 export class NotValidatedDistributionComponent implements OnInit, OnDestroy {
   @Input() actualDistribution: Distribution;
+  @Input() loaderValidation = false;
 
-  @Output() emitStore = new EventEmitter<Distribution>();
   @Output() isUpdated = new EventEmitter<void>();
-  @Output() hideSnackEmitter = new EventEmitter<Distribution>();
+  @Output() validateClick = new EventEmitter<void>();
 
   loadingExport = false;
   loadingDatas = true;
@@ -70,7 +70,6 @@ export class NotValidatedDistributionComponent implements OnInit, OnDestroy {
   selected = false;
 
   actualUser = new User();
-  loaderValidation = false;
 
   interval: any;
   correctCode = false;
@@ -178,92 +177,21 @@ export class NotValidatedDistributionComponent implements OnInit, OnDestroy {
       );
   }
 
-  /**
-   * Store beneficiaries of the distribution in the cache
-   */
-  storeBeneficiaries() {
-    this.emitStore.emit(this.actualDistribution);
-  }
-
   jumpStep(stepper: MatStepper) {
     stepper.next();
-  }
-
-  /**
-   * Opens a dialog corresponding to the ng-template passed as a parameter
-   * @param template
-   */
-  openDialog(template) {
-    const distributionDate = new Date(this.actualDistribution.get('date'));
-    const currentDate = new Date();
-    if (
-      currentDate.getFullYear() > distributionDate.getFullYear() ||
-      (currentDate.getFullYear() === distributionDate.getFullYear() &&
-        currentDate.getMonth() > distributionDate.getMonth()) ||
-      (currentDate.getFullYear() === distributionDate.getFullYear() &&
-        currentDate.getMonth() === distributionDate.getMonth() &&
-        currentDate.getDate() > distributionDate.getDate())
-    ) {
-      this.snackbar.warning(this.language.snackbar_invalid_transaction_date);
-    }
-    this.dialog.open(template);
-  }
-
-  /**
-   * To cancel on a dialog
-   */
-  exit(message: string) {
-    this.snackbar.info(message);
-    this.dialog.closeAll();
   }
 
   /**
    * To confirm on Validation dialog
    */
   confirmValidation() {
-    if (this.userService.hasRights('ROLE_DISTRIBUTIONS_MANAGEMENT')) {
-      if (
-        (this.finalBeneficiaryData && this.finalBeneficiaryData.data.length > 0) ||
-        (this.initialBeneficiaryData && this.initialBeneficiaryData.data.length > 0)
-      ) {
-        this.loaderValidation = true;
-        this.distributionService
-          .setValidation(this.actualDistribution.get('id'))
-          .subscribe(
-            () => {
-              this.actualDistribution.set('validated', true);
-              this.snackbar.success(this.language.distribution_validated);
-              this.cacheService
-                .get(
-                  AsyncacheService.DISTRIBUTIONS +
-                    '_' +
-                    this.actualDistribution.get('id') +
-                    '_beneficiaries'
-                )
-                .subscribe((result) => {
-                  if (result) {
-                    this.hideSnackEmitter.emit();
-                    this.storeBeneficiaries();
-                  }
-                });
-              this.loaderValidation = false;
-            },
-            () => {
-              this.loaderValidation = false;
-              this.actualDistribution.set('validated', false);
-              this.snackbar.error(this.language.distribution_not_validated);
-            }
-          );
-      } else {
-        this.loaderValidation = false;
-        this.snackbar.error(this.language.distribution_error_validate);
-      }
+    if (
+      (this.finalBeneficiaryData && this.finalBeneficiaryData.data.length > 0) ||
+      (this.initialBeneficiaryData && this.initialBeneficiaryData.data.length > 0)
+    ) {
     } else {
-      this.loaderValidation = false;
-      this.snackbar.error(this.language.distribution_no_right_validate);
+      this.snackbar.error(this.language.distribution_error_validate);
     }
-
-    this.dialog.closeAll();
   }
 
   fileSelected(event) {

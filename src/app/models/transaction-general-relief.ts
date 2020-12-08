@@ -9,6 +9,8 @@ import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { FormGroup } from '@angular/forms';
 import { BooleanModelField } from './custom-models/boolan-model-field';
+import { Community } from 'src/app/models/community';
+import { Institution } from 'src/app/models/institution';
 
 export class GeneralRelief extends CustomModel {
   public fields = {
@@ -73,6 +75,20 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         isDisplayedInTable: false,
         isDisplayedInModal: false,
         nullValue: this.language.null_not_yet_defined,
+      }),
+      institutionName: new NestedFieldModelField({
+        title: this.language.institution,
+        isDisplayedInTable: true,
+        isDisplayedInModal: true,
+        childrenObject: 'institution',
+        childrenFieldName: 'name',
+      }),
+      communityName: new NestedFieldModelField({
+        title: this.language.community,
+        isDisplayedInTable: true,
+        isDisplayedInModal: true,
+        childrenObject: 'community',
+        childrenFieldName: 'name',
       }),
       localGivenName: new NestedFieldModelField({
         title: this.language.beneficiary_given_name,
@@ -173,10 +189,25 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
     distributionId: number
   ): TransactionGeneralRelief {
     const newGeneralRelief = new TransactionGeneralRelief();
-    newGeneralRelief.set(
-      'beneficiary',
-      Beneficiary.apiToModel(distributionBeneficiaryFromApi.beneficiary)
-    );
+    if (distributionBeneficiaryFromApi.beneficiary) {
+      newGeneralRelief.set(
+        'beneficiary',
+        Beneficiary.apiToModel(distributionBeneficiaryFromApi.beneficiary)
+      );
+    }
+    if (distributionBeneficiaryFromApi.community) {
+      newGeneralRelief.set(
+        'community',
+        Community.apiToModel(distributionBeneficiaryFromApi.community)
+      );
+    }
+    if (distributionBeneficiaryFromApi.institution) {
+      newGeneralRelief.set(
+        'institution',
+        Institution.apiToModel(distributionBeneficiaryFromApi.institution)
+      );
+    }
+
     newGeneralRelief.set(
       'distributedAt',
       getDistributedAt(distributionBeneficiaryFromApi)
@@ -185,18 +216,24 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
       'smartcardDistributed',
       distributionBeneficiaryFromApi.smartcard_distributed
     );
-    newGeneralRelief.set(
-      'notes',
-      distributionBeneficiaryFromApi.general_reliefs.map(
-        (generalRelief: any) => generalRelief.notes
-      )
-    );
-    newGeneralRelief.set(
-      'generalReliefs',
-      distributionBeneficiaryFromApi.general_reliefs.map((generalRelief: any) =>
-        GeneralRelief.apiToModel(generalRelief)
-      )
-    );
+    if (distributionBeneficiaryFromApi.general_reliefs) {
+      newGeneralRelief.set(
+        'notes',
+        distributionBeneficiaryFromApi.general_reliefs.map(
+          (generalRelief: any) => generalRelief.notes
+        )
+      );
+      newGeneralRelief.set(
+        'generalReliefs',
+        distributionBeneficiaryFromApi.general_reliefs.map((generalRelief: any) =>
+          GeneralRelief.apiToModel(generalRelief)
+        )
+      );
+      newGeneralRelief.fields.notes.numberOfInputs = newGeneralRelief.get<
+        GeneralRelief[]
+      >('generalReliefs').length;
+    }
+
     if (
       distributionBeneficiaryFromApi.transactions &&
       distributionBeneficiaryFromApi.transactions.length > 0
@@ -206,18 +243,43 @@ export class TransactionGeneralRelief extends DistributionBeneficiary {
         distributionBeneficiaryFromApi.transactions[0].id
       );
     }
-    newGeneralRelief.fields.notes.numberOfInputs = newGeneralRelief.get<GeneralRelief[]>(
-      'generalReliefs'
-    ).length;
+
     this.addCommonFields(
       newGeneralRelief,
       distributionBeneficiaryFromApi,
       distributionId
     );
-    if (distributionBeneficiaryFromApi.beneficiary.referral) {
+    if (
+      distributionBeneficiaryFromApi.beneficiary &&
+      distributionBeneficiaryFromApi.beneficiary.referral
+    ) {
       newGeneralRelief.fields.addReferral.isDisplayedInModal = false;
       newGeneralRelief.fields.referralType.isDisplayedInModal = true;
       newGeneralRelief.fields.referralComment.isDisplayedInModal = true;
+    }
+    if (distributionBeneficiaryFromApi.community) {
+      const communityFields = {
+        ...newGeneralRelief.fields,
+      };
+      delete communityFields.nationalId;
+      delete communityFields.enGivenName;
+      delete communityFields.enFamilyName;
+      delete communityFields.localGivenName;
+      delete communityFields.localFamilyName;
+      delete communityFields.institutionName;
+      newGeneralRelief.fields = communityFields;
+    }
+    if (distributionBeneficiaryFromApi.institution) {
+      const institutionFields = {
+        ...newGeneralRelief.fields,
+      };
+      delete institutionFields.nationalId;
+      delete institutionFields.enGivenName;
+      delete institutionFields.enFamilyName;
+      delete institutionFields.localGivenName;
+      delete institutionFields.localFamilyName;
+      delete institutionFields.communityName;
+      newGeneralRelief.fields = institutionFields;
     }
     return newGeneralRelief;
   }

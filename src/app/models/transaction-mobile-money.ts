@@ -5,6 +5,8 @@ import { NumberModelField } from './custom-models/number-model-field';
 import { SingleSelectModelField } from './custom-models/single-select-model-field';
 import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
+import { Community } from 'src/app/models/community';
+import { Institution } from 'src/app/models/institution';
 
 export class State extends CustomModel {
   public fields = {
@@ -37,6 +39,20 @@ export class TransactionMobileMoney extends DistributionBeneficiary {
         isDisplayedInTable: true,
         isDisplayedInModal: true,
         nullValue: this.language.null_not_yet_defined,
+      }),
+      institutionName: new NestedFieldModelField({
+        title: this.language.institution,
+        isDisplayedInTable: true,
+        isDisplayedInModal: true,
+        childrenObject: 'institution',
+        childrenFieldName: 'name',
+      }),
+      communityName: new NestedFieldModelField({
+        title: this.language.community,
+        isDisplayedInTable: true,
+        isDisplayedInModal: true,
+        childrenObject: 'community',
+        childrenFieldName: 'name',
       }),
       localGivenName: new NestedFieldModelField({
         title: this.language.beneficiary_given_name,
@@ -143,10 +159,25 @@ export class TransactionMobileMoney extends DistributionBeneficiary {
     distributionId: number
   ): TransactionMobileMoney {
     const newDistributionBeneficiary = new TransactionMobileMoney();
-    if (distributionBeneficiaryFromApi.beneficiary.referral) {
+    if (
+      distributionBeneficiaryFromApi.beneficiary &&
+      distributionBeneficiaryFromApi.beneficiary.referral
+    ) {
       newDistributionBeneficiary.fields.addReferral.isDisplayedInModal = false;
       newDistributionBeneficiary.fields.referralType.isDisplayedInModal = true;
       newDistributionBeneficiary.fields.referralComment.isDisplayedInModal = true;
+    }
+    if (distributionBeneficiaryFromApi.community) {
+      newDistributionBeneficiary.set(
+        'community',
+        Community.apiToModel(distributionBeneficiaryFromApi.community)
+      );
+    }
+    if (distributionBeneficiaryFromApi.institution) {
+      newDistributionBeneficiary.set(
+        'institution',
+        Institution.apiToModel(distributionBeneficiaryFromApi.institution)
+      );
     }
     const transactions = distributionBeneficiaryFromApi.transactions;
 
@@ -197,6 +228,30 @@ export class TransactionMobileMoney extends DistributionBeneficiary {
       distributionBeneficiaryFromApi,
       distributionId
     );
+    if (distributionBeneficiaryFromApi.community) {
+      const communityFields = {
+        ...newDistributionBeneficiary.fields,
+      };
+      delete communityFields.nationalId;
+      delete communityFields.enGivenName;
+      delete communityFields.enFamilyName;
+      delete communityFields.localGivenName;
+      delete communityFields.localFamilyName;
+      delete communityFields.institutionName;
+      newDistributionBeneficiary.fields = communityFields;
+    }
+    if (distributionBeneficiaryFromApi.institution) {
+      const institutionFields = {
+        ...newDistributionBeneficiary.fields,
+      };
+      delete institutionFields.nationalId;
+      delete institutionFields.enGivenName;
+      delete institutionFields.enFamilyName;
+      delete institutionFields.localGivenName;
+      delete institutionFields.localFamilyName;
+      delete institutionFields.communityName;
+      newDistributionBeneficiary.fields = institutionFields;
+    }
     return newDistributionBeneficiary;
   }
 

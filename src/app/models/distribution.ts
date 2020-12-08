@@ -14,6 +14,7 @@ import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { Location } from './location';
 import { Project } from './project';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
 import { IdNameModel } from 'src/app/models/id-name-model';
 export class DistributionType extends CustomModel {
   public fields = {
@@ -121,8 +122,10 @@ export class Distribution extends CustomModel {
       isRequired: true,
       isSettable: true,
       options: [
-        new DistributionType('0', this.language.households),
-        new DistributionType('1', this.language.individual),
+        new DistributionType(`${TargetType.HOUSEHOLD}`, this.language.households),
+        new DistributionType(`${TargetType.INDIVIDUAL}`, this.language.individual),
+        new DistributionType(`${TargetType.COMMUNITY}`, this.language.community),
+        new DistributionType(`${TargetType.INSTITUTION}`, this.language.institution),
       ],
       bindField: 'name',
       apiLabel: 'id',
@@ -273,6 +276,10 @@ export class Distribution extends CustomModel {
     );
 
     return newDistribution;
+  }
+
+  public getType() {
+    return +this.fields.type.formatForApi();
   }
 
   public modelToApi(): Object {

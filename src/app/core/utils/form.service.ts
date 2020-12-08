@@ -129,6 +129,7 @@ export class FormService {
             const childrenFieldName = field.childrenFieldName;
             if (
               childrenField &&
+              childrenField.fields[childrenFieldName] &&
               childrenField.fields[childrenFieldName].kindOfField === 'SingleSelect'
             ) {
               value = childrenField.get(childrenFieldName)

@@ -78,6 +78,7 @@
         mat-flat-button
         *ngIf="
           currentDisplayType.type !== 'mobile' &&
+          canAddBeneficiaries() &&
           userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')
         "
         (click)="
@@ -111,8 +112,8 @@
         [paginable]="true"
         *ngIf="currentDisplayType.type !== 'mobile'"
         [parentObject]="actualDistribution"
+        [includeFields]="displayedFields"
         [entity]="entity"
-        [service]="BeneficiariesService"
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         [selection]="selection"
@@ -131,8 +132,8 @@
         [isLoading]="loadingTransaction"
         *ngIf="currentDisplayType.type === 'mobile'"
         [parentObject]="actualDistribution"
+        [includeFields]="displayedFields"
         [entity]="entity"
-        [service]="BeneficiariesService"
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         rights="true"

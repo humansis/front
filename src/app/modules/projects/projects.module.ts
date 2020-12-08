@@ -13,8 +13,16 @@ import { AssistanceCriteriaGroupComponent } from './components/assistance-criter
 import { AssistanceCommodityComponent } from './containers/assistance-commodity/assistance-commodity.component';
 import { AssistanceCommodityGroupComponent } from './components/assistance-commodity-group/assistance-commodity-group.component';
 import { TargetedBeneficiariesModalComponent } from './modals/targeted-beneficiaries-modal/targeted-beneficiaries-modal.component';
+import { NotValidatedInstitutionDistributionComponent } from './containers/not-validated-institution-distribution/not-validated-institution-distribution.component';
+import { DistributionsComponent } from './distributions/distributions.component';
+import { MobileMoneyComponent } from './distributions/validated-components/mobile-money/mobile-money.component';
+import { NotValidatedDistributionComponent } from './distributions/not-validated-distribution/not-validated-distribution.component';
+import { QrVoucherComponent } from './distributions/validated-components/qr-voucher/qr-voucher.component';
+import { GeneralReliefComponent } from './distributions/validated-components/general-relief/general-relief.component';
+import { NotValidatedCommunityDistributionComponent } from './containers/not-validated-community-distribution/not-validated-community-distribution.component';
 import { AssistanceInstitutionComponent } from './components/assistance-institution/assistance-institution.component';
 import { AssistanceCommunityComponent } from './components/assistance-community/assistance-community.component';
+import { ImportDistributionComponent } from './distributions/import-distribution/import-distribution.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +36,14 @@ import { AssistanceCommunityComponent } from './components/assistance-community/
     TargetedBeneficiariesModalComponent,
     AssistanceInstitutionComponent,
     AssistanceCommunityComponent,
+    DistributionsComponent,
+    MobileMoneyComponent,
+    QrVoucherComponent,
+    GeneralReliefComponent,
+    ImportDistributionComponent,
+    NotValidatedDistributionComponent,
+    NotValidatedInstitutionDistributionComponent,
+    NotValidatedCommunityDistributionComponent,
   ],
   imports: [
     CommonModule,

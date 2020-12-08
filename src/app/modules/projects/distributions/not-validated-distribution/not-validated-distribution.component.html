@@ -1,237 +1,337 @@
-<mat-horizontal-stepper #myStepper *ngIf="!loadingDatas && actualDistribution && !actualDistribution.get('validated')">
-
-    <mat-step label="{{ language.distribution_details_export }}">
-        <div class="container-table" *ngIf="myStepper.selectedIndex === 0">
-            <div class="container-content box-primary box-primary">
-                <div class="content-button">
-                    <div class="action-buttons">
-                        <div class="button-with-extension"
-                            [ngClass]="{'rtl':language.direction === 'rtl'}">
-                            <button mat-flat-button class="button-background-primary"
-                                [disabled]="!(initialBeneficiaryData && initialBeneficiaryData.data.length >0)"
-                                (click)="export()" *ngIf="!loadingExport">
-                                <mat-icon>get_app</mat-icon>
-                                <span>{{language.export}}</span>
-                            </button>
-                            <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
-                            <div class="extension" *ngIf="!loadingExport">
-                                <button mat-flat-button class="dropdown button-background-primary"
-                                    [matMenuTriggerFor]="exportType1"
-                                    [disabled]="!(initialBeneficiaryData && initialBeneficiaryData.data.length >0)">
-                                    <mat-icon>keyboard_arrow_down</mat-icon>
-                                </button>
-                                <mat-menu #exportType1 class="extMenu">
-                                    <button mat-menu-item (click)="setType(1, 'xlsx')"> .xlsx <mat-icon
-                                            *ngIf="extensionTypeStep1=='xlsx'">done</mat-icon>
-                                    </button>
-                                    <button mat-menu-item (click)="setType(1, 'csv')"> .csv <mat-icon
-                                            *ngIf="extensionTypeStep1=='csv'">done</mat-icon>
-                                    </button>
-                                    <button mat-menu-item (click)="setType(1, 'ods')"> .ods <mat-icon
-                                            *ngIf="extensionTypeStep1=='ods'">done</mat-icon>
-                                    </button>
-                                    <button mat-menu-item (click)="setType(1, 'pdf')"> .pdf <mat-icon
-                                        *ngIf="extensionTypeStep1=='pdf'">done</mat-icon>
-                                    </button>
-                                </mat-menu>
-                            </div>
-                        </div>
-                    </div>
-                    <button mat-flat-button
-                        *ngIf="currentDisplayType.type !== 'mobile' && userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        (click)="openModal({action:'addBeneficiary', distribution: actualDistribution})"
-                        class="add-button-create">
-                        <mat-icon>add</mat-icon>
-                        {{language.add}}
-                    </button>
-                    <button mat-fab
-                        *ngIf="currentDisplayType.type === 'mobile' && userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        (click)="openModal({action:'addBeneficiary', distribution: actualDistribution})"
-                        class="add-button"
-                        [ngClass]="{'add-button-rtl': language.direction === 'rtl'}">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                </div>
-                <div class="content-table">
-                    <app-table [isLoading]="loadingFirstStep" [searchable]="true" [paginable]="true"
-                        *ngIf="currentDisplayType.type !== 'mobile'" [entity]="beneficiaryEntity"
-                        [service]="beneficiariesService" [data]="initialBeneficiaryData"
-                        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        (openModal)="openModal($event)">
-                    </app-table>
-                    <app-table-mobile [isLoading]="loadingFirstStep" *ngIf="currentDisplayType.type === 'mobile'"
-                        [entity]="beneficiaryEntity" [service]="beneficiariesService" [data]="initialBeneficiaryData"
-                        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        (openModal)="openModal($event)">
-                    </app-table-mobile>
-                </div>
-                <div class="content-button content-button-footer">
-                    <button mat-flat-button class="button-background-primary" matStepperNext
-                        (click)="this.getDistributionBeneficiaries('both')">{{language.next}}</button>
-                </div>
+<mat-horizontal-stepper
+  #myStepper
+  *ngIf="!loadingDatas && actualDistribution && !actualDistribution.get('validated')"
+>
+  <mat-step label="{{ language.distribution_details_export }}">
+    <div class="container-table" *ngIf="myStepper.selectedIndex === 0">
+      <div class="container-content box-primary box-primary">
+        <div class="content-button">
+          <div class="action-buttons">
+            <div
+              class="button-with-extension"
+              [ngClass]="{ rtl: language.direction === 'rtl' }"
+            >
+              <button
+                mat-flat-button
+                class="button-background-primary"
+                [disabled]="
+                  !(initialBeneficiaryData && initialBeneficiaryData.data.length > 0)
+                "
+                (click)="export()"
+                *ngIf="!loadingExport"
+              >
+                <mat-icon>get_app</mat-icon>
+                <span>{{ language.export }}</span>
+              </button>
+              <mat-spinner [diameter]="25" *ngIf="loadingExport"></mat-spinner>
+              <div class="extension" *ngIf="!loadingExport">
+                <button
+                  mat-flat-button
+                  class="dropdown button-background-primary"
+                  [matMenuTriggerFor]="exportType1"
+                  [disabled]="
+                    !(initialBeneficiaryData && initialBeneficiaryData.data.length > 0)
+                  "
+                >
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #exportType1 class="extMenu">
+                  <button mat-menu-item (click)="setType(1, 'xlsx')">
+                    .xlsx <mat-icon *ngIf="extensionTypeStep1 == 'xlsx'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setType(1, 'csv')">
+                    .csv <mat-icon *ngIf="extensionTypeStep1 == 'csv'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setType(1, 'ods')">
+                    .ods <mat-icon *ngIf="extensionTypeStep1 == 'ods'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setType(1, 'pdf')">
+                    .pdf <mat-icon *ngIf="extensionTypeStep1 == 'pdf'">done</mat-icon>
+                  </button>
+                </mat-menu>
+              </div>
             </div>
+          </div>
+          <button
+            mat-flat-button
+            *ngIf="
+              currentDisplayType.type !== 'mobile' &&
+              userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')
+            "
+            (click)="
+              openModal({ action: 'addBeneficiary', distribution: actualDistribution })
+            "
+            class="add-button-create"
+          >
+            <mat-icon>add</mat-icon>
+            {{ language.add }}
+          </button>
+          <button
+            mat-fab
+            *ngIf="
+              currentDisplayType.type === 'mobile' &&
+              userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')
+            "
+            (click)="
+              openModal({ action: 'addBeneficiary', distribution: actualDistribution })
+            "
+            class="add-button"
+            [ngClass]="{ 'add-button-rtl': language.direction === 'rtl' }"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
         </div>
-    </mat-step>
+        <div class="content-table">
+          <ng-container>
+            <app-table
+              [isLoading]="loadingFirstStep"
+              [searchable]="true"
+              [paginable]="true"
+              *ngIf="currentDisplayType.type !== 'mobile'"
+              [entity]="beneficiaryEntity"
+              [service]="beneficiariesService"
+              [data]="initialBeneficiaryData"
+              [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+              [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+              (openModal)="openModal($event)"
+            >
+            </app-table>
+            <app-table-mobile
+              [isLoading]="loadingFirstStep"
+              *ngIf="currentDisplayType.type === 'mobile'"
+              [entity]="beneficiaryEntity"
+              [service]="beneficiariesService"
+              [data]="initialBeneficiaryData"
+              [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+              [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+              (openModal)="openModal($event)"
+            >
+            </app-table-mobile>
+          </ng-container>
+          <app-clean-table> </app-clean-table>
+        </div>
+        <div class="content-button content-button-footer">
+          <button
+            mat-flat-button
+            class="button-background-primary"
+            matStepperNext
+            (click)="this.getDistributionBeneficiaries('both')"
+          >
+            {{ language.next }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-step>
 
-    <mat-step label="{{ language.distribution_details_import }}" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
-        <div class="container-table" *ngIf="myStepper.selectedIndex === 1">
-            <div class="container-content box-primary">
-                <div class="import-content">
-                    <app-import-distribution *ngIf="!actualDistribution.get('validated')"
-                        [distribution]="actualDistribution" (success)=" this.getDistributionBeneficiaries('final');
-                                    this.getDistributionBeneficiaries('initial');
-                                    jumpStep(myStepper)" (selected)="fileSelected($event)">
-                    </app-import-distribution>
-                </div>
-                <div class="container-empty" *ngIf="actualDistribution.get('validated')">
-                    <p>
-                        <mat-icon>folder</mat-icon>
-                        {{language.distribution_cant_update}}
-                    </p>
-                </div>
-                <div class="content-button content-button-footer" *ngIf="!selected">
-                    <button mat-flat-button class="button-background-primary"
-                        matStepperNext>{{language.next}}</button>
-                </div>
-            </div>
+  <mat-step
+    label="{{ language.distribution_details_import }}"
+    *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+  >
+    <div class="container-table" *ngIf="myStepper.selectedIndex === 1">
+      <div class="container-content box-primary">
+        <div class="import-content">
+          <app-import-distribution
+            *ngIf="!actualDistribution.get('validated')"
+            [distribution]="actualDistribution"
+            (success)="
+              this.getDistributionBeneficiaries('final');
+              this.getDistributionBeneficiaries('initial');
+              jumpStep(myStepper)
+            "
+            (selected)="fileSelected($event)"
+          >
+          </app-import-distribution>
         </div>
-    </mat-step>
+        <div class="container-empty" *ngIf="actualDistribution.get('validated')">
+          <p>
+            <mat-icon>folder</mat-icon>
+            {{ language.distribution_cant_update }}
+          </p>
+        </div>
+        <div class="content-button content-button-footer" *ngIf="!selected">
+          <button mat-flat-button class="button-background-primary" matStepperNext>
+            {{ language.next }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-step>
 
-    <mat-step label="{{ language.distribution_details_random }}">
-        <div class="container-table" *ngIf="myStepper.selectedIndex === 2">
-            <div class="container-content box-primary">
-                <div class="content-button">
-                    <div class="action-buttons">
-                        <div class="button-with-extension"
-                            [ngClass]="{'rtl':language.direction === 'rtl'}">
-                            <button mat-flat-button
-                                [disabled]="!(randomSampleData && randomSampleData.data.length >0)"
-                                class="button-background-primary" (click)="exportSample()" *ngIf="!loadingExport">
-                                <mat-icon>get_app</mat-icon>
-                                <span>{{language.export}}</span>
-                            </button>
-                            <mat-spinner [diameter]='25' *ngIf="loadingExport"></mat-spinner>
-                            <div class="extension">
-                                <button mat-flat-button class="dropdown button-background-primary"
-                                    *ngIf="!loadingExport"
-                                    [disabled]="!(randomSampleData && randomSampleData.data.length >0)"
-                                    [matMenuTriggerFor]="exportType3">
-                                    <mat-icon>keyboard_arrow_down</mat-icon>
-                                </button>
-                                <mat-menu #exportType3>
-                                    <button mat-menu-item (click)="setType(3, 'xlsx')"> .xlsx <mat-icon
-                                            *ngIf="extensionTypeStep3=='xlsx'">done</mat-icon>
-                                    </button>
-                                    <button mat-menu-item (click)="setType(3, 'csv')"> .csv <mat-icon
-                                            *ngIf="extensionTypeStep3=='csv'">done</mat-icon>
-                                    </button>
-                                    <button mat-menu-item (click)="setType(3, 'ods')"> .ods <mat-icon
-                                            *ngIf="extensionTypeStep3=='ods'">done</mat-icon>
-                                    </button>
-                                </mat-menu>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sample-size-input">
-                        <button [disabled]="!sampleSizeControl.valid" mat-fab class="button-background-accent"
-                            (click)="generateRandom()">
-                            <mat-icon>shuffle</mat-icon>
-                        </button>
-                        <mat-form-field>
-                            {{language.distribution_details_sample_size}} :
-                            <input matInput [formControl]="sampleSizeControl" min="0" max="100" type="number">
-                            %
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="container-empty" *ngIf="!randomSampleData && !loadingThirdStep">
-                    <p>
-                        <mat-icon>clear</mat-icon>
-                        {{language.distribution_no_random_sample}}
-                    </p>
-                </div>
-                <div class="content-table" *ngIf="randomSampleData">
-                    <app-table [isLoading]="loadingThirdStep" [searchable]="true" [paginable]="true"
-                        *ngIf="currentDisplayType.type !== 'mobile'" [entity]="beneficiaryEntity"
-                        [service]="beneficiariesService" [data]="randomSampleData" (openModal)="openModal($event)"
-                        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
-                    </app-table>
-                    <app-table-mobile [isLoading]="loadingThirdStep" *ngIf="currentDisplayType.type === 'mobile'"
-                        [entity]="beneficiaryEntity" [service]="beneficiariesService" [data]="randomSampleData"
-                        (openModal)="openModal($event)"
-                        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
-                    </app-table-mobile>
-                </div>
-                <div class="content-button content-button-footer" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
-                    <button mat-flat-button class="button-background-primary"
-                        matStepperNext>{{language.next}}</button>
-                </div>
+  <mat-step label="{{ language.distribution_details_random }}">
+    <div class="container-table" *ngIf="myStepper.selectedIndex === 2">
+      <div class="container-content box-primary">
+        <div class="content-button">
+          <div class="action-buttons">
+            <div
+              class="button-with-extension"
+              [ngClass]="{ rtl: language.direction === 'rtl' }"
+            >
+              <button
+                mat-flat-button
+                [disabled]="!(randomSampleData && randomSampleData.data.length > 0)"
+                class="button-background-primary"
+                (click)="exportSample()"
+                *ngIf="!loadingExport"
+              >
+                <mat-icon>get_app</mat-icon>
+                <span>{{ language.export }}</span>
+              </button>
+              <mat-spinner [diameter]="25" *ngIf="loadingExport"></mat-spinner>
+              <div class="extension">
+                <button
+                  mat-flat-button
+                  class="dropdown button-background-primary"
+                  *ngIf="!loadingExport"
+                  [disabled]="!(randomSampleData && randomSampleData.data.length > 0)"
+                  [matMenuTriggerFor]="exportType3"
+                >
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #exportType3>
+                  <button mat-menu-item (click)="setType(3, 'xlsx')">
+                    .xlsx <mat-icon *ngIf="extensionTypeStep3 == 'xlsx'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setType(3, 'csv')">
+                    .csv <mat-icon *ngIf="extensionTypeStep3 == 'csv'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setType(3, 'ods')">
+                    .ods <mat-icon *ngIf="extensionTypeStep3 == 'ods'">done</mat-icon>
+                  </button>
+                </mat-menu>
+              </div>
             </div>
+          </div>
+          <div class="sample-size-input">
+            <button
+              [disabled]="!sampleSizeControl.valid"
+              mat-fab
+              class="button-background-accent"
+              (click)="generateRandom()"
+            >
+              <mat-icon>shuffle</mat-icon>
+            </button>
+            <mat-form-field>
+              {{ language.distribution_details_sample_size }} :
+              <input
+                matInput
+                [formControl]="sampleSizeControl"
+                min="0"
+                max="100"
+                type="number"
+              />
+              %
+            </mat-form-field>
+          </div>
         </div>
-    </mat-step>
+        <div class="container-empty" *ngIf="!randomSampleData && !loadingThirdStep">
+          <p>
+            <mat-icon>clear</mat-icon>
+            {{ language.distribution_no_random_sample }}
+          </p>
+        </div>
+        <div class="content-table" *ngIf="randomSampleData">
+          <app-table
+            [isLoading]="loadingThirdStep"
+            [searchable]="true"
+            [paginable]="true"
+            *ngIf="currentDisplayType.type !== 'mobile'"
+            [entity]="beneficiaryEntity"
+            [service]="beneficiariesService"
+            [data]="randomSampleData"
+            (openModal)="openModal($event)"
+            [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+          >
+          </app-table>
+          <app-table-mobile
+            [isLoading]="loadingThirdStep"
+            *ngIf="currentDisplayType.type === 'mobile'"
+            [entity]="beneficiaryEntity"
+            [service]="beneficiariesService"
+            [data]="randomSampleData"
+            (openModal)="openModal($event)"
+            [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+          >
+          </app-table-mobile>
+        </div>
+        <div
+          class="content-button content-button-footer"
+          *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+        >
+          <button mat-flat-button class="button-background-primary" matStepperNext>
+            {{ language.next }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-step>
 
-    <mat-step label="{{ language.distribution_details_validate }}" *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')">
-        <div class="container-table" *ngIf="myStepper.selectedIndex === 3">
-            <div class="container-content box-primary">
-                <div class="content-button">
-                </div>
-                <div class="container-empty" *ngIf="!finalBeneficiaryData && !loadingFinalStep">
-                    <p>
-                        <mat-icon>edit</mat-icon>
-                        {{language.distribution_not_modified}}
-                    </p>
-                    <button mat-flat-button class="button-background-primary"
-                        (click)="getDistributionBeneficiaries('final')">
-                        {{language.distribution_show_data}} </button>
-                </div>
-                <div class="content-table" *ngIf="finalBeneficiaryData">
-                    <app-table [isLoading]="loadingFinalStep" [searchable]="true" [paginable]="true"
-                        *ngIf="currentDisplayType.type !== 'mobile'" [entity]="beneficiaryEntity"
-                        [service]="beneficiariesService" [data]="finalBeneficiaryData"
-                        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        (openModal)="openModal($event)">
-                    </app-table>
-                    <app-table-mobile [isLoading]="loadingFinalStep" *ngIf="currentDisplayType.type === 'mobile'"
-                        [entity]="beneficiaryEntity" [service]="beneficiariesService" [data]="finalBeneficiaryData"
-                        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        (openModal)="openModal($event)">
-                    </app-table-mobile>
-                </div>
-                <div class="content-button content-button-footer">
-                    <div class="action-buttons">
-                        <mat-spinner [diameter]="35" *ngIf="loaderValidation"></mat-spinner>
-                        <button mat-flat-button *ngIf="!loaderValidation && userService.hasRights('ROLE_PROJECT_MANAGEMENT')" class="button-background-accent"
-                            (click)="openDialog(validation)" [disabled]="actualDistribution.get('validated')">
-                            <mat-icon>lock</mat-icon>
-                            {{language.distribution_validate}}
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <mat-step
+    label="{{ language.distribution_details_validate }}"
+    *ngIf="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+  >
+    <div class="container-table" *ngIf="myStepper.selectedIndex === 3">
+      <div class="container-content box-primary">
+        <div class="content-button"></div>
+        <div class="container-empty" *ngIf="!finalBeneficiaryData && !loadingFinalStep">
+          <p>
+            <mat-icon>edit</mat-icon>
+            {{ language.distribution_not_modified }}
+          </p>
+          <button
+            mat-flat-button
+            class="button-background-primary"
+            (click)="getDistributionBeneficiaries('final')"
+          >
+            {{ language.distribution_show_data }}
+          </button>
         </div>
-    </mat-step>
+        <div class="content-table" *ngIf="finalBeneficiaryData">
+          <app-table
+            [isLoading]="loadingFinalStep"
+            [searchable]="true"
+            [paginable]="true"
+            *ngIf="currentDisplayType.type !== 'mobile'"
+            [entity]="beneficiaryEntity"
+            [service]="beneficiariesService"
+            [data]="finalBeneficiaryData"
+            [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            (openModal)="openModal($event)"
+          >
+          </app-table>
+          <app-table-mobile
+            [isLoading]="loadingFinalStep"
+            *ngIf="currentDisplayType.type === 'mobile'"
+            [entity]="beneficiaryEntity"
+            [service]="beneficiariesService"
+            [data]="finalBeneficiaryData"
+            [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            (openModal)="openModal($event)"
+          >
+          </app-table-mobile>
+        </div>
+        <div class="content-button content-button-footer">
+          <div class="action-buttons">
+            <mat-spinner [diameter]="35" *ngIf="loaderValidation"></mat-spinner>
+            <button
+              mat-flat-button
+              *ngIf="
+                !loaderValidation && userService.hasRights('ROLE_PROJECT_MANAGEMENT')
+              "
+              class="button-background-accent"
+              (click)="validateClick.emit()"
+              [disabled]="actualDistribution.get('validated')"
+            >
+              <mat-icon>lock</mat-icon>
+              {{ language.distribution_validate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-step>
 </mat-horizontal-stepper>
-
-<ng-template #validation>
-    <h4 mat-dialog-title class="modal-title underline-accent" [ngClass]="{'rtl':language.direction === 'rtl'}">{{language.transaction_validation}}</h4>
-    <mat-dialog-content class="modal-container">
-        <div class="modal-body">
-            <p> {{language.transaction_validate_distribution}} </p>
-        </div>
-    </mat-dialog-content>
-    <mat-dialog-actions >
-        <div class="modal-button action-buttons"
-            [ngClass]="{'rtl':language.direction === 'rtl'}">
-            <button mat-button class="button-text-accent"
-                (click)="exit('Validation canceled')">{{language.cancel}}</button>
-            <button mat-flat-button class="button-background-accent"
-                (click)="confirmValidation()">{{language.transaction_confirm_button}}</button>
-        </div>
-    </mat-dialog-actions>
-</ng-template>

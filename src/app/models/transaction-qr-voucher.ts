@@ -6,6 +6,8 @@ import { ObjectModelField } from './custom-models/object-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { Product } from './product';
 import { CustomModel } from 'src/app/models/custom-models/custom-model';
+import { Community } from 'src/app/models/community';
+import { Institution } from 'src/app/models/institution';
 
 export class TransactionQRVoucher extends DistributionBeneficiary {
   title = this.language.beneficiary;
@@ -21,6 +23,20 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
         childrenFieldName: 'id',
       }),
       booklet: new ObjectModelField<Booklet>({}),
+      institutionName: new NestedFieldModelField({
+        title: this.language.institution,
+        isDisplayedInTable: true,
+        isDisplayedInModal: true,
+        childrenObject: 'institution',
+        childrenFieldName: 'name',
+      }),
+      communityName: new NestedFieldModelField({
+        title: this.language.community,
+        isDisplayedInTable: true,
+        isDisplayedInModal: true,
+        childrenObject: 'community',
+        childrenFieldName: 'name',
+      }),
       localGivenName: new NestedFieldModelField({
         title: this.language.beneficiary_given_name,
         isDisplayedInTable: true,
@@ -116,10 +132,25 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
   ): TransactionQRVoucher {
     const newQRVoucher = new TransactionQRVoucher();
 
-    if (distributionBeneficiaryFromApi.beneficiary.referral) {
+    if (
+      distributionBeneficiaryFromApi.beneficiary &&
+      distributionBeneficiaryFromApi.beneficiary.referral
+    ) {
       newQRVoucher.fields.addReferral.isDisplayedInModal = false;
       newQRVoucher.fields.referralType.isDisplayedInModal = true;
       newQRVoucher.fields.referralComment.isDisplayedInModal = true;
+    }
+    if (distributionBeneficiaryFromApi.community) {
+      newQRVoucher.set(
+        'community',
+        Community.apiToModel(distributionBeneficiaryFromApi.community)
+      );
+    }
+    if (distributionBeneficiaryFromApi.institution) {
+      newQRVoucher.set(
+        'institution',
+        Institution.apiToModel(distributionBeneficiaryFromApi.institution)
+      );
     }
 
     let booklet = null;
@@ -134,6 +165,30 @@ export class TransactionQRVoucher extends DistributionBeneficiary {
     }
     newQRVoucher.set('booklet', booklet ? Booklet.apiToModel(booklet) : null);
     this.addCommonFields(newQRVoucher, distributionBeneficiaryFromApi, distributionId);
+    if (distributionBeneficiaryFromApi.community) {
+      const communityFields = {
+        ...newQRVoucher.fields,
+      };
+      delete communityFields.nationalId;
+      delete communityFields.enGivenName;
+      delete communityFields.enFamilyName;
+      delete communityFields.localGivenName;
+      delete communityFields.localFamilyName;
+      delete communityFields.institutionName;
+      newQRVoucher.fields = communityFields;
+    }
+    if (distributionBeneficiaryFromApi.institution) {
+      const institutionFields = {
+        ...newQRVoucher.fields,
+      };
+      delete institutionFields.nationalId;
+      delete institutionFields.enGivenName;
+      delete institutionFields.enFamilyName;
+      delete institutionFields.localGivenName;
+      delete institutionFields.localFamilyName;
+      delete institutionFields.communityName;
+      newQRVoucher.fields = institutionFields;
+    }
     return newQRVoucher;
   }
 

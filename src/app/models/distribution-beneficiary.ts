@@ -3,10 +3,18 @@ import { Beneficiary } from './beneficiary';
 import { ObjectModelField } from './custom-models/object-model-field';
 import { BooleanModelField } from './custom-models/boolan-model-field';
 import { TextModelField } from './custom-models/text-model-field';
+import { Community } from 'src/app/models/community';
+import { Institution } from 'src/app/models/institution';
 
 export class DistributionBeneficiary extends CustomModel {
   public fields = {
     beneficiary: new ObjectModelField<Beneficiary>({
+      value: null,
+    }),
+    institution: new ObjectModelField<Institution>({
+      value: null,
+    }),
+    community: new ObjectModelField<Community>({
       value: null,
     }),
     removed: new BooleanModelField({}),
@@ -49,11 +57,25 @@ export class DistributionBeneficiary extends CustomModel {
         ? newDistributionBeneficiary.language.beneficiary_justification_removed
         : newDistributionBeneficiary.language.beneficiary_justification_added;
     }
+    let beneficiary;
+    if (
+      distributionBeneficiaryFromApi.beneficiary &&
+      Object.keys(distributionBeneficiaryFromApi.beneficiary).length
+    ) {
+      beneficiary = Beneficiary.apiToModel(distributionBeneficiaryFromApi.beneficiary);
+    } else if (
+      distributionBeneficiaryFromApi.community &&
+      Object.keys(distributionBeneficiaryFromApi.community).length
+    ) {
+      beneficiary = Community.apiToModel(distributionBeneficiaryFromApi.community);
+    } else if (
+      distributionBeneficiaryFromApi.institution &&
+      Object.keys(distributionBeneficiaryFromApi.institution).length
+    ) {
+      beneficiary = Institution.apiToModel(distributionBeneficiaryFromApi.institution);
+    }
 
-    if (Object.keys(distributionBeneficiaryFromApi.beneficiary).length > 0) {
-      const beneficiary = Beneficiary.apiToModel(
-        distributionBeneficiaryFromApi.beneficiary
-      );
+    if (beneficiary) {
       beneficiary.set('distributionId', distributionId);
       beneficiary.set('removed', distributionBeneficiaryFromApi.removed);
       if (newDistributionBeneficiary.get('justification')) {

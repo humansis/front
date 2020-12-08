@@ -20,6 +20,8 @@ import { CriteriaService } from '../api/criteria.service';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { SnackbarService } from '../logging/snackbar.service';
 import { NetworkService } from '../network/network.service';
+import { Community } from 'src/app/models/community';
+import { Institution } from 'src/app/models/institution';
 
 @Injectable({
   providedIn: 'root',
@@ -67,7 +69,11 @@ export class ModalService {
         dialogRef = this.openEditDialog(dialogDetails.element);
         break;
       case 'delete':
-        if (dialogDetails.element instanceof Beneficiary) {
+        if (
+          dialogDetails.element instanceof Beneficiary ||
+          dialogDetails.element instanceof Institution ||
+          Community
+        ) {
           dialogRef = this.openDeleteBeneficiaryDialog(dialogDetails.element);
         } else {
           dialogRef = this.openDeleteDialog(dialogDetails.element);
@@ -117,7 +123,7 @@ export class ModalService {
           );
         } else if (closeMethod && closeMethod.method === 'DeleteBeneficiary') {
           this.isLoading.next();
-          this.deleteBeneficiary(dialogDetails.element, closeMethod.justification);
+          this.deleteBeneficiary(closeMethod.response, closeMethod.success);
         }
         // Prevent memory leaks
         subscription.unsubscribe();
@@ -174,7 +180,9 @@ export class ModalService {
   openDeleteBeneficiaryDialog(beneficiary: Beneficiary) {
     return this.dialog.open(ModalDeleteBeneficiaryComponent, {
       data: {
-        beneficiary: beneficiary.getIdentifyingName(),
+        name: beneficiary.getIdentifyingName(),
+        distributionId: beneficiary.get('distributionId'),
+        beneficiaryId: beneficiary.get('id'),
       },
     });
   }
@@ -276,18 +284,11 @@ export class ModalService {
       );
   }
 
-  deleteBeneficiary(beneficiary: Beneficiary, justification) {
-    this.referedClassService
-      .delete(beneficiary.get('id'), beneficiary.get('distributionId'), justification)
-      .subscribe(
-        (response: any) => {
-          this.isCompleted.next(true);
-          this.dataSubject.next(response);
-        },
-        (_error: any) => {
-          this.isCompleted.next(false);
-        }
-      );
+  deleteBeneficiary(response: any, success: boolean) {
+    this.isCompleted.next(success);
+    if (response) {
+      this.dataSubject.next(response);
+    }
   }
 
   deleteMany(ids: Array<number>) {
