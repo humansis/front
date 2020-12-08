@@ -49,6 +49,7 @@ export class English implements Language {
   commodity = 'Commodity';
   country = 'Country';
   criteria = 'Criteria';
+  activity = 'Activity';
   distribution = 'Distribution';
   distributions = 'Distributions';
   donor = 'Donor';
@@ -420,7 +421,7 @@ export class English implements Language {
   distribution_edit = 'Edit distribution';
   distribution_error_validate =
     'The distribution is empty, please fill it before to validate it';
-  distribution_id = 'distributionID';
+  assistance_id = 'Assistance ID';
   distribution_last_modification = 'last modified : ';
   distribution_no_beneficiaries =
     'No beneficiaries have been added or removed. Any changes made to the imported beneficiaries will be updated in the system.';

@@ -44,6 +44,7 @@ export interface Language {
   commodity: string;
   country: string;
   criteria: string;
+  activity: string;
   distribution: string;
   distributions: string;
   donor: string;
@@ -400,7 +401,7 @@ export interface Language {
   distribution_distribute: string;
   distribution_edit: string;
   distribution_error_validate: string;
-  distribution_id: string;
+  assistance_id: string;
   distribution_last_modification: string;
   distribution_no_beneficiaries: string;
   distribution_no_random_sample: string;

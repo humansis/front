@@ -48,6 +48,7 @@ export class French implements Language {
   commodity = 'Ressource';
   country = 'Pays';
   criteria = 'Critère';
+  activity = 'Activité';
   distribution = 'Distribution';
   distributions = 'Distributions';
   donor = 'Donneur';
@@ -420,7 +421,7 @@ export class French implements Language {
   distribution_edit = 'Modifier la distribution';
   distribution_error_validate =
     'La distribution est vide, veuillez la remplir avant de la valider';
-  distribution_id = 'ID de la distribution';
+  assistance_id = 'ID de la assistance';
   distribution_last_modification = 'dernière modification : ';
   distribution_no_beneficiaries =
     "Aucun bénéficiaire n'a été ajouté ou supprimé. N'importe quel changement fait aux bénéficiaires importés vont être mis à jour dans le système.";

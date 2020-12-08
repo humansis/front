@@ -14,6 +14,7 @@ import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { Location } from './location';
 import { Project } from './project';
+import { IdNameModel } from 'src/app/models/id-name-model';
 export class DistributionType extends CustomModel {
   public fields = {
     name: new TextModelField({}),
@@ -41,8 +42,23 @@ export class Distribution extends CustomModel {
 
   public fields = {
     id: new NumberModelField({
-      title: this.language.distribution_id,
+      title: this.language.assistance_id,
       isDisplayedInTable: true,
+    }),
+    assistanceType: new SingleSelectModelField({
+      title: this.language.type,
+      isDisplayedInModal: false,
+      isDisplayedInTable: true,
+      isDisplayedInSummary: false,
+      isRequired: true,
+      isSettable: false,
+      options: [
+        new IdNameModel('distribution', this.language.distribution),
+        new IdNameModel('activity', this.language.activity),
+      ],
+      bindField: 'name',
+      apiLabel: 'id',
+      value: new IdNameModel('activity', this.language.activity),
     }),
     name: new TextModelField({
       title: this.language.name,
@@ -183,6 +199,17 @@ export class Distribution extends CustomModel {
     );
 
     newDistribution.set('name', distributionFromApi.name);
+    newDistribution.set(
+      'assistanceType',
+      distributionFromApi.assistance_type
+        ? newDistribution
+            .getOptions('assistanceType')
+            .filter(
+              (option: IdNameModel) =>
+                distributionFromApi.assistance_type === option.get('id')
+            )[0]
+        : null
+    );
     newDistribution.set('validated', distributionFromApi.validated);
     newDistribution.set(
       'location',

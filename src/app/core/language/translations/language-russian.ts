@@ -47,6 +47,7 @@ export class Russian implements Language {
   commodity = 'Товар';
   country = 'страна';
   criteria = 'Критерии';
+  activity = this.missingTranslation;
   distribution = 'Выдача';
   distributions = 'Выдачи';
   donor = 'Донор';
@@ -413,7 +414,7 @@ export class Russian implements Language {
   distribution_edit = 'Изменить распределение';
   distribution_error_validate =
     'Распределение пусто, пожалуйста, заполните его, чтобы подтвердить';
-  distribution_id = 'Идентификационный номер распределения';
+  assistance_id = this.missingTranslation;
   distribution_last_modification = 'Последнее изменение: ';
   distribution_no_beneficiaries =
     'Бенефициары не были добавлены или удалены. Любые изменения, внесенные в импортированных бенефициаров, будут обновляться в системе.';

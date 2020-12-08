@@ -48,6 +48,7 @@ export class Arabic implements Language {
   commodity = 'السلع';
   country = 'البلد';
   criteria = 'المعاير';
+  activity = this.missingTranslation;
   distribution = 'التوزيع';
   distributions = 'التوزيعات';
   donor = 'المانح';
@@ -408,7 +409,7 @@ export class Arabic implements Language {
   distribution_distribute = 'تعيين كما وزعت';
   distribution_edit = 'تعديل التوزيع';
   distribution_error_validate = 'التوزيع فارغ ، يرجى ملءه قبل التحقق من صحته';
-  distribution_id = 'معرف التوزيع';
+  assistance_id = this.missingTranslation;
   distribution_last_modification = 'آخر تعديل :';
   distribution_no_beneficiaries =
     'لم تتم إضافة أو إزالة أي مستفيدين. سيتم تحديث أي تغييرات يتم إجراؤها على المستفيدين المستوردين في النظام.';
