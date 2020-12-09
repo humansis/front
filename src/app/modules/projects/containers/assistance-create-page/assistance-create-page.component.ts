@@ -79,6 +79,14 @@ export class AssistanceCreatePageComponent implements OnInit {
         this.totalBeneficiaries = 0;
       });
 
+    this.form.controls.assistance_type.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe((value) => {
+        if (value === 'activity') {
+          this.form.patchValue({ commodities: null });
+        }
+      });
+
     this.route.queryParamMap
       .pipe(
         filter((queryMap) => queryMap.has('duplicateDistribution')),

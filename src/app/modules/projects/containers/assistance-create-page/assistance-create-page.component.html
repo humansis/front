@@ -57,6 +57,9 @@
           </div>
           <div>
             <app-assistance-commodity
+              *ngIf="
+                form.value.assistance_type && form.value.assistance_type !== 'activity'
+              "
               [reachedBeneficiaries]="reachedBeneficiaries"
               (commoditiesChanged)="commoditiesChanged($event)"
             >
