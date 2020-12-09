@@ -348,7 +348,7 @@ export interface Language {
 
   // Dashboard
   dashboard_distribution_map: string;
-  dashboard_recent_distributions: string;
+  dashboard_current_activities: string;
   dashboard_summary_1: string;
   dashboard_summary_2: string;
   dashboard_summary_3: string;
@@ -420,6 +420,7 @@ export interface Language {
   distribution_validated_title: string;
   distribution_validated: string;
   distribution_want_add: string;
+  distribution_enrolled_households: string;
 
   // Data mapping
   data_mapping_title: string;
@@ -741,7 +742,7 @@ export interface Language {
   project_no_distribution: string;
   project_no_household: string;
   project_no_projects: string;
-  project_number_of_households: string;
+  project_registered_households: string;
   project_sectors_name: string;
   project_start_date: string;
   project_value: string;

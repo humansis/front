@@ -71,7 +71,7 @@ export class Project extends CustomModel {
     }),
     // Todo: check if this is necessary ?
     numberOfHouseholds: new NumberModelField({
-      title: this.language.project_number_of_households,
+      title: this.language.project_registered_households,
       isDisplayedInModal: false,
       isDisplayedInSummary: true,
       isDisplayedInTable: true,

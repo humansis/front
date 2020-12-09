@@ -355,12 +355,12 @@ export class English implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'distribution map';
-  dashboard_recent_distributions = 'upcoming distributions';
-  dashboard_summary_1 = 'total registrations';
+  dashboard_current_activities = 'Current Activities';
+  dashboard_summary_1 = 'Beneficiary Registrations';
   dashboard_summary_2 = 'active projects';
-  dashboard_summary_3 = 'enrolled beneficiaries';
+  dashboard_summary_3 = 'Enrolled Households';
   dashboard_summary_4 = 'total value transactions';
-  dashboard_summary_5 = 'served beneficiaries';
+  dashboard_summary_5 = 'Served Households';
   dashboard_summary_6 = 'completed distributions';
 
   // Data verification
@@ -443,6 +443,7 @@ export class English implements Language {
   distribution_validated = 'Distribution has been validated';
   distribution_validated_title = 'Validated distribution';
   distribution_want_add = 'that you want to add to the ';
+  distribution_enrolled_households = 'Enrolled Households';
 
   // Donor
   donor_fullname = 'Donor name';
@@ -779,10 +780,10 @@ export class English implements Language {
     'This project does not contain any distributions. Create your first one !';
   project_no_household = 'This project does not contain any households.';
   project_no_projects = 'This country currently does not contain any active projects.';
-  project_number_of_households = 'Number of Households';
+  project_registered_households = 'Registered Households';
   project_sectors_name = 'Sectors';
   project_start_date = 'Start Date';
-  project_value = 'Total Target Beneficiaries';
+  project_value = 'Target Households';
 
   // Report
   report_active_project = 'active project';
@@ -945,7 +946,7 @@ export class English implements Language {
   transaction_pickupDate = 'Pick up date';
   transaction_prevention =
     'This platform is still under development and the online cash transaction functionality may not be fully stable yet. The development team denies responsibility for any errors that may occur in terms of money loss. By ticking the box below, you agree to use the system knowing fully well its limitations and take responsibility for the results of the transaction.';
-  transaction_progress = 'commodity distribution progress:';
+  transaction_progress = 'Distribution Progress:';
   transaction_refresh = 'Check pickup status';
   transaction_state_already_sent = 'Sent'; // Means sent during a previous transaction (before loading the page)
   transaction_state_no_phone = 'No phone';

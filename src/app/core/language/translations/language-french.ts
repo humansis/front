@@ -357,12 +357,12 @@ export class French implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'répartition des distributions';
-  dashboard_recent_distributions = 'distributions récentes';
-  dashboard_summary_1 = "total d'enregistrements";
+  dashboard_current_activities = this.missingTranslation;
+  dashboard_summary_1 = this.missingTranslation;
   dashboard_summary_2 = 'projets en cours';
-  dashboard_summary_3 = 'bénéficiaires enregistrés';
+  dashboard_summary_3 = this.missingTranslation;
   dashboard_summary_4 = 'montant total des transactions';
-  dashboard_summary_5 = 'bénéficiaires servis';
+  dashboard_summary_5 = this.missingTranslation;
   dashboard_summary_6 = 'distributions terminées';
 
   // Data verification
@@ -445,6 +445,7 @@ export class French implements Language {
   distribution_validated = 'La distribution a été validée';
   distribution_validated_title = 'Distribution validée';
   distribution_want_add = 'que vous souhaitez ajouter à la ';
+  distribution_enrolled_households = this.missingTranslation;
 
   // Data columns mapping
   data_mapping_title = 'data columns mapping';
@@ -786,10 +787,10 @@ export class French implements Language {
     'Le projet ne contient aucune distribution. Créer votre première !';
   project_no_household = 'Le projet ne contient aucun ménage.';
   project_no_projects = 'Le pays ne contient aucun projet actif pour le moment.';
-  project_number_of_households = 'Nombre de ménages';
+  project_registered_households = this.missingTranslation;
   project_sectors_name = 'Secteurs';
   project_start_date = 'Date de début de projet';
-  project_value = 'Nombre de bénéficiaires ciblés';
+  project_value = this.missingTranslation;
 
   // Report
   report_active_project = 'projet actif';
@@ -954,7 +955,7 @@ export class French implements Language {
   transaction_pickupDate = 'Date de récupération';
   transaction_prevention =
     'This platform is still under development and the online cash transaction functionality may not be fully stable yet. The development team denies responsibility for any errors that may occur in terms of money loss. By ticking the box below, you agree to use the system knowing fully well its limitations and take responsibility for the results of the transaction.';
-  transaction_progress = 'progrès de la distribution des produits:';
+  transaction_progress = this.missingTranslation;
   transaction_refresh = 'Vérifier les retraits';
   transaction_state_already_sent = 'Envoyé';
   transaction_state_no_phone = 'Pas de téléphone';

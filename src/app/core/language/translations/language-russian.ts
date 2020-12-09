@@ -351,12 +351,12 @@ export class Russian implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'карта выдачи';
-  dashboard_recent_distributions = 'предстоящие рассылки';
-  dashboard_summary_1 = 'Всего регистраций';
+  dashboard_current_activities = 'Текущая деятельность';
+  dashboard_summary_1 = 'Регистрации бенефициара';
   dashboard_summary_2 = 'действующие проекты';
-  dashboard_summary_3 = 'зарегистрированные бенефициары';
+  dashboard_summary_3 = 'Зарегистрированные домохозяйства';
   dashboard_summary_4 = 'общая сумма перевода';
-  dashboard_summary_5 = 'обслуживаемые бенефициары';
+  dashboard_summary_5 = 'Oбслуживаемые домохозяйства';
   dashboard_summary_6 = 'завершенные распределения';
 
   // Data verification
@@ -437,6 +437,7 @@ export class Russian implements Language {
   distribution_validated = 'Распределение утверждено';
   distribution_validated_title = 'Утвержденное распределение';
   distribution_want_add = 'что вы хотите добавить в ';
+  distribution_enrolled_households = 'Enrolled Households';
   // Data columns mapping
   data_mapping_title = 'data columns mapping';
 
@@ -670,10 +671,10 @@ export class Russian implements Language {
     'Этот проект не содержит распределений. Создайте свое первое!';
   project_no_household = 'Этот проект не содержит домохозяйств.';
   project_no_projects = 'В этой стране в настоящее время нет активных проектов.';
-  project_number_of_households = 'Количество домохозяйств';
+  project_registered_households = 'Зарегистрированные домохозяйства';
   project_sectors_name = 'Сектора';
   project_start_date = 'Дата начала';
-  project_value = 'Всего целевых бенефициаров';
+  project_value = 'Целевые домохозяйства';
 
   // Report
   report_active_project = 'активный проект';
@@ -837,7 +838,7 @@ export class Russian implements Language {
   transaction_pickupDate = 'Подобрать дату';
   transaction_prevention =
     'Эта платформа все еще находится в стадии разработки, и функциональность онлайн-транзакций с наличными средствами может быть еще не полностью стабильной. Команда разработчиков не несет ответственности за любые ошибки, которые могут возникнуть при потере денег. Установив флажок ниже, вы соглашаетесь использовать систему, хорошо зная ее ограничения, и берете на себя ответственность за результаты транзакции..';
-  transaction_progress = 'прогресс распределения товаров:';
+  transaction_progress = 'прогресс выдачи:';
   transaction_refresh = 'Проверьте статус получения';
   transaction_state_already_sent = 'Послано'; // Means sent during a previous transaction (before loading the page)
   transaction_state_no_phone = 'Нет телефона';

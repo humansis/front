@@ -347,12 +347,12 @@ export class Arabic implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'خريطة التوزيع';
-  dashboard_recent_distributions = 'التوزيعات الحديثة';
-  dashboard_summary_1 = 'مجموع المستفيدين';
+  dashboard_current_activities = 'الأنشطة الحالية';
+  dashboard_summary_1 = 'تسجيلات المستفيدين';
   dashboard_summary_2 = 'المشاريع الناشطة';
-  dashboard_summary_3 = 'المستفيدين المسجلين';
+  dashboard_summary_3 = 'العائلات الملتزمة';
   dashboard_summary_4 = ' القيمة الإجمالية للمعملات';
-  dashboard_summary_5 = 'المستفيدين خدم';
+  dashboard_summary_5 = 'الأسر المستهدفة';
   dashboard_summary_6 = 'توزيعات كاملة';
 
   // Data columns mapping
@@ -431,6 +431,7 @@ export class Arabic implements Language {
   distribution_validated = ' تم التحقق من صحة التوزيع';
   distribution_validated_title = 'توزيع التحقق من صحة';
   distribution_want_add = 'التي تريد إضافتها إلى ';
+  distribution_enrolled_households = 'العائلات الملتزمة';
 
   // Donor
   donor_fullname = 'اسم المانح';
@@ -763,10 +764,10 @@ export class Arabic implements Language {
   project_no_distribution = 'هذا المشروع لا يحتوي على أي توزيع. اصنع اول واحد!';
   project_no_household = 'هذا المشروع لا يحتوي على أي منزل.';
   project_no_projects = 'لا يحتوي هذا البلد حاليًا على أي مشاريع نشطة.';
-  project_number_of_households = 'عدد الأسر';
+  project_registered_households = 'العائلات المسجلة';
   project_sectors_name = 'القطاعات';
   project_start_date = 'تاريخ البداية';
-  project_value = 'المبلغ الموزع';
+  project_value = 'العائلات المستهدفة';
 
   // Report
   report_active_project = 'مشروع نشط';
@@ -925,7 +926,7 @@ export class Arabic implements Language {
   transaction_pickupDate = 'اختر تاريخا';
   transaction_prevention =
     'لا تزال هذه المنصة قيد التطوير وقد لا تكون وظيفة المعاملات النقدية عبر الإنترنت مستقرة تمامًا حتى الآن. ينكر فريق التطوير المسؤولية عن أي أخطاء قد تحدث من حيث فقدان المال. بوضع علامة في المربع أدناه ، فإنك توافق على استخدام النظام بمعرفة حدوده تمامًا وتحمل المسؤولية عن نتائج المعاملة.';
-  transaction_progress = 'تقدم توزيع السلع:';
+  transaction_progress = 'تقدم  عملية التوزيع:';
   transaction_refresh = 'تحقق من حالة التقاط';
   transaction_state_already_sent = 'أرسلت';
   transaction_state_no_phone = 'لا يوجد هاتف';
