@@ -418,6 +418,7 @@ export class English implements Language {
   distribution_details_sample_size = 'Sample size';
   distribution_details_validate = 'validate & lock';
   distribution_distribute = 'set as distributed';
+  distribution_complete = 'Set as Completed';
   distribution_edit = 'Edit distribution';
   distribution_error_validate =
     'The distribution is empty, please fill it before to validate it';

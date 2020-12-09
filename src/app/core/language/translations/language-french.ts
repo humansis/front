@@ -418,6 +418,7 @@ export class French implements Language {
   distribution_details_sample_size = "Taille d'échantillon";
   distribution_details_validate = 'valider & verouiller';
   distribution_distribute = 'définir comme distribué';
+  distribution_complete = this.missingTranslation;
   distribution_edit = 'Modifier la distribution';
   distribution_error_validate =
     'La distribution est vide, veuillez la remplir avant de la valider';

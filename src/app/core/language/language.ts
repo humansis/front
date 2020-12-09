@@ -399,6 +399,7 @@ export interface Language {
   distribution_details_sample_size: string;
   distribution_details_validate: string;
   distribution_distribute: string;
+  distribution_complete: string;
   distribution_edit: string;
   distribution_error_validate: string;
   assistance_id: string;

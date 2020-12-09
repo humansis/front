@@ -193,7 +193,17 @@
           class="button-background-accent"
           (click)="distributeRelief()"
         >
-          <mat-icon>send</mat-icon> {{ language.distribution_distribute }}
+          <mat-icon>send</mat-icon>
+          <ng-container
+            *ngIf="actualDistribution.get('assistanceType').get('id') === 'activity'"
+          >
+            {{ language.distribution_complete }}
+          </ng-container>
+          <ng-container
+            *ngIf="actualDistribution.get('assistanceType').get('id') !== 'activity'"
+          >
+            {{ language.distribution_distribute }}
+          </ng-container>
         </button>
       </div>
     </div>

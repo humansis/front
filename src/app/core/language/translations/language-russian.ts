@@ -411,6 +411,7 @@ export class Russian implements Language {
   distribution_details_sample_size = 'Размер партии';
   distribution_details_validate = 'подтвердить и зафиксировать';
   distribution_distribute = 'установить как распределенный';
+  distribution_complete = this.missingTranslation;
   distribution_edit = 'Изменить распределение';
   distribution_error_validate =
     'Распределение пусто, пожалуйста, заполните его, чтобы подтвердить';

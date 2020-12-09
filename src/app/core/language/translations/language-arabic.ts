@@ -407,6 +407,7 @@ export class Arabic implements Language {
   distribution_details_sample_size = 'حجم العينة';
   distribution_details_validate = 'التحقق والقفل';
   distribution_distribute = 'تعيين كما وزعت';
+  distribution_complete = this.missingTranslation;
   distribution_edit = 'تعديل التوزيع';
   distribution_error_validate = 'التوزيع فارغ ، يرجى ملءه قبل التحقق من صحته';
   assistance_id = this.missingTranslation;
