@@ -124,6 +124,7 @@ export class Arabic implements Language {
   assistance_type = this.missingTranslation;
   target_type = this.missingTranslation;
   vulnerability = this.missingTranslation;
+  group = 'المجموعة';
 
   // Error
   back_to_homepage = 'العودة إلى الصفحة الرئيسية';
@@ -308,6 +309,12 @@ export class Arabic implements Language {
   booklet_unassigned = 'غير معين';
   booklet_update_password = 'تحديث كلمة المرور';
   booklet_used = 'مستخدم';
+
+  // Activity
+  activity_details = this.missingTranslation;
+  activity_description = this.missingTranslation;
+  activity_households_targeted = this.missingTranslation;
+  activity_individuals_targeted = this.missingTranslation;
 
   // Cache
   cache_distribution_added =

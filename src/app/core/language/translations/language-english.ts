@@ -125,6 +125,7 @@ export class English implements Language {
   assistance_type = 'Assistance Type';
   target_type = 'Target Type';
   vulnerability = 'Vulnerability';
+  group = 'Group';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -316,6 +317,12 @@ export class English implements Language {
   booklet_unassigned = 'Unassigned';
   booklet_update_password = 'Update the password';
   booklet_used = 'Used';
+
+  // Activity
+  activity_details = 'Activity Details';
+  activity_description = 'Activity Description';
+  activity_households_targeted = 'Households Targeted';
+  activity_individuals_targeted = 'Individuals Targeted';
 
   // Cache
   cache_distribution_added =

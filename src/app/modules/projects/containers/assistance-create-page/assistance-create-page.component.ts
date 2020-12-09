@@ -85,6 +85,13 @@ export class AssistanceCreatePageComponent implements OnInit {
         if (value === 'activity') {
           this.form.patchValue({ commodities: null });
         }
+        if (value === 'distribution') {
+          this.form.patchValue({
+            description: null,
+            households_targeted: null,
+            individuals_targeted: null,
+          });
+        }
       });
 
     this.route.queryParamMap
@@ -142,6 +149,10 @@ export class AssistanceCreatePageComponent implements OnInit {
     this.form.patchValue({ threshold });
   }
 
+  activityChanged(value: any) {
+    this.form.patchValue({ ...value });
+  }
+
   commoditiesChanged(value: Commodity[]) {
     this.form.patchValue({ commodities: value });
   }
@@ -179,7 +190,10 @@ export class AssistanceCreatePageComponent implements OnInit {
         this.form.controls.target_type.value === 'individual')
     ) {
       this.snackbar.error(this.language.add_distribution_missing_selection_criteria);
-    } else if (!this.form.controls.commodities.value?.length) {
+    } else if (
+      this.form.controls.assistance_type.value === 'distribution' &&
+      !this.form.controls.commodities.value?.length
+    ) {
       this.snackbar.error(this.language.add_distribution_missing_commodity);
     } else if (!this.form.controls.date_distribution.value) {
       this.snackbar.error(this.language.add_distribution_missing_date);
@@ -235,6 +249,9 @@ export class AssistanceCreatePageComponent implements OnInit {
       subsector: [],
       assistance_type: [],
       target_type: [],
+      description: [],
+      households_targeted: [],
+      individuals_targeted: [],
     });
   }
 }

@@ -120,6 +120,7 @@ export interface Language {
   assistance_type: string;
   target_type: string;
   vulnerability: string;
+  group: string;
 
   // Error
   back_to_homepage: string;
@@ -283,6 +284,12 @@ export interface Language {
   booklet_unassigned: string;
   booklet_update_password: string;
   booklet_used: string;
+
+  // Activity
+  activity_details: string;
+  activity_description: string;
+  activity_households_targeted: string;
+  activity_individuals_targeted: string;
 
   // Cache
   cache_distribution_added: string;

@@ -1,0 +1,25 @@
+<div [formGroup]="form">
+  <mat-form-field>
+    <textarea
+      matInput
+      [placeholder]="language.activity_description"
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field *ngIf="form.get('households_targeted')">
+    <input
+      type="number"
+      matInput
+      [placeholder]="language.activity_households_targeted"
+      formControlName="households_targeted"
+    />
+  </mat-form-field>
+  <mat-form-field *ngIf="form.get('individuals_targeted')">
+    <input
+      type="number"
+      matInput
+      [placeholder]="language.activity_individuals_targeted"
+      formControlName="individuals_targeted"
+    />
+  </mat-form-field>
+</div>

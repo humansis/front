@@ -64,6 +64,20 @@
               (commoditiesChanged)="commoditiesChanged($event)"
             >
             </app-assistance-commodity>
+            <ng-container
+              *ngIf="
+                form.value.assistance_type && form.value.assistance_type === 'activity'
+              "
+            >
+              <h2>{{ language.activity_details }}</h2>
+              <mat-card>
+                <app-assitance-activity-description-form
+                  [targetType]="form.value.target_type"
+                  (dataChanged)="activityChanged($event)"
+                >
+                </app-assitance-activity-description-form>
+              </mat-card>
+            </ng-container>
           </div>
         </div>
       </div>

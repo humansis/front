@@ -122,6 +122,7 @@ export class Russian implements Language {
   assistance_type = 'Тип помощи';
   target_type = 'Конечный тип';
   vulnerability = 'Уязвимость';
+  group = 'Группа';
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -313,6 +314,12 @@ export class Russian implements Language {
   booklet_unassigned = 'Неназначенный';
   booklet_update_password = 'Обновить пароль';
   booklet_used = 'Использованный';
+
+  // Activity
+  activity_details = this.missingTranslation;
+  activity_description = this.missingTranslation;
+  activity_households_targeted = this.missingTranslation;
+  activity_individuals_targeted = this.missingTranslation;
 
   // Cache
   cache_distribution_added = 'Распределение и бенефициары проекта добавлены в кэш';

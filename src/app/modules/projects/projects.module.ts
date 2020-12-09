@@ -23,6 +23,7 @@ import { NotValidatedCommunityDistributionComponent } from './containers/not-val
 import { AssistanceInstitutionComponent } from './components/assistance-institution/assistance-institution.component';
 import { AssistanceCommunityComponent } from './components/assistance-community/assistance-community.component';
 import { ImportDistributionComponent } from './distributions/import-distribution/import-distribution.component';
+import { AssitanceActivityDescriptionFormComponent } from './components/assitance-activity-description-form/assitance-activity-description-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ImportDistributionComponent } from './distributions/import-distribution
     NotValidatedDistributionComponent,
     NotValidatedInstitutionDistributionComponent,
     NotValidatedCommunityDistributionComponent,
+    AssitanceActivityDescriptionFormComponent,
   ],
   imports: [
     CommonModule,

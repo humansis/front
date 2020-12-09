@@ -124,6 +124,7 @@ export class French implements Language {
   assistance_type = this.missingTranslation;
   target_type = this.missingTranslation;
   vulnerability = this.missingTranslation;
+  group = 'Groupe';
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";
@@ -318,6 +319,12 @@ export class French implements Language {
   booklet_unassigned = 'Non assigné';
   booklet_update_password = 'Modifier le mot de passe';
   booklet_used = 'Utilisé';
+
+  // Activity
+  activity_details = this.missingTranslation;
+  activity_description = this.missingTranslation;
+  activity_households_targeted = this.missingTranslation;
+  activity_individuals_targeted = this.missingTranslation;
 
   // Cache
   cache_distribution_added =
