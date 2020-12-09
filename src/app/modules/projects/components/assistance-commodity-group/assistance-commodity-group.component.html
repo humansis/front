@@ -10,11 +10,10 @@
 </div>
 <div class="form" *ngIf="currentDisplayType?.type !== 'mobile'">
   <app-table
-    (openModal)="removeClick.emit($event.element)"
+    (openModal)="onOpenModal($event)"
     [entity]="commodityClass"
     [data]="commoditiesDataSource"
-    deletable="true"
-    rights="true"
+    [deletable]="true"
     #commodityTable
   ></app-table>
 </div>
@@ -29,10 +28,9 @@
 </div>
 <div class="form" *ngIf="currentDisplayType?.type === 'mobile'">
   <app-table-mobile
-    (openModal)="removeClick.emit($event.element)"
+    (openModal)="onOpenModal($event)"
     [entity]="commodityClass"
     [data]="commoditiesDataSource"
-    deletable="true"
-    rights="true"
+    [deletable]="true"
   ></app-table-mobile>
 </div>

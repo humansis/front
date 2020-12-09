@@ -39,4 +39,10 @@ export class AssistanceCommodityGroupComponent implements OnInit {
   constructor(private languageService: LanguageService) {}
 
   ngOnInit(): void {}
+
+  onOpenModal(event: any) {
+    if (event.action === 'delete') {
+      this.removeClick.emit(event.element);
+    }
+  }
 }
