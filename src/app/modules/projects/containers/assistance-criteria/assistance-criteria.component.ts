@@ -102,9 +102,7 @@ export class AssistanceCriteriaComponent implements OnInit {
   addGroup() {
     const emptyGroups = this.groups.filter((group) => group.data.length === 0);
     if (emptyGroups.length === 0) {
-      if (this.groups.length === 0) {
-        this.groups = [...this.groups, new ClientDataSource([])];
-      }
+      this.groups = [...this.groups, new ClientDataSource([])];
       if (this.groups.length > this.groupBeneficiaries.length) {
         this.groupBeneficiaries = [...this.groupBeneficiaries, 0];
       }
