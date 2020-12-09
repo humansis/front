@@ -213,6 +213,7 @@ export class Distribution extends CustomModel {
             )[0]
         : null
     );
+
     newDistribution.set('validated', distributionFromApi.validated);
     newDistribution.set(
       'location',
@@ -275,6 +276,9 @@ export class Distribution extends CustomModel {
       DateModelField.formatDateTimeFromApi(distributionFromApi.updated_on)
     );
 
+    if (distributionFromApi.assistance_type === 'activity') {
+      newDistribution.fields['commodities'].isDisplayedInSummary = false;
+    }
     return newDistribution;
   }
 
