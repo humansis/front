@@ -26,6 +26,7 @@ import { DisplayType } from 'src/app/models/constants/screen-sizes';
 import { Distribution } from 'src/app/models/distribution';
 import { DistributionBeneficiary } from 'src/app/models/distribution-beneficiary';
 import { User } from 'src/app/models/user';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
 
 @Component({
   template: '',
@@ -127,16 +128,28 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
    */
   getDistributionBeneficiaries() {
     this.loadingTransaction = true;
-    this.distributionService
-      .getBeneficiaries(this.actualDistribution.get('id'))
-      .subscribe((distributionBeneficiaries) => {
-        if (!distributionBeneficiaries) {
-          this.getDistributionBeneficiariesFromCache();
-        } else {
-          this.setDistributionBeneficiaries(distributionBeneficiaries);
-          this.formatTransactionTable();
-        }
-      });
+    let distributionBeneficiaries;
+    if (this.actualDistribution.getType() === TargetType.COMMUNITY) {
+      distributionBeneficiaries = this.distributionService.getCommunities(
+        this.actualDistribution.get('id')
+      );
+    } else if (this.actualDistribution.getType() === TargetType.INSTITUTION) {
+      distributionBeneficiaries = this.distributionService.getInstitutions(
+        this.actualDistribution.get('id')
+      );
+    } else {
+      distributionBeneficiaries = this.distributionService.getBeneficiaries(
+        this.actualDistribution.get('id')
+      );
+    }
+    distributionBeneficiaries.subscribe((response) => {
+      if (!response) {
+        this.getDistributionBeneficiariesFromCache();
+      } else {
+        this.setDistributionBeneficiaries(response);
+        this.formatTransactionTable();
+      }
+    });
   }
 
   formatTransactionTable() {
@@ -190,6 +203,13 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
           this.loadingExport = false;
         }
       );
+  }
+
+  canAddBeneficiaries() {
+    return (
+      this.actualDistribution?.getType() === TargetType.INDIVIDUAL ||
+      this.actualDistribution?.getType() === TargetType.HOUSEHOLD
+    );
   }
 
   getReceivedValue(commodity: Commodity): number {

@@ -6,6 +6,7 @@ import { NumberModelField } from './custom-models/number-model-field';
 import { SingleSelectModelField } from './custom-models/single-select-model-field';
 import { TextModelField } from './custom-models/text-model-field';
 import { TitleCasePipe } from '@angular/common';
+import { Criteria as ApiCriteria } from './api/criteria';
 
 export class CriteriaCondition extends CustomModel {
   public fields = {
@@ -135,7 +136,7 @@ export class Criteria extends CustomModel {
     return newCriteria;
   }
 
-  public modelToApi(): Object {
+  public modelToApi(): ApiCriteria {
     const titleCase = new TitleCasePipe();
 
     return {

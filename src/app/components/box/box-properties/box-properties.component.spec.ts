@@ -4,6 +4,7 @@ import { BoxPropertiesComponent } from './box-properties.component';
 import { Injector } from '@angular/core';
 import { setAppInjector } from '../../../app-injector';
 import { Distribution } from '../../../models/distribution';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('BoxPropertiesComponent', () => {
   let component: BoxPropertiesComponent;
@@ -11,6 +12,7 @@ describe('BoxPropertiesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [BoxPropertiesComponent],
     }).compileComponents();
   }));

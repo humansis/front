@@ -88,6 +88,14 @@ export class Beneficiary extends CustomModel {
       isLongText: false,
       displayValue: '',
     }),
+    localParentsName: new TextModelField({
+      title: this.language.beneficiary_local_parent_name,
+      isDisplayedInModal: true,
+      isDisplayedInTable: false,
+      isRequired: false,
+      isLongText: false,
+      displayValue: '',
+    }),
     enGivenName: new TextModelField({
       title: this.language.beneficiary_en_given_name,
       isDisplayedInModal: false,
@@ -101,6 +109,14 @@ export class Beneficiary extends CustomModel {
       isDisplayedInTable: false,
       isRequired: true,
       isLongText: false,
+    }),
+    enParentsName: new TextModelField({
+      title: this.language.beneficiary_en_parent_name,
+      isDisplayedInModal: true,
+      isDisplayedInTable: false,
+      isRequired: false,
+      isLongText: false,
+      displayValue: '',
     }),
     gender: new SingleSelectModelField({
       title: this.language.gender,
@@ -238,8 +254,10 @@ export class Beneficiary extends CustomModel {
     newBeneficiary.set('id', beneficiaryFromApi.id);
     newBeneficiary.set('localGivenName', beneficiaryFromApi.local_given_name);
     newBeneficiary.set('localFamilyName', beneficiaryFromApi.local_family_name);
+    newBeneficiary.set('localParentsName', beneficiaryFromApi.local_parents_name);
     newBeneficiary.set('enGivenName', beneficiaryFromApi.en_given_name);
     newBeneficiary.set('enFamilyName', beneficiaryFromApi.en_family_name);
+    newBeneficiary.set('enParentsName', beneficiaryFromApi.en_parents_name);
     newBeneficiary.fields.localFamilyName.displayValue = beneficiaryFromApi.en_family_name
       ? beneficiaryFromApi.local_family_name +
         ' (' +
@@ -375,8 +393,10 @@ export class Beneficiary extends CustomModel {
       id: this.fields.id.formatForApi(),
       local_given_name: this.fields.localGivenName.formatForApi(),
       local_family_name: this.fields.localFamilyName.formatForApi(),
+      local_parents_name: this.fields.localParentsName.formatForApi(),
       en_given_name: this.fields.enGivenName.formatForApi(),
       en_family_name: this.fields.enFamilyName.formatForApi(),
+      en_parents_name: this.fields.enParentsName.formatForApi(),
       gender: this.fields.gender.formatForApi(),
       date_of_birth: this.fields.dateOfBirth.formatForApi(),
       residency_status: this.fields.residencyStatus.formatForApi(),

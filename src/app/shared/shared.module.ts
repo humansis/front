@@ -76,20 +76,11 @@ import { TableComponent } from '../components/table/table.component';
 import { MobilePressDirective } from '../core/directives/mobile-press.directive';
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
-import { AddDistributionComponent } from '../modules/projects/add-distribution/add-distribution.component';
-import { DistributionsComponent } from '../modules/projects/distributions/distributions.component';
-import { ImportDistributionComponent } from '../modules/projects/distributions/import-distribution/import-distribution.component';
-// tslint:disable-next-line
-import { NotValidatedDistributionComponent } from '../modules/projects/distributions/not-validated-distribution/not-validated-distribution.component';
-import { GeneralReliefComponent } from '../modules/projects/distributions/validated-components/general-relief/general-relief.component';
-import { MobileMoneyComponent } from '../modules/projects/distributions/validated-components/mobile-money/mobile-money.component';
-import { QrVoucherComponent } from '../modules/projects/distributions/validated-components/qr-voucher/qr-voucher.component';
 import { ValidatedDistributionComponent } from '../modules/projects/distributions/validated-components/validated-distribution.component';
 import { ProjectComponent } from '../modules/projects/project/project.component';
 import { LoginComponent } from '../modules/public/login/login.component';
 import { ScannerComponent } from '../modules/vouchers/scanner/scanner.component';
 import { VouchersComponent } from '../modules/vouchers/vouchers/vouchers.component';
-import { LogsComponent } from '../modules/logs/logs.component';
 import { SsoComponent } from '../modules/public/sso/sso.component';
 import { JsonFormComponent } from '../components/json-form/json-form.component';
 import { AdministrativeAreaInputComponent } from 'src/app/components/administrative-area/administrative-area-input.component';
@@ -170,7 +161,6 @@ import { NgPipesModule } from 'ngx-pipes';
     MonthPickerComponent,
     YearPickerComponent,
     ProjectComponent,
-    AddDistributionComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     TableComponent,
@@ -197,11 +187,6 @@ import { NgPipesModule } from 'ngx-pipes';
     AdmFormComponent,
     DataMappingComponent,
     DataValidationComponent,
-    DistributionsComponent,
-    MobileMoneyComponent,
-    GeneralReliefComponent,
-    QrVoucherComponent,
-    ImportDistributionComponent,
     PlaceholderSummaryComponent,
     PlaceholderBoxlineComponent,
     PlaceholderPanelComponent,
@@ -215,10 +200,6 @@ import { NgPipesModule } from 'ngx-pipes';
     FormatCamelCasePipe,
     UppercaseFirstPipe,
     ValidatedDistributionComponent,
-    NotValidatedDistributionComponent,
-    GeneralReliefComponent,
-    MobileMoneyComponent,
-    QrVoucherComponent,
     VouchersComponent,
     ScannerComponent,
     SettingsComponent,
@@ -251,7 +232,6 @@ import { NgPipesModule } from 'ngx-pipes';
     BeneficiariesComponent,
     BeneficiariesImportComponent,
     ProjectComponent,
-    AddDistributionComponent,
     IconSvgComponent,
     BoxDashboardComponent,
     BoxPropertiesComponent,

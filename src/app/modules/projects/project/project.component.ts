@@ -260,8 +260,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   duplicate(event) {
     this.distributionService.distributionToDuplicate = event;
-    this.router.navigate(['projects/add-distribution'], {
-      queryParams: { project: this.selectedProject.get('id'), prefill: true },
-    });
+    this.router.navigate(
+      ['projects', this.selectedProject.get('id'), 'assistance', 'create'],
+      {
+        queryParams: {
+          duplicateDistribution: event.get('id'),
+        },
+      }
+    );
   }
 }

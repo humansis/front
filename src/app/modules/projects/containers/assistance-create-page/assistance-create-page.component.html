@@ -1,0 +1,101 @@
+<div class="page-container">
+  <div class="container-data">
+    <div class="container-content">
+      <div class="headline">
+        <h2>{{ language.add_project_new_assistance }}</h2>
+      </div>
+
+      <div class="container-fields">
+        <div class="field-distribution" [ngClass]="{ rtl: language.direction === 'rtl' }">
+          <h3>{{ language.add_distribution_location_date }}</h3>
+          <mat-card>
+            <app-assistance-location-form
+              [maxDate]="projectEndDate$ | async"
+              (dataChanged)="locationChanged($event)"
+            >
+            </app-assistance-location-form>
+          </mat-card>
+          <h3>{{ language.add_distribution_target }}</h3>
+          <mat-card>
+            <app-assistance-parameters-form
+              [sectors]="sectors$ | async"
+              (dataChanged)="parametersChanged($event)"
+            >
+            </app-assistance-parameters-form>
+          </mat-card>
+        </div>
+
+        <div class="field-forms">
+          <div class="forms-criteria">
+            <app-assistance-criteria
+              *ngIf="
+                form.value.target_type === 'household' ||
+                form.value.target_type === 'individual'
+              "
+              [projectId]="form.controls.project.value?.id"
+              [targetType]="form.get('target_type')?.value"
+              [sector]="form.get('sector')?.value"
+              [subsector]="form.get('subsector')?.value"
+              (totalBeneficiariesChanged)="totalBeneficiaries = $event"
+              (reachedBeneficiariesChanged)="reachedBeneficiaries = $event"
+              (criteriaChanged)="criteriaChanged($event)"
+              (thresholdChanged)="thresholdChanged($event)"
+            >
+            </app-assistance-criteria>
+            <app-assistance-institution
+              *ngIf="form.value.target_type === 'institution'"
+              [institutions]="institutions$ | async"
+              [loading]="loadingInstitutions"
+              (institutionsChanged)="institutionsChanged($event)"
+            ></app-assistance-institution>
+            <app-assistance-community
+              *ngIf="form.value.target_type === 'community'"
+              [communities]="communities$ | async"
+              [loading]="loadingCommunities"
+              (communitiesChanged)="communitiesChanged($event)"
+            ></app-assistance-community>
+          </div>
+          <div>
+            <app-assistance-commodity
+              *ngIf="
+                form.value.assistance_type && form.value.assistance_type !== 'activity'
+              "
+              [reachedBeneficiaries]="reachedBeneficiaries"
+              (commoditiesChanged)="commoditiesChanged($event)"
+            >
+            </app-assistance-commodity>
+            <ng-container
+              *ngIf="
+                form.value.assistance_type && form.value.assistance_type === 'activity'
+              "
+            >
+              <h3>{{ language.activity_details }}</h3>
+              <mat-card>
+                <app-assitance-activity-description-form
+                  [targetType]="form.value.target_type"
+                  (dataChanged)="activityChanged($event)"
+                >
+                </app-assitance-activity-description-form>
+              </mat-card>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="action-buttons content-button content-button-footer">
+        <button
+          [disabled]="loadingCreation"
+          mat-flat-button
+          class="button-background-primary"
+          (click)="createProject()"
+        >
+          <ng-container *ngIf="!loadingCreation">{{ language.create }}</ng-container>
+          <mat-spinner *ngIf="loadingCreation" [diameter]="30"></mat-spinner>
+        </button>
+
+        <button mat-button class="button-text-primary" (click)="cancel()">
+          {{ language.cancel }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@ export interface IHousehold {
   id: number;
   livelihood: number;
   notes: string;
-  income_level: any;
+  household_income: number;
   food_consumption_score: number;
   coping_strategies_index: number;
   debt_level: number;

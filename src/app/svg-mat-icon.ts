@@ -155,4 +155,8 @@ export const svgIcons = [
     icon: 'wash',
     path: 'commodities/wash.svg',
   },
+  {
+    icon: 'redeem',
+    path: 'redeem.svg',
+  },
 ];

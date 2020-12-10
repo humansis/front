@@ -5,6 +5,7 @@ import { ClientDataSource } from 'src/app/core/datasource/client-data-source';
 import { Purchase } from 'src/app/models/api/purchase';
 import { PurchaseRow } from 'src/app/models/table/purchase-row';
 import { FormService } from 'src/app/core/utils/form.service';
+import { CurrencyPipe, formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-household-transactions',
@@ -40,10 +41,9 @@ export class HouseholdTransactionsComponent implements OnInit {
 
   constructor(
     private transactionService: TransactionService,
-    private formService: FormService
-  ) {
-    this.currency = this.formService.getLocalCurrency();
-  }
+    private formService: FormService,
+    private currencyPipe: CurrencyPipe
+  ) {}
 
   ngOnInit(): void {}
 
@@ -54,7 +54,9 @@ export class HouseholdTransactionsComponent implements OnInit {
         this.dataSource.data = purchases.map((item) => {
           return {
             ...item,
-            value: `${item.value} ${this.currency}`,
+            value: item.currency
+              ? this.currencyPipe.transform(item.value, item.currency)
+              : item.value,
             amount: `${item.quantity} ${item.unit}`,
             beneficiary: item.beneficiary.name,
           };

@@ -4,6 +4,8 @@ import { URL_BMS_API } from '../../../environments/environment';
 import { CustomModelService } from '../utils/custom-model.service';
 import { HttpService } from '../network/http.service';
 import { LanguageService } from '../language/language.service';
+import { AssistanceCriteria } from '../../models/api/assistance-criteria';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +67,22 @@ export class BeneficiariesService extends CustomModelService {
 
     const url = this.api + '/distributions/beneficiaries/project/' + projectId;
     return this.http.post(url, body);
+  }
+
+  public getTargetedBeneficiaries(
+    projectId: number,
+    assistanceCriteria: AssistanceCriteria
+  ) {
+    const url = `${this.api}/beneficiaries/project/${projectId}`;
+    return this.http.post(url, assistanceCriteria);
+  }
+
+  public getTargetedBeneficiariesNumber(
+    projectId: number,
+    assistanceCriteria: AssistanceCriteria
+  ) {
+    const url = `${this.api}/beneficiaries/project/${projectId}/number`;
+    return this.http.post(url, assistanceCriteria);
   }
 
   public import(distributionId: number, file: any, step: number) {

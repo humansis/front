@@ -1,0 +1,16 @@
+<app-clean-table
+  [dataSource]="dataSource"
+  [tableHeaders]="TABLE_HEADERS"
+  [showActionColumn]="true"
+>
+  <ng-template #actions let-element="element">
+    <button
+      mat-icon-button
+      (click)="remove(element)"
+      [matTooltip]="language.delete"
+      class="red"
+    >
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </ng-template>
+</app-clean-table>

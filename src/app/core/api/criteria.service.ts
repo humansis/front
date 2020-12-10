@@ -13,25 +13,6 @@ export class CriteriaService extends CustomModelService {
     super(http, languageService);
   }
 
-  public getBeneficiariesNumber(
-    distributionType: string,
-    criteriaArray: Criteria[],
-    threshold: number,
-    project: string
-  ) {
-    const criteriaArrayForApi = [];
-    criteriaArray.forEach((criterion) => {
-      criteriaArrayForApi.push(criterion.modelToApi());
-    });
-    const body = {
-      distribution_type: distributionType,
-      criteria: criteriaArrayForApi,
-      threshold: threshold,
-    };
-    const url = this.apiBase + '/distributions/criteria/project/' + project + '/number';
-    return this.http.post(url, body);
-  }
-
   /**
    * get the lit of vulnerability criteria
    */

@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalEditComponent } from 'src/app/components/modals/modal-edit/modal-edit.component';
 import { AsyncacheService } from 'src/app/core/storage/asyncache.service';
@@ -19,6 +19,8 @@ import { Subscription, forkJoin } from 'rxjs';
 })
 export class GeneralReliefComponent extends ValidatedDistributionComponent
   implements OnInit {
+  @Input()
+  displayedFields = [];
   distributed = false;
   completed = false;
   selection = new SelectionModel<TransactionGeneralRelief>(true, []);

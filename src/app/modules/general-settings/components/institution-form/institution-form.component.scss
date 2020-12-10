@@ -2,17 +2,21 @@
     width: 100%;
 }
 
+.ng-select {
+    max-width: 100%;
+}
+
 .phone-number {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .prefix {
-        width: 30%;
+        width: 25%;
     }
 
     .number {
-        width: 60%;
+        width: 35%;
     }
 
 }

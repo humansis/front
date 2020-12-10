@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { SnackbarService } from 'src/app/core/logging/snackbar.service';
 import { AsyncacheService } from 'src/app/core/storage/asyncache.service';
 import { Distribution } from 'src/app/models/distribution';
 import { CustomModel } from 'src/app/models/custom-models/custom-model';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
 
 @Component({
   selector: 'app-distributions',
@@ -28,9 +29,21 @@ export class DistributionsComponent implements OnInit {
   loaderCache = false;
   hideSnack = false;
   distributionIsStored = false;
+  TargetType = TargetType;
+  loaderValidation = false;
 
   // Tracks if user has updated the distribution in the current view
   updated = false;
+
+  get displayedFields() {
+    if (this.actualDistribution.getType() === TargetType.COMMUNITY) {
+      return ['communityName'];
+    } else if (this.actualDistribution.getType() === TargetType.INSTITUTION) {
+      return ['institutionName'];
+    } else {
+      return ['localGivenName', 'localFamilyName', 'nationalId'];
+    }
+  }
 
   // Language
   public language = this.languageService.selectedLanguage
@@ -128,6 +141,73 @@ export class DistributionsComponent implements OnInit {
       });
 
     this.distributionIsStored = true;
+  }
+
+  /**
+   * To confirm on Validation dialog
+   */
+  confirmValidation() {
+    if (this.userService.hasRights('ROLE_DISTRIBUTIONS_MANAGEMENT')) {
+      this.loaderValidation = true;
+      this.distributionService.setValidation(this.actualDistribution.get('id')).subscribe(
+        () => {
+          this.actualDistribution.set('validated', true);
+          this.snackbar.success(this.language.distribution_validated);
+          this.cacheService
+            .get(
+              AsyncacheService.DISTRIBUTIONS +
+                '_' +
+                this.actualDistribution.get('id') +
+                '_beneficiaries'
+            )
+            .subscribe((result) => {
+              if (result) {
+                this.hideSnack = true;
+                this.storeBeneficiaries(this.actualDistribution);
+              }
+            });
+          this.loaderValidation = false;
+        },
+        () => {
+          this.loaderValidation = false;
+          this.actualDistribution.set('validated', false);
+          this.snackbar.error(this.language.distribution_not_validated);
+        }
+      );
+    } else {
+      this.loaderValidation = false;
+      this.snackbar.error(this.language.distribution_no_right_validate);
+    }
+
+    this.dialog.closeAll();
+  }
+
+  /**
+   * Opens a dialog corresponding to the ng-template passed as a parameter
+   * @param template
+   */
+  openDialog(template) {
+    const distributionDate = new Date(this.actualDistribution.get('date'));
+    const currentDate = new Date();
+    if (
+      currentDate.getFullYear() > distributionDate.getFullYear() ||
+      (currentDate.getFullYear() === distributionDate.getFullYear() &&
+        currentDate.getMonth() > distributionDate.getMonth()) ||
+      (currentDate.getFullYear() === distributionDate.getFullYear() &&
+        currentDate.getMonth() === distributionDate.getMonth() &&
+        currentDate.getDate() > distributionDate.getDate())
+    ) {
+      this.snackbar.warning(this.language.snackbar_invalid_transaction_date);
+    }
+    this.dialog.open(template);
+  }
+
+  /**
+   * To cancel on a dialog
+   */
+  exit(message: string) {
+    this.snackbar.info(message);
+    this.dialog.closeAll();
   }
 
   finishDistribution() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalAssignComponent } from 'src/app/components/modals/modal-assign/modal-assign.component';
 import { Beneficiary } from 'src/app/models/beneficiary';
@@ -20,6 +20,9 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
   // beneficiariesClass = Beneficiary;
 
   transactionData: MatTableDataSource<TransactionQRVoucher>;
+
+  @Input()
+  displayedFields = [];
 
   ngOnInit() {
     super.ngOnInit();

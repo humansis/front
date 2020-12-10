@@ -114,7 +114,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     parsedRoute.forEach((item, index) => {
       if (index > 0 && item !== '') {
-        if (isNaN(+item)) {
+        if (isNaN(+item) && index <= this.breadcrumbs.length) {
           const breadcrumbItem = {
             route: this.breadcrumbs[index - 1].route + (index === 1 ? '' : '/') + item,
             name: this.language['header_' + item],

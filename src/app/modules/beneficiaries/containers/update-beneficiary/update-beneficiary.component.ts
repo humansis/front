@@ -6,7 +6,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 import { ModalConfirmationComponent } from 'src/app/components/modals/modal-confirmation/modal-confirmation.component';
 import { CountrySpecificService } from 'src/app/core/api/country-specific.service';
 import { CriteriaService } from 'src/app/core/api/criteria.service';
@@ -31,18 +31,13 @@ import { CampAddress } from 'src/app/models/camp-address';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { CountrySpecific, CountrySpecificAnswer } from 'src/app/models/country-specific';
 import { CustomModel } from 'src/app/models/custom-models/custom-model';
-import {
-  Household,
-  Livelihood,
-  FormLocation,
-  IncomeLevel,
-} from 'src/app/models/household';
+import { FormLocation, Household, Livelihood } from 'src/app/models/household';
 import {
   HouseholdLocation,
   HouseholdLocationGroup,
   HouseholdLocationType,
 } from 'src/app/models/household-location';
-import { Adm, Location } from 'src/app/models/location';
+import { Adm } from 'src/app/models/location';
 import { NationalId, NationalIdType } from 'src/app/models/national-id';
 import { Phone, PhoneType } from 'src/app/models/phone';
 import { Profile } from 'src/app/models/profile';
@@ -54,8 +49,9 @@ import {
 } from 'src/app/shared/adapters/date.adapter';
 import { IdNameModel } from 'src/app/models/id-name-model';
 import { IHousehold } from 'src/app/models/api/household';
-import { MdePopover, MdePopoverTrigger } from '@material-extended/mde';
+import { MdePopoverTrigger } from '@material-extended/mde';
 import { UserService } from 'src/app/core/api/user.service';
+import { CountryService } from 'src/app/core/api/country.service';
 
 @Component({
   selector: 'app-update-beneficiary',
@@ -119,6 +115,7 @@ export class UpdateBeneficiaryComponent
   public countryId = this.countryService.selectedCountry.get<string>('id')
     ? this.countryService.selectedCountry.get<string>('id')
     : this.countryService.khm.get<string>('id');
+  public currency$: Observable<string>;
 
   // Reference models
   public household: Household;
@@ -150,7 +147,8 @@ export class UpdateBeneficiaryComponent
     public countryService: CountriesService,
     public phoneService: PhoneService,
     public countrySpecificService: CountrySpecificService,
-    public userService: UserService
+    public userService: UserService,
+    private countriesService: CountryService
   ) {}
 
   ngOnInit() {
@@ -174,12 +172,18 @@ export class UpdateBeneficiaryComponent
         }
       });
     });
+
+    this.currency$ = this.countriesService.getOne(this.countryId).pipe(
+      map((countryData) => countryData.currency),
+      share()
+    );
   }
 
   fillFormFields() {
     this.mainFields = [
       'locationDifferent',
-      'incomeLevel',
+      'income',
+      'incomeSpentOnFood',
       'livelihood',
       'notes',
       'projects',
@@ -220,8 +224,10 @@ export class UpdateBeneficiaryComponent
       'id',
       'localGivenName',
       'localFamilyName',
+      'localParentsName',
       'enGivenName',
       'enFamilyName',
+      'enParentsName',
       'gender',
       'dateOfBirth',
       'IDType',
@@ -600,17 +606,8 @@ export class UpdateBeneficiaryComponent
 
       this.household.set('livelihood', this.getLivelihood());
       this.household.set('notes', controls.notes.value);
-      this.household.set(
-        'incomeLevel',
-        controls.incomeLevel.value
-          ? this.household
-              .getOptions('incomeLevel')
-              .filter(
-                (incomeLevel: IncomeLevel) =>
-                  controls.incomeLevel.value === incomeLevel.get('id')
-              )[0]
-          : null
-      );
+      this.household.set('income', controls.income.value);
+      this.household.set('incomeSpentOnFood', controls.incomeSpentOnFood.value);
       this.household.set('foodConsumptionScore', controls.foodConsumptionScore.value);
       this.household.set('copingStrategiesIndex', controls.copingStrategiesIndex.value);
       this.household.set('debtLevel', controls.debtLevel.value);
@@ -796,8 +793,10 @@ export class UpdateBeneficiaryComponent
       [
         'localFamilyName',
         'localGivenName',
+        'localParentsName',
         'enFamilyName',
         'enGivenName',
+        'enParentsName',
         'dateOfBirth',
       ].forEach((field: string) => {
         beneficiary.set(field, controls[field].value);

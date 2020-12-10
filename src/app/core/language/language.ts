@@ -44,6 +44,7 @@ export interface Language {
   commodity: string;
   country: string;
   criteria: string;
+  activity: string;
   distribution: string;
   distributions: string;
   donor: string;
@@ -115,6 +116,11 @@ export interface Language {
   purchased_by: string;
   quantity: string;
   total: string;
+  subsector: string;
+  assistance_type: string;
+  target_type: string;
+  vulnerability: string;
+  group: string;
 
   // Error
   back_to_homepage: string;
@@ -161,10 +167,13 @@ export interface Language {
   add_distribution_missing_date: string;
   add_distribution_missing_location: string;
   add_distribution_missing_selection_criteria: string;
+  add_distribution_missing_criteria_group: string;
   add_distribution_missing_threshold: string;
   add_distribution_multiple_modalities: string;
   add_distribution_no_beneficiaries: string;
   add_distribution_selection_criteria: string;
+  add_distribution_target: string;
+  add_distribution_location_date: string;
   add_distribution_text_explanation: string;
   add_distribution_threshold: string;
   add_distribution_zero: string;
@@ -174,9 +183,11 @@ export interface Language {
   add_distribution_average: string;
   add_distribution_high: string;
   add_distribution_very_high: string;
+  add_distribution_add_group: string;
 
   // Add project
   add_project_new_distribution: string;
+  add_project_new_assistance: string;
   add_project_title: string;
 
   // Beneficiaries
@@ -191,6 +202,7 @@ export interface Language {
   beneficiary_en_family_name: string;
   beneficiary_en_given_name: string;
   beneficiary_en_name: string;
+  beneficiary_en_parent_name: string;
   beneficiary_family_name: string;
   beneficiary_given_name: string;
   beneficiary_head: string;
@@ -200,6 +212,7 @@ export interface Language {
   beneficiary_local_family_name: string;
   beneficiary_local_given_name: string;
   beneficiary_local_name: string;
+  beneficiary_local_parent_name: string;
   beneficiary_member: string;
   beneficiary_missing_selected_project: string;
   beneficiary_personnal: string;
@@ -272,6 +285,15 @@ export interface Language {
   booklet_update_password: string;
   booklet_used: string;
 
+  // Activity
+  activity_details: string;
+  activity_description: string;
+  activity_households_targeted: string;
+  activity_individuals_targeted: string;
+  activity_validated_title: string;
+  activity_progress: string;
+  activity_amount_completed: string;
+
   // Cache
   cache_distribution_added: string;
   cache_no_distribution: string;
@@ -336,7 +358,7 @@ export interface Language {
 
   // Dashboard
   dashboard_distribution_map: string;
-  dashboard_recent_distributions: string;
+  dashboard_current_activities: string;
   dashboard_summary_1: string;
   dashboard_summary_2: string;
   dashboard_summary_3: string;
@@ -387,9 +409,10 @@ export interface Language {
   distribution_details_sample_size: string;
   distribution_details_validate: string;
   distribution_distribute: string;
+  distribution_complete: string;
   distribution_edit: string;
   distribution_error_validate: string;
-  distribution_id: string;
+  assistance_id: string;
   distribution_last_modification: string;
   distribution_no_beneficiaries: string;
   distribution_no_random_sample: string;
@@ -407,6 +430,7 @@ export interface Language {
   distribution_validated_title: string;
   distribution_validated: string;
   distribution_want_add: string;
+  distribution_enrolled_households: string;
 
   // Data mapping
   data_mapping_title: string;
@@ -443,8 +467,8 @@ export interface Language {
   household_food_consumption_score: string;
   household_full_address: string;
   household_id: string;
-  household_income_level: object;
   household_income: string;
+  household_income_spent_on_food: string;
   household_info: string;
   household_livelihood: string;
   household_location_address: string;
@@ -728,7 +752,7 @@ export interface Language {
   project_no_distribution: string;
   project_no_household: string;
   project_no_projects: string;
-  project_number_of_households: string;
+  project_registered_households: string;
   project_sectors_name: string;
   project_start_date: string;
   project_value: string;

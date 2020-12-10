@@ -1,7 +1,7 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
+
 /* tslint:disable */
 export class French implements Language {
   // GENERAL VARIABLES
@@ -48,6 +48,7 @@ export class French implements Language {
   commodity = 'Ressource';
   country = 'Pays';
   criteria = 'Critère';
+  activity = 'Activité';
   distribution = 'Distribution';
   distributions = 'Distributions';
   donor = 'Donneur';
@@ -119,6 +120,11 @@ export class French implements Language {
   purchased_by = this.missingTranslation;
   quantity = 'Quantité';
   total = this.missingTranslation;
+  subsector = this.missingTranslation;
+  assistance_type = this.missingTranslation;
+  target_type = this.missingTranslation;
+  vulnerability = this.missingTranslation;
+  group = 'Groupe';
 
   // Error
   back_to_homepage = "Retour à la page d'accueil";
@@ -183,15 +189,18 @@ export class French implements Language {
   add_distribution_missing_date = 'La date est manquante';
   add_distribution_missing_location = 'Add a Province';
   add_distribution_missing_selection_criteria = 'Un critère de sélection est manquant';
+  add_distribution_missing_criteria_group = this.missingTranslation;
   add_distribution_missing_threshold = this.missingTranslation;
   add_distribution_multiple_modalities =
     'Vous ne pouvez pas ajouter des commodités distribuées différemment';
   add_distribution_no_beneficiaries =
     'Le nombre de bénficiaires/ménages atteints doit être positif';
   add_distribution_selection_criteria = 'critères de sélection';
+  add_distribution_target = this.missingTranslation;
+  add_distribution_location_date = this.missingTranslation;
   add_distribution_text_explanation =
     'Le système va seulement sélectionner les bénéficiaires/ménages avec un score supérieur que le score minimum de sélection';
-  add_distribution_threshold = 'Score minimum de sélection';
+  add_distribution_threshold = this.missingTranslation;
   add_distribution_zero = 'Le nombre de ménage atteint ou le montant à distribuer est 0';
 
   add_distribution_very_low = 'Très bas';
@@ -199,9 +208,11 @@ export class French implements Language {
   add_distribution_average = 'Moyenne';
   add_distribution_high = 'Haut';
   add_distribution_very_high = 'Très haut';
+  add_distribution_add_group = this.missingTranslation;
 
   // Add project
   add_project_new_distribution = 'nouvelle distribution';
+  add_project_new_assistance = this.missingTranslation;
   add_project_title = 'nouveau projet';
 
   // Benficiary form errors
@@ -239,6 +250,7 @@ export class French implements Language {
   beneficiary_en_family_name = 'Nom de famille (Anglais)';
   beneficiary_en_given_name = 'Prénom (Anglais)';
   beneficiary_en_name = 'Nom (Anglais)';
+  beneficiary_en_parent_name = this.missingTranslation;
   beneficiary_family_name = 'Nom';
   beneficiary_given_name = 'Prénom';
   beneficiary_head = 'Chef de famille';
@@ -248,6 +260,7 @@ export class French implements Language {
   beneficiary_local_family_name = 'Nom de famille (Local)';
   beneficiary_local_given_name = 'Prénom (Local)';
   beneficiary_local_name = 'Nom (Local)';
+  beneficiary_local_parent_name = this.missingTranslation;
   beneficiary_member = 'Membre';
   beneficiary_missing_selected_project =
     "Vous devez selectionner un projet avant l'importation";
@@ -307,6 +320,15 @@ export class French implements Language {
   booklet_update_password = 'Modifier le mot de passe';
   booklet_used = 'Utilisé';
 
+  // Activity
+  activity_details = this.missingTranslation;
+  activity_description = this.missingTranslation;
+  activity_households_targeted = this.missingTranslation;
+  activity_individuals_targeted = this.missingTranslation;
+  activity_validated_title = this.missingTranslation;
+  activity_progress = this.missingTranslation;
+  activity_amount_completed = this.missingTranslation;
+
   // Cache
   cache_distribution_added =
     'Distribution et bénéficiaires du projet ont été ajoutés dans le cache';
@@ -345,12 +367,12 @@ export class French implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'répartition des distributions';
-  dashboard_recent_distributions = 'distributions récentes';
-  dashboard_summary_1 = "total d'enregistrements";
+  dashboard_current_activities = this.missingTranslation;
+  dashboard_summary_1 = this.missingTranslation;
   dashboard_summary_2 = 'projets en cours';
-  dashboard_summary_3 = 'bénéficiaires enregistrés';
+  dashboard_summary_3 = this.missingTranslation;
   dashboard_summary_4 = 'montant total des transactions';
-  dashboard_summary_5 = 'bénéficiaires servis';
+  dashboard_summary_5 = this.missingTranslation;
   dashboard_summary_6 = 'distributions terminées';
 
   // Data verification
@@ -406,10 +428,11 @@ export class French implements Language {
   distribution_details_sample_size = "Taille d'échantillon";
   distribution_details_validate = 'valider & verouiller';
   distribution_distribute = 'définir comme distribué';
+  distribution_complete = this.missingTranslation;
   distribution_edit = 'Modifier la distribution';
   distribution_error_validate =
     'La distribution est vide, veuillez la remplir avant de la valider';
-  distribution_id = 'ID de la distribution';
+  assistance_id = 'ID de la assistance';
   distribution_last_modification = 'dernière modification : ';
   distribution_no_beneficiaries =
     "Aucun bénéficiaire n'a été ajouté ou supprimé. N'importe quel changement fait aux bénéficiaires importés vont être mis à jour dans le système.";
@@ -432,6 +455,7 @@ export class French implements Language {
   distribution_validated = 'La distribution a été validée';
   distribution_validated_title = 'Distribution validée';
   distribution_want_add = 'que vous souhaitez ajouter à la ';
+  distribution_enrolled_households = this.missingTranslation;
 
   // Data columns mapping
   data_mapping_title = 'data columns mapping';
@@ -468,8 +492,8 @@ export class French implements Language {
   household_food_consumption_score = 'Score de consommation alimentaire';
   household_full_address = 'Adresse entière du ménage';
   household_id = 'ID du foyer';
-  household_income = 'Niveau de revenu';
-  household_income_level = INCOMELEVELS.french;
+  household_income = 'Le revenu';
+  household_income_spent_on_food = this.missingTranslation;
   household_info = 'Résumé des informations du ménage';
   household_livelihood = 'Métier';
   household_location = 'Localisation du ménage';
@@ -773,10 +797,10 @@ export class French implements Language {
     'Le projet ne contient aucune distribution. Créer votre première !';
   project_no_household = 'Le projet ne contient aucun ménage.';
   project_no_projects = 'Le pays ne contient aucun projet actif pour le moment.';
-  project_number_of_households = 'Nombre de ménages';
+  project_registered_households = this.missingTranslation;
   project_sectors_name = 'Secteurs';
   project_start_date = 'Date de début de projet';
-  project_value = 'Nombre de bénéficiaires ciblés';
+  project_value = this.missingTranslation;
 
   // Report
   report_active_project = 'projet actif';
@@ -941,7 +965,7 @@ export class French implements Language {
   transaction_pickupDate = 'Date de récupération';
   transaction_prevention =
     'This platform is still under development and the online cash transaction functionality may not be fully stable yet. The development team denies responsibility for any errors that may occur in terms of money loss. By ticking the box below, you agree to use the system knowing fully well its limitations and take responsibility for the results of the transaction.';
-  transaction_progress = 'progrès de la distribution des produits:';
+  transaction_progress = this.missingTranslation;
   transaction_refresh = 'Vérifier les retraits';
   transaction_state_already_sent = 'Envoyé';
   transaction_state_no_phone = 'Pas de téléphone';

@@ -13,16 +13,15 @@ import {
 } from 'src/app/shared/adapters/date.adapter';
 import { Criteria, CriteriaCondition, CriteriaValue } from 'src/app/models/criteria';
 import { Beneficiary, Gender, ResidencyStatus } from 'src/app/models/beneficiary';
-import { IncomeLevel, Livelihood } from 'src/app/models/household';
+import { Livelihood } from 'src/app/models/household';
 import {
   HouseholdLocation,
   HouseholdLocationType,
 } from 'src/app/models/household-location';
 import { Subscription } from 'rxjs';
 import { Camp } from 'src/app/models/camp';
+import { LivelihoodService } from 'src/app/core/api/livelihood.service';
 import { Adm, Location } from 'src/app/models/location';
-import { INCOMELEVELS } from 'src/app/models/constants/income-levels';
-import { LivelihoodService } from '../../../core/api/livelihood.service';
 
 @Component({
   selector: 'app-modal-add-criteria',
@@ -50,7 +49,6 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
   locationTypes: Array<HouseholdLocationType>;
   criteriaSubList: Array<Criteria>;
   campList: Array<Camp>;
-  incomeLevels: Array<IncomeLevel>;
 
   subscribers: Array<Subscription> = [];
 
@@ -72,14 +70,6 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
     this.fillOptions();
     this.criteria = new Criteria();
     this.fields = Object.keys(this.criteria.fields);
-    this.incomeLevels = Object.keys(INCOMELEVELS[this.language.LANGUAGE]).map(
-      (key: string) => {
-        return new IncomeLevel(
-          key,
-          INCOMELEVELS[this.language.LANGUAGE][key][this.criteria.country]
-        );
-      }
-    );
     this.makeForm();
     this.loadFields();
   }
@@ -351,16 +341,6 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
         this.criteria.set(
           'value',
           new CriteriaValue(value, locationTypeValue.get('name'))
-        );
-      } else if (controls.field.value === 'incomeLevel') {
-        const incomeLevelValue = value
-          ? this.incomeLevels.filter(
-              (incomeLevel: IncomeLevel) => incomeLevel.get('id') === value
-            )[0]
-          : null;
-        this.criteria.set(
-          'value',
-          new CriteriaValue(value, incomeLevelValue.get<string>('name'))
         );
       }
       // In case the criteria is the dateOfBirth

@@ -15,6 +15,7 @@ import { VendorsService } from '../../../../../core/api/vendors.service';
 import { combineAll } from 'rxjs/operators';
 import { Vendor } from '../../../../../models/api/vendor';
 import * as FileSaver from 'file-saver';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-redemption-summary-modal',
@@ -47,6 +48,7 @@ export class RedemptionSummaryModalComponent implements OnInit {
     public data: {
       batchId: string;
       vendorId: string;
+      backComponent: ComponentType<any>;
     },
     private smartcardService: SmartcardService,
     private currencyPipe: CurrencyPipe,
@@ -72,7 +74,7 @@ export class RedemptionSummaryModalComponent implements OnInit {
   }
 
   back() {
-    this.matDialog.open(RedeemedBatchesOverviewModalComponent, {
+    this.matDialog.open(this.data.backComponent, {
       width: '650px',
       data: {
         id: this.vendorId,

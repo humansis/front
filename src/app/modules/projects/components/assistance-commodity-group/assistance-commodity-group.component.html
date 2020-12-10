@@ -1,0 +1,36 @@
+<div class="distribution-title">
+  <h3>{{ language.add_distribution_distributed_commodity }}</h3>
+  <button
+    mat-stroked-button
+    class="button-text-accent distribution-add-button"
+    (click)="addClick.emit()"
+  >
+    <span>{{ language.add }}</span>
+  </button>
+</div>
+<div class="form" *ngIf="currentDisplayType?.type !== 'mobile'">
+  <app-table
+    (openModal)="onOpenModal($event)"
+    [entity]="commodityClass"
+    [data]="commoditiesDataSource"
+    [deletable]="true"
+    #commodityTable
+  ></app-table>
+</div>
+<div class="summary-container" *ngIf="commoditiesDataSource.data.length != 0">
+  <h3
+    class="summary-text"
+    *ngFor="let commodity of commoditiesDataSource.data; let i = index"
+  >
+    <span>{{ commodity.get('value') * reachedBeneficiaries | number }}</span>
+    {{ commodity.get('unit') }} {{ language.add_distribution_commodities_delivered }}
+  </h3>
+</div>
+<div class="form" *ngIf="currentDisplayType?.type === 'mobile'">
+  <app-table-mobile
+    (openModal)="onOpenModal($event)"
+    [entity]="commodityClass"
+    [data]="commoditiesDataSource"
+    [deletable]="true"
+  ></app-table-mobile>
+</div>

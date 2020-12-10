@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { finalize } from 'rxjs/operators';
@@ -23,6 +23,9 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
   implements OnInit {
   // sentStates = [State.Sent, State.AlreadySent, State.PickedUp];
   // receivedStates = [State.PickedUp];
+
+  @Input()
+  displayedFields = [];
 
   // Language
   public language = this.languageService.selectedLanguage

@@ -1,7 +1,7 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
+
 /* tslint:disable */
 export class Arabic implements Language {
   // GENERAL VARIABLES
@@ -48,6 +48,7 @@ export class Arabic implements Language {
   commodity = 'السلع';
   country = 'البلد';
   criteria = 'المعاير';
+  activity = this.missingTranslation;
   distribution = 'التوزيع';
   distributions = 'التوزيعات';
   donor = 'المانح';
@@ -119,6 +120,11 @@ export class Arabic implements Language {
   purchased_by = this.missingTranslation;
   quantity = 'كمية';
   total = this.missingTranslation;
+  subsector = this.missingTranslation;
+  assistance_type = this.missingTranslation;
+  target_type = this.missingTranslation;
+  vulnerability = this.missingTranslation;
+  group = 'المجموعة';
 
   // Error
   back_to_homepage = 'العودة إلى الصفحة الرئيسية';
@@ -181,14 +187,17 @@ export class Arabic implements Language {
   add_distribution_missing_date = 'التاريخ مفقود';
   add_distribution_missing_location = 'أضف مقاطعة';
   add_distribution_missing_selection_criteria = 'معيار الاختيار مفقود';
+  add_distribution_missing_criteria_group = this.missingTranslation;
   add_distribution_missing_threshold = this.missingTranslation;
   add_distribution_multiple_modalities = 'لا يمكنك إضافة سلع غير موزعة بنفس الطريقة';
   add_distribution_no_beneficiaries =
     'يجب أن يكون عدد المستفيدين / الأسر التي تم الوصول إليها إيجابيًا';
   add_distribution_selection_criteria = 'معيار الاختيار';
+  add_distribution_target = this.missingTranslation;
+  add_distribution_location_date = this.missingTranslation;
   add_distribution_text_explanation =
     'سيختار النظام فقط المستفيدين / الأسر التي لديها مجموع أعلى من المجموع الادنى ';
-  add_distribution_threshold = ' المجموع الادنى لاختيار ';
+  add_distribution_threshold = this.missingTranslation;
   add_distribution_zero = 'عدد الأسر التي تم الوصول إليها أو المبلغ المطلوب توزيعه هو 0';
 
   add_distribution_very_low = 'منخفظ جدا';
@@ -196,9 +205,11 @@ export class Arabic implements Language {
   add_distribution_average = 'معدل';
   add_distribution_high = 'متوسط';
   add_distribution_very_high = 'عالي جدا';
+  add_distribution_add_group = this.missingTranslation;
 
   // Add project
   add_project_new_distribution = 'توزيعة جديدة';
+  add_project_new_assistance = this.missingTranslation;
   add_project_title = 'مشروع جديد';
 
   // Beneficiaries
@@ -214,6 +225,7 @@ export class Arabic implements Language {
   beneficiary_en_family_name = '(اسم العائلة (انجليزي';
   beneficiary_en_given_name = '(الاسم المعطى (الإنجليزية';
   beneficiary_en_name = '(الاسم (انجليزي';
+  beneficiary_en_parent_name = this.missingTranslation;
   beneficiary_family_name = 'اللقب';
   beneficiary_given_name = 'الاسم ';
   beneficiary_head = 'رب الأسرة';
@@ -223,6 +235,7 @@ export class Arabic implements Language {
   beneficiary_local_family_name = '(اسم العائلة (محلي';
   beneficiary_local_given_name = '(الاسم المحدد (محلي';
   beneficiary_local_name = '(الاسم (محلي';
+  beneficiary_local_parent_name = this.missingTranslation;
   beneficiary_member = 'فرد من العائلة';
   beneficiary_missing_selected_project = 'يجب أن تختار مشروعاقبل التحميل';
   beneficiary_personnal = 'معلومات شخصية';
@@ -297,6 +310,15 @@ export class Arabic implements Language {
   booklet_update_password = 'تحديث كلمة المرور';
   booklet_used = 'مستخدم';
 
+  // Activity
+  activity_details = this.missingTranslation;
+  activity_description = this.missingTranslation;
+  activity_households_targeted = this.missingTranslation;
+  activity_individuals_targeted = this.missingTranslation;
+  activity_validated_title = this.missingTranslation;
+  activity_progress = this.missingTranslation;
+  activity_amount_completed = this.missingTranslation;
+
   // Cache
   cache_distribution_added =
     'التوزيع والمستفيدين من المشروع تم  إضافتهم في ذاكرة التخزين المؤقت';
@@ -335,12 +357,12 @@ export class Arabic implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'خريطة التوزيع';
-  dashboard_recent_distributions = 'التوزيعات الحديثة';
-  dashboard_summary_1 = 'مجموع المستفيدين';
+  dashboard_current_activities = 'الأنشطة الحالية';
+  dashboard_summary_1 = 'تسجيلات المستفيدين';
   dashboard_summary_2 = 'المشاريع الناشطة';
-  dashboard_summary_3 = 'المستفيدين المسجلين';
+  dashboard_summary_3 = 'العائلات الملتزمة';
   dashboard_summary_4 = ' القيمة الإجمالية للمعملات';
-  dashboard_summary_5 = 'المستفيدين خدم';
+  dashboard_summary_5 = 'الأسر المستهدفة';
   dashboard_summary_6 = 'توزيعات كاملة';
 
   // Data columns mapping
@@ -395,9 +417,10 @@ export class Arabic implements Language {
   distribution_details_sample_size = 'حجم العينة';
   distribution_details_validate = 'التحقق والقفل';
   distribution_distribute = 'تعيين كما وزعت';
+  distribution_complete = this.missingTranslation;
   distribution_edit = 'تعديل التوزيع';
   distribution_error_validate = 'التوزيع فارغ ، يرجى ملءه قبل التحقق من صحته';
-  distribution_id = 'معرف التوزيع';
+  assistance_id = this.missingTranslation;
   distribution_last_modification = 'آخر تعديل :';
   distribution_no_beneficiaries =
     'لم تتم إضافة أو إزالة أي مستفيدين. سيتم تحديث أي تغييرات يتم إجراؤها على المستفيدين المستوردين في النظام.';
@@ -418,6 +441,7 @@ export class Arabic implements Language {
   distribution_validated = ' تم التحقق من صحة التوزيع';
   distribution_validated_title = 'توزيع التحقق من صحة';
   distribution_want_add = 'التي تريد إضافتها إلى ';
+  distribution_enrolled_households = 'العائلات الملتزمة';
 
   // Donor
   donor_fullname = 'اسم المانح';
@@ -451,8 +475,8 @@ export class Arabic implements Language {
   household_food_consumption_score = 'درجة استهلاك الغذاء';
   household_full_address = 'عنوان المنزل بالكامل:';
   household_id = 'معرف الأسرة';
-  household_income = 'مستوى الدخل';
-  household_income_level = INCOMELEVELS.arabic;
+  household_income = 'الدخل';
+  household_income_spent_on_food = this.missingTranslation;
   household_info = 'ملخص المعلومات الخاصة بالمنزل  :';
   household_livelihood = 'الوظيفة';
   household_location_address = 'عنوان';
@@ -750,10 +774,10 @@ export class Arabic implements Language {
   project_no_distribution = 'هذا المشروع لا يحتوي على أي توزيع. اصنع اول واحد!';
   project_no_household = 'هذا المشروع لا يحتوي على أي منزل.';
   project_no_projects = 'لا يحتوي هذا البلد حاليًا على أي مشاريع نشطة.';
-  project_number_of_households = 'عدد الأسر';
+  project_registered_households = 'العائلات المسجلة';
   project_sectors_name = 'القطاعات';
   project_start_date = 'تاريخ البداية';
-  project_value = 'المبلغ الموزع';
+  project_value = 'العائلات المستهدفة';
 
   // Report
   report_active_project = 'مشروع نشط';
@@ -912,7 +936,7 @@ export class Arabic implements Language {
   transaction_pickupDate = 'اختر تاريخا';
   transaction_prevention =
     'لا تزال هذه المنصة قيد التطوير وقد لا تكون وظيفة المعاملات النقدية عبر الإنترنت مستقرة تمامًا حتى الآن. ينكر فريق التطوير المسؤولية عن أي أخطاء قد تحدث من حيث فقدان المال. بوضع علامة في المربع أدناه ، فإنك توافق على استخدام النظام بمعرفة حدوده تمامًا وتحمل المسؤولية عن نتائج المعاملة.';
-  transaction_progress = 'تقدم توزيع السلع:';
+  transaction_progress = 'تقدم  عملية التوزيع:';
   transaction_refresh = 'تحقق من حالة التقاط';
   transaction_state_already_sent = 'أرسلت';
   transaction_state_no_phone = 'لا يوجد هاتف';

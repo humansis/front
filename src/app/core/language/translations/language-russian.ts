@@ -1,7 +1,7 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
+
 /* tslint:disable */
 export class Russian implements Language {
   // GENERAL VARIABLES
@@ -47,6 +47,7 @@ export class Russian implements Language {
   commodity = 'Товар';
   country = 'страна';
   criteria = 'Критерии';
+  activity = this.missingTranslation;
   distribution = 'Выдача';
   distributions = 'Выдачи';
   donor = 'Донор';
@@ -111,12 +112,17 @@ export class Russian implements Language {
   username = 'имя пользователя';
   value = 'Стоимость';
   quantity = 'количество';
-  total = this.missingTranslation;
+  total = 'Всего';
   latitude = 'Широта';
   longitude = 'Долгота';
   amount = 'Сумма';
   price = 'Cтоимость';
   purchased_by = 'Приобретено';
+  subsector = 'Субсектор';
+  assistance_type = 'Тип помощи';
+  target_type = 'Конечный тип';
+  vulnerability = 'Уязвимость';
+  group = 'Группа';
 
   // Error
   back_to_homepage = 'Вернуться на главную страницу';
@@ -180,12 +186,17 @@ export class Russian implements Language {
   add_distribution_missing_date = 'Дата отсутствует';
   add_distribution_missing_location = 'Добавьте провинцию';
   add_distribution_missing_selection_criteria = 'Критерий отбора отсутствует';
-  add_distribution_missing_threshold = this.missingTranslation;
+  add_distribution_missing_criteria_group =
+    'Нет выбранных групп критериев. Пожалуйта, добавьте хотя бы одну группу критериев.';
+  add_distribution_missing_threshold =
+    'Минимальное значение оценки должно быть больше нуля';
   add_distribution_multiple_modalities =
     'Вы не можете добавлять товары, которые распределяются не одинаково';
   add_distribution_no_beneficiaries =
     'Количество достигнутых бенефициаров / домохозяйств должно быть положительным';
   add_distribution_selection_criteria = 'критерий отбора';
+  add_distribution_target = 'Цель';
+  add_distribution_location_date = 'Место и дата';
   add_distribution_text_explanation =
     'Система будет выбирать только тех бенефициаров/физических лиц, у которых балл выше минимального балла отбора';
   add_distribution_threshold = 'Минимальный балл отбора';
@@ -197,10 +208,12 @@ export class Russian implements Language {
   add_distribution_average = 'Средний';
   add_distribution_high = 'Высокий';
   add_distribution_very_high = 'Очень высокий';
+  add_distribution_add_group = 'Добавить группу';
 
   // Add project
   add_project_title = 'новый проект';
   add_project_new_distribution = 'новая выдача';
+  add_project_new_assistance = 'Новая помощь';
 
   // Beneficiaries
   beneficiary_add_list = 'Добавить к проекту';
@@ -215,6 +228,7 @@ export class Russian implements Language {
   beneficiary_en_family_name = 'фамилия (английский язык)';
   beneficiary_en_given_name = 'имя (английский язык)';
   beneficiary_en_name = 'имя (английский язык)';
+  beneficiary_en_parent_name = 'Фамилия (на английском)';
   beneficiary_family_name = 'Фамилия';
   beneficiary_given_name = 'Имя';
   beneficiary_head = 'Глава домохозяйства';
@@ -224,6 +238,7 @@ export class Russian implements Language {
   beneficiary_local_family_name = 'фамилия (местный язык)';
   beneficiary_local_given_name = 'имя (местный язык)';
   beneficiary_local_name = 'имя (местный язык)';
+  beneficiary_local_parent_name = 'Фамилия (на местном языке)';
   beneficiary_member = 'Член';
   beneficiary_missing_selected_project = 'Вы должны выбрать проект перед загрузкой';
   beneficiary_personnal = 'личные данные';
@@ -300,6 +315,15 @@ export class Russian implements Language {
   booklet_update_password = 'Обновить пароль';
   booklet_used = 'Использованный';
 
+  // Activity
+  activity_details = this.missingTranslation;
+  activity_description = this.missingTranslation;
+  activity_households_targeted = this.missingTranslation;
+  activity_individuals_targeted = this.missingTranslation;
+  activity_validated_title = this.missingTranslation;
+  activity_progress = this.missingTranslation;
+  activity_amount_completed = this.missingTranslation;
+
   // Cache
   cache_distribution_added = 'Распределение и бенефициары проекта добавлены в кэш';
   cache_no_distribution =
@@ -337,12 +361,12 @@ export class Russian implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'карта выдачи';
-  dashboard_recent_distributions = 'предстоящие рассылки';
-  dashboard_summary_1 = 'Всего регистраций';
+  dashboard_current_activities = 'Текущая деятельность';
+  dashboard_summary_1 = 'Регистрации бенефициара';
   dashboard_summary_2 = 'действующие проекты';
-  dashboard_summary_3 = 'зарегистрированные бенефициары';
+  dashboard_summary_3 = 'Зарегистрированные домохозяйства';
   dashboard_summary_4 = 'общая сумма перевода';
-  dashboard_summary_5 = 'обслуживаемые бенефициары';
+  dashboard_summary_5 = 'Oбслуживаемые домохозяйства';
   dashboard_summary_6 = 'завершенные распределения';
 
   // Data verification
@@ -397,10 +421,11 @@ export class Russian implements Language {
   distribution_details_sample_size = 'Размер партии';
   distribution_details_validate = 'подтвердить и зафиксировать';
   distribution_distribute = 'установить как распределенный';
+  distribution_complete = this.missingTranslation;
   distribution_edit = 'Изменить распределение';
   distribution_error_validate =
     'Распределение пусто, пожалуйста, заполните его, чтобы подтвердить';
-  distribution_id = 'Идентификационный номер распределения';
+  assistance_id = this.missingTranslation;
   distribution_last_modification = 'Последнее изменение: ';
   distribution_no_beneficiaries =
     'Бенефициары не были добавлены или удалены. Любые изменения, внесенные в импортированных бенефициаров, будут обновляться в системе.';
@@ -422,6 +447,7 @@ export class Russian implements Language {
   distribution_validated = 'Распределение утверждено';
   distribution_validated_title = 'Утвержденное распределение';
   distribution_want_add = 'что вы хотите добавить в ';
+  distribution_enrolled_households = 'Enrolled Households';
   // Data columns mapping
   data_mapping_title = 'data columns mapping';
 
@@ -456,8 +482,8 @@ export class Russian implements Language {
   household_food_consumption_score = 'Оценка потребления пищи';
   household_full_address = 'Полный адрес домохозяйства';
   household_id = 'Полный адрес домохозяйства';
-  household_income = 'уровень доходов';
-  household_income_level = INCOMELEVELS.russian;
+  household_income = 'доходов';
+  household_income_spent_on_food = this.missingTranslation;
   household_info = 'Краткая информация о домохозяйстве';
   household_livelihood = 'Средства к существованию';
   household_location = 'Расположение домохозяйства';
@@ -655,10 +681,10 @@ export class Russian implements Language {
     'Этот проект не содержит распределений. Создайте свое первое!';
   project_no_household = 'Этот проект не содержит домохозяйств.';
   project_no_projects = 'В этой стране в настоящее время нет активных проектов.';
-  project_number_of_households = 'Количество домохозяйств';
+  project_registered_households = 'Зарегистрированные домохозяйства';
   project_sectors_name = 'Сектора';
   project_start_date = 'Дата начала';
-  project_value = 'Всего целевых бенефициаров';
+  project_value = 'Целевые домохозяйства';
 
   // Report
   report_active_project = 'активный проект';
@@ -822,7 +848,7 @@ export class Russian implements Language {
   transaction_pickupDate = 'Подобрать дату';
   transaction_prevention =
     'Эта платформа все еще находится в стадии разработки, и функциональность онлайн-транзакций с наличными средствами может быть еще не полностью стабильной. Команда разработчиков не несет ответственности за любые ошибки, которые могут возникнуть при потере денег. Установив флажок ниже, вы соглашаетесь использовать систему, хорошо зная ее ограничения, и берете на себя ответственность за результаты транзакции..';
-  transaction_progress = 'прогресс распределения товаров:';
+  transaction_progress = 'прогресс выдачи:';
   transaction_refresh = 'Проверьте статус получения';
   transaction_state_already_sent = 'Послано'; // Means sent during a previous transaction (before loading the page)
   transaction_state_no_phone = 'Нет телефона';

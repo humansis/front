@@ -83,6 +83,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() parentObject: any;
 
   @Input() entity;
+  @Input() includeFields;
 
   public tableData: MatTableDataSource<any>;
 
@@ -249,13 +250,14 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.tableData) {
       this.tableData.sortingDataAccessor = (item, property) => {
         let field = item.fields[property];
-
-        if (field.kindOfField === 'Children') {
-          field = item.get(field.childrenObject)
-            ? item.get(field.childrenObject).fields[field.childrenFieldName]
-            : new TextModelField({});
+        if (field) {
+          if (field.kindOfField === 'Children') {
+            field = item.get(field.childrenObject)
+              ? item.get(field.childrenObject).fields[field.childrenFieldName]
+              : new TextModelField({});
+          }
+          return this.getFieldStringValues(field);
         }
-        return this.getFieldStringValues(field);
       };
     }
   }
@@ -282,7 +284,13 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     const allProperties = Object.keys(this.entityInstance.fields);
 
     this.displayProperties = allProperties.filter((property) => {
-      return this.entityInstance.fields[property].isDisplayedInTable === true;
+      const shouldBeFieldDisplayedInTable =
+        this.entityInstance.fields[property].isDisplayedInTable === true;
+      if (this.includeFields) {
+        return shouldBeFieldDisplayedInTable && this.includeFields.includes(property);
+      } else {
+        return shouldBeFieldDisplayedInTable;
+      }
     });
   }
 

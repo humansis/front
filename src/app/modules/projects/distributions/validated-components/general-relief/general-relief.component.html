@@ -3,7 +3,12 @@
     <div *ngIf="transactionData !== undefined" class="progression">
       <div class="commodities">
         <h4>
-          {{ language.transaction_progress }}
+          <ng-container *ngIf="actualDistribution?.isDistribution()">
+            {{ language.transaction_progress }}
+          </ng-container>
+          <ng-container *ngIf="!actualDistribution?.isDistribution()">
+            {{ language.activity_progress }}
+          </ng-container>
           {{
             getPercentageValue(actualDistribution.get('commodities')[0]) | number: '1.0-0'
           }}
@@ -23,7 +28,14 @@
 
           <ng-container>
             <div class="info_2">
-              <h5>{{ language.transaction_amount_distributed }}</h5>
+              <h5>
+                <ng-container *ngIf="actualDistribution?.isDistribution()">
+                  {{ language.transaction_amount_distributed }}
+                </ng-container>
+                <ng-container *ngIf="!actualDistribution?.isDistribution()">
+                  {{ language.activity_amount_completed }}
+                </ng-container>
+              </h5>
               <span *ngFor="let commodity of actualDistribution.get('commodities')">
                 {{ getAmountSent(commodity) }} {{ commodity.get('unit') }} <br />
               </span>
@@ -78,6 +90,7 @@
         mat-flat-button
         *ngIf="
           currentDisplayType.type !== 'mobile' &&
+          canAddBeneficiaries() &&
           userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')
         "
         (click)="
@@ -111,8 +124,8 @@
         [paginable]="true"
         *ngIf="currentDisplayType.type !== 'mobile'"
         [parentObject]="actualDistribution"
+        [includeFields]="displayedFields"
         [entity]="entity"
-        [service]="BeneficiariesService"
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         [selection]="selection"
@@ -131,8 +144,8 @@
         [isLoading]="loadingTransaction"
         *ngIf="currentDisplayType.type === 'mobile'"
         [parentObject]="actualDistribution"
+        [includeFields]="displayedFields"
         [entity]="entity"
-        [service]="BeneficiariesService"
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         rights="true"
@@ -192,7 +205,17 @@
           class="button-background-accent"
           (click)="distributeRelief()"
         >
-          <mat-icon>send</mat-icon> {{ language.distribution_distribute }}
+          <mat-icon>send</mat-icon>
+          <ng-container
+            *ngIf="actualDistribution.get('assistanceType').get('id') === 'activity'"
+          >
+            {{ language.distribution_complete }}
+          </ng-container>
+          <ng-container
+            *ngIf="actualDistribution.get('assistanceType').get('id') !== 'activity'"
+          >
+            {{ language.distribution_distribute }}
+          </ng-container>
         </button>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import { REFERRALTYPES } from 'src/app/models/constants/referral-types';
-import { INCOMELEVELS } from '../../../models/constants/income-levels';
 import { ADMINLEVELS } from '../adm-constants';
 import { Language } from '../language';
 
@@ -50,6 +49,7 @@ export class English implements Language {
   commodity = 'Commodity';
   country = 'Country';
   criteria = 'Criteria';
+  activity = 'Activity';
   distribution = 'Distribution';
   distributions = 'Distributions';
   donor = 'Donor';
@@ -121,6 +121,11 @@ export class English implements Language {
   purchased_by = 'Purchased by';
   quantity = 'Quantity';
   total = 'Total';
+  subsector = 'Subsector';
+  assistance_type = 'Assistance Type';
+  target_type = 'Target Type';
+  vulnerability = 'Vulnerability';
+  group = 'Group';
 
   // Error
   back_to_homepage = 'Go back to homepage';
@@ -183,6 +188,8 @@ export class English implements Language {
   add_distribution_missing_date = 'The date is missing';
   add_distribution_missing_location = 'Add a Province';
   add_distribution_missing_selection_criteria = 'A selection criterion is missing';
+  add_distribution_missing_criteria_group =
+    'There are no criteria groups. Please add at least one criteria group.';
   add_distribution_missing_threshold =
     "The minimum selection score's value should be greater than or equal to 0";
   add_distribution_multiple_modalities =
@@ -190,9 +197,11 @@ export class English implements Language {
   add_distribution_no_beneficiaries =
     'The number of reached beneficiaries/households must be positive';
   add_distribution_selection_criteria = 'selection criteria';
+  add_distribution_target = 'Target';
+  add_distribution_location_date = 'Location and date';
   add_distribution_text_explanation =
     'The system will only select beneficiaries/households that have a score higher than the minimum selection score';
-  add_distribution_threshold = 'Minimum selection score';
+  add_distribution_threshold = 'Minimum Vulnerability Score';
   add_distribution_zero =
     'The number of households reached or the amount to be distributed is 0';
 
@@ -201,10 +210,12 @@ export class English implements Language {
   add_distribution_average = 'Average';
   add_distribution_high = 'High';
   add_distribution_very_high = 'Very high';
+  add_distribution_add_group = 'Add Group';
 
   // Add project
   add_project_title = 'new project';
   add_project_new_distribution = 'new distribution';
+  add_project_new_assistance = 'New Assistance';
 
   // Beneficiaries
   beneficiary_add_list = 'Add to project';
@@ -219,6 +230,7 @@ export class English implements Language {
   beneficiary_en_family_name = 'family name (English)';
   beneficiary_en_given_name = 'first name (English)';
   beneficiary_en_name = 'name (English)';
+  beneficiary_en_parent_name = 'Parent name (English)';
   beneficiary_family_name = 'Family name';
   beneficiary_given_name = 'First name';
   beneficiary_head = 'Household head';
@@ -228,6 +240,7 @@ export class English implements Language {
   beneficiary_local_family_name = 'family name (Local)';
   beneficiary_local_given_name = 'first name (Local)';
   beneficiary_local_name = 'name (Local)';
+  beneficiary_local_parent_name = 'Parent name (Local)';
   beneficiary_member = 'Member';
   beneficiary_missing_selected_project = 'You must select a project before uploading';
   beneficiary_personnal = 'personal information';
@@ -305,6 +318,15 @@ export class English implements Language {
   booklet_update_password = 'Update the password';
   booklet_used = 'Used';
 
+  // Activity
+  activity_details = 'Activity Details';
+  activity_description = 'Activity Description';
+  activity_households_targeted = 'Households Targeted';
+  activity_individuals_targeted = 'Individuals Targeted';
+  activity_validated_title = 'Validated Activity';
+  activity_progress = 'Activity Progress';
+  activity_amount_completed = 'Amount Completed';
+
   // Cache
   cache_distribution_added =
     'Distribution and beneficiaries of the project added to the cache';
@@ -343,12 +365,12 @@ export class English implements Language {
 
   // Dashboard
   dashboard_distribution_map = 'distribution map';
-  dashboard_recent_distributions = 'upcoming distributions';
-  dashboard_summary_1 = 'total registrations';
+  dashboard_current_activities = 'Current Activities';
+  dashboard_summary_1 = 'Beneficiary Registrations';
   dashboard_summary_2 = 'active projects';
-  dashboard_summary_3 = 'enrolled beneficiaries';
+  dashboard_summary_3 = 'Enrolled Households';
   dashboard_summary_4 = 'total value transactions';
-  dashboard_summary_5 = 'served beneficiaries';
+  dashboard_summary_5 = 'Served Households';
   dashboard_summary_6 = 'completed distributions';
 
   // Data verification
@@ -406,10 +428,11 @@ export class English implements Language {
   distribution_details_sample_size = 'Sample size';
   distribution_details_validate = 'validate & lock';
   distribution_distribute = 'set as distributed';
+  distribution_complete = 'Set as Completed';
   distribution_edit = 'Edit distribution';
   distribution_error_validate =
     'The distribution is empty, please fill it before to validate it';
-  distribution_id = 'distributionID';
+  assistance_id = 'Assistance ID';
   distribution_last_modification = 'last modified : ';
   distribution_no_beneficiaries =
     'No beneficiaries have been added or removed. Any changes made to the imported beneficiaries will be updated in the system.';
@@ -430,6 +453,7 @@ export class English implements Language {
   distribution_validated = 'Distribution has been validated';
   distribution_validated_title = 'Validated distribution';
   distribution_want_add = 'that you want to add to the ';
+  distribution_enrolled_households = 'Enrolled Households';
 
   // Donor
   donor_fullname = 'Donor name';
@@ -445,7 +469,7 @@ export class English implements Language {
   'header_settings' = 'Configuration';
   'header_update-beneficiary' = 'Update Beneficiaries';
   header_beneficiaries = 'Beneficiaries';
-  header_disconnect = 'log out';
+  header_disconnect = 'Log out';
   header_home = 'Home';
   header_household = this.household;
   header_import = 'Import beneficiary data';
@@ -463,8 +487,8 @@ export class English implements Language {
   household_food_consumption_score = 'Food consumption score';
   household_full_address = 'Full household address';
   household_id = 'Household ID';
-  household_income = 'income level';
-  household_income_level = INCOMELEVELS.english;
+  household_income = 'Income';
+  household_income_spent_on_food = 'Income spent on food';
   household_info = 'Household information summary';
   household_livelihood = 'Livelihood';
   household_location = 'Household Location';
@@ -766,10 +790,10 @@ export class English implements Language {
     'This project does not contain any distributions. Create your first one !';
   project_no_household = 'This project does not contain any households.';
   project_no_projects = 'This country currently does not contain any active projects.';
-  project_number_of_households = 'Number of Households';
+  project_registered_households = 'Registered Households';
   project_sectors_name = 'Sectors';
   project_start_date = 'Start Date';
-  project_value = 'Total Target Beneficiaries';
+  project_value = 'Target Households';
 
   // Report
   report_active_project = 'active project';
@@ -932,7 +956,7 @@ export class English implements Language {
   transaction_pickupDate = 'Pick up date';
   transaction_prevention =
     'This platform is still under development and the online cash transaction functionality may not be fully stable yet. The development team denies responsibility for any errors that may occur in terms of money loss. By ticking the box below, you agree to use the system knowing fully well its limitations and take responsibility for the results of the transaction.';
-  transaction_progress = 'commodity distribution progress:';
+  transaction_progress = 'Distribution Progress:';
   transaction_refresh = 'Check pickup status';
   transaction_state_already_sent = 'Sent'; // Means sent during a previous transaction (before loading the page)
   transaction_state_no_phone = 'No phone';

@@ -1,65 +1,203 @@
 <div class="page-container">
+  <div
+    class="container-title"
+    *ngIf="
+      actualDistribution && !actualDistribution.get('validated') && !loadingDistribution
+    "
+  >
+    <h2>{{ language.distribution_edit }}</h2>
+  </div>
 
-    <div class="container-title" *ngIf="actualDistribution && !actualDistribution.get('validated') && !loadingDistribution">
-        <h2>{{language.distribution_edit}}</h2>
-    </div>
+  <div
+    class="container-title"
+    *ngIf="
+      actualDistribution && actualDistribution.get('validated') && !loadingDistribution
+    "
+  >
+    <h2>
+      <ng-container *ngIf="actualDistribution?.isDistribution()">
+        {{ language.distribution_validated_title }}
+      </ng-container>
+      <ng-container *ngIf="!actualDistribution?.isDistribution()">
+        {{ language.activity_validated_title }}
+      </ng-container>
+    </h2>
+  </div>
 
-    <div class="container-title" *ngIf="actualDistribution && actualDistribution.get('validated') && !loadingDistribution">
-        <h2>{{ language.distribution_validated_title }}</h2>
-    </div>
-
-    <div class="container-data" *ngIf="actualDistribution && !loadingDistribution">
-        <div class="container-content">
-            <div class="container-subtitle">
-                <div class="subtitle-main">
-                    <div class="subtitle">
-                        <h3>
-                            {{actualDistribution.get('name')}}
-                        </h3>
-                        <mat-icon class="valid" *ngIf="actualDistribution.get('validated')">lock</mat-icon>
-                        <mat-icon class="unvalid" *ngIf="!actualDistribution.get('validated')">lock_open</mat-icon>
-                        <mat-icon class="valid" *ngIf="actualDistribution.get('validated') && actualDistribution.get('finished')">done</mat-icon>
-                    </div>
-                </div>
-                <h4 class="last-modification">
-                    {{ language.distribution_last_modification}}
-                    <ng-container *ngIf="updated; else notUpdated">
-                        {{ language.time_just_now}}
-                    </ng-container>
-                    <ng-template #notUpdated>
-                        {{actualDistribution.get('updatedOn') | date: 'dd-MM-yyyy HH:mm'}}
-                    </ng-template>
-
-                </h4>
-            </div>
-            <app-box-properties *ngIf="actualDistribution" class="properties-displayed" [displayedInstance]="actualDistribution"></app-box-properties>
+  <div class="container-data" *ngIf="actualDistribution && !loadingDistribution">
+    <div class="container-content">
+      <div class="container-subtitle">
+        <div class="subtitle-main">
+          <div class="subtitle">
+            <h3>
+              {{ actualDistribution.get('name') }}
+            </h3>
+            <mat-icon class="valid" *ngIf="actualDistribution.get('validated')"
+              >lock</mat-icon
+            >
+            <mat-icon class="unvalid" *ngIf="!actualDistribution.get('validated')"
+              >lock_open</mat-icon
+            >
+            <mat-icon
+              class="valid"
+              *ngIf="
+                actualDistribution.get('validated') && actualDistribution.get('finished')
+              "
+              >done</mat-icon
+            >
+          </div>
         </div>
+        <h4 class="last-modification">
+          {{ language.distribution_last_modification }}
+          <ng-container *ngIf="updated; else notUpdated">
+            {{ language.time_just_now }}
+          </ng-container>
+          <ng-template #notUpdated>
+            {{ actualDistribution.get('updatedOn') | date: 'dd-MM-yyyy HH:mm' }}
+          </ng-template>
+        </h4>
+      </div>
+      <app-box-properties
+        *ngIf="actualDistribution"
+        class="properties-displayed"
+        [displayedInstance]="actualDistribution"
+      ></app-box-properties>
     </div>
+  </div>
 
-    <app-placeholder-stepper *ngIf="loadingDatas"></app-placeholder-stepper>
+  <app-placeholder-stepper *ngIf="loadingDatas"></app-placeholder-stepper>
 
-    <app-not-validated-distribution *ngIf="!loadingDistribution && actualDistribution && !actualDistribution.get('validated')"
-                                    [actualDistribution]="actualDistribution"  (emitStore)="storeBeneficiaries($event)" (isUpdated)="updated = true" (hideSnackEmitter)="hideSnack = true">
+  <ng-container
+    *ngIf="
+      !loadingDistribution && actualDistribution && !actualDistribution.get('validated')
+    "
+  >
+    <app-not-validated-distribution
+      *ngIf="
+        actualDistribution.getType() === TargetType.HOUSEHOLD ||
+        actualDistribution.getType() === TargetType.INDIVIDUAL
+      "
+      [actualDistribution]="actualDistribution"
+      [loaderValidation]="loaderValidation"
+      (isUpdated)="updated = true"
+      (validateClick)="confirmValidation()"
+    >
     </app-not-validated-distribution>
 
-    <ng-container *ngIf="actualDistribution && actualDistribution.get('validated')">
-        <app-mobile-money *ngIf="getDistributionType() === 'mobile-money' && !loadingDatas" [actualDistribution]="actualDistribution"
-                          [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)" (finishedEmitter)="finishDistribution()"
-                          (dataChanged)="getSelectedDistribution()"
-                          [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
-        </app-mobile-money>
+    <div
+      class="page-container"
+      *ngIf="
+        actualDistribution.getType() === TargetType.COMMUNITY ||
+        actualDistribution.getType() === TargetType.INSTITUTION
+      "
+    >
+      <div class="container-table">
+        <div class="container-content box-primary">
+          <app-not-validated-community-distribution
+            *ngIf="actualDistribution.getType() === TargetType.COMMUNITY"
+            [distributionId]="actualDistribution?.get('id')"
+          >
+          </app-not-validated-community-distribution>
+          <app-not-validated-institution-distribution
+            *ngIf="actualDistribution.getType() === TargetType.INSTITUTION"
+            [distributionId]="actualDistribution?.get('id')"
+          >
+          </app-not-validated-institution-distribution>
+          <div class="content-button content-button-footer">
+            <div class="action-buttons">
+              <mat-spinner [diameter]="35" *ngIf="loaderValidation"></mat-spinner>
+              <button
+                mat-flat-button
+                *ngIf="
+                  !loaderValidation && userService.hasRights('ROLE_PROJECT_MANAGEMENT')
+                "
+                class="button-background-accent"
+                (click)="openDialog(validation)"
+                [disabled]="actualDistribution.get('validated')"
+              >
+                <mat-icon>lock</mat-icon>
+                {{ language.distribution_validate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 
-        <app-general-relief *ngIf="getDistributionType() === 'general-relief' && !loadingDatas" [actualDistribution]="actualDistribution"
-                            [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)" (finishedEmitter)="finishDistribution()"
-                            (dataChanged)="getSelectedDistribution()"
-                            [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
-        </app-general-relief>
+  <ng-container *ngIf="actualDistribution && actualDistribution.get('validated')">
+    <app-mobile-money
+      *ngIf="getDistributionType() === 'mobile-money' && !loadingDatas"
+      [actualDistribution]="actualDistribution"
+      [displayedFields]="displayedFields"
+      [loaderCache]="loaderCache"
+      (storeEmitter)="storeBeneficiaries($event)"
+      (finishedEmitter)="finishDistribution()"
+      (dataChanged)="getSelectedDistribution()"
+      [distributionIsStored]="distributionIsStored"
+      (hideSnackEmitter)="hideSnack = true"
+    >
+    </app-mobile-money>
 
-        <app-qr-voucher (reloadTable)="getSelectedDistribution()" *ngIf="getDistributionType() === 'qr-voucher' && !loadingDatas"
-                        [actualDistribution]="actualDistribution" [loaderCache]="loaderCache" (storeEmitter)="storeBeneficiaries($event)"
-                        (dataChanged)="getSelectedDistribution()"
-                        [distributionIsStored]="distributionIsStored" (hideSnackEmitter)="hideSnack = true">
-        </app-qr-voucher>
-    </ng-container>
+    <app-general-relief
+      *ngIf="getDistributionType() === 'general-relief' && !loadingDatas"
+      [actualDistribution]="actualDistribution"
+      [displayedFields]="displayedFields"
+      [loaderCache]="loaderCache"
+      (storeEmitter)="storeBeneficiaries($event)"
+      (finishedEmitter)="finishDistribution()"
+      (dataChanged)="getSelectedDistribution()"
+      [distributionIsStored]="distributionIsStored"
+      (hideSnackEmitter)="hideSnack = true"
+    >
+    </app-general-relief>
+
+    <app-qr-voucher
+      *ngIf="getDistributionType() === 'qr-voucher' && !loadingDatas"
+      [actualDistribution]="actualDistribution"
+      [displayedFields]="displayedFields"
+      [loaderCache]="loaderCache"
+      (storeEmitter)="storeBeneficiaries($event)"
+      (dataChanged)="getSelectedDistribution()"
+      [distributionIsStored]="distributionIsStored"
+      (hideSnackEmitter)="hideSnack = true"
+    >
+    </app-qr-voucher>
+  </ng-container>
+
+  <ng-template #validation>
+    <h4
+      mat-dialog-title
+      class="modal-title underline-accent"
+      [ngClass]="{ rtl: language.direction === 'rtl' }"
+    >
+      {{ language.transaction_validation }}
+    </h4>
+    <mat-dialog-content class="modal-container">
+      <div class="modal-body">
+        <p>{{ language.transaction_validate_distribution }}</p>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <div
+        class="modal-button action-buttons"
+        [ngClass]="{ rtl: language.direction === 'rtl' }"
+      >
+        <button
+          mat-button
+          class="button-text-accent"
+          (click)="exit('Validation canceled')"
+        >
+          {{ language.cancel }}
+        </button>
+        <button
+          mat-flat-button
+          class="button-background-accent"
+          (click)="confirmValidation()"
+        >
+          {{ language.transaction_confirm_button }}
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </ng-template>
 </div>
-

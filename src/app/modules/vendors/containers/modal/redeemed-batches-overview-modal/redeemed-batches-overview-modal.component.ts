@@ -6,10 +6,10 @@ import { CurrencyPipe } from '@angular/common';
 import { FormService } from '../../../../../core/utils/form.service';
 import { SmartcardService } from '../../../../../core/api/smartcard.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { RedemptionSummaryModalComponent } from '../redemption-summary-modal/redemption-summary-modal.component';
 import { LanguageService } from '../../../../../core/language/language.service';
 import { Language } from '../../../../../core/language/language';
-import { SmartcardSummaryModalComponent } from '../smartcard-summary-modal/smartcard-summary-modal.component';
+import { RedemptionSummaryModalComponent } from 'src/app/modules/vendors/containers/modal/redemption-summary-modal/redemption-summary-modal.component';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-redeemed-batches-overview-modal',
@@ -38,6 +38,7 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       id: string;
+      backComponent: ComponentType<any>;
     },
     private currencyPipe: CurrencyPipe,
     private formService: FormService,
@@ -61,7 +62,7 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
   }
 
   back() {
-    this.matDialog.open(SmartcardSummaryModalComponent, {
+    this.matDialog.open(this.data.backComponent, {
       width: '650px',
       data: {
         id: this.id,
@@ -75,6 +76,7 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
       data: {
         vendorId: this.id,
         batchId,
+        backComponent: RedeemedBatchesOverviewModalComponent,
       },
     });
   }

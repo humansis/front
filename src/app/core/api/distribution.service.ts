@@ -58,49 +58,24 @@ export class DistributionService extends CustomModelService {
   }
 
   public getBeneficiaries(id: number) {
+    console.error('test');
     const url = this.apiBase + '/distributions/' + id + '/beneficiaries';
+    return this.http.get(url);
+  }
+
+  public getInstitutions(id: number) {
+    const url = this.apiBase + '/distributions/' + id + '/institutions';
+    return this.http.get(url);
+  }
+
+  public getCommunities(id: number) {
+    const url = this.apiBase + '/distributions/' + id + '/communities';
     return this.http.get(url);
   }
 
   public getHouseholdDistributions(id: number): Observable<ApiDistribution[]> {
     const url = this.apiBase + '/distributions/household/' + id;
     return this.http.get(url);
-    /**
-    return of([
-      {
-        id: 248,
-        name: 'Rasm Elakhdar-18-09-2020',
-        date_distribution: '2020-09-18T00:00:00+00:00',
-        type: 0,
-        commodities: [
-          {
-            modality_type: {
-              name: 'Paper Voucher',
-            },
-            unit: 'SYP',
-            value: 44444,
-            description: null,
-          },
-        ],
-      },
-      {
-        id: 254,
-        name: 'Rasm Elakhdar-09-09-2020',
-        date_distribution: '2020-09-09T00:00:00+00:00',
-        type: 0,
-        commodities: [
-          {
-            modality_type: {
-              name: 'Paper Voucher',
-            },
-            unit: 'SYP',
-            value: 110000,
-            description: null,
-          },
-        ],
-      },
-    ]);
-     */
   }
 
   public getAssignableBeneficiaries(id: number) {

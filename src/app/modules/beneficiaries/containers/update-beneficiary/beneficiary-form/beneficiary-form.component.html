@@ -9,6 +9,10 @@
       <input matInput type="text" placeholder="{{language.beneficiary_local_given_name}}" formControlName="localGivenName" required>
       <app-hint-error [form]="form" fieldName="localGivenName" [field]="beneficiaryFields.localGivenName" [isMatField]="true"></app-hint-error>
     </mat-form-field>
+      <mat-form-field>
+          <input matInput type="text" placeholder="{{language.beneficiary_local_parent_name}}" formControlName="localParentsName" required>
+          <app-hint-error [form]="form" fieldName="localParentsName" [field]="beneficiaryFields.localParentsName" [isMatField]="true"></app-hint-error>
+      </mat-form-field>
   </div>
   <div class="column-container">
     <h4 class="location">{{ language.beneficiary_en_name }}</h4>
@@ -20,6 +24,10 @@
       <input matInput type="text" placeholder="{{language.beneficiary_en_given_name}}" formControlName="enGivenName">
       <app-hint-error [form]="form" fieldName="enGivenName" [field]="beneficiaryFields.enGivenName" [isMatField]="true"></app-hint-error>
     </mat-form-field>
+      <mat-form-field>
+          <input matInput type="text" placeholder="{{language.beneficiary_en_parent_name}}" formControlName="enParentsName">
+          <app-hint-error [form]="form" fieldName="enParentsName" [field]="beneficiaryFields.enParentsName" [isMatField]="true"></app-hint-error>
+      </mat-form-field>
   </div>
   <div class="column-container">
       <h4 class="location">{{ language.beneficiary_personnal }}</h4>

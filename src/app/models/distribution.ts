@@ -14,6 +14,8 @@ import { TextModelField } from './custom-models/text-model-field';
 import { DistributionBeneficiary } from './distribution-beneficiary';
 import { Location } from './location';
 import { Project } from './project';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
+import { IdNameModel } from 'src/app/models/id-name-model';
 export class DistributionType extends CustomModel {
   public fields = {
     name: new TextModelField({}),
@@ -41,8 +43,23 @@ export class Distribution extends CustomModel {
 
   public fields = {
     id: new NumberModelField({
-      title: this.language.distribution_id,
+      title: this.language.assistance_id,
       isDisplayedInTable: true,
+    }),
+    assistanceType: new SingleSelectModelField({
+      title: this.language.type,
+      isDisplayedInModal: false,
+      isDisplayedInTable: true,
+      isDisplayedInSummary: false,
+      isRequired: true,
+      isSettable: false,
+      options: [
+        new IdNameModel('distribution', this.language.distribution),
+        new IdNameModel('activity', this.language.activity),
+      ],
+      bindField: 'name',
+      apiLabel: 'id',
+      value: new IdNameModel('activity', this.language.activity),
     }),
     name: new TextModelField({
       title: this.language.name,
@@ -105,8 +122,10 @@ export class Distribution extends CustomModel {
       isRequired: true,
       isSettable: true,
       options: [
-        new DistributionType('0', this.language.households),
-        new DistributionType('1', this.language.individual),
+        new DistributionType(`${TargetType.HOUSEHOLD}`, this.language.households),
+        new DistributionType(`${TargetType.INDIVIDUAL}`, this.language.individual),
+        new DistributionType(`${TargetType.COMMUNITY}`, this.language.community),
+        new DistributionType(`${TargetType.INSTITUTION}`, this.language.institution),
       ],
       bindField: 'name',
       apiLabel: 'id',
@@ -183,6 +202,18 @@ export class Distribution extends CustomModel {
     );
 
     newDistribution.set('name', distributionFromApi.name);
+    newDistribution.set(
+      'assistanceType',
+      distributionFromApi.assistance_type
+        ? newDistribution
+            .getOptions('assistanceType')
+            .filter(
+              (option: IdNameModel) =>
+                distributionFromApi.assistance_type === option.get('id')
+            )[0]
+        : null
+    );
+
     newDistribution.set('validated', distributionFromApi.validated);
     newDistribution.set(
       'location',
@@ -245,7 +276,18 @@ export class Distribution extends CustomModel {
       DateModelField.formatDateTimeFromApi(distributionFromApi.updated_on)
     );
 
+    if (distributionFromApi.assistance_type === 'activity') {
+      newDistribution.fields['commodities'].isDisplayedInSummary = false;
+    }
     return newDistribution;
+  }
+
+  public getType() {
+    return +this.fields.type.formatForApi();
+  }
+
+  public isDistribution() {
+    return this.get('assistanceType')?.id === 'distribution';
   }
 
   public modelToApi(): Object {
