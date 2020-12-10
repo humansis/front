@@ -72,7 +72,7 @@ export class ModalService {
         if (
           dialogDetails.element instanceof Beneficiary ||
           dialogDetails.element instanceof Institution ||
-          Community
+          dialogDetails.element instanceof Community
         ) {
           dialogRef = this.openDeleteBeneficiaryDialog(dialogDetails.element);
         } else {
