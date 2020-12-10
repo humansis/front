@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { BeneficiariesRoutingModule } from './beneficiaries-routing.module';
 import { MdePopoverModule } from '@material-extended/mde';
@@ -18,6 +18,7 @@ import { HouseholdTransactionsComponent } from 'src/app/modules/beneficiaries/co
     HouseholdDistributionsComponent,
     HouseholdTransactionsComponent,
   ],
+  providers: [CurrencyPipe],
   imports: [CommonModule, BeneficiariesRoutingModule, MdePopoverModule, SharedModule],
 })
 export class BeneficiariesModule {}

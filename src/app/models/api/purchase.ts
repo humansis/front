@@ -3,6 +3,7 @@ export interface Purchase {
   productId: number;
   productName: string;
   value: string;
+  currency: string;
   unit: string;
   quantity: string;
   source: string;

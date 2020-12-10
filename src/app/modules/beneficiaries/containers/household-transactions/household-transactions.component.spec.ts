@@ -3,6 +3,7 @@ import { HouseholdTransactionsComponent } from 'src/app/modules/beneficiaries/co
 import { TransactionService } from 'src/app/core/api/transaction.service';
 import { TransactionMockService } from 'src/app/core/api/mock/transaction-mock.service';
 import { FormService } from 'src/app/core/utils/form.service';
+import { CurrencyPipe } from '@angular/common';
 
 describe('HouseholdTransactionsComponent', () => {
   let component: HouseholdTransactionsComponent;
@@ -11,6 +12,7 @@ describe('HouseholdTransactionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
+        CurrencyPipe,
         { provide: TransactionService, useClass: TransactionMockService },
         {
           provide: FormService,
