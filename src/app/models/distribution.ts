@@ -286,6 +286,10 @@ export class Distribution extends CustomModel {
     return +this.fields.type.formatForApi();
   }
 
+  public isDistribution() {
+    return this.get('assistanceType')?.id === 'distribution';
+  }
+
   public modelToApi(): Object {
     const commodities = this.get('commodities')
       ? this.get<Commodity[]>('commodities').map((commodity) => commodity.modelToApi())

@@ -290,6 +290,9 @@ export interface Language {
   activity_description: string;
   activity_households_targeted: string;
   activity_individuals_targeted: string;
+  activity_validated_title: string;
+  activity_progress: string;
+  activity_amount_completed: string;
 
   // Cache
   cache_distribution_added: string;

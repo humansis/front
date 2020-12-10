@@ -323,6 +323,9 @@ export class English implements Language {
   activity_description = 'Activity Description';
   activity_households_targeted = 'Households Targeted';
   activity_individuals_targeted = 'Individuals Targeted';
+  activity_validated_title = 'Validated Activity';
+  activity_progress = 'Activity Progress';
+  activity_amount_completed = 'Amount Completed';
 
   // Cache
   cache_distribution_added =

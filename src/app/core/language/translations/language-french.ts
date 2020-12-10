@@ -325,6 +325,9 @@ export class French implements Language {
   activity_description = this.missingTranslation;
   activity_households_targeted = this.missingTranslation;
   activity_individuals_targeted = this.missingTranslation;
+  activity_validated_title = this.missingTranslation;
+  activity_progress = this.missingTranslation;
+  activity_amount_completed = this.missingTranslation;
 
   // Cache
   cache_distribution_added =

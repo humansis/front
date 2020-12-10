@@ -14,7 +14,14 @@
       actualDistribution && actualDistribution.get('validated') && !loadingDistribution
     "
   >
-    <h2>{{ language.distribution_validated_title }}</h2>
+    <h2>
+      <ng-container *ngIf="actualDistribution?.isDistribution()">
+        {{ language.distribution_validated_title }}
+      </ng-container>
+      <ng-container *ngIf="!actualDistribution?.isDistribution()">
+        {{ language.activity_validated_title }}
+      </ng-container>
+    </h2>
   </div>
 
   <div class="container-data" *ngIf="actualDistribution && !loadingDistribution">
