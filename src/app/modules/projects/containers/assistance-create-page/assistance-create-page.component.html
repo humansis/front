@@ -2,12 +2,12 @@
   <div class="container-data">
     <div class="container-content">
       <div class="headline">
-        <h1>{{ language.add_project_new_assistance }}</h1>
+        <h2>{{ language.add_project_new_assistance }}</h2>
       </div>
 
       <div class="container-fields">
         <div class="field-distribution" [ngClass]="{ rtl: language.direction === 'rtl' }">
-          <h2>{{ language.add_distribution_location_date }}</h2>
+          <h3>{{ language.add_distribution_location_date }}</h3>
           <mat-card>
             <app-assistance-location-form
               [maxDate]="projectEndDate$ | async"
@@ -15,7 +15,7 @@
             >
             </app-assistance-location-form>
           </mat-card>
-          <h2>{{ language.add_distribution_target }}</h2>
+          <h3>{{ language.add_distribution_target }}</h3>
           <mat-card>
             <app-assistance-parameters-form
               [sectors]="sectors$ | async"
@@ -69,7 +69,7 @@
                 form.value.assistance_type && form.value.assistance_type === 'activity'
               "
             >
-              <h2>{{ language.activity_details }}</h2>
+              <h3>{{ language.activity_details }}</h3>
               <mat-card>
                 <app-assitance-activity-description-form
                   [targetType]="form.value.target_type"
