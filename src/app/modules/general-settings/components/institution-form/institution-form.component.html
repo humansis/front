@@ -23,7 +23,8 @@
       [searchable]="true"
       class="single-select"
       formControlName="type"
-      [placeholder]="language.type"
+      required
+      placeholder="{{ language.type }} *"
     >
       <ng-option *ngFor="let type of institutionTypes" [value]="type.id">
         {{ language[type.language_key] }}
@@ -100,7 +101,10 @@
   </div>
   <div>
     <div formGroupName="address">
-      <app-administrative-area formControlName="location"></app-administrative-area>
+      <app-administrative-area
+        [firstLevelRequired]="true"
+        formControlName="location"
+      ></app-administrative-area>
       <mat-form-field>
         <input
           matInput

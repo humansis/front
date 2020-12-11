@@ -84,7 +84,10 @@
   </div>
   <div>
     <div formGroupName="address">
-      <app-administrative-area formControlName="location"></app-administrative-area>
+      <app-administrative-area
+        [firstLevelRequired]="true"
+        formControlName="location"
+      ></app-administrative-area>
       <mat-form-field>
         <input
           matInput
