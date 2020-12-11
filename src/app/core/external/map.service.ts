@@ -108,13 +108,20 @@ export class MapService {
             admGroup.addLayer(layer);
           }
         });
-        const distributionMarker = new DistributionMarker(
-          admGroup,
-          this.map,
-          distribution
-        );
-        // Add the marker to the cluster
-        markers.addLayer(distributionMarker.marker);
+        if (admGroup.getBounds().isValid()) {
+          // Add the marker to the cluster
+          const distributionMarker = new DistributionMarker(
+            admGroup,
+            this.map,
+            distribution
+          );
+          markers.addLayer(distributionMarker.marker);
+        } else {
+          console.warn(
+            'Group not valid',
+            distribution.get<CustomModel>('location').get<string>('codeForMap')
+          );
+        }
       });
 
       // Add it to the map
