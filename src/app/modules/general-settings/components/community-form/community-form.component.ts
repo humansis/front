@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/core/language/language.service';
 import { Community } from 'src/app/models/api/community';
 import { Project } from 'src/app/models/api/project';
 import { PhoneType } from '../../../../models/constants/phone-type';
+import { CustomValidators } from '../../../../core/utils/custom-validators';
 
 @Component({
   selector: 'app-community-form',
@@ -64,7 +65,10 @@ export class CommunityFormComponent implements OnInit {
         number: [],
         street: [],
         postcode: [],
-        location: [],
+        location: [
+          undefined,
+          [Validators.required, CustomValidators.locationFirstLevelAreaRequired()],
+        ],
       }),
       projects: [[], Validators.required],
       contact_name: [],

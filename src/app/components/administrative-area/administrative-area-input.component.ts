@@ -31,6 +31,9 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
   @Input()
   public countryIso = 'KHM';
 
+  @Input()
+  public firstLevelRequired = false;
+
   location: Location;
   administrativeArea1Locations: { [index: string]: AreaLocation[] } = {};
   private area1loadingSource = new ReplaySubject();

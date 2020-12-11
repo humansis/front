@@ -1,12 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LanguageService } from 'src/app/core/language/language.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { CARD_TYPES } from 'src/app/models/constants/card-type';
 import { INSTITUTION_TYPES } from 'src/app/models/constants/institution-type';
 import { Institution } from 'src/app/models/api/institution';
 import { PHONECODES } from 'src/app/models/constants/phone-codes';
 import { Project } from 'src/app/models/api/project';
 import { PhoneType } from 'src/app/models/constants/phone-type';
+import { CustomValidators } from '../../../../core/utils/custom-validators';
 
 @Component({
   selector: 'app-institution-form',
@@ -70,7 +77,10 @@ export class InstitutionFormComponent implements OnInit {
         number: [],
         street: [],
         postcode: [],
-        location: [],
+        location: [
+          undefined,
+          [Validators.required, CustomValidators.locationFirstLevelAreaRequired()],
+        ],
       }),
       contact_name: [],
       contact_family_name: [],
