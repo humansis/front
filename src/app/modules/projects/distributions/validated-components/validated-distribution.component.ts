@@ -7,6 +7,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  Type,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -27,13 +28,13 @@ import { Distribution } from 'src/app/models/distribution';
 import { DistributionBeneficiary } from 'src/app/models/distribution-beneficiary';
 import { User } from 'src/app/models/user';
 import { TargetType } from 'src/app/models/constants/target-type.enum';
+import { TransactionGeneralRelief } from 'src/app/models/transaction-general-relief';
 
 @Component({
   template: '',
   styleUrls: ['./validated-distribution.component.scss'],
 })
-export class ValidatedDistributionComponent implements OnInit, OnDestroy {
-  entity: any;
+export abstract class ValidatedDistributionComponent implements OnInit, OnDestroy {
   loadingExport = false;
   loadingTransaction = false;
   modalSubscriptions: Array<Subscription> = [];
@@ -43,6 +44,7 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
   progression = 0;
   interval: NodeJS.Timer;
   loadingComplete = false;
+  displayedFields: string[];
 
   // Transaction.
   readonly SENDING_CODE_FREQ = 10000; // ms
@@ -53,7 +55,15 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
   // distributionIsStored = false;
   distributionId: number;
 
-  @Input() actualDistribution: Distribution;
+  @Input() set actualDistribution(actualDistribution: Distribution) {
+    this._actualDistribution = actualDistribution;
+    this.onDistributionSet(actualDistribution);
+  }
+
+  get actualDistribution() {
+    return this._actualDistribution;
+  }
+
   transactionData: MatTableDataSource<any>;
   @Input() loaderCache = false;
   @Input() distributionIsStored: boolean;
@@ -66,6 +76,7 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
   // Screen size
   public currentDisplayType: DisplayType;
   private screenSizeSubscription: Subscription;
+  private _actualDistribution: Distribution;
 
   // Language
   public language = this.languageService.selectedLanguage
@@ -73,11 +84,11 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
     : this.languageService.english;
 
   constructor(
-    protected distributionService: DistributionService,
+    public distributionService: DistributionService,
     public snackbar: SnackbarService,
     public dialog: MatDialog,
-    protected cacheService: AsyncacheService,
-    protected modalService: ModalService,
+    public cacheService: AsyncacheService,
+    public modalService: ModalService,
     public beneficiariesService: BeneficiariesService,
     public _cacheService: AsyncacheService,
     public userService: UserService,
@@ -102,6 +113,8 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
       subscription.unsubscribe()
     );
   }
+
+  abstract get entity();
 
   /**
    * Verify if modifications have been made to prevent the user from leaving and display dialog to confirm we wiwhes to delete them
@@ -270,6 +283,34 @@ export class ValidatedDistributionComponent implements OnInit, OnDestroy {
         : ''
     );
     return actualBeneficiary;
+  }
+
+  onDistributionSet(distribution: Distribution) {
+    const model: DistributionBeneficiary = this.entity();
+    const allProperties = Object.keys(model.fields);
+    const distinctFields = [
+      'communityName',
+      'institutionName',
+      'localGivenName',
+      'localFamilyName',
+      'nationalId',
+    ];
+    const baseFields = allProperties.filter(
+      (property) =>
+        model.fields[property].isDisplayedInTable && !distinctFields.includes(property)
+    );
+    if (distribution.getType() === TargetType.COMMUNITY) {
+      this.displayedFields = [...baseFields, 'communityName'];
+    } else if (distribution.getType() === TargetType.INSTITUTION) {
+      this.displayedFields = [...baseFields, 'institutionName'];
+    } else {
+      this.displayedFields = [
+        ...baseFields,
+        'localGivenName',
+        'localFamilyName',
+        'nationalId',
+      ];
+    }
   }
 
   exit(message: string) {

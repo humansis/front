@@ -7,6 +7,8 @@ import { TransactionQRVoucher } from 'src/app/models/transaction-qr-voucher';
 import { ValidatedDistributionComponent } from '../validated-distribution.component';
 import { Subscription } from 'rxjs';
 import { CustomModel } from 'src/app/models/custom-models/custom-model';
+import { Distribution } from 'src/app/models/distribution';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
 
 @Component({
   selector: 'app-qr-voucher',
@@ -21,13 +23,9 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
 
   transactionData: MatTableDataSource<TransactionQRVoucher>;
 
-  @Input()
-  displayedFields = [];
-
   ngOnInit() {
     super.ngOnInit();
     // this.selection = new SelectionModel<any>(true, []);
-    this.entity = TransactionQRVoucher;
   }
 
   setDistributionBeneficiaries(distributionBeneficiaries: any) {
@@ -217,5 +215,9 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
           this.loadingAssign = false;
         }
       );
+  }
+
+  get entity() {
+    return TransactionQRVoucher;
   }
 }

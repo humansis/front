@@ -5,9 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+import { MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import {
+  MatNativeDateModule,
+  MatOptionModule,
+  MatRippleModule,
+} from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -21,7 +25,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -37,7 +40,7 @@ import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { CountoModule } from 'angular2-counto';
-import { RecaptchaModule, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { FormatCamelCasePipe } from 'src/app/shared/pipes/format-camel-case.pipe';
 import { ThousandsPipe } from 'src/app/shared/pipes/thousands.pipe';
 import { UppercaseFirstPipe } from 'src/app/shared/pipes/uppercase-first.pipe';
@@ -76,7 +79,6 @@ import { TableComponent } from '../components/table/table.component';
 import { MobilePressDirective } from '../core/directives/mobile-press.directive';
 import { AdministrationComponent } from '../modules/administration/admnistration/administration.component';
 import { DashboardComponent } from '../modules/dashboard/dashboard/dashboard.component';
-import { ValidatedDistributionComponent } from '../modules/projects/distributions/validated-components/validated-distribution.component';
 import { ProjectComponent } from '../modules/projects/project/project.component';
 import { LoginComponent } from '../modules/public/login/login.component';
 import { ScannerComponent } from '../modules/vouchers/scanner/scanner.component';
@@ -199,7 +201,6 @@ import { NgPipesModule } from 'ngx-pipes';
     ThousandsPipe,
     FormatCamelCasePipe,
     UppercaseFirstPipe,
-    ValidatedDistributionComponent,
     VouchersComponent,
     ScannerComponent,
     SettingsComponent,

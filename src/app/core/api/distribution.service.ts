@@ -58,7 +58,6 @@ export class DistributionService extends CustomModelService {
   }
 
   public getBeneficiaries(id: number) {
-    console.error('test');
     const url = this.apiBase + '/distributions/' + id + '/beneficiaries';
     return this.http.get(url);
   }
