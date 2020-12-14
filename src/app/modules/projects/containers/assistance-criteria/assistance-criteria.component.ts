@@ -23,11 +23,34 @@ export class AssistanceCriteriaComponent implements OnInit {
   @Input()
   projectId: number;
   @Input()
-  targetType: string;
+  set targetType(targetType: string) {
+    this._targetType = targetType;
+    this.reloadAllBeneficiaries();
+  }
+
+  get targetType() {
+    return this._targetType;
+  }
+
   @Input()
-  sector: string;
+  set sector(sector: string) {
+    this._sector = sector;
+    this.reloadAllBeneficiaries();
+  }
+
+  get sector() {
+    return this._sector;
+  }
+
   @Input()
-  subsector: string;
+  set subsector(subsector: string) {
+    this._subsector = subsector;
+    this.reloadAllBeneficiaries();
+  }
+
+  get subsector() {
+    return this._subsector;
+  }
 
   @Output()
   reachedBeneficiariesChanged: EventEmitter<number> = new EventEmitter<number>();
@@ -60,6 +83,10 @@ export class AssistanceCriteriaComponent implements OnInit {
   groupBeneficiaries: number[] = [];
   reachedBeneficiaries = 0;
   totalBeneficiaries = 0;
+
+  private _sector: string;
+  private _subsector: string;
+  private _targetType: string;
 
   constructor(
     private fb: FormBuilder,
@@ -149,6 +176,13 @@ export class AssistanceCriteriaComponent implements OnInit {
     );
   }
 
+  private reloadAllBeneficiaries() {
+    if (this.targetType && this.sector && this.subsector) {
+      this.groups.forEach((data, index) => this.reloadGroupBeneficiaries(index));
+      this.reloadTotalBeneficiaries();
+    }
+  }
+
   private reloadBeneficiaries(index: number) {
     this.reloadGroupBeneficiaries(index);
     this.reloadTotalBeneficiaries();
@@ -200,6 +234,7 @@ export class AssistanceCriteriaComponent implements OnInit {
     return {
       sector: this.sector,
       subsector: this.subsector,
+      target_type: this.targetType,
       criteria: [criteria],
       threshold: 0,
     };
@@ -212,6 +247,7 @@ export class AssistanceCriteriaComponent implements OnInit {
     return {
       sector: this.sector,
       subsector: this.subsector,
+      target_type: this.targetType,
       criteria,
       threshold: 0,
     };

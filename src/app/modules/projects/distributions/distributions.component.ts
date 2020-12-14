@@ -35,16 +35,6 @@ export class DistributionsComponent implements OnInit {
   // Tracks if user has updated the distribution in the current view
   updated = false;
 
-  get displayedFields() {
-    if (this.actualDistribution.getType() === TargetType.COMMUNITY) {
-      return ['communityName'];
-    } else if (this.actualDistribution.getType() === TargetType.INSTITUTION) {
-      return ['institutionName'];
-    } else {
-      return ['localGivenName', 'localFamilyName', 'nationalId'];
-    }
-  }
-
   // Language
   public language = this.languageService.selectedLanguage
     ? this.languageService.selectedLanguage

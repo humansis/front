@@ -11,6 +11,8 @@ import {
 } from 'src/app/models/transaction-general-relief';
 import { ValidatedDistributionComponent } from '../validated-distribution.component';
 import { Subscription, forkJoin } from 'rxjs';
+import { Distribution } from 'src/app/models/distribution';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
 
 @Component({
   selector: 'app-general-relief',
@@ -19,15 +21,12 @@ import { Subscription, forkJoin } from 'rxjs';
 })
 export class GeneralReliefComponent extends ValidatedDistributionComponent
   implements OnInit {
-  @Input()
-  displayedFields = [];
   distributed = false;
   completed = false;
   selection = new SelectionModel<TransactionGeneralRelief>(true, []);
 
   ngOnInit() {
     super.ngOnInit();
-    this.entity = TransactionGeneralRelief;
   }
 
   setDistributionBeneficiaries(distributionBeneficiaries: any) {
@@ -310,5 +309,9 @@ export class GeneralReliefComponent extends ValidatedDistributionComponent
       this.storeEmitter.emit(this.actualDistribution);
       this.snackbar.success(this.language.snackbar_updated_successfully);
     });
+  }
+
+  get entity() {
+    return TransactionGeneralRelief;
   }
 }

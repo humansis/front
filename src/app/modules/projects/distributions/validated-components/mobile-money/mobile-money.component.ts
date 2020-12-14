@@ -10,6 +10,8 @@ import { ValidatedDistributionComponent } from '../validated-distribution.compon
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { CustomModel } from 'src/app/models/custom-models/custom-model';
+import { Distribution } from 'src/app/models/distribution';
+import { TargetType } from 'src/app/models/constants/target-type.enum';
 
 @Component({
   selector: 'app-mobile-money',
@@ -23,9 +25,6 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
   implements OnInit {
   // sentStates = [State.Sent, State.AlreadySent, State.PickedUp];
   // receivedStates = [State.PickedUp];
-
-  @Input()
-  displayedFields = [];
 
   // Language
   public language = this.languageService.selectedLanguage
@@ -43,7 +42,6 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
 
   ngOnInit() {
     super.ngOnInit();
-    this.entity = TransactionMobileMoney;
   }
 
   setDistributionBeneficiaries(distributionBeneficiaries: any) {
@@ -417,5 +415,9 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
     if (completeSubscription) {
       this.modalSubscriptions = [completeSubscription];
     }
+  }
+
+  get entity() {
+    return TransactionMobileMoney;
   }
 }

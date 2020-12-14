@@ -287,7 +287,7 @@ export class Distribution extends CustomModel {
   }
 
   public isDistribution() {
-    return this.get('assistanceType')?.id === 'distribution';
+    return this.get('assistanceType')?.get('id') === 'distribution';
   }
 
   public modelToApi(): Object {
