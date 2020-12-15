@@ -340,13 +340,17 @@ export class Russian implements Language {
   commodity_modality_paper_voucher = 'Бумажный ваучер';
   commodity_modality_bread = 'Хлеб';
   commodity_modality_loan = 'Ссуда';
+  commodity_modality_business_grant = this.missingTranslation;
   commodity_modality_food = 'Еда';
   commodity_modality_wash = 'Комплект для мытья';
   commodity_modality_agriculture = 'Сельскохозяйственный комплект';
   commodity_modality_rte = 'Готовый к употреблению в пищу набор';
   commodity_modality_shelter = 'Комплект для строительства/ремонта жилья';
   commodity_modality_hygiene = 'Гигиенический комплект';
+  commodity_modality_winterization = this.missingTranslation;
   commodity_modality_dignity = 'Комплект достоинства';
+  commodity_modality_activity = this.missingTranslation;
+  commodity_modality_nfi = this.missingTranslation;
   commodity_kgs = 'кг';
   commodity_kit = 'комплект';
   commodity_modality = 'Модальность';

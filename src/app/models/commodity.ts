@@ -55,21 +55,26 @@ export class ModalityType extends CustomModel {
       'Paper Voucher': this.language.commodity_modality_paper_voucher,
       Bread: this.language.commodity_modality_bread,
       Loan: this.language.commodity_modality_loan,
-      Food: this.language.commodity_modality_food,
+      'Business Grant': this.language.commodity_modality_business_grant,
+      'Food Rations': this.language.commodity_modality_food,
       'WASH Kit': this.language.commodity_modality_wash,
       'Agricultural Kit': this.language.commodity_modality_agriculture,
-      'RTE Kit': this.language.commodity_modality_rte,
+      'Ready to Eat Rations': this.language.commodity_modality_rte,
       'Shelter tool kit': this.language.commodity_modality_shelter,
       'Hygiene kit': this.language.commodity_modality_hygiene,
+      'Winterization Kit': this.language.commodity_modality_winterization,
       'Dignity kit': this.language.commodity_modality_dignity,
+      'Activity item': this.language.commodity_modality_activity,
+      'NFI Kit': this.language.commodity_modality_nfi,
     };
     // Todo: Use global variable, fix typing in order to not do this if check
 
     const modalityName = this.get('name');
 
-    if (typeof modalityName === 'string') {
+    if (typeof modalityName === 'string' && modalityName in commoditiesTooltips) {
       return commoditiesTooltips[modalityName];
     } else {
+      console.warn('Cannot find translation for modality type', modalityName);
       return '';
     }
   }
@@ -182,10 +187,10 @@ export class Commodity extends CustomModel {
       'Paper Voucher': 'voucher',
       Bread: 'bread',
       Loan: 'loan',
-      Food: 'food',
+      'Food Rations': 'food',
       'WASH Kit': 'wash',
       'Agricultural Kit': 'agriculture',
-      'RTE Kit': 'rte-kit',
+      'Ready to Eat Rations': 'rte-kit',
       'Shelter tool kit': 'shelter',
       'Hygiene kit': 'hygiene',
       'Dignity kit': 'dignity',
