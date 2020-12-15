@@ -117,7 +117,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   propertiesActions: any;
   entityInstance = null;
   public user_action = '';
-  disabledActions: boolean;
   mobileData: Observable<any>;
 
   // Language
@@ -368,7 +367,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }
-    this.manageActions();
     this.selectChecked.emit(this.selection.selected);
   }
 
@@ -376,10 +374,8 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!element.get('removed')) {
       if (this.selection.selected.includes(element)) {
         this.selection.deselect(element);
-        this.manageActions();
         return;
       }
-      this.manageActions();
       this.selection.select(element);
     }
   }
@@ -391,17 +387,12 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.selection.deselect(element);
       }
-      this.manageActions();
       this.selectChecked.emit(this.selection.selected);
     }
   }
 
-  manageActions() {
-    if (this.selection.selected.length > 0) {
-      this.disabledActions = true;
-    } else {
-      this.disabledActions = false;
-    }
+  areActionsDisabled() {
+    return this.selection.selected.length > 0;
   }
 
   print(element) {
