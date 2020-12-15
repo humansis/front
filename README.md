@@ -1,20 +1,19 @@
 [![Build Status](https://travis-ci.com/humansis/front.svg?branch=develop)](https://travis-ci.com/humansis/front)
 [![GitHub version](https://badge.fury.io/gh/ReliefApplications%2Fbms_front.svg)](https://badge.fury.io/gh/ReliefApplications%2Fbms_front)
 
-Humansis - Beneficiary Management System
+HUMANSIS
 ==============
-A platform that allows humanitarian organisations to manage relief items (Food, Non Food Items, CASH) to people in need for life-saving humanitarian responses to emergency situations.
-
+A Wweb platform that allows humanitarian organisations to manage humanitarian activties and the distribution of relief items (Food, Non Food Items, Cash) for people in need during life-saving humanitarian responses in emergency and conflict situations.
 
 # About
 
-Humansis is the first fully open-source relief platform for humanitarian actors to efficiently manage relief operations after a disaster, during a war or in response to long term crises.
+Humansis is the first fully open-source relief platform for humanitarian actors to efficiently manage relief operations.
 
 ## What's here
 
 This repo is the "master" repo for all Humansis-related projects. It hosts
 the documentation, the frontend and other misc. Code for other
-projects, like the [API](https://github.com/humansis/bms_api) is hosted in other repositories.
+projects, like the [API](https://github.com/humansis/api) is hosted in other repositories.
 
 ## Contributing
 
