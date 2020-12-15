@@ -1,45 +1,55 @@
 @import '../../../../../assets/css/variable.scss';
 @import '../../../../../assets/css/global.scss';
 
+:host {
+  margin-right: 20px;
+
+  @media only screen and (max-width: 750px) {
+    margin-right: 0;
+  }
+}
+
 .criteria-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info {
-    text-align: center;
+  text-align: center;
 }
 
 .mat-card {
-    background: white;
+  background: white;
 }
 
 .controls {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (max-width: 750px) {
+    flex-direction: column;
+  }
 }
 
 .mat-card {
-    background: white !important;
+  background: white !important;
 }
-
 
 .summary-text {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    font-family: $bms_font_header;
-    font-size: 15px;
-    margin: 0 10px 0 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: $bms_font_header;
+  font-size: 15px;
+  margin: 0 10px 0 0;
 
-    span {
-        font-size: 20px;
-        color: $bms_red;
-        padding: 0 10px;
-    }
+  span {
+    font-size: 20px;
+    color: $bms_red;
+    padding: 0 10px;
+  }
 }
-

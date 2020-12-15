@@ -1,126 +1,127 @@
 @import '../assets/css/variable.scss';
 
 .bms-logo {
-    background: $bms_white;
+  background: $bms_white;
 }
 
 .app-component {
-    display: flex;
-    flex-grow: 1;
-    padding-left: 0;
+  display: flex;
+  flex-grow: 1;
+  padding-left: 0;
+  width: 100%;
+  height: 100vh;
+  margin: 0 !important;
+  align-items: stretch;
+
+  mat-sidenav {
+    overflow: hidden;
+    position: fixed;
+
+    &.mobile-side-nav {
+      margin-top: 56px;
+    }
+
+    &.show {
+      .bottom {
+        .short {
+          display: none;
+        }
+        .long {
+          display: block;
+        }
+      }
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 0px;
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: 5px 0;
+
+      .short {
+        display: block;
+      }
+      .long {
+        display: none;
+      }
+    }
+  }
+
+  .page-content-wrapper {
     width: 100%;
-    height: 100vh;
-    margin: 0 !important;
-    align-items: stretch;
+    height: 100%;
+    margin-left: 64px;
 
-    mat-sidenav {
-        overflow: hidden;
-        position: fixed;
+    router-outlet {
+      display: flex;
+      flex: 0 1 100%;
+    }
+  }
 
-        &.mobile-side-nav {
-            margin-top: 56px;
-        }
+  .page-menu-wrapper {
+    height: 100%;
+    background: $bms_black;
+    width: 64px;
+    // transition: max-width 0.2s ease-in-out 0.2s;
 
-        &.show {
-            .bottom {
-                .short {
-                    display: none;
-                }
-                .long {
-                    display: block;
-                }
-            }
-        }
-
-        .bottom {
-            position: absolute;
-            bottom: 0px;
-            color: white;
-            width: 100%;
-            text-align: center;
-            padding: 5px 0;
-
-            .short {
-                display: block;
-            }
-            .long {
-                display: none;
-            }
-        }
+    &.show {
+      width: auto;
     }
 
+    mat-list-item {
+      color: $bms_white;
 
-    .page-content-wrapper {
-        width: 100%;
-        height: 100%;
-        margin-left: 64px;
+      span {
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+      }
 
-        router-outlet {
-            display: flex;
-            flex: 0 1 100%;
-        }
+      &.selected {
+        color: $menu_select_color;
+        background-color: $menu_select_bg;
+      }
+    }
+  }
+
+  mat-toolbar {
+    background: $bms_grey;
+    @media only screen and (min-width: 750px) {
+      height: 45px;
+      padding-top: 24px;
     }
 
-    .page-menu-wrapper {
-        height: 100%;
-        background: $bms_black;
-        width: 64px;
-        // transition: max-width 0.2s ease-in-out 0.2s;
-
-        &.show {
-            width: auto;
-        }
-
-        mat-list-item {
-            color: $bms_white;
-
-            span {
-                margin-left: 1.5em;
-                margin-right: 1.5em;
-            }
-
-            &.selected {
-                color: $menu_select_color;
-                background-color: $menu_select_bg;
-            }
-        }
+    &.mobile {
+      background-color: $bms_black;
+      position: fixed;
+      z-index: 1000;
     }
 
-    mat-toolbar {
-        background: $bms_grey;
-        height: 45px;
-        padding-top: 24px;
-
-        &.mobile {
-            background-color: $bms_black;
-            position: fixed;
-            z-index: 1000;
-        }
-
-        app-header,
-        app-header-mobile {
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
+    app-header,
+    app-header-mobile {
+      width: 100%;
+      display: flex;
+      align-items: center;
     }
+  }
 }
 
 mat-sidenav-content.no-margin {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 @media only screen and (max-width: 750px) {
-    .page-content-wrapper {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
+  .page-content-wrapper {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 
-    .app-component .page-menu-wrapper.show {
-        width: auto;
+  .app-component .page-menu-wrapper.show {
+    width: auto;
 
-        mat-list-item {
-            height: 10vh;
-        }
+    mat-list-item {
+      height: 10vh;
     }
+  }
 }

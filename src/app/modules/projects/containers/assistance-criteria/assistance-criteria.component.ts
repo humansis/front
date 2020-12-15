@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { TargetedBeneficiariesModalComponent } from '../../modals/targeted-beneficiaries-modal/targeted-beneficiaries-modal.component';
 import { Criteria } from 'src/app/models/api/criteria';
 import { AssistanceCriteria } from 'src/app/models/api/assistance-criteria';
+import { Observable } from 'rxjs';
+import { DisplayType } from 'src/app/models/constants/screen-sizes';
+import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service';
 
 @Component({
   selector: 'app-assistance-criteria',
@@ -61,6 +64,8 @@ export class AssistanceCriteriaComponent implements OnInit {
   @Output()
   thresholdChanged: EventEmitter<number> = new EventEmitter<number>();
 
+  displayType$: Observable<DisplayType>;
+
   public readonly TABLE_HEADERS: TableHeader[] = [
     { key: 'target', languageKey: 'criteria_target' },
     { key: 'criteria', languageKey: 'criteria' },
@@ -92,10 +97,12 @@ export class AssistanceCriteriaComponent implements OnInit {
     private fb: FormBuilder,
     private languageService: LanguageService,
     private beneficiariesService: BeneficiariesService,
+    private screenSizeService: ScreenSizeService,
     private modalService: ModalService,
     private dialog: MatDialog
   ) {
     this.form = this.createForm();
+    this.displayType$ = this.screenSizeService.displayTypeSource.asObservable();
     this.form.valueChanges.subscribe((value) => {
       this.thresholdChanged.emit(value.threshold);
       if (!isNaN(+value.threshold) && value.threshold !== null) {
