@@ -10,6 +10,7 @@
 </div>
 
 <app-table
+  *ngIf="currentDisplayType?.type !== 'mobile'"
   (openModal)="onOpenModal($event)"
   [entity]="criteriaClass"
   [data]="data"
@@ -17,6 +18,13 @@
   #criteriaTable
 >
 </app-table>
+<app-table-mobile
+  *ngIf="currentDisplayType?.type === 'mobile'"
+  (openModal)="onOpenModal($event)"
+  [entity]="criteriaClass"
+  [data]="data"
+  [deletable]="true"
+></app-table-mobile>
 <div class="controls">
   <h3 class="summary-text">
     <span>{{ reachedBeneficiaries }}</span> {{ targetType }}

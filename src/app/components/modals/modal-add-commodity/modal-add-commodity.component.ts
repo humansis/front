@@ -154,8 +154,8 @@ export class ModalAddCommodityComponent implements OnInit {
         this.isCurrency = true;
         this.form.controls.unit.setValue(this.localCurrency);
         break;
-      case 'Food':
-      case 'RTE Kit':
+      case 'Food Rations':
+      case 'Ready to Eat Rations':
       case 'Agricultural Kit':
       case 'WASH Kit':
       case 'Shelter tool kit':

@@ -336,13 +336,17 @@ export class Arabic implements Language {
   commodity_modality_paper_voucher = 'قسيمة ورقة';
   commodity_modality_bread = 'خبز';
   commodity_modality_loan = 'قرض';
+  commodity_modality_business_grant = this.missingTranslation;
   commodity_modality_food = 'طعام';
   commodity_modality_wash = 'غسل عدة';
   commodity_modality_agriculture = 'مجموعة الزراعية';
   commodity_modality_rte = 'RTE عدة';
   commodity_modality_shelter = 'مجموعة أدوات المأوى';
   commodity_modality_hygiene = 'طقم النظافة';
+  commodity_modality_winterization = this.missingTranslation;
   commodity_modality_dignity = 'مجموعة الكرامة';
+  commodity_modality_activity = this.missingTranslation;
+  commodity_modality_nfi = this.missingTranslation;
   commodity_kgs = 'كلغ';
   commodity_kit = 'عدة';
   commodity_modality = 'القيد';

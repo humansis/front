@@ -13,6 +13,7 @@
   <mat-card>
     <div *ngFor="let group of groups; index as i">
       <app-assistance-criteria-group
+        [currentDisplayType]="displayType$ | async"
         [name]="i + 1 + ''"
         [reachedBeneficiaries]="groupBeneficiaries[i]"
         [data]="group"

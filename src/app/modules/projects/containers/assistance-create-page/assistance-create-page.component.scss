@@ -12,6 +12,10 @@ h3 {
 
 .page-container {
   .container-data {
+    @media only screen and (max-width: 750px) {
+      padding: 0;
+    }
+
     .container-content {
       .mat-card {
         background: white;
@@ -30,6 +34,10 @@ h3 {
   flex-direction: row;
   flex-grow: 1;
   padding: 0 20px 20px 20px;
+
+  @media only screen and (max-width: 750px) {
+    flex-direction: column;
+  }
 
   .field-distribution,
   .field-forms {
@@ -58,6 +66,10 @@ h3 {
     min-width: 40%;
     margin-left: 0;
     margin-right: 20px;
+
+    @media only screen and (max-width: 750px) {
+      margin-right: 0;
+    }
 
     &.rtl {
       margin-left: 20px !important;

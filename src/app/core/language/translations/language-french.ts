@@ -346,13 +346,17 @@ export class French implements Language {
   commodity_modality_paper_voucher = 'Coupon papier';
   commodity_modality_bread = 'Pain';
   commodity_modality_loan = 'Prêt';
+  commodity_modality_business_grant = this.missingTranslation;
   commodity_modality_food = 'Nourriture';
   commodity_modality_wash = "Kit d'hygiène";
   commodity_modality_agriculture = "Kit d'agriculture";
   commodity_modality_rte = 'Kit RTE';
   commodity_modality_shelter = "Kit d'abris";
   commodity_modality_hygiene = "kit d'hygiène";
+  commodity_modality_winterization = this.missingTranslation;
   commodity_modality_dignity = 'kit de dignité';
+  commodity_modality_activity = this.missingTranslation;
+  commodity_modality_nfi = this.missingTranslation;
   commodity_kgs = 'Kgs';
   commodity_kit = 'Kit';
   commodity_modality = 'Modalité';

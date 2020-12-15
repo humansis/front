@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Criteria as ModelCriteria } from '../../../../models/criteria';
 import { LanguageService } from '../../../../core/language/language.service';
+import { DisplayType } from 'src/app/models/constants/screen-sizes';
 
 @Component({
   selector: 'app-assistance-criteria-group',
@@ -24,6 +25,8 @@ export class AssistanceCriteriaGroupComponent implements OnInit {
 
   @Input()
   reachedBeneficiaries: number;
+  @Input()
+  currentDisplayType: DisplayType;
 
   @Output()
   addClick: EventEmitter<undefined> = new EventEmitter<undefined>();

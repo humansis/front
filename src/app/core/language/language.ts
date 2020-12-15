@@ -309,13 +309,17 @@ export interface Language {
   commodity_modality_paper_voucher: string;
   commodity_modality_bread: string;
   commodity_modality_loan: string;
+  commodity_modality_business_grant: string;
   commodity_modality_food: string;
   commodity_modality_wash: string;
   commodity_modality_agriculture: string;
   commodity_modality_rte: string;
   commodity_modality_shelter: string;
   commodity_modality_hygiene: string;
+  commodity_modality_winterization: string;
   commodity_modality_dignity: string;
+  commodity_modality_activity: string;
+  commodity_modality_nfi: string;
   commodity_kgs: string;
   commodity_kit: string;
   commodity_modality: string;
