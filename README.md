@@ -3,7 +3,7 @@
 
 HUMANSIS
 ==============
-A Wweb platform that allows humanitarian organisations to manage humanitarian activties and the distribution of relief items (Food, Non Food Items, Cash) for people in need during life-saving humanitarian responses in emergency and conflict situations.
+A web platform that allows humanitarian organisations to manage humanitarian activties and the distribution of relief items (Food, Non Food Items, Cash) for people in need during life-saving humanitarian responses in emergency and conflict situations.
 
 # About
 
