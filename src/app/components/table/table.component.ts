@@ -392,7 +392,10 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   areActionsDisabled() {
-    return this.selection.selected.length > 0;
+    if (this.selection) {
+      return this.selection.selected.length > 0;
+    }
+    return false;
   }
 
   print(element) {
