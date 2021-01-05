@@ -16,6 +16,8 @@ elif [[ $1 == "dev" ]]; then
 elif [[ $1 == "stage" ]]; then
     yarn run build -- --prod -c stage --progress
 elif [[ $1 == "demo" ]]; then
+    echo "Demo environment is not currently supported."
+    exit 0
     yarn run build -- --prod -c demo --progress
 else
     echo "Unknown environment"
@@ -40,9 +42,9 @@ echo "Compression complete"
 
 # deploy on aws
 echo "Upload starting"
-aws configure set aws_access_key_id ${aws_access_key_id}
-aws configure set aws_secret_access_key ${aws_secret_access_key}
-aws configure set default.region eu-central-1
+# aws configure set aws_access_key_id ${aws_access_key_id}
+# aws configure set aws_secret_access_key ${aws_secret_access_key}
+# aws configure set default.region eu-central-1
 
 if [[ $1 == "prod" ]]; then
     aws s3 rm s3://pin.humansis.org --recursive

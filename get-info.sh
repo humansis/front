@@ -1,30 +1,21 @@
 #!/bin/bash
 
-COMMIT=`git rev-parse --short HEAD`
+COMMIT=$CI_COMMIT_SHORT_SHA
 TAG=`git describe --tags`
-BRANCH=$TRAVIS_BRANCH
+BRANCH=$CI_COMMIT_REF_NAME
 
-if [[ $BRANCH =~ ^v.*$ ]]; then
-  TAG=$BRANCH
+if [[ $CI_COMMIT_TAG =~ ^v.*$ ]]; then
+  TAG=$CI_COMMIT_TAG
   BRANCH="master"
-elif [[ $BRANCH =~ ^deploy.*$ ]]; then
-  TAG=$BRANCH
-  BRANCH="dev deploy"
-elif [[ $BRANCH == "develop" ]]; then
-  BRANCH="develop"
 fi
 
 if [[ $BRANCH == "master" ]]; then
     APPVERSION=$TAG
-elif [[ $BRANCH == "develop" ]]; then
-    APPVERSION=$COMMIT
 elif [[ $BRANCH =~ ^release\/.*$ ]]; then
     VERSION=`echo $BRANCH | sed -e 's/release\///g'`
     APPVERSION=$VERSION-$COMMIT
-elif [[ $TAG =~ ^deploy.*$ ]]; then
-    APPVERSION=$COMMIT
 else
-    APPVERSION=$BRANCH
+    APPVERSION=$COMMIT
 fi
 
 sed -i -e "s|__COMMIT_HASH__|$COMMIT|g" src/app/version.ts
