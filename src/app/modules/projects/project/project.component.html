@@ -1,82 +1,129 @@
 <div class="page-container">
   <div class="container-title">
-    <h2>{{language.projects}}</h2>
+    <h2>{{ language.projects }}</h2>
   </div>
-  <app-placeholder-boxline *ngIf="loadingProjects && projects != undefined" class="container-boxes"></app-placeholder-boxline>
+  <app-placeholder-boxline
+    *ngIf="loadingProjects && projects != undefined"
+    class="container-boxes"
+  ></app-placeholder-boxline>
   <div class="container-boxes" *ngIf="!loadingProjects">
-    <button class="button-add-project" *ngIf="!loadingProjects && userService.hasRights('ROLE_PROJECT_MANAGEMENT')" (click)="openNewProjectDialog()">
+    <button
+      class="button-add-project"
+      *ngIf="!loadingProjects && userService.hasRights('ROLE_PROJECT_MANAGEMENT')"
+      (click)="openNewProjectDialog()"
+    >
       <mat-icon>add</mat-icon>
-      <h3>{{language.new}}</h3>
+      <h3>{{ language.new }}</h3>
     </button>
     <app-box-setting
-        *ngFor="let project of projects"
-        (click)="selectProject(project)"
-        [isSelected]="project.get('id') === selectedProject.get('id')"
-        [info]='{icon: "settings/projects", color: "green", title:project.get("name"), ref:project.get("name")}'>
+      *ngFor="let project of projects"
+      (click)="selectProject(project)"
+      [isSelected]="project.get('id') === selectedProject.get('id')"
+      [info]="{
+        icon: 'settings/projects',
+        color: 'green',
+        title: project.get('name'),
+        ref: project.get('name')
+      }"
+    >
     </app-box-setting>
-    <div container-boxes *ngIf="projects === null || projects === undefined || projects.length == 0" class="empty-box">
-      <div class='no-data-container'>
+    <div
+      container-boxes
+      *ngIf="projects === null || projects === undefined || projects.length == 0"
+      class="empty-box"
+    >
+      <div class="no-data-container">
         <div class="loadingContent">
           <h4 class="no-data">
             <mat-icon>cloud_off</mat-icon>
-            <span> {{language.no_data}} </span>
+            <span> {{ language.no_data }} </span>
           </h4>
         </div>
       </div>
     </div>
   </div>
   <div class="container-data">
-      <div class="container-content" *ngIf="selectedProject">
-          <h3 class="container-subtitle">
-              {{ selectedProject.get('name') }}
-          </h3>
-          <h5 *ngIf="selectedProject.get('internalId')">({{selectedProject.get('internalId')}})</h5>
-          <app-box-properties class="properties-displayed" [displayedInstance]="selectedProject"></app-box-properties>
-      </div>
+    <div class="container-content" *ngIf="selectedProject">
+      <h3 class="container-subtitle">
+        {{ selectedProject.get('name') }}
+      </h3>
+      <h5 *ngIf="selectedProject.get('internalId')">
+        ({{ selectedProject.get('internalId') }})
+      </h5>
+      <app-box-properties
+        class="properties-displayed"
+        [displayedInstance]="selectedProject"
+      ></app-box-properties>
     </div>
-    <div class="container-table" *ngIf="!loadingProjects">
-        <div class="container-content box-primary" >
-            <ng-container *ngIf="!selectedProject; else distribution">
-                <div class="undisplay new-project">
-                <mat-icon>note_add</mat-icon>
-                <div class="resume">
-                <p> {{language.project_no_projects}}</p>
-                </div>
-                <p> {{language.project_add}} </p>
-                <button mat-flat-button class="button-background-primary" (click)="openNewProjectDialog()">
-                {{language.project_create}}
+  </div>
+  <div class="container-table" *ngIf="!loadingProjects">
+    <div class="container-content box-primary">
+      <ng-container *ngIf="!selectedProject; else distribution">
+        <div class="undisplay new-project">
+          <mat-icon>note_add</mat-icon>
+          <div class="resume">
+            <p>{{ language.project_no_projects }}</p>
+          </div>
+          <p>{{ language.project_add }}</p>
+          <button
+            mat-flat-button
+            class="button-background-primary"
+            (click)="openNewProjectDialog()"
+          >
+            {{ language.project_create }}
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-template #distribution>
+        <div
+          class="content-button"
+          *ngIf="selectedProject.get('numberOfHouseholds') !== 0"
+        >
+          <div class="action-buttons">
+            <div
+              class="button-with-extension"
+              [ngClass]="{ rtl: language.direction === 'rtl' }"
+            >
+              <button
+                mat-flat-button
+                [disabled]="!(distributionData && distributionData.data.length > 0)"
+                class="button-background-primary"
+                (click)="exportOfficial()"
+                *ngIf="!loadingOfficialExport"
+              >
+                <mat-icon>get_app</mat-icon>
+                <span>{{ language.export }}</span>
+              </button>
+              <mat-spinner [diameter]="25" *ngIf="loadingOfficialExport"></mat-spinner>
+              <div class="extension" *ngIf="!loadingOfficialExport">
+                <button
+                  mat-flat-button
+                  class="dropdown button-background-primary"
+                  [disabled]="!(distributionData && distributionData.data.length > 0)"
+                  [matMenuTriggerFor]="exportOfficialType"
+                >
+                  <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
+                <mat-menu #exportOfficialType>
+                  <button mat-menu-item (click)="setOfficialType('xlsx')">
+                    .xlsx
+                    <mat-icon *ngIf="extensionOfficialType == 'xlsx'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setOfficialType('csv')">
+                    .csv <mat-icon *ngIf="extensionOfficialType == 'csv'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setOfficialType('ods')">
+                    .ods <mat-icon *ngIf="extensionOfficialType == 'ods'">done</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="setOfficialType('pdf')">
+                    .pdf <mat-icon *ngIf="extensionOfficialType == 'pdf'">done</mat-icon>
+                  </button>
+                </mat-menu>
+              </div>
             </div>
-            </ng-container>
 
-            <ng-template #distribution>
-                <div class="content-button" *ngIf="selectedProject.get('numberOfHouseholds') !== 0 ">
-                    <div class="action-buttons">
-
-                    <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
-                        <button mat-flat-button [disabled]="!(distributionData && distributionData.data.length > 0)" class="button-background-primary" (click)="exportOfficial()" *ngIf="!loadingOfficialExport">
-                        <mat-icon>get_app</mat-icon>
-                        <span>{{language.export}}</span>
-                        </button>
-                        <mat-spinner [diameter]='25' *ngIf="loadingOfficialExport"></mat-spinner>
-                        <div class="extension" *ngIf="!loadingOfficialExport">
-                            <button mat-flat-button class="dropdown button-background-primary" [disabled]="!(distributionData && distributionData.data.length > 0)" [matMenuTriggerFor]="exportOfficialType">
-                                <mat-icon>keyboard_arrow_down</mat-icon>
-                            </button>
-                            <mat-menu #exportOfficialType>
-                                <button mat-menu-item (click)="setOfficialType('xlsx')"> .xlsx <mat-icon *ngIf="extensionOfficialType=='xlsx'">done</mat-icon>
-                                </button>
-                                <button mat-menu-item (click)="setOfficialType('csv')"> .csv <mat-icon *ngIf="extensionOfficialType=='csv'">done</mat-icon>
-                                </button>
-                                <button mat-menu-item (click)="setOfficialType('ods')"> .ods <mat-icon *ngIf="extensionOfficialType=='ods'">done</mat-icon>
-                                </button>
-                                <button mat-menu-item (click)="setOfficialType('pdf')"> .pdf <mat-icon *ngIf="extensionOfficialType=='pdf'">done</mat-icon>
-                                </button>
-                            </mat-menu>
-                        </div>
-                    </div>
-
-                    <!-- <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
+            <!-- <div class="button-with-extension" [ngClass]="{'rtl':language.direction === 'rtl'}">
                         <button mat-flat-button [disabled]="!(distributionData && distributionData.data.length > 0)" class="button-background-primary" (click)="export()" *ngIf="!loadingExport">
                         <mat-icon>get_app</mat-icon>
                         <span>{{language.export}}</span>
@@ -98,75 +145,123 @@
                             </mat-menu>
                         </div>
                     </div> -->
-                    </div>
-                    <h3 *ngIf="distributionData && distributionData.data.length > 0">{{language.distributions}}</h3>
-                    <a mat-flat-button
-                       class="add-button-create"
-                       *ngIf="currentDisplayType.type !== 'mobile' && userService.hasRights('ROLE_DISTRIBUTIONS_CREATE')"
-                       [routerLink]="[selectedProject.get('id'), 'assistance', 'create']" >
-                    <mat-icon>add</mat-icon>
-                    {{language.add}}
-                    </a>
-                    <a mat-fab
-                       class="add-button" [ngClass]="{'add-button-rtl': language.direction === 'rtl'}"
-                       *ngIf="currentDisplayType.type === 'mobile' && userService.hasRights('ROLE_DISTRIBUTIONS_CREATE')"
-                       [routerLink]="[selectedProject.get('id'), 'assistance', 'create']">
-                    <mat-icon>add</mat-icon>
-                    </a>
-                </div>
-
-                <div class="undisplay new-project" *ngIf="selectedProject.get('numberOfHouseholds') === 0 &&  !noNetworkData">
-                    <mat-icon>group_add</mat-icon>
-                    <div class="resume">
-                    <p> {{language.project_no_household}}</p>
-                    </div>
-                    <p> {{language.project_add_household}}</p>
-                    <button mat-flat-button class="button-background-primary" routerLink="/beneficiaries/import">
-                        {{language.project_go_import_beneficiaries}}
-                    </button>
-                </div>
-                <div class="undisplay empty-project" *ngIf="selectedProject.get('numberOfHouseholds') !== 0 && distributionData && distributionData.data.length==0 && !noNetworkData && !loadingDistributions">
-                    <mat-icon>find_in_page</mat-icon>
-                    <div class="resume">
-                        <p> {{language.project_no_distribution}}</p>
-                    </div>
-                    <i> {{language.project_click}}
-                        <mat-icon class="cursor-pointer" (click)="addDistribution()">add_circle</mat-icon>
-                    </i>
-                </div>
-                <div class="content-table" *ngIf="((distributionData && distributionData.data.length>0) && !noNetworkData) || loadingDistributions">
-                    <app-table
-                        [isLoading]="loadingDistributions" [searchable]="true" [paginable]="true"
-                        *ngIf="currentDisplayType.type !== 'mobile'" [validatable]="true"
-                        [deletable]="userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [updatable]="true"
-                        [entity]="distributionClass" [service]="distributionService" [data]="distributionData"
-                        [duplicable]="userService.hasRights('ROLE_PROJECT_MANAGEMENT')" (duplicateOne)="duplicate($event)"
-                        (openModal)="openDialog($event)"
-                    ></app-table>
-                    <app-table-mobile
-                        [isLoading]="loadingDistributions"
-                        [searchable]="true"
-                        [paginable]="true"
-                        *ngIf="currentDisplayType.type === 'mobile'"
-                        [validatable]="true" [deletable]="userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')"
-                        [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-                        [updatable]="true"
-                        [entity]="distributionClass" [service]="distributionService" [data]="distributionData"
-                        [duplicable]="userService.hasRights('ROLE_PROJECT_MANAGEMENT')" (duplicateOne)="duplicate($event)"
-                        (openModal)="openDialog($event)"
-                    ></app-table-mobile>
-                </div>
-                <div class='no-data-container' *ngIf="noNetworkData">
-                    <div class="loadingContent">
-                        <h4 class="no-data">
-                            <mat-icon>cloud_off</mat-icon>
-                            <span> {{language.no_data}} </span>
-                        </h4>
-                    </div>
-                </div>
-            </ng-template>
+          </div>
+          <h3 *ngIf="distributionData && distributionData.data.length > 0">
+            {{ language.distributions }}
+          </h3>
+          <a
+            mat-flat-button
+            class="add-button-create"
+            *ngIf="
+              currentDisplayType.type !== 'mobile' &&
+              userService.hasRights('ROLE_DISTRIBUTION_CREATE')
+            "
+            [routerLink]="[selectedProject.get('id'), 'assistance', 'create']"
+          >
+            <mat-icon>add</mat-icon>
+            {{ language.add }}
+          </a>
+          <a
+            mat-fab
+            class="add-button"
+            [ngClass]="{ 'add-button-rtl': language.direction === 'rtl' }"
+            *ngIf="
+              currentDisplayType.type === 'mobile' &&
+              userService.hasRights('ROLE_DISTRIBUTION_CREATE')
+            "
+            [routerLink]="[selectedProject.get('id'), 'assistance', 'create']"
+          >
+            <mat-icon>add</mat-icon>
+          </a>
         </div>
+
+        <div
+          class="undisplay new-project"
+          *ngIf="selectedProject.get('numberOfHouseholds') === 0 && !noNetworkData"
+        >
+          <mat-icon>group_add</mat-icon>
+          <div class="resume">
+            <p>{{ language.project_no_household }}</p>
+          </div>
+          <p>{{ language.project_add_household }}</p>
+          <button
+            mat-flat-button
+            class="button-background-primary"
+            routerLink="/beneficiaries/import"
+          >
+            {{ language.project_go_import_beneficiaries }}
+          </button>
+        </div>
+        <div
+          class="undisplay empty-project"
+          *ngIf="
+            selectedProject.get('numberOfHouseholds') !== 0 &&
+            distributionData &&
+            distributionData.data.length == 0 &&
+            !noNetworkData &&
+            !loadingDistributions
+          "
+        >
+          <mat-icon>find_in_page</mat-icon>
+          <div class="resume">
+            <p>{{ language.project_no_distribution }}</p>
+          </div>
+          <i>
+            {{ language.project_click }}
+            <mat-icon class="cursor-pointer" (click)="addDistribution()"
+              >add_circle</mat-icon
+            >
+          </i>
+        </div>
+        <div
+          class="content-table"
+          *ngIf="
+            (distributionData && distributionData.data.length > 0 && !noNetworkData) ||
+            loadingDistributions
+          "
+        >
+          <app-table
+            [isLoading]="loadingDistributions"
+            [searchable]="true"
+            [paginable]="true"
+            *ngIf="currentDisplayType.type !== 'mobile'"
+            [validatable]="true"
+            [deletable]="userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')"
+            [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            [updatable]="true"
+            [entity]="distributionClass"
+            [service]="distributionService"
+            [data]="distributionData"
+            [duplicable]="userService.hasRights('ROLE_PROJECT_MANAGEMENT')"
+            (duplicateOne)="duplicate($event)"
+            (openModal)="openDialog($event)"
+          ></app-table>
+          <app-table-mobile
+            [isLoading]="loadingDistributions"
+            [searchable]="true"
+            [paginable]="true"
+            *ngIf="currentDisplayType.type === 'mobile'"
+            [validatable]="true"
+            [deletable]="userService.hasRights('ROLE_DISTRIBUTIONS_DIRECTOR')"
+            [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+            [updatable]="true"
+            [entity]="distributionClass"
+            [service]="distributionService"
+            [data]="distributionData"
+            [duplicable]="userService.hasRights('ROLE_PROJECT_MANAGEMENT')"
+            (duplicateOne)="duplicate($event)"
+            (openModal)="openDialog($event)"
+          ></app-table-mobile>
+        </div>
+        <div class="no-data-container" *ngIf="noNetworkData">
+          <div class="loadingContent">
+            <h4 class="no-data">
+              <mat-icon>cloud_off</mat-icon>
+              <span> {{ language.no_data }} </span>
+            </h4>
+          </div>
+        </div>
+      </ng-template>
     </div>
+  </div>
 </div>
