@@ -1,0 +1,102 @@
+image: artifactory.quanti.cz/docker/node-yarn-awscli:12
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - node_modules/
+  - .yarn
+
+stages:
+ - lint
+ - test
+ - deploy_dev
+ - deploy_test
+ - deploy_stage
+ - deploy_prod
+
+.prepare_aws: &prepare_aws
+  before_script:
+    - aws configure set aws_access_key_id ${aws_access_key_id}
+    - aws configure set aws_secret_access_key ${aws_secret_access_key}
+    - aws configure set default.region eu-central-1
+
+lint:
+  stage: lint
+  image: artifactory.quanti.cz/docker/node-angular-chrome:12
+  variables:
+    NODE_OPTIONS: --max-old-space-size=4096
+  before_script:
+    - yarn install
+  script:
+    - yarn run lint
+  except:
+    - tags
+
+test:
+  stage: test
+  image: artifactory.quanti.cz/docker/node-angular-chrome:12
+  variables:
+    NODE_OPTIONS: --max-old-space-size=4096
+  before_script:
+    - yarn install
+  script:
+    - yarn run test
+  except:
+    - tags
+
+deploy dev:
+  stage: deploy_dev
+  environment:
+    name: dev
+    url: https://dev.humansis.org
+  <<: *prepare_aws
+  script:
+    - ./get-info.sh
+    - ./build-deploy.sh dev
+  only:
+    - branches
+  when: manual
+
+deploy test:
+  stage: deploy_test
+  environment:
+    name: test
+    url: https://test.humansis.org
+  <<: *prepare_aws
+  script:
+    - ./get-info.sh
+    - ./build-deploy.sh test
+  only:
+    - /^develop$/
+  except:
+    - tags
+
+deploy stage:
+  stage: deploy_stage
+  environment:
+    name: stage
+    url: https://stage.humansis.org
+  <<: *prepare_aws
+  script:
+    - ./get-info.sh
+    - ./build-deploy.sh stage
+  only:
+    - /^release\/.*$/
+  except:
+    - tags
+
+deploy prod:
+  stage: deploy_prod
+  environment:
+    name: production
+    url: https://pin.humansis.org
+  <<: *prepare_aws
+  script:
+    - ./get-info.sh
+    - ./build-deploy.sh prod
+  only:
+    - /^v.*$/
+  except:
+    - branches
+  when: manual
+
