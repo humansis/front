@@ -1,12 +1,10 @@
 <div [formGroup]="form">
-    <app-administrative-area formControlName="location"></app-administrative-area>
-    <mat-form-field class="accordion-field">
-        <input matInput [matDatepicker]="dateDistribution" [placeholder]="this.language.distribution_date"
-               formControlName="date_distribution" [max]="maxDate" required>
-        <mat-datepicker-toggle matSuffix [for]="dateDistribution"></mat-datepicker-toggle>
-        <mat-datepicker #dateDistribution></mat-datepicker>
-        <mat-error *ngIf="form.get('date_distribution').hasError('required')">
-            {{language.distribution_date}} {{ language.is_required }}
-        </mat-error>
-    </mat-form-field>
+  <app-administrative-area formControlName="location"></app-administrative-area>
+  <app-utc-datepicker
+    formControlName="date_distribution"
+    [max]="maxDate"
+    [placeholder]="this.language.distribution_date"
+    [showError]="form.get('date_distribution').hasError('required')"
+    [errorText]="language.distribution_date + ' ' + language.is_required"
+  ></app-utc-datepicker>
 </div>

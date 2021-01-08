@@ -1,0 +1,14 @@
+<mat-form-field>
+  <input
+    matInput
+    [matDatepicker]="dateDistribution"
+    [placeholder]="placeholder"
+    [max]="max"
+    (dateChange)="dateChange($event)"
+  />
+  <mat-datepicker-toggle matSuffix [for]="dateDistribution"></mat-datepicker-toggle>
+  <mat-datepicker #dateDistribution></mat-datepicker>
+  <mat-error *ngIf="showError">
+    {{ errorText }}
+  </mat-error>
+</mat-form-field>

@@ -100,6 +100,7 @@ import { DataValidationComponent } from 'src/app/modules/beneficiaries/container
 import { BeneficiariesComponent } from 'src/app/modules/beneficiaries/containers/beneficiaries/beneficiaries.component';
 import { LivelihoodPipe } from './pipes/livelihood.pipe';
 import { NgPipesModule } from 'ngx-pipes';
+import { UtcDatepickerComponent } from 'src/app/components/utc-datepicker/utc-datepicker.component';
 
 @NgModule({
   imports: [
@@ -153,6 +154,7 @@ import { NgPipesModule } from 'ngx-pipes';
   declarations: [
     // Shared Components
     AdministrativeAreaInputComponent,
+    UtcDatepickerComponent,
     CleanTableComponent,
     MobilePressDirective,
     LoginComponent,
@@ -227,6 +229,7 @@ import { NgPipesModule } from 'ngx-pipes';
   exports: [
     // Shared Components
     AdministrativeAreaInputComponent,
+    UtcDatepickerComponent,
     CleanTableComponent,
     LoginComponent,
     DashboardComponent,
