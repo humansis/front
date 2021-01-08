@@ -8,6 +8,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AssistanceLocationFormComponent', () => {
   let component: AssistanceLocationFormComponent;
@@ -16,7 +18,9 @@ describe('AssistanceLocationFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserAnimationsModule,
         ReactiveFormsModule,
+        SharedModule,
         RouterTestingModule,
         HttpClientTestingModule,
         MatSnackBarModule,

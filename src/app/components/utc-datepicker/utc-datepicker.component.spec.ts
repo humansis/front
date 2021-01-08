@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UtcDatepickerComponent } from './utc-datepicker.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 describe('UtcDatepickerComponent', () => {
   let component: UtcDatepickerComponent;
@@ -10,7 +10,7 @@ describe('UtcDatepickerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UtcDatepickerComponent],
-      imports: [BsDatepickerModule.forRoot()],
+      imports: [],
     }).compileComponents();
   }));
 
