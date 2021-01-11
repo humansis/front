@@ -29,9 +29,6 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
   form: FormGroup;
 
   @Input()
-  public countryIso = 'KHM';
-
-  @Input()
   public firstLevelRequired = false;
 
   location: Location;
@@ -48,6 +45,8 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
 
   public language = this.languageService.selectedLanguage;
 
+  public readonly countryIso;
+
   onChange: any = () => {};
   onTouch: any = () => {};
 
@@ -58,6 +57,7 @@ export class AdministrativeAreaInputComponent implements OnInit, ControlValueAcc
     private locationService: LocationService
   ) {
     this.createForm();
+    this.countryIso = this.countriesService.selectedCountry.get('id');
   }
 
   ngOnInit(): void {
