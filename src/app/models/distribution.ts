@@ -290,6 +290,15 @@ export class Distribution extends CustomModel {
     return this.get('assistanceType')?.get('id') === 'distribution';
   }
 
+  public isSmartcardDistribution() {
+    const commodities = this.get<Commodity[]>('commodities') || [];
+    const isSmartcard =
+      commodities.filter(
+        (commodity) => commodity.get('modalityType').get('name') === 'Smartcard'
+      ).length > 0;
+    return this.isDistribution() && isSmartcard;
+  }
+
   public modelToApi(): Object {
     const commodities = this.get('commodities')
       ? this.get<Commodity[]>('commodities').map((commodity) => commodity.modelToApi())

@@ -54,7 +54,14 @@
           <button
             mat-flat-button
             class="button-background-primary"
-            (click)="exportTransaction(extensionType, 'generalreliefDistribution')"
+            (click)="
+              exportTransaction(
+                extensionType,
+                actualDistribution.isSmartcardDistribution()
+                  ? 'smartcardDistribution'
+                  : 'generalreliefDistribution'
+              )
+            "
             *ngIf="!loadingExport"
           >
             <mat-icon>get_app</mat-icon>
