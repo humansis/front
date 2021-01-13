@@ -267,6 +267,8 @@ export class FormService {
       localCurrency = 'UAH';
     } else if (countryId === 'ETH') {
       localCurrency = 'ETB';
+    } else if (countryId === 'MNG') {
+      localCurrency = 'MNT';
     }
     return localCurrency;
   }
