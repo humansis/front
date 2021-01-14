@@ -34,6 +34,7 @@ import { DistributionService } from '../../core/api/distribution.service';
 import { AuthenticationService } from '../../core/authentication/authentication.service';
 import { WsseService } from '../../core/authentication/wsse.service';
 import { Observable } from 'rxjs';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-table',
@@ -98,7 +99,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   @Input() service: CustomModelService;
-  @Input() selection: any;
+  @Input() selection: SelectionModel<any>;
 
   @Input() isLoading: boolean;
 
@@ -391,9 +392,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  areActionsDisabled() {
+  areActionsDisabled(wantedItem: any) {
     if (this.selection) {
-      return this.selection.selected.length > 0;
+      return this.selection.selected.find((item) => item === wantedItem);
     }
     return false;
   }

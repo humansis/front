@@ -91,7 +91,7 @@
             <button
               mat-icon-button
               (click)="openDialog('visit', element); $event.stopPropagation()"
-              [disabled]="areActionsDisabled()"
+              [disabled]="areActionsDisabled(element)"
             >
               <mat-icon
                 *ngIf="element.get('validated') && element.get('finished')"
@@ -118,7 +118,7 @@
             *ngIf="!validatable && updatable"
             class="dark-blue"
             (click)="openDialog('visit', element); $event.stopPropagation()"
-            [disabled]="areActionsDisabled()"
+            [disabled]="areActionsDisabled(element)"
           >
             <mat-icon>edit</mat-icon>
           </button>
@@ -129,7 +129,7 @@
             class="logsButton"
             *ngIf="loggable"
             [matTooltip]="language.settings_log_button"
-            [disabled]="areActionsDisabled()"
+            [disabled]="areActionsDisabled(element)"
           >
             <mat-icon>history</mat-icon>
           </button>
@@ -144,7 +144,7 @@
             (click)="openDialog('edit', element); $event.stopPropagation()"
             [matTooltip]="language.view"
             class="light-blue"
-            [disabled]="areActionsDisabled()"
+            [disabled]="areActionsDisabled(element)"
           >
             <mat-icon>search</mat-icon>
           </button>
@@ -158,7 +158,7 @@
             (click)="openDialog('delete', element); $event.stopPropagation()"
             [matTooltip]="language.delete"
             class="red"
-            [disabled]="areActionsDisabled()"
+            [disabled]="areActionsDisabled(element)"
           >
             <mat-icon>delete_outline</mat-icon>
           </button>
@@ -188,7 +188,7 @@
             *ngIf="justifiable"
             (click)="justify(element); $event.stopPropagation()"
             class="grey"
-            [disabled]="areActionsDisabled()"
+            [disabled]="areActionsDisabled(element)"
           >
             <mat-icon>add_circle</mat-icon>
           </button>
@@ -198,7 +198,7 @@
             *ngIf="duplicable"
             (click)="duplicate(element); $event.stopPropagation()"
             class="grey"
-            [disabled]="areActionsDisabled()"
+            [disabled]="areActionsDisabled(element)"
           >
             <mat-icon>file_copy</mat-icon>
           </button>
