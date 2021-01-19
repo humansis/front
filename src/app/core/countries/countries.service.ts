@@ -14,6 +14,7 @@ export class CountriesService {
   public ukr = new Country('UKR', 'Ukraine');
   public eth = new Country('ETH', 'Ethiopia');
   public mng = new Country('MNG', 'Mongolia');
+  public arm = new Country('ARM', 'Armenia');
 
   constructor() {}
 
@@ -40,6 +41,7 @@ export class CountriesService {
     this.ukr,
     this.eth,
     this.mng,
+    this.arm,
   ];
 
   //
@@ -82,6 +84,8 @@ export class CountriesService {
         return this.eth;
       case 'MNG':
         return this.mng;
+      case 'ARM':
+        return this.arm;
     }
   }
 
@@ -97,6 +101,8 @@ export class CountriesService {
         return 'ETH';
       case this.mng:
         return 'MNG';
+      case this.arm:
+        return 'ARM';
     }
   }
 }

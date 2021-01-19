@@ -269,6 +269,8 @@ export class FormService {
       localCurrency = 'ETB';
     } else if (countryId === 'MNG') {
       localCurrency = 'MNT';
+    } else if (countryId === 'ARM') {
+      localCurrency = 'AMD';
     }
     return localCurrency;
   }

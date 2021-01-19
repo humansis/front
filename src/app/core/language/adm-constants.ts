@@ -6,6 +6,7 @@ export const ADMINLEVELS = {
       UKR: 'Region',
       ETH: 'Region',
       MNG: 'Province',
+      ARM: 'Province',
     },
     adm2: {
       KHM: 'District',
@@ -13,6 +14,7 @@ export const ADMINLEVELS = {
       UKR: 'District',
       ETH: 'Zone',
       MNG: 'District',
+      ARM: 'Community',
     },
     adm3: {
       KHM: 'Commune',
@@ -20,6 +22,7 @@ export const ADMINLEVELS = {
       UKR: 'Community',
       ETH: 'Woreda',
       MNG: 'Sub-District',
+      ARM: 'Settlement',
     },
     adm4: {
       KHM: 'Village',
@@ -27,6 +30,7 @@ export const ADMINLEVELS = {
       UKR: 'Settlement',
       ETH: 'Village',
       MNG: 'Village',
+      ARM: 'District',
     },
   },
 
@@ -37,6 +41,7 @@ export const ADMINLEVELS = {
       UKR: 'Region',
       ETH: 'Region',
       MNG: 'المحافظة',
+      ARM: 'Province',
     },
     adm2: {
       KHM: 'المنطقة',
@@ -44,6 +49,7 @@ export const ADMINLEVELS = {
       UKR: 'المنطقة',
       ETH: 'Zone',
       MNG: 'المنطقة',
+      ARM: 'Community',
     },
     adm3: {
       KHM: 'البلدية',
@@ -51,6 +57,7 @@ export const ADMINLEVELS = {
       UKR: 'Community',
       ETH: 'Woreda',
       MNG: 'الناحية',
+      ARM: 'Settlement',
     },
     adm4: {
       KHM: 'القرية',
@@ -58,6 +65,7 @@ export const ADMINLEVELS = {
       UKR: 'Settlement',
       ETH: 'Village',
       MNG: 'منع',
+      ARM: 'District',
     },
   },
 
@@ -68,6 +76,7 @@ export const ADMINLEVELS = {
       UKR: 'Region',
       ETH: 'Region',
       MNG: 'Province',
+      ARM: 'Province',
     },
     adm2: {
       KHM: 'District',
@@ -75,6 +84,7 @@ export const ADMINLEVELS = {
       UKR: 'District',
       ETH: 'Zone',
       MNG: 'District',
+      ARM: 'Community',
     },
     adm3: {
       KHM: 'Commune',
@@ -82,6 +92,7 @@ export const ADMINLEVELS = {
       UKR: 'Community',
       ETH: 'Woreda',
       MNG: 'Sous-District',
+      ARM: 'Settlement',
     },
     adm4: {
       KHM: 'Village',
@@ -89,6 +100,7 @@ export const ADMINLEVELS = {
       UKR: 'Settlement',
       ETH: 'Village',
       MNG: 'Village',
+      ARM: 'District',
     },
   },
 
@@ -99,6 +111,7 @@ export const ADMINLEVELS = {
       UKR: 'Область',
       ETH: 'Region',
       MNG: 'Province',
+      ARM: 'Province',
     },
     adm2: {
       KHM: 'District',
@@ -106,6 +119,7 @@ export const ADMINLEVELS = {
       UKR: 'Район',
       ETH: 'Zone',
       MNG: 'District',
+      ARM: 'Community',
     },
     adm3: {
       KHM: 'Commune',
@@ -113,6 +127,7 @@ export const ADMINLEVELS = {
       UKR: 'Громада',
       ETH: 'Woreda',
       MNG: 'Sous-District',
+      ARM: 'Settlement',
     },
     adm4: {
       KHM: 'Village',
@@ -120,6 +135,7 @@ export const ADMINLEVELS = {
       UKR: 'Населенный пункт',
       ETH: 'Village',
       MNG: 'Village',
+      ARM: 'District',
     },
   },
 };

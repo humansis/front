@@ -98,7 +98,7 @@ export class LanguageService {
       case 'ETH':
         return this.amrahic;
       case 'MNG':
-        return this.english;
+      case 'ARM':
       case 'KHM':
       default:
         return this.english;
