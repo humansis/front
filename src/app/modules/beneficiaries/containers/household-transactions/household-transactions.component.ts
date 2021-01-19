@@ -5,7 +5,7 @@ import { ClientDataSource } from 'src/app/core/datasource/client-data-source';
 import { Purchase } from 'src/app/models/api/purchase';
 import { PurchaseRow } from 'src/app/models/table/purchase-row';
 import { FormService } from 'src/app/core/utils/form.service';
-import { CurrencyPipe, formatCurrency } from '@angular/common';
+import { CurrencyPipe, DecimalPipe, formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-household-transactions',
@@ -23,10 +23,10 @@ export class HouseholdTransactionsComponent implements OnInit {
 
   public readonly TABLE_HEADERS: TableHeader[] = [
     { key: 'usedAt', languageKey: 'date' },
-    { key: 'productName', languageKey: 'commodity' },
+    { key: 'productName', languageKey: 'product' },
     { key: 'amount', languageKey: 'amount' },
     { key: 'value', languageKey: 'price' },
-    { key: 'source', languageKey: 'purchased_by' },
+    { key: 'source', languageKey: 'commodity' },
     { key: 'beneficiary', languageKey: 'beneficiary' },
   ];
 

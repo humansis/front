@@ -59,6 +59,7 @@ export interface Language {
   national_id: string;
   phone: string;
   products: string;
+  product: string;
   profile: string;
   project: string;
   projects: string;

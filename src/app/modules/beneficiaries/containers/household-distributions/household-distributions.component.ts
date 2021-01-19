@@ -6,6 +6,7 @@ import { TableHeader } from 'src/app/models/interfaces/table-header';
 import { Distribution } from 'src/app/models/api/distribution';
 import { PurchaseRow } from 'src/app/models/table/purchase-row';
 import { DistributionCommodityRow } from 'src/app/models/table/distribution-commodity-row';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-household-distributions',
@@ -30,7 +31,11 @@ export class HouseholdDistributionsComponent implements OnInit {
     DistributionCommodityRow
   >();
 
-  constructor(private distributionService: DistributionService) {}
+  constructor(
+    private distributionService: DistributionService,
+    private datePipe: DatePipe,
+    private decimalPipe: DecimalPipe
+  ) {}
 
   ngOnInit(): void {}
 
@@ -43,8 +48,8 @@ export class HouseholdDistributionsComponent implements OnInit {
           item.commodities.forEach((commodity) => {
             commodityDistributions.push({
               commodity: commodity.modality_type.name,
-              amount: `${commodity.value} ${commodity.unit}`,
-              date: item.date_distribution,
+              amount: `${this.decimalPipe.transform(commodity.value)} ${commodity.unit}`,
+              date: this.datePipe.transform(item.date_distribution),
               distribution: item.name,
               beneficiary: item.beneficiary.name,
             });

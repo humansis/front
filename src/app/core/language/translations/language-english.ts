@@ -64,6 +64,7 @@ export class English implements Language {
   national_id = 'National ID';
   phone = 'Phone';
   products = 'Products';
+  product = 'Product';
   profile = 'Profile';
   project = 'Project';
   projects = 'Projects';
@@ -597,7 +598,7 @@ export class English implements Language {
   log_donor = 'Donor';
   log_household = 'Household';
   log_organization = 'Organization';
-  log_product = 'Product';
+  log_product = this.product;
   log_project = 'Project';
   log_transaction = 'Transaction';
   log_user = 'User';

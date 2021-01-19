@@ -574,8 +574,9 @@ export class Amrahic implements Language {
   table_previous_page = 'ቀዳሚ ገጽ';
   table_print = 'አትም';
   voucher_print_selection = 'የህትመት ምርጫ';
-  log_product = 'ምርት';
   products = 'ምርቶች';
+  product = 'ምርቶች';
+  log_product = this.product;
   header_profile = 'መገለጫ';
   profile = 'መገለጫ';
   log_project = 'ፕሮጀክት';

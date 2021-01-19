@@ -63,6 +63,7 @@ export class Arabic implements Language {
   national_id = 'الهوية الوطنية';
   phone = 'الهاتف';
   products = 'منتجات';
+  product = 'المنتج';
   profile = ' المعطيات الشخصية';
   project = 'المشروع';
   projects = 'المشاريع';
@@ -585,7 +586,7 @@ export class Arabic implements Language {
   log_donor = 'الجهات المانحة';
   log_household = 'منزلي';
   log_organization = 'منظمة';
-  log_product = 'المنتج';
+  log_product = this.product;
   log_project = 'مشروع';
   log_transaction = 'عملية تجارية';
   log_user = 'المستعمل';

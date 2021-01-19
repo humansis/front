@@ -63,6 +63,7 @@ export class French implements Language {
   national_id = "Document d'identité";
   phone = 'Téléphone';
   products = 'Produits';
+  product = 'Produit';
   profile = 'Profil';
   project = 'Projet';
   projects = 'Projets';
@@ -603,7 +604,7 @@ export class French implements Language {
   log_donor = 'Donneur';
   log_household = 'Ménage';
   log_organization = 'Organisation';
-  log_product = 'Produit';
+  log_product = this.product;
   log_project = 'Projet';
   log_transaction = 'Transaction';
   log_user = 'Utilisateur';
