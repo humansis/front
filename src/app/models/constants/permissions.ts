@@ -25,6 +25,7 @@ export const rightsHierarchy = {
     'ROLE_REPORTING',
     'ROLE_REPORTING_PROJECT',
     'ROLE_PROJECT_MANAGEMENT_ASSIGN',
+    'ROLE_DISTRIBUTION_CREATE',
   ],
   [Role.projectManager]: [
     'ROLE_AUTHORISE_PAYMENT',
@@ -39,6 +40,7 @@ export const rightsHierarchy = {
     'ROLE_REPORTING_PROJECT',
     'ROLE_USER_MANAGEMENT',
     'ROLE_VIEW_ADMIN_SETTINGS',
+    'ROLE_DISTRIBUTION_CREATE',
   ],
   [Role.countryManager]: [
     'ROLE_AUTHORISE_PAYMENT',
