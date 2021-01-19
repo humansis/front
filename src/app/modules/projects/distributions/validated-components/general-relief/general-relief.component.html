@@ -136,10 +136,10 @@
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         [selection]="selection"
-        rights="true"
         (openModal)="openDialog($event)"
         [selectable]="
           !actualDistribution.get('finished') &&
+          !actualDistribution.isSmartcardDistribution() &&
           userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')
         "
         [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
@@ -155,12 +155,12 @@
         [entity]="entity"
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-        rights="true"
         (openModal)="openDialog($event)"
         [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         [selection]="selection"
         [selectable]="
           !actualDistribution.get('finished') &&
+          !actualDistribution.isSmartcardDistribution() &&
           userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')
         "
       >
@@ -207,6 +207,7 @@
           *ngIf="
             userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN') &&
             !distributed &&
+            !actualDistribution.isSmartcardDistribution() &&
             selection.selected.length > 0
           "
           class="button-background-accent"
