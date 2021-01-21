@@ -48,7 +48,7 @@ export class HistoryTableComponent implements OnInit {
   private reloadData(attribute: string) {
     const allValues = this.dataChanges
       .map((item) => ({
-        date: item.createdAt,
+        date: item.created_at,
         value: item.changes[attribute],
       }))
       .sort((a, b) => b.date.localeCompare(a.date));
