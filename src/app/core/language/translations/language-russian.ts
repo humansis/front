@@ -76,6 +76,7 @@ export class Russian implements Language {
   institutions = 'учреждения';
   community = 'сообщество';
   communities = 'сообщества';
+  purchases = this.missingTranslation;
 
   // Actions
   add = 'Добавить';

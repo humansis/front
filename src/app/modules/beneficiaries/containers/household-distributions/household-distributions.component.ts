@@ -49,7 +49,10 @@ export class HouseholdDistributionsComponent implements OnInit {
             commodityDistributions.push({
               commodity: commodity.modality_type.name,
               amount: `${this.decimalPipe.transform(commodity.value)} ${commodity.unit}`,
-              date: this.datePipe.transform(item.date_distribution),
+              date: this.datePipe.transform(
+                item.date_distribution,
+                'dd-MM-yyyy HH:mm:ss'
+              ),
               distribution: item.name,
               beneficiary: item.beneficiary.name,
             });

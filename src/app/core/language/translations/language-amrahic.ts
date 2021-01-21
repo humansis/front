@@ -227,6 +227,7 @@ export class Amrahic implements Language {
   import_distribution_updated = 'ስርጭት ተዘምኗል';
   distribution_id = 'ስርጭትID';
   distributions = 'ስርጭቶች';
+  purchases = this.missingTranslation;
   report_distributions = 'ስርጭቶች';
   modal_leave_sentence = 'ባልዳኑ ለውጦች ለመተው በእውነት ይፈልጋሉ?';
   transaction_validate_distribution = 'በእርግጥ ይህንን ስርጭት ማረጋገጥ ይፈልጋሉ?';

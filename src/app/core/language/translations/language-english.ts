@@ -79,6 +79,7 @@ export class English implements Language {
   institutions = 'Institutions';
   community = 'Community';
   communities = 'Communities';
+  purchases = 'Purchases';
 
   // Actions
   add = 'Add';

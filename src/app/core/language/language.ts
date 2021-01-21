@@ -74,6 +74,7 @@ export interface Language {
   institutions: string;
   community: string;
   communities: string;
+  purchases: string;
 
   // Actions
   add: string;

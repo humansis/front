@@ -78,6 +78,7 @@ export class French implements Language {
   institutions = this.missingTranslation;
   community = this.missingTranslation;
   communities = this.missingTranslation;
+  purchases = this.missingTranslation;
 
   // Actions
   add = 'Ajouter';
