@@ -829,6 +829,7 @@ export class Amrahic implements Language {
   header_vouchers = 'ቫውቸር';
   voucher = 'ቫውቸር';
   beneficiary_vulnerabilities = 'ተጋላጭነቶች';
+  beneficiary_enumerator_name = this.missingTranslation;
   report_vulnerability_served = 'ተጋላጭነትን  ማገልገል';
   institution_type_production = 'መጋዘን / ፋብሪካ';
   modal_warning_pending_requests_2 =

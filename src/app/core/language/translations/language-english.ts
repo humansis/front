@@ -262,6 +262,7 @@ export class English implements Language {
   beneficiary_selected_project = 'selected beneficiaries:';
   beneficiary_update_title = 'Update Beneficiary';
   beneficiary_vulnerabilities = 'Vulnerabilities';
+  beneficiary_enumerator_name = 'Enumerator name';
 
   // Beneficiary form errors
   beneficiary_error_address_number = 'You must enter an address number';

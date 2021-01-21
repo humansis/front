@@ -234,6 +234,7 @@ export interface Language {
   beneficiary_selected_project: string;
   beneficiary_update_title: string;
   beneficiary_vulnerabilities: string;
+  beneficiary_enumerator_name: string;
 
   // Benficiary form errors
   beneficiary_error_address_number: string;

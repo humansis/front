@@ -260,6 +260,7 @@ export class Russian implements Language {
   beneficiary_selected_project = 'выбранные бенефициары:';
   beneficiary_update_title = 'Обновить информацию о бенефициаре';
   beneficiary_vulnerabilities = 'Уязвимости';
+  beneficiary_enumerator_name = this.missingTranslation;
 
   // Beneficiary form errors
   beneficiary_error_address_number = 'Вы должны ввести адресный номер';

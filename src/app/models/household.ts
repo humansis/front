@@ -145,6 +145,10 @@ export class Household extends CustomModel {
       title: this.language.household_debt_level,
       isDisplayedInModal: false,
     }),
+    enumeratorName: new TextModelField({
+      title: this.language.beneficiary_enumerator_name,
+      isDisplayedInModal: false,
+    }),
     supportReceivedOtherOrg: new MultipleSelectModelField({
       title: this.language.household_support_received_other_org,
       isDisplayedInModal: true,
@@ -242,6 +246,7 @@ export class Household extends CustomModel {
     newHousehold.set('income', householdFromApi.household_income);
     newHousehold.set('foodConsumptionScore', householdFromApi.food_consumption_score);
     newHousehold.set('copingStrategiesIndex', householdFromApi.coping_strategies_index);
+    newHousehold.set('enumeratorName', householdFromApi.enumerator_name);
     newHousehold.set(
       'assets',
       householdFromApi.assets
@@ -417,6 +422,7 @@ export class Household extends CustomModel {
       support_received_types: this.fields.supportReceivedOtherOrg.formatForApi(),
       support_date_received: this.fields.supportReceived.formatForApi(),
       support_organization_name: this.fields.supportOrganization.formatForApi(),
+      enumerator_name: this.fields.enumeratorName.formatForApi(),
       shelter_status: this.fields.shelterStatus.formatForApi(),
       assets: this.fields.assets.formatForApi(),
     };

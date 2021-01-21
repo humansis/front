@@ -283,6 +283,7 @@ export class French implements Language {
   beneficiary_selected_project = 'bénéficiaires sélectionnés:';
   beneficiary_update_title = 'Modifier un bénéficiaire';
   beneficiary_vulnerabilities = 'Vulnérabilités';
+  beneficiary_enumerator_name = this.missingTranslation;
 
   // Benficiaries Imports
   beneficiary_import_addFile = 'ajouter un fichier ou glisser-déposer';

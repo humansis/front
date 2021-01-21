@@ -257,6 +257,7 @@ export class Arabic implements Language {
   beneficiary_selected_project = 'المستفيدين المختارين=';
   beneficiary_update_title = 'تحديث المستفيدين';
   beneficiary_vulnerabilities = 'نقاط الضعف';
+  beneficiary_enumerator_name = this.missingTranslation;
 
   // Benficiary form errors
   beneficiary_error_address_number = 'يجب إدخال رقم العنوان';

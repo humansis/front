@@ -195,6 +195,7 @@ export class UpdateBeneficiaryComponent
       'supportOrganization',
       'shelterStatus',
       'assets',
+      'enumeratorName',
     ];
 
     const locationFields = [];
@@ -611,6 +612,7 @@ export class UpdateBeneficiaryComponent
       this.household.set('foodConsumptionScore', controls.foodConsumptionScore.value);
       this.household.set('copingStrategiesIndex', controls.copingStrategiesIndex.value);
       this.household.set('debtLevel', controls.debtLevel.value);
+      this.household.set('enumeratorName', controls.enumeratorName.value);
       this.household.set(
         'supportReceivedOtherOrg',
         this.household
