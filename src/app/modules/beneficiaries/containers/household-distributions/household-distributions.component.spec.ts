@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HouseholdDistributionsComponent } from 'src/app/modules/beneficiaries/containers/household-distributions/household-distributions.component';
 import { DistributionService } from 'src/app/core/api/distribution.service';
 import { DistributionMockService } from 'src/app/core/api/mock/distribution-mock.service';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 describe('BeneficiaryDistributionsComponent', () => {
   let component: HouseholdDistributionsComponent;
@@ -9,7 +10,11 @@ describe('BeneficiaryDistributionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: DistributionService, useClass: DistributionMockService }],
+      providers: [
+        { provide: DistributionService, useClass: DistributionMockService },
+        DatePipe,
+        DecimalPipe,
+      ],
       declarations: [HouseholdDistributionsComponent],
     }).compileComponents();
   }));
