@@ -34,6 +34,8 @@ import { Project } from '../../models/project';
 import { User } from '../../models/user';
 import { OrganizationServices } from 'src/app/models/organization-services';
 import { OrganizationServicesService } from 'src/app/core/api/organization-services.service';
+import { CountryService } from 'src/app/core/api/country.service';
+import { AsyncacheService } from 'src/app/core/storage/asyncache.service';
 
 @Component({
   selector: 'app-settings',
@@ -103,7 +105,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     public languageService: LanguageService,
     private screenSizeService: ScreenSizeService,
     private organizationService: OrganizationService,
-    private organizationServicesService: OrganizationServicesService
+    private organizationServicesService: OrganizationServicesService,
+    private asyncCacheService: AsyncacheService
   ) {}
 
   ngOnInit() {
@@ -163,11 +166,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
     if (category === 'projects') {
       let exported = false;
-      country = this.locationService.getAdm1().subscribe((result) => {
+      country = this.asyncCacheService.getCountry().subscribe((result) => {
         if (!exported && result) {
           exported = true;
 
-          country = result[0].country_i_s_o3;
+          country = result.country.get('id');
           return this._settingsService
             .export(this.extensionType, category, country)
             .subscribe(
