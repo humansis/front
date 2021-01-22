@@ -59,6 +59,7 @@ export interface Language {
   national_id: string;
   phone: string;
   products: string;
+  product: string;
   profile: string;
   project: string;
   projects: string;
@@ -73,6 +74,7 @@ export interface Language {
   institutions: string;
   community: string;
   communities: string;
+  purchases: string;
 
   // Actions
   add: string;

@@ -15,4 +15,10 @@ export class HouseholdSummaryHeaderComponent implements OnInit {
   constructor(private languageService: LanguageService) {}
 
   ngOnInit(): void {}
+
+  getHouseholdHead() {
+    if (this.household && this.household.beneficiaries) {
+      return this.household.beneficiaries.find((item) => item.status);
+    }
+  }
 }
