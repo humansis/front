@@ -133,28 +133,33 @@ export class MapService {
   compareAdmToMapDistribution(adm: Array<string>, distribution_adm: string): boolean {
     const admLevel = this.getAdmLevel(distribution_adm);
     // If an adm is missing in the location layer, retry with a broader region
-    if (!adm[admLevel]) {
-      return this.compareAdmToMapDistribution(
-        adm,
-        distribution_adm.substr(0, distribution_adm.length - 2)
-      );
+    if (distribution_adm.length >= 2) {
+      if (!adm[admLevel]) {
+        return this.compareAdmToMapDistribution(
+          adm,
+          distribution_adm.substr(0, distribution_adm.length - 2)
+        );
+      }
     }
+
     return adm[admLevel] === distribution_adm;
   }
 
   getAdmLevel(admCode: string) {
-    // Check postal codes in Ukraine [https://en.m.wikipedia.org/wiki/Postal_codes_in_Ukraine]
-    const ukrAdmCodes = admCode.match(/^UA(\d{2})?(\d{3})?(\d{5})?/);
-    if (ukrAdmCodes) {
-      return ukrAdmCodes.filter((val) => val !== undefined).length - 1;
-    }
+    if (admCode) {
+      // Check postal codes in Ukraine [https://en.m.wikipedia.org/wiki/Postal_codes_in_Ukraine]
+      const ukrAdmCodes = admCode.match(/^UA(\d{2})?(\d{3})?(\d{5})?/);
+      if (ukrAdmCodes) {
+        return ukrAdmCodes.filter((val) => val !== undefined).length - 1;
+      }
 
-    // Remove 2-character identifier and calculate adm based on the code's length
-    const admLevel = admCode.slice(2).length / 2;
-    if (!Number.isInteger(admLevel)) {
-      throw new Error(`${admCode} is not an integer`);
+      // Remove 2-character identifier and calculate adm based on the code's length
+      const admLevel = +admCode.slice(2).length;
+      if (!Number.isInteger(admLevel)) {
+        throw new Error(`${admCode} is not an integer`);
+      }
+      return admLevel;
     }
-    return admLevel;
   }
 
   initializeFeatureGroup() {
