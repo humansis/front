@@ -92,6 +92,7 @@ deploy prod:
     url: https://pin.humansis.org
   <<: *prepare_aws
   script:
+    - yarn install
     - ./get-info.sh
     - ./build-deploy.sh prod
   only:
