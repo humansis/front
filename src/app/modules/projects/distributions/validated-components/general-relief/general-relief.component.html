@@ -139,7 +139,6 @@
         (openModal)="openDialog($event)"
         [selectable]="
           !actualDistribution.get('finished') &&
-          !actualDistribution.isSmartcardDistribution() &&
           userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')
         "
         [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
@@ -160,7 +159,6 @@
         [selection]="selection"
         [selectable]="
           !actualDistribution.get('finished') &&
-          !actualDistribution.isSmartcardDistribution() &&
           userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')
         "
       >
