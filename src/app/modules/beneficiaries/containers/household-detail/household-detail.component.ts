@@ -15,9 +15,12 @@ export class HouseholdDetailComponent implements OnInit {
   householdId: number;
   household$: any;
 
+  language = this.languageService.selectedLanguage;
+
   constructor(
     private route: ActivatedRoute,
-    private householdService: HouseholdsService
+    private householdService: HouseholdsService,
+    private languageService: LanguageService
   ) {}
 
   ngOnInit(): void {

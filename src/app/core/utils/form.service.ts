@@ -265,6 +265,12 @@ export class FormService {
       localCurrency = 'KHR';
     } else if (countryId === 'UKR') {
       localCurrency = 'UAH';
+    } else if (countryId === 'ETH') {
+      localCurrency = 'ETB';
+    } else if (countryId === 'MNG') {
+      localCurrency = 'MNT';
+    } else if (countryId === 'ARM') {
+      localCurrency = 'AMD';
     }
     return localCurrency;
   }

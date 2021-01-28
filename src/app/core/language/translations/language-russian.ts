@@ -61,6 +61,7 @@ export class Russian implements Language {
   national_id = 'номер удостоверения личности государственного образца';
   phone = 'Телефон';
   products = 'Продукты';
+  product = 'Продукт';
   profile = 'Профиль';
   project = 'проект';
   projects = 'проекты';
@@ -75,6 +76,7 @@ export class Russian implements Language {
   institutions = 'учреждения';
   community = 'сообщество';
   communities = 'сообщества';
+  purchases = this.missingTranslation;
 
   // Actions
   add = 'Добавить';
@@ -1005,7 +1007,7 @@ export class Russian implements Language {
   log_post_language = 'Язык по умолчанию изменен';
   log_update_password = 'Пароль обновлен';
   log_post_password = 'Пароль изменен';
-  log_product = 'Продукт';
+  log_product = this.product;
   log_project = 'Проект';
   log_remove_many = 'Удалено';
   log_remove_one_beneficiary = 'Удален один бенефициар';

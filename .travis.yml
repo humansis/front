@@ -27,27 +27,4 @@ jobs:
           if: (NOT branch =~ /^release\/.*$/) AND tag IS NOT present
           script: yarn run lint && yarn run test
           fast_finish: true
-        - stage: deploy
-          if: branch = develop AND NOT type = "pull_request"
-          before_install:
-              - sudo apt-get install python3-pip python3-setuptools
-              - pip3 install awscli --upgrade
-          script: ./build-deploy.sh test
-        - stage: deploy
-          if: branch =~ /^release\/.*$/ AND NOT type = "pull_request"
-          before_install:
-              - sudo apt-get install python3-pip python3-setuptools
-              - pip3 install awscli --upgrade
-          script: ./build-deploy.sh stage
-        - stage: deploy
-          if: tag IS present AND tag =~ /^deploy.*$/ AND NOT type = "pull_request"
-          before_install:
-              - sudo apt-get install python3-pip python3-setuptools
-              - pip3 install awscli --upgrade
-          script: ./build-deploy.sh dev
-        - stage: deploy
-          if: tag IS present AND tag =~ /^v.*$/ AND NOT type = "pull_request"
-          before_install:
-              - sudo apt-get install python3-pip python3-setuptools
-              - pip3 install awscli --upgrade
-          script: ./build-deploy.sh prod
+

@@ -249,7 +249,10 @@ export class Household extends CustomModel {
         : undefined
     );
     newHousehold.set('debtLevel', householdFromApi.debt_level);
-    newHousehold.set('supportReceived', householdFromApi.support_date_received);
+    newHousehold.set(
+      'supportReceived',
+      DateModelField.formatFromApi(householdFromApi.support_date_received)
+    );
     newHousehold.set('supportOrganization', householdFromApi.support_organization_name);
     newHousehold.set(
       'supportReceivedOtherOrg',

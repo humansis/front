@@ -5,6 +5,7 @@ import { Arabic } from './translations/language-arabic';
 import { English } from './translations/language-english';
 import { Russian } from './translations/language-russian';
 import { Observable, Subject } from 'rxjs';
+import { Amrahic } from 'src/app/core/language/translations/language-amrahic';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class LanguageService {
   public english = new English();
   public arabic = new Arabic();
   public russian = new Russian();
+  public amrahic = new Amrahic();
 
   private selectedLanguageSource: Subject<Language> = new Subject();
   public selectedLanguage$: Observable<
@@ -26,6 +28,7 @@ export class LanguageService {
     this.english,
     this.arabic,
     this.russian,
+    this.amrahic,
   ];
 
   // This default value's reference is not contained in enabledLanguages.
@@ -52,12 +55,14 @@ export class LanguageService {
   // TODO: do not use language as string anymore
   public stringToLanguage(language: string): Language {
     switch (language) {
-      case 'ar':
+      case this.arabic.LANGUAGE_ISO:
         return this.arabic;
-      case 'en':
+      case this.english.LANGUAGE_ISO:
         return this.english;
-      case 'ru':
+      case this.russian.LANGUAGE_ISO:
         return this.russian;
+      case this.amrahic.LANGUAGE_ISO:
+        return this.amrahic;
       case 'fr':
         return null;
       default:
@@ -68,15 +73,17 @@ export class LanguageService {
   public languageToString(language: Language): string {
     switch (language) {
       case this.arabic:
-        return 'ar';
+        return this.arabic.LANGUAGE_ISO;
       case this.english:
-        return 'en';
+        return this.english.LANGUAGE_ISO;
       case this.russian:
-        return 'ru';
+        return this.russian.LANGUAGE_ISO;
+      case this.amrahic:
+        return this.amrahic.LANGUAGE_ISO;
       case null:
         return 'fr';
       default:
-        return 'en';
+        return this.english.LANGUAGE_ISO;
     }
   }
   //
@@ -88,6 +95,10 @@ export class LanguageService {
         return this.arabic;
       case 'UKR':
         return this.russian;
+      case 'ETH':
+        return this.amrahic;
+      case 'MNG':
+      case 'ARM':
       case 'KHM':
       default:
         return this.english;

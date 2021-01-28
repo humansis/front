@@ -54,7 +54,14 @@
           <button
             mat-flat-button
             class="button-background-primary"
-            (click)="exportTransaction(extensionType, 'generalreliefDistribution')"
+            (click)="
+              exportTransaction(
+                extensionType,
+                actualDistribution.isSmartcardDistribution()
+                  ? 'smartcardDistribution'
+                  : 'generalreliefDistribution'
+              )
+            "
             *ngIf="!loadingExport"
           >
             <mat-icon>get_app</mat-icon>
@@ -129,7 +136,6 @@
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         [selection]="selection"
-        rights="true"
         (openModal)="openDialog($event)"
         [selectable]="
           !actualDistribution.get('finished') &&
@@ -148,7 +154,6 @@
         [entity]="entity"
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
-        rights="true"
         (openModal)="openDialog($event)"
         [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         [selection]="selection"
@@ -200,6 +205,7 @@
           *ngIf="
             userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN') &&
             !distributed &&
+            !actualDistribution.isSmartcardDistribution() &&
             selection.selected.length > 0
           "
           class="button-background-accent"
