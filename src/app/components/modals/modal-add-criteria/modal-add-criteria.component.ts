@@ -190,6 +190,7 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
       'lactating',
       'pregnant',
       'nutritionalIssues',
+      'chronicallyIll',
     ].includes(field);
   }
 

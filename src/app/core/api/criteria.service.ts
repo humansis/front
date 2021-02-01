@@ -25,20 +25,25 @@ export class CriteriaService extends CustomModelService {
     const conditions = new Array<CriteriaCondition>();
     let conditionNames = [];
 
-    const compared = ['dateOfBirth', 'headOfHouseholdDateOfBirth', 'householdSize'];
+    const compared = [
+      'dateOfBirth',
+      'headOfHouseholdDateOfBirth',
+      'householdSize',
+      'incomeLevel',
+    ];
     const booleanFields = [
       'disabled',
       'soloParent',
       'lactating',
       'pregnant',
       'nutritionalIssues',
+      'chronicallyIll',
     ];
     const equal = [
       'livelihood',
       'foodConsumptionScore',
       'campName',
       'copingStrategiesIndex',
-      'incomeLevel',
       'hasNotBeenInDistributionsSince',
       'currentLocation',
     ];

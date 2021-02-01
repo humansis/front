@@ -1015,6 +1015,7 @@ export class Arabic implements Language {
   vulnerability_lactating = 'المرضعات';
   vulnerability_solo_parent = 'الوالد منفردا';
   vulnerability_nutrional = 'القضايا الغذائية';
+  vulnerability_chronically_ill = this.missingTranslation;
 
   // User
   user_only_one_country = 'يمكنك اختيار دولة واحدة فقط';
@@ -1049,6 +1050,7 @@ export class Arabic implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+  chronicallyIll = this.vulnerability_chronically_ill;
 
   // Insituttion
   institution_name = this.log_name;

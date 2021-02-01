@@ -414,6 +414,8 @@ export class Amrahic implements Language {
   lactating = 'የሚያጠባ';
   report_lactating = 'የሚያጠባ';
   vulnerability_lactating = 'የሚያጠባ';
+  vulnerability_chronically_ill = this.missingTranslation;
+  chronicallyIll = this.vulnerability_chronically_ill;
   phone_type_landline = 'መደበኛ ስልክ';
   header_language = 'ቋንቋ';
   language = 'ቋንቋ';

@@ -1037,6 +1037,7 @@ export class English implements Language {
   vulnerability_lactating = 'lactating';
   vulnerability_solo_parent = 'solo parent';
   vulnerability_nutrional = 'nutritional issues';
+  vulnerability_chronically_ill = 'Chronicaly Ill';
 
   // User
   user_only_one_country = 'You can select only one country';
@@ -1071,6 +1072,7 @@ export class English implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+  chronicallyIll = this.vulnerability_chronically_ill;
 
   // Insituttion
   institution_name = this.log_name;

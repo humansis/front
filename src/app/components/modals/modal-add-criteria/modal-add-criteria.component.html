@@ -46,7 +46,7 @@
                 [value]="option.get('field')"
               >
                 <span *ngIf="option.get('tableString') !== 'countrySpecific'">{{
-                  language[option.get('field')]
+                  language[option.get('field')] || language.missingTranslation
                 }}</span>
                 <span *ngIf="option.get('tableString') === 'countrySpecific'">{{
                   option.get('field')

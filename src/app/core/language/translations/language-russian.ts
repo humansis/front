@@ -931,6 +931,7 @@ export class Russian implements Language {
   vulnerability_lactating = 'кормящая';
   vulnerability_solo_parent = 'одинокий родитель';
   vulnerability_nutrional = 'проблемы питания';
+  vulnerability_chronically_ill = this.missingTranslation;
 
   // User
   user_only_one_country = 'Вы можете выбрать только одну страну';
@@ -963,6 +964,8 @@ export class Russian implements Language {
   pregnant = this.vulnerability_pregnant;
   soloParent = this.vulnerability_solo_parent;
   nutritionalIssues = this.vulnerability_nutrional;
+  chronicallyIll = this.vulnerability_chronically_ill;
+
   false = 'Ложный';
   header_logs = 'Журнал пользователя';
   log_active_users_title = 'Наиболее активные пользователи';

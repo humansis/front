@@ -362,6 +362,7 @@ export interface Language {
   pregnant: string;
   soloParent: string;
   nutritionalIssues: string;
+  chronicallyIll: string;
 
   // Dashboard
   dashboard_distribution_map: string;
@@ -979,6 +980,7 @@ export interface Language {
   vulnerability_nutrional: string;
   vulnerability_pregnant: string;
   vulnerability_solo_parent: string;
+  vulnerability_chronically_ill: string;
 
   // User
   user_only_one_country: string;
