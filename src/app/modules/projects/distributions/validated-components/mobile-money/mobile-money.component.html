@@ -17,7 +17,8 @@
           <div class="info_1">
             <h5>{{ language.transaction_amount_total }}</h5>
             <span *ngFor="let commodity of actualDistribution.get('commodities')">
-              {{ getTotalCommodityValue(commodity) }} {{ commodity.get('unit') }} <br />
+              {{ getTotalCommodityValue(commodity) | number }}
+              {{ commodity.get('unit') }} <br />
             </span>
           </div>
 
@@ -25,13 +26,14 @@
             <div class="info_2">
               <h5>{{ language.transaction_amount_done }}</h5>
               <span *ngFor="let commodity of actualDistribution.get('commodities')">
-                {{ getAmountSent(commodity) }} {{ commodity.get('unit') }} <br />
+                {{ getAmountSent(commodity) | number }} {{ commodity.get('unit') }} <br />
               </span>
             </div>
             <div class="info_3">
               <h5>{{ language.transaction_amount_waiting }}</h5>
               <span *ngFor="let commodity of actualDistribution.get('commodities')">
-                {{ getReceivedValue(commodity) }} {{ commodity.get('unit') }} <br />
+                {{ getReceivedValue(commodity) | number }} {{ commodity.get('unit') }}
+                <br />
               </span>
             </div>
           </ng-container>
