@@ -22,6 +22,8 @@ import { InstitutionService } from 'src/app/core/api/institution.service';
 import { Institution } from 'src/app/models/api/institution';
 import { Community } from 'src/app/models/api/community';
 import { CommunityService } from 'src/app/core/api/community.service';
+import { AssistanceParametersFormComponent } from '../../components/assistance-parameters-form/assistance-parameters-form.component';
+import { assembleI18nBoundString } from '@angular/compiler/src/render3/view/i18n/util';
 
 @Component({
   selector: 'app-assistance-create-page',
@@ -46,10 +48,36 @@ export class AssistanceCreatePageComponent implements OnInit {
 
   @ViewChild(AssistanceLocationFormComponent)
   assistanceLocationForm: AssistanceLocationFormComponent;
-  @ViewChild(AssistanceCommodityComponent)
-  assistanceCommodityComponent: AssistanceCommodityComponent;
+
+  @ViewChild(AssistanceParametersFormComponent)
+  set assistanceParametersForm(
+    assistanceParametersForm: AssistanceParametersFormComponent
+  ) {
+    this._assistanceParametersForm = assistanceParametersForm;
+    this.setupAssistanceParametersForm(this.initialData);
+  }
+
   @ViewChild(AssistanceCriteriaComponent)
-  assistanceCriteriaComponent: AssistanceCriteriaComponent;
+  set assistanceCriteriaComponent(
+    assistanceCriteriaComponent: AssistanceCriteriaComponent
+  ) {
+    this._assistanceCriteriaComponent = assistanceCriteriaComponent;
+    this.setupAssistanceCriteriaComponent(this.initialData);
+  }
+
+  @ViewChild(AssistanceCommodityComponent)
+  set assistanceCommodityComponent(
+    assistanceCommodityComponent: AssistanceCommodityComponent
+  ) {
+    this._assistanceCommodityComponent = assistanceCommodityComponent;
+    this.setupAssistanceCommodityComponent(this.initialData);
+  }
+
+  private _assistanceParametersForm: AssistanceParametersFormComponent;
+  private _assistanceCommodityComponent: AssistanceCommodityComponent;
+  private _assistanceCriteriaComponent: AssistanceCriteriaComponent;
+
+  private initialData: any;
 
   constructor(
     private projectService: ProjectService,
@@ -101,16 +129,11 @@ export class AssistanceCreatePageComponent implements OnInit {
         switchMap((distributionId) => this.distributionService.getOne(distributionId))
       )
       .subscribe((value) => {
-        this.assistanceLocationForm.initialData = value;
-        this.assistanceCommodityComponent.initialData = value.commodities?.map((item) =>
-          Commodity.apiToModel(item)
-        );
-        this.assistanceCriteriaComponent.initialData = {
-          criteria: value.selection_criteria.map((groups) =>
-            groups.map((item) => ModelCriteria.apiToModel(item))
-          ),
-          threshold: value.threshold,
-        };
+        this.initialData = value;
+        this.setupAssistanceLocationForm(value);
+        this.setupAssistanceParametersForm(value);
+        this.setupAssistanceCriteriaComponent(value);
+        this.setupAssistanceCommodityComponent(value);
         this.form.patchValue(value);
       });
   }
@@ -232,6 +255,35 @@ export class AssistanceCreatePageComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['projects']);
+  }
+
+  private setupAssistanceLocationForm(value: any) {
+    if (this.assistanceLocationForm && value) {
+      this.assistanceLocationForm.initialData = value;
+    }
+  }
+
+  private setupAssistanceParametersForm(value: any) {
+    if (this._assistanceParametersForm && value) {
+      this._assistanceParametersForm.initialData = value;
+    }
+  }
+  private setupAssistanceCommodityComponent(value: any) {
+    if (this._assistanceCommodityComponent && value) {
+      this._assistanceCommodityComponent.initialData = value.commodities?.map((item) =>
+        Commodity.apiToModel(item)
+      );
+    }
+  }
+  private setupAssistanceCriteriaComponent(value: any) {
+    if (this._assistanceCriteriaComponent && value) {
+      this._assistanceCriteriaComponent.initialData = {
+        criteria: value.selection_criteria.map((groups) =>
+          groups.map((item) => ModelCriteria.apiToModel(item))
+        ),
+        threshold: value.threshold,
+      };
+    }
   }
 
   private createForm() {

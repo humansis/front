@@ -16,7 +16,6 @@ import { LocationUtils } from 'src/app/core/utils/location-utils';
   selector: 'app-assistance-location-form',
   templateUrl: './assistance-location-form.component.html',
   styleUrls: ['./assistance-location-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AssistanceLocationFormComponent implements OnInit {
   form: FormGroup;

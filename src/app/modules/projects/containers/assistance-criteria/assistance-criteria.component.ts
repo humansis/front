@@ -180,9 +180,11 @@ export class AssistanceCriteriaComponent implements OnInit {
   }
 
   private notifyCriteriaChanged() {
-    this.criteriaChanged.emit(
-      this.groups.map((dataTable) => dataTable.data.map((item) => item.modelToApi()))
-    );
+    if (this.groups) {
+      this.criteriaChanged.emit(
+        this.groups.map((dataTable) => dataTable.data.map((item) => item.modelToApi()))
+      );
+    }
   }
 
   private reloadAllBeneficiaries() {

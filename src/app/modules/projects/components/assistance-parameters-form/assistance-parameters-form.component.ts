@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LanguageService } from 'src/app/core/language/language.service';
 import { Sector, Subsector } from 'src/app/models/api/sector';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
+import * as moment from 'moment';
+import { LocationUtils } from '../../../../core/utils/location-utils';
 
 @Component({
   selector: 'app-assistance-parameters-form',
@@ -30,6 +32,12 @@ export class AssistanceParametersFormComponent implements OnInit {
   form: FormGroup;
   language = this.languageService.selectedLanguage;
 
+  set initialData(initialData: any) {
+    this.form.patchValue(initialData, { emitEvent: false });
+    this.onSectorChange(initialData?.sector);
+    this.form.patchValue({ subsector: initialData?.subsector }, { emitEvent: false });
+  }
+
   constructor(private fb: FormBuilder, private languageService: LanguageService) {
     this.form = this.createForm();
   }
@@ -47,21 +55,23 @@ export class AssistanceParametersFormComponent implements OnInit {
   }
 
   private onSectorChange(value) {
-    const sector = this.sectors.find((item) => item.id === value);
-    if (sector) {
-      if (sector.subsectors && sector.subsectors.length > 0) {
-        this.form.get('subsector').enable();
-        this.subsectors = sector.subsectors;
-        this.form.patchValue({
-          subsector:
-            sector.subsectors && sector.subsectors.length > 0
-              ? sector.subsectors[0].id
-              : undefined,
-        });
-      } else {
-        this.form.get('subsector').disable();
-        this.subsectors = undefined;
-        this.form.patchValue({ subSector: undefined });
+    if (this.sectors) {
+      const sector = this.sectors.find((item) => item.id === value);
+      if (sector) {
+        if (sector.subsectors && sector.subsectors.length > 0) {
+          this.form.get('subsector').enable();
+          this.subsectors = sector.subsectors;
+          this.form.patchValue({
+            subsector:
+              sector.subsectors && sector.subsectors.length > 0
+                ? sector.subsectors[0].id
+                : undefined,
+          });
+        } else {
+          this.form.get('subsector').disable();
+          this.subsectors = undefined;
+          this.form.patchValue({ subSector: undefined });
+        }
       }
     }
   }
