@@ -14,6 +14,7 @@ import { AssistanceCriteria } from 'src/app/models/api/assistance-criteria';
 import { Observable } from 'rxjs';
 import { DisplayType } from 'src/app/models/constants/screen-sizes';
 import { ScreenSizeService } from 'src/app/core/screen-size/screen-size.service';
+import { UserService } from '../../../../core/api/user.service';
 
 @Component({
   selector: 'app-assistance-criteria',
@@ -99,7 +100,8 @@ export class AssistanceCriteriaComponent implements OnInit {
     private beneficiariesService: BeneficiariesService,
     private screenSizeService: ScreenSizeService,
     private modalService: ModalService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public userService: UserService
   ) {
     this.form = this.createForm();
     this.displayType$ = this.screenSizeService.displayTypeSource.asObservable();

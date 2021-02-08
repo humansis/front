@@ -18,6 +18,7 @@
         [reachedBeneficiaries]="groupBeneficiaries[i]"
         [data]="group"
         [targetType]="targetType"
+        [showDetails]="userService.hasRights('ROLE_ADMIN')"
         (addClick)="addCriteria(i)"
         (detailsClick)="showGroupBeneficiaries(i)"
         (removeClick)="removeCriteria(i, $event)"

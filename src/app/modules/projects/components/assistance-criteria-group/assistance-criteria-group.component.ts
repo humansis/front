@@ -21,6 +21,9 @@ export class AssistanceCriteriaGroupComponent implements OnInit {
   targetType: string;
 
   @Input()
+  showDetails = false;
+
+  @Input()
   data: MatTableDataSource<ModelCriteria>;
 
   @Input()
