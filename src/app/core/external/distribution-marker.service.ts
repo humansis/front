@@ -83,9 +83,7 @@ export class DistributionMarkerService {
                 )}
                 ${this.formatPropertyIfExists(
                   titlePipe.transform(language.beneficiary_count),
-                  distribution
-                    .get<Array<DistributionBeneficiary>>('distributionBeneficiaries')
-                    .length.toString()
+                  distribution.get('beneficiariesCount')
                 )}
                 ${this.formatPropertyIfExists(
                   titlePipe.transform(language.name),

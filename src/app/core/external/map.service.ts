@@ -154,9 +154,9 @@ export class MapService {
       }
 
       // Remove 2-character identifier and calculate adm based on the code's length
-      const admLevel = +admCode.slice(2).length;
+      const admLevel = +(admCode.slice(2).length / 2);
       if (!Number.isInteger(admLevel)) {
-        throw new Error(`${admCode} is not an integer`);
+        console.warn(`${admCode} is not an integer`);
       }
       return admLevel;
     }
