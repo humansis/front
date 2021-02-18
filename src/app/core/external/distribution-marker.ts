@@ -56,9 +56,10 @@ export class DistributionMarker {
     return Leaflet.divIcon({
       className: `marker-container ${status}`,
       html: `
-                <object class="marker-icon" width="20" height="20" fill="white"
-                    data="${this.distributionMarkerService.getImage(distribution)}">
-                </object>
+
+                  <img src="assets/images/commodities/${this.distributionMarkerService.getImage(
+                    distribution
+                  )}.svg" style="position: absolute; padding: 10px"/>
                 ${this.distributionMarkerService.generateMarker(
                   this.distributionMarkerService.isToday(distribution)
                 )}
