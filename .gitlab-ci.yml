@@ -142,3 +142,38 @@ report failure:
     - if: '$CI_COMMIT_TAG =~ /^v.*$/'
       when: on_failure
     - when: never
+
+
+###############################################
+### DEPLOY DCA
+#############################################
+
+deploy test DCA:
+  stage: deploy_test
+  environment:
+    name: dca-test
+    url: https://testdca.humansis.org
+  <<: *prepare_aws
+  script:
+    - yarn install
+    - ./get-info.sh
+    - ./build-deploy.sh testdca
+  only:
+    - master
+  when: manual
+
+deploy prod DCA:
+  stage: deploy_prod
+  environment:
+    name: dca-prod
+    url: https://dca.humansis.org
+  <<: *prepare_aws
+  script:
+    - yarn install
+    - ./get-info.sh
+    - ./build-deploy.sh proddca
+  only:
+    - /^v.*$/
+  except:
+    - branches
+  when: manual

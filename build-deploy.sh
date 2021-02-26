@@ -19,9 +19,17 @@ elif [[ $1 == "demo" ]]; then
     echo "Demo environment is not currently supported."
     exit 0
     yarn run build -- --prod -c demo --progress
+elif [[ $1 == "proddca" ]]; then # DCA
+    cp src/environments/environment.template.ts src/environments/environment.prod.ts
+    sed -i -e "s|__API_URL__|${API_URL_DCA_PROD}|g" src/environments/environment.prod.ts
+    yarn run build -- --prod --progress
+elif [[ $1 == "testdca" ]]; then # DCA
+    cp src/environments/environment.template.ts src/environments/environment.prod.ts
+    sed -i -e "s|__API_URL__|${API_URL_DCA_TEST}|g" src/environments/environment.prod.ts
+    yarn run build -- --prod --progress
 else
     echo "Unknown environment"
-    exit
+    exit 1
 fi
 echo "Build complete"
 
@@ -66,5 +74,13 @@ elif [[ $1 == "demo" ]]; then
     aws s3 rm s3://demo.humansis.org --recursive
     aws s3 cp ./dist/bms-front_gzip s3://demo.humansis.org --recursive --acl public-read --content-encoding gzip
     aws cloudfront create-invalidation --distribution-id EETRVGJ9FHCMD --paths '/*'
+elif [[ $1 == "proddca" ]]; then # DCA
+    aws s3 rm s3://dca.humansis.org --recursive
+    aws s3 cp ./dist/bms-front_gzip s3://dca.humansis.org --recursive --acl public-read --content-encoding gzip
+    aws cloudfront create-invalidation --distribution-id EZBP52LVPFT1C --paths '/*'
+elif [[ $1 == "testdca" ]]; then # DCA
+    aws s3 rm s3://testdca.humansis.org --recursive
+    aws s3 cp ./dist/bms-front_gzip s3://testdca.humansis.org --recursive --acl public-read --content-encoding gzip
+    aws cloudfront create-invalidation --distribution-id E3RNPDVEF9KF64 --paths '/*'
 fi
 echo "Upload complete"
