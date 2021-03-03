@@ -185,6 +185,7 @@ export class ModalAddCriteriaComponent implements OnInit, OnDestroy {
   showValueField(field) {
     return ![
       'disabled',
+      'disabledHeadOfHousehold',
       'currentLocation',
       'soloParent',
       'lactating',

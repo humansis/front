@@ -33,6 +33,7 @@ export class CriteriaService extends CustomModelService {
     ];
     const booleanFields = [
       'disabled',
+      'disabledHeadOfHousehold',
       'soloParent',
       'lactating',
       'pregnant',

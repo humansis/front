@@ -1047,7 +1047,7 @@ export class French implements Language {
   vulnerability_nutrional = 'malnutrition';
   vulnerability_pregnant = 'grossesse';
   vulnerability_solo_parent = 'parent célibataire';
-  vulnerability_chronically_ill = this.missingTranslation;
+  vulnerability_chronically_ill = 'malades chroniques';
 
   // User
   user_only_one_country = "Vous ne pouvez sélectionner qu'un pays";
