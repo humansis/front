@@ -28,7 +28,6 @@ export class VouchersComponent implements OnInit, OnDestroy {
 
   public loadingPrint = false;
   public loadingExportCodes = false;
-  public loadingInsertion = false;
 
   public modalSubscriptions: Array<Subscription> = [];
 
@@ -110,50 +109,6 @@ export class VouchersComponent implements OnInit, OnDestroy {
       subscription.unsubscribe()
     );
     this.modalService.openDialog(this.bookletClass, this.bookletService, dialogDetails);
-
-    const dataSubscription = this.modalService.dataSubject.subscribe((response: any) => {
-      this.loadingInsertion = true;
-      if (dialogDetails['action'].includes('add')) {
-        this.checkInsertedBooklets(response['lastBooklet'], response['expectedNumber']);
-      }
-    });
-    this.modalSubscriptions = [dataSubscription];
-  }
-
-  checkInsertedBooklets(lastId: number, totalExpected: number) {
-    let previousValue = 0;
-    const dataInsertionObservable = interval(10000)
-      .pipe(
-        switchMap(() => {
-          return this.bookletService.getInsertedBooklets(lastId);
-        })
-      )
-      .subscribe((res: number) => {
-        // tslint:disable-next-line
-        console.log(res);
-        if (res === previousValue) {
-          dataInsertionObservable.unsubscribe();
-          this.snackbar.error(
-            this.language.snackbar_error_creating +
-              this.language.booklets +
-              ` (${res}/${totalExpected})`
-          );
-          this.loadingInsertion = false;
-          this.insertionProgress = 0;
-          this.table.loadDataPage();
-        } else if (res >= totalExpected) {
-          dataInsertionObservable.unsubscribe();
-          this.snackbar.success(
-            this.language.booklets + ' ' + this.language.snackbar_created_successfully
-          );
-          this.loadingInsertion = false;
-          this.insertionProgress = 0;
-          this.table.loadDataPage();
-        } else {
-          previousValue = res;
-          this.insertionProgress = Math.trunc((res / totalExpected) * 100);
-        }
-      });
   }
 
   print(event: Booklet) {
