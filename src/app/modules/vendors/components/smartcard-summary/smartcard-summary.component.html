@@ -2,10 +2,7 @@
 
 <div class="summary">
   <div>
-    <strong>{{ language.vendor_total_number_transactions }}:</strong> {{ totalPurchases
-    }}<br />
-    <strong>{{ language.vendor_total_value_transactions }}:</strong>
-    {{ sumOfPurchases | currency: currency }}<br />
+    <strong>{{ language.vendor_total_number_transactions }}:</strong> {{ totalPurchases }}
   </div>
   <div class="controls">
     <button mat-button (click)="showHistory.emit()">
@@ -13,12 +10,12 @@
     </button>
   </div>
 </div>
-<hr />
-<div class="redemption" *ngIf="purchasesToRedeem">
-  <div>
-    <strong>{{ language.vendor_unpaid_transactions }}:</strong>
-    {{ purchasesToRedeem?.length }}<br />
-    <strong>{{ language.vendor_unpaid_transaction_value }}:</strong>
-    {{ sumToRedeem | currency: currency }}<br />
-  </div>
-</div>
+
+<ng-container *ngFor="let purchases of purchasesToRedeem; let i = index">
+  <hr [ngClass]="{ strong: i === 0 }" />
+  <app-smartcard-redemption
+    [purchasesToRedeem]="purchases"
+    (redeem)="redeemPurchases($event)"
+  >
+  </app-smartcard-redemption>
+</ng-container>

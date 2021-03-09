@@ -9,6 +9,7 @@ import { SmartcardSummaryComponent } from './components/smartcard-summary/smartc
 import { SmartcardSummaryModalComponent } from './containers/modal/smartcard-summary-modal/smartcard-summary-modal.component';
 import { RedeemedBatchesOverviewModalComponent } from './containers/modal/redeemed-batches-overview-modal/redeemed-batches-overview-modal.component';
 import { RedemptionSummaryModalComponent } from './containers/modal/redemption-summary-modal/redemption-summary-modal.component';
+import { SmartcardRedemptionComponent } from './components/smartcard-redemption/smartcard-redemption.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RedemptionSummaryModalComponent } from './containers/modal/redemption-s
     SmartcardSummaryModalComponent,
     RedeemedBatchesOverviewModalComponent,
     RedemptionSummaryModalComponent,
+    SmartcardRedemptionComponent,
   ],
   imports: [CommonModule, SharedModule, VendorsRoutingModule],
   providers: [CurrencyPipe],

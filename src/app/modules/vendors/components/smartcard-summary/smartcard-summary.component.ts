@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LanguageService } from '../../../../core/language/language.service';
 import { Language } from '../../../../core/language/language';
+import { PurchasesToRedeem } from 'src/app/models/api/purchases-to-redeem';
 
 @Component({
   selector: 'app-smartcard-summary',
@@ -13,7 +14,7 @@ export class SmartcardSummaryComponent implements OnInit {
   @Input()
   sumOfPurchases: number;
   @Input()
-  purchasesToRedeem: number[] = [];
+  purchasesToRedeem: PurchasesToRedeem[] = [];
   @Input()
   sumToRedeem: number;
   @Input()
@@ -29,9 +30,9 @@ export class SmartcardSummaryComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  redeemClick() {
+  redeemPurchases(purchasesIds: number[]) {
     if (this.purchasesToRedeem.length > 0) {
-      this.redeem.emit(this.purchasesToRedeem);
+      this.redeem.emit(purchasesIds);
     }
   }
 }

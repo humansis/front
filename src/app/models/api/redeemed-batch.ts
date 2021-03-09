@@ -3,4 +3,6 @@ export interface RedeemedBatch {
   count: number;
   value: number;
   date: string;
+  project_name: string;
+  project_id: string;
 }

@@ -1,0 +1,21 @@
+<div class="redemption" *ngIf="purchasesToRedeem">
+  <div>
+    <strong>{{ language.vendor_unpaid_transactions }}:</strong>
+    {{ purchasesToRedeem.purchases_count }}<br />
+    <strong>{{ language.project }}:</strong>
+    {{ purchasesToRedeem.project_name }}<br />
+    <strong>{{ language.vendor_unpaid_transaction_value }}:</strong>
+    {{ purchasesToRedeem.value | currency: purchasesToRedeem.currency }}<br />
+  </div>
+  <div>
+    <button
+      *ngIf="canRedeem()"
+      mat-button
+      mat-dialog-close
+      class="button-background-primary"
+      (click)="redeem.emit(purchasesToRedeem.purchases_ids)"
+    >
+      {{ language.redeem }}
+    </button>
+  </div>
+</div>

@@ -19,6 +19,11 @@ hr {
   margin: 1em 0;
 }
 
+hr.strong {
+  border: 1px solid black;
+  background: black;
+}
+
 .redemption,
 .summary {
   display: flex;

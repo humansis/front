@@ -23,6 +23,7 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
   loading = false;
   public readonly TABLE_HEADERS: TableHeader[] = [
     { key: 'date', languageKey: 'date' },
+    { key: 'project_name', languageKey: 'project' },
     { key: 'count', languageKey: 'quantity' },
     {
       key: 'value',

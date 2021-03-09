@@ -40,7 +40,7 @@ export class SmartcardService {
     return this.http.get(url, options);
   }
 
-  public getVendorPurchasesToRedeem(id: string): Observable<PurchasesToRedeem> {
+  public getVendorPurchasesToRedeem(id: string): Observable<PurchasesToRedeem[]> {
     const url = `${this.api}/purchases/to-redemption/${id}`;
     return this.http.get(url);
   }

@@ -18,14 +18,12 @@ import { RedemptionSummaryModalComponent } from '../redemption-summary-modal/red
 })
 export class SmartcardSummaryModalComponent implements OnInit {
   purchasesStats$: Observable<CountValue>;
-  purchasesRedeemStats$: Observable<PurchasesToRedeem>;
+  purchasesRedeemStats$: Observable<PurchasesToRedeem[]>;
   loading$: Observable<any>;
-  redeeming = false;
   currency = 'USD';
   language: Language = this.languageService.selectedLanguage;
 
   private readonly id: string;
-  private batch: number[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -56,29 +54,22 @@ export class SmartcardSummaryModalComponent implements OnInit {
       startWith(true),
       endWith(false)
     );
-    this.purchasesRedeemStats$.subscribe((stats) => (this.batch = stats.purchases_ids));
   }
 
-  redeem() {
-    this.redeeming = true;
-    this.smartcardService.redeemBatch(this.id, this.batch).subscribe(
-      (response: { id: number }) => {
-        this.redeeming = false;
+  redeem(batch: number[]) {
+    this.smartcardService
+      .redeemBatch(this.id, batch)
+      .subscribe((response: { id: number }) => {
         this.dialogRef.close();
         this.matDialog.open(RedemptionSummaryModalComponent, {
           width: '650px',
           data: {
             vendorId: this.id,
             batchId: response.id,
+            backComponent: SmartcardSummaryModalComponent,
           },
         });
-      },
-      () => (this.redeeming = false)
-    );
-  }
-
-  canRedeem() {
-    return this.batch && this.batch.length > 0;
+      });
   }
 
   onShowHistoryClick() {
