@@ -76,35 +76,9 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
 
     this.actualDistribution.set('distributionBeneficiaries', distributionBeneficiaries);
     this.transactionData = new MatTableDataSource(distributionBeneficiaries);
-    this.verifyIsFinished();
     this.loadingTransaction = false;
     if (this.userService.hasRights('ROLE_AUTHORISE_PAYMENT')) {
       this.refreshStatuses();
-    }
-  }
-
-  /**
-   * To be used everytime transactionData changes
-   */
-  verifyIsFinished() {
-    let amount: number;
-
-    if (!this.transactionData) {
-      amount = 0;
-    } else {
-      amount = 0;
-      this.transactionData.data.forEach(
-        (distributionBeneficiary: TransactionMobileMoney) => {
-          const stateId = distributionBeneficiary.get<State>('state').get<string>('id');
-          if (stateId === '-1' || stateId === '-2' || stateId === '0') {
-            amount++;
-          }
-        }
-      );
-    }
-    if (amount === 0) {
-      this.finishedEmitter.emit();
-      this.distributionService.complete(this.actualDistribution.get('id')).subscribe();
     }
   }
 
@@ -128,7 +102,6 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
                 this.transactionData.data[index].updateForPickup(
                   distributionBeneficiary.moneyReceived
                 );
-                this.verifyIsFinished();
               }
             });
           }
@@ -329,7 +302,6 @@ export class MobileMoneyComponent extends ValidatedDistributionComponent
               }
             );
           }
-          this.verifyIsFinished();
           this.dialog.closeAll();
         });
 

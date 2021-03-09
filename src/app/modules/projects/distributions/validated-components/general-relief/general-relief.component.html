@@ -141,7 +141,10 @@
           !actualDistribution.get('finished') &&
           userService.hasRights('ROLE_PROJECT_MANAGEMENT_ASSIGN')
         "
-        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+        [deletable]="
+          userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE') &&
+          !actualDistribution.get('finished')
+        "
       >
       </app-table>
       <app-table-mobile
@@ -155,7 +158,10 @@
         [data]="transactionData"
         [editable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
         (openModal)="openDialog($event)"
-        [deletable]="userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE')"
+        [deletable]="
+          userService.hasRights('ROLE_BENEFICIARY_MANAGEMENT_WRITE') &&
+          !actualDistribution.get('finished')
+        "
         [selection]="selection"
         [selectable]="
           !actualDistribution.get('finished') &&

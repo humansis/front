@@ -189,13 +189,6 @@ export abstract class ValidatedDistributionComponent implements OnInit, OnDestro
       });
   }
 
-  /**
-   * To be used everytime transactionData changes
-   */
-  verifyIsFinished() {
-    throw new Error('Abstract Method');
-  }
-
   storeBeneficiaries() {
     this.storeEmitter.emit(this.actualDistribution);
   }

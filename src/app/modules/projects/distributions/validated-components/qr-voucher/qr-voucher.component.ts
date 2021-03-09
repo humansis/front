@@ -45,39 +45,7 @@ export class QrVoucherComponent extends ValidatedDistributionComponent implement
       'distributionBeneficiaries'
     );
     this.transactionData = new MatTableDataSource(distributionBeneficiaries);
-    this.verifyIsFinished();
     this.loadingTransaction = false;
-  }
-
-  /**
-   * To be used everytime transactionData changes
-   */
-  verifyIsFinished() {
-    let amount: number;
-
-    if (!this.transactionData) {
-      amount = 0;
-    } else {
-      amount = 0;
-      this.transactionData.data.forEach(
-        (distributionBeneficiary: TransactionQRVoucher) => {
-          if (!distributionBeneficiary.get('booklet')) {
-            amount++;
-          } else {
-            const stateId = distributionBeneficiary
-              .get<CustomModel>('booklet')
-              .get<BookletStatus>('status')
-              .get<string>('id');
-            if (stateId !== '3' && stateId !== '2') {
-              amount++;
-            }
-          }
-        }
-      );
-    }
-    if (amount === 0) {
-      this.finishedEmitter.emit();
-    }
   }
 
   // Total ammount assigned/distributed to a benefeciary
