@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SmartcardService } from '../../../../../core/api/smartcard.service';
-import { forkJoin, merge, Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { PurchaseInfo } from '../../../../../models/api/purchase-info';
 import { ClientDataSource } from '../../../../../core/datasource/client-data-source';
 import { RedeemedBatch } from '../../../../../models/api/redeemed-batch';
@@ -10,12 +10,11 @@ import { CurrencyPipe } from '@angular/common';
 import { FormService } from '../../../../../core/utils/form.service';
 import { Language } from '../../../../../core/language/language';
 import { LanguageService } from '../../../../../core/language/language.service';
-import { RedeemedBatchesOverviewModalComponent } from '../redeemed-batches-overview-modal/redeemed-batches-overview-modal.component';
 import { VendorsService } from '../../../../../core/api/vendors.service';
-import { combineAll } from 'rxjs/operators';
 import { Vendor } from '../../../../../models/api/vendor';
 import * as FileSaver from 'file-saver';
 import { ComponentType } from '@angular/cdk/portal';
+import { SmartcardSummaryModalComponent } from 'src/app/modules/vendors/containers/modal/smartcard-summary-modal/smartcard-summary-modal.component';
 
 @Component({
   selector: 'app-redemption-summary-modal',
@@ -30,7 +29,7 @@ export class RedemptionSummaryModalComponent implements OnInit {
 
   public readonly TABLE_HEADERS: TableHeader[] = [
     { key: 'purchase_date', languageKey: 'date' },
-    { key: 'beneficiary_en_name', languageKey: 'beneficiary_en_name' },
+    { key: 'beneficiary_local_name', languageKey: 'beneficiary_local_name' },
     {
       key: 'purchase_amount',
       languageKey: 'amount',

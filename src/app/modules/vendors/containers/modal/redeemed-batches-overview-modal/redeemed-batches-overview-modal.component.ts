@@ -45,8 +45,7 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
     private formService: FormService,
     private smartcardService: SmartcardService,
     private languageService: LanguageService,
-    private matDialog: MatDialog,
-    private dialogRef: MatDialogRef<RedeemedBatchesOverviewModalComponent>
+    private matDialog: MatDialog
   ) {
     this.id = data.id;
   }
@@ -67,6 +66,7 @@ export class RedeemedBatchesOverviewModalComponent implements OnInit {
       width: '650px',
       data: {
         id: this.id,
+        backComponent: RedeemedBatchesOverviewModalComponent,
       },
     });
   }
