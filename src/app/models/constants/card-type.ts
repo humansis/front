@@ -1,34 +1,34 @@
 export const CARD_TYPES = [
   {
-    id: 'national_id',
+    id: 'National ID',
     language_key: 'national_id_card',
   },
   {
-    id: 'passport',
+    id: 'Passport',
     language_key: 'national_id_passport',
   },
   {
-    id: 'family_registration',
+    id: 'Family Registration',
     language_key: 'national_id_family_registry',
   },
   {
-    id: 'birth_certificate',
+    id: 'Birth Certificate',
     language_key: 'national_id_birth_certificate',
   },
   {
-    id: 'drivers_license',
+    id: 'Driver’s License',
     language_key: 'national_id_license',
   },
   {
-    id: 'camp_id',
+    id: 'Camp ID',
     language_key: 'national_id_camp',
   },
   {
-    id: 'social_service_card',
+    id: 'Social Service Card',
     language_key: 'national_id_social_service',
   },
   {
-    id: 'other',
+    id: 'Other',
     language_key: 'other',
   },
 ];
